@@ -1,0 +1,127 @@
+##############################################
+# 👑 TRAIT PRINCIPAL - PARANGON
+##############################################
+
+# Trait que representa al líder Parangon.
+# Otorga bonificaciones masivas a líderes, imperio y subordinados.
+mpp_leader_trait_parangon_leader = {
+    councilor_trait = yes                           # Se considera un consejero
+    initial = yes                                   # Aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_mpp_leader_trait_parangon_leader
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = none
+    }
+
+    leader_class = { governor admiral scientist general } # Clases de líder a las que aplica
+
+    modifier = {
+        leader_age = 300                           # Máxima longevidad del líder
+        country_leader_cap_add = 10                # Incrementa número de líderes posibles
+        mpp_species_leader_bonus_x3 = yes          # Bonificaciones de líder de especie
+
+        mpp_empire_size_bonus = yes                # Bonificaciones por tamaño del imperio
+        mpp_empire_naval_bonus = yes               # Bonificaciones navales
+        mpp_empire_fleet_bonus = yes               # Bonificaciones de flota
+        mpp_empire_upkeep_bonus = yes              # Reducciones de mantenimiento
+        mpp_spy_operations_bonus = yes             # Bonificaciones de espionaje
+
+        mpp_planet_research_production_bonus = yes # Mejora producción de investigación planetaria
+        mpp_planet_production_bonus = yes          # Mejora producción de trabajos y recursos planetarios
+    }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = { leader_class = scientist }
+        modifier = {
+            mpp_country_research_bonus_x5 = yes     # Investigación acelerada
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = admiral }
+        modifier = {
+            mpp_military_ship_bonus = yes           # Mejora de naves militares
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = general }
+        modifier = {
+            mpp_army_bonus = yes                     # Mejora de ejércitos
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = governor }
+        modifier = {
+            mpp_population_bonus_x5 = yes            # Bonificación masiva de población
+        }
+    }
+}
+
+##############################################
+# 👑 TRAIT SECUNDARIO - PUPILO (HAS PARANGON)
+##############################################
+
+# Trait que representa líderes influenciados o formados por un Parangon.
+# Bonificaciones moderadas adaptadas a cada clase de líder.
+mpp_leader_trait_has_parangon_leader = {
+    councilor_trait = no                            # No se considera un consejero
+    initial = yes                                   # Aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_mpp_leader_trait_has_parangon_leader
+        RARITY = paragon
+        COUNCIL = no
+        TIER = none
+    }
+
+    leader_class = { governor admiral scientist general }
+
+    modifier = {
+        leader_age = 50                              # Longevidad moderada
+        leader_trait_selection_options_add = 3       # Más opciones de selección de traits
+    }
+
+    # Bonificaciones según clase de líder
+    triggered_modifier = {
+        potential = { leader_class = admiral }
+        modifier = {
+            mpp_military_ship_bonus = yes            # Bonificación de naves militares
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = general }
+        modifier = {
+            mpp_army_bonus = yes                      # Bonificación de ejércitos
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = governor }
+        modifier = {
+            planet_stability_add = 10                 # Aumenta estabilidad planetaria
+            pop_growth_speed = 0.05                   # Incrementa crecimiento poblacional
+            mpp_planet_production_bonus = yes         # Mejora producción planetaria
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = scientist }
+        modifier = {
+            mpp_country_research_bonus = yes           # Bonificación de investigación del país
+            mpp_scientists_research_production_bonus = yes # Mejora producción de líderes científicos
+            mpp_scient_ship_bonus = yes               # Bonificación de naves científicas
+        }
+    }
+}
