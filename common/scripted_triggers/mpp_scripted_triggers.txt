@@ -1,0 +1,49 @@
+# =============================================
+# Scripted Triggers MPP Parangon
+# =============================================
+
+# ================================================
+# Trigger: mpp_has_parangon_leader_approved
+# ================================================
+# Propósito: Comprueba si el país tiene la bandera de líder Parangon aprobado.
+# Devuelve: yes si la bandera existe, no si no.
+# ================================================
+mpp_has_parangon_leader_approved = {
+    has_country_flag = mpp_flag_parangon_leader_approved
+}
+
+# ================================================
+# Trigger: mpp_has_tech_potential
+# ================================================
+# Propósito: Determina si el país tiene potencial para desbloquear tecnologías MPP.
+# Condición: Basado en la aprobación del líder Parangon.
+# ================================================
+mpp_has_tech_potential = {
+    mpp_has_parangon_leader_approved = yes
+}
+
+# ================================================
+# Trigger: mpp_can_unlock_agenda
+# ================================================
+# Propósito: Comprueba si el país puede desbloquear agendas MPP.
+# Condiciones:
+#   - No es un país Gestalt
+#   - Tiene la aprobación del líder Parangon
+# ================================================
+mpp_can_unlock_agenda = {
+    is_gestalt = no
+    mpp_has_parangon_leader_approved = yes
+}
+
+# ================================================
+# Trigger: mpp_can_unlock_agenda_parangon_dlc
+# ================================================
+# Propósito: Comprueba si el país puede desbloquear agendas MPP de la DLC Parangon.
+# Condiciones:
+#   - Cumple requisitos básicos para agendas MPP
+#   - Tiene la DLC Parangon
+# ================================================
+mpp_can_unlock_agenda_parangon_dlc = {
+    mpp_can_unlock_agenda = yes
+    has_paragon_dlc = yes
+}
