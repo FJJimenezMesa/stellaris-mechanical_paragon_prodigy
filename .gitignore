@@ -1,0 +1,28 @@
+# Archivos temporales de VS Code
+.vscode/
+*.code-workspace
+
+# Archivos de logs y temporales
+*.log
+*.tmp
+*.bak
+
+# Archivos de Python generados (si usas scripts como el de formateo)
+__pycache__/
+*.pyc
+
+# Archivos específicos de Stellaris que no quieres versionar
+*.sav          # partidas guardadas
+*.log          # logs del juego
+*.backup       # backups del juego/mod
+*.bin          # binarios del juego (si los modificas por algún motivo)
+
+# Carpeta de exportación del mod (si creas una versión empaquetada)
+export/
+
+# Otros archivos generados automáticamente
+.DS_Store      # macOS
+Thumbs.db      # Windows
+
+# Dependencias externas (si las hubiera)
+libs/
