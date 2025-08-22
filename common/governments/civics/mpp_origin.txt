@@ -1,0 +1,39 @@
+@pref_planet = pc_gaia
+
+# ================================
+# 🌌 Origin MPP: Mechanical Parangon Prodigy
+# ================================
+# Descripción: Define un origen para especies MACHINE avanzadas
+# relacionadas con Parangon. Representa una especie prodigio con 
+# capacidades tecnológicas iniciales únicas.
+# Aplicación: Aplica al inicio de partida para jugadores que elijan
+# este origen. Se asegura que solo pueda aparecer una vez globalmente.
+# Enfoque: Historia y rol narrativo, junto con ventajas mecánicas iniciales.
+# ================================
+mpp_origin_mechanical_parangon_prodigy = {
+    is_origin = yes
+    icon = "gfx/interface/icons/origins/mpp_mechanical_parangon_prodigy.dds"
+    picture = GFX_mpp_mechanical_parangon_prodigy_picture
+    description = "mpp_origin_tooltip_effects"
+
+	starting_colony = @pref_planet
+	habitability_preference = @pref_planet
+    preferred_planet_class_neighbor = no
+    max_once_global = yes
+
+    potential = { always = yes }
+    possible = {}
+
+    initializers = { 
+        mpp_system_initializer 
+    }
+	
+    flags = { 
+        mpp_flag_mpp_origin 
+        custom_start_screen 
+    }
+
+    modifier = {
+
+    }
+}
