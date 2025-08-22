@@ -1,0 +1,122 @@
+# ================================
+# 👑 Leader Trait: mpp_leader_trait_parangon_leader
+# "Parangon"
+# ================================
+# Descripción: Representa al líder Parangon. Otorga bonificaciones masivas a líderes, imperio y subordinados.
+# Aplicación: Líderes de cualquier clase (governor, admiral, scientist, general), con capacidad de consejero.
+# Enfoque: Rasgo raro y poderoso, enfocado en longevidad, dominio militar, naval, administrativo y científico.
+# ================================
+mpp_leader_trait_parangon_leader = {
+    councilor_trait = yes
+    initial = yes
+    randomized = no
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_mpp_leader_trait_parangon_leader
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = none
+    }
+
+    leader_class = { governor admiral scientist general }
+
+    modifier = {
+        leader_age = 300
+        country_leader_cap_add = 10
+        mpp_species_leader_bonus_x3 = yes
+
+        mpp_empire_size_bonus = yes
+        mpp_empire_naval_bonus = yes
+        mpp_empire_fleet_bonus = yes
+        mpp_empire_upkeep_bonus = yes
+        mpp_spy_operations_bonus = yes
+
+        mpp_planet_research_production_bonus = yes
+        mpp_planet_production_bonus = yes
+
+        monthly_loyalty = 0.5
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = scientist }
+        modifier = {
+            all_technology_research_speed = 0.15
+            mpp_country_research_bonus_x5 = yes 
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = admiral }
+        modifier = { mpp_military_ship_bonus = yes }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = general }
+        modifier = { mpp_army_bonus = yes }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = governor }
+        modifier = { mpp_population_bonus_x5 = yes }
+    }
+}
+
+# ================================
+# 👑 Leader Trait: mpp_leader_trait_has_parangon_leader
+# "Pupilo (Has Parangon)"
+# ================================
+# Descripción: Representa líderes formados o influenciados por un Parangon. Bonificaciones moderadas adaptadas a cada clase.
+# Aplicación: Líderes de cualquier clase (governor, admiral, scientist, general), sin rol de consejero.
+# Enfoque: Rasgo situacional, útil para crecimiento y mejoras equilibradas.
+# ================================
+mpp_leader_trait_has_parangon_leader = {
+    councilor_trait = no
+    initial = yes
+    randomized = no
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_mpp_leader_trait_has_parangon_leader
+        RARITY = paragon
+        COUNCIL = no
+        TIER = none
+    }
+
+    leader_class = { governor admiral scientist general }
+
+    modifier = {
+        leader_age = 50
+        leader_trait_selection_options_add = 3
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = admiral }
+        modifier = { mpp_military_ship_bonus = yes }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = general }
+        modifier = { mpp_army_bonus = yes }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = governor }
+        modifier = {
+            planet_stability_add = 10
+            pop_growth_speed = 0.05
+            mpp_planet_production_bonus = yes
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = scientist }
+        modifier = {
+            mpp_country_research_bonus = yes
+            mpp_scientists_research_production_bonus = yes
+            mpp_scient_ship_bonus = yes
+        }
+    }
+}
