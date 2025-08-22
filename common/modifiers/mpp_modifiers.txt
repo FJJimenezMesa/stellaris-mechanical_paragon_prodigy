@@ -1,0 +1,413 @@
+# =======================================
+# Bonificadores del imperio
+# =======================================
+mpp_empire_size_bonus {
+    empire_size_mult = -0.50                 # Ajuste general por tamaño del imperio
+    empire_size_colonies_mult = -0.50        # Penalización/bonus por número de colonias
+    empire_size_districts_mult = -0.50       # Penalización/bonus por número de distritos
+    empire_size_systems_mult = -0.50         # Penalización/bonus por número de sistemas
+    empire_size_pops_mult = -0.50            # Penalización/bonus por número de pobladores
+}
+
+mpp_empire_upkeep_bonus {
+    ships_upkeep_mult = -0.15                # Reducción del mantenimiento de flotas
+    armies_upkeep_mult = -0.15               # Reducción del mantenimiento de ejércitos
+    edicts_upkeep_mult = -0.15               # Reducción del coste de decretos
+    
+    planet_structures_upkeep_mult = -0.5     # Reducción del mantenimiento de estructuras planetarias
+    starbase_outpost_cost_mult = -0.5        # Reducción del coste de puestos avanzados
+    country_starbase_influence_cost_mult = -0.5  # Reducción del coste de influencia en estaciones
+}
+
+mpp_empire_naval_bonus = {
+    country_naval_cap_mult = 0.15            # Incrementa la capacidad naval total del país en un 15%
+    starbase_shipyard_build_cost_mult = -0.15 # Reduce el coste de construcción de naves en astilleros un 15%
+    starbase_shipyard_build_speed_mult = 0.15 # Aumenta la velocidad de construcción de naves en astilleros un 15%
+    starbase_upgrade_speed_mult = 0.15       # Mejora la velocidad de actualización de estaciones estelares un 15%
+}
+
+mpp_empire_fleet_bonus {
+    fleet_mia_time_mult = -0.5               # Reduce el tiempo que las flotas permanecen desaparecidas (MIA)
+}
+
+# =======================================
+# Bonificadores de investigación
+# =======================================
+mpp_country_research_bonus {
+    country_engineering_tech_research_speed = 0.05   # Aumenta velocidad de investigación ingeniería
+    country_physics_tech_research_speed = 0.05       # Aumenta velocidad de investigación física
+    country_society_tech_research_speed = 0.05       # Aumenta velocidad de investigación sociedad
+}
+
+mpp_country_research_bonus_x5 {
+    country_engineering_tech_research_speed = 0.25
+    country_physics_tech_research_speed = 0.25
+    country_society_tech_research_speed = 0.25
+}
+
+# =======================================
+# Bonificadores de población genéricos
+# =======================================
+mpp_population_bonus = {
+    pop_happiness = 0.1                     # Aumenta la felicidad de la población
+    planet_stability_add = 1                # Aumenta estabilidad planetaria
+    planet_amenities_add = 1                # Aumenta amenidades del planeta
+}
+
+mpp_population_bonus_x5 = {
+    pop_happiness = 0.5
+    planet_stability_add = 5
+    planet_amenities_add = 5
+}
+
+# =======================================
+# Bonificadores de líderes de especie
+# =======================================
+mpp_species_leader_bonus {
+    negative_leader_traits_species = -1     # Reduce rasgos negativos de los líderes
+    species_leader_exp_gain = 0.1           # Incrementa la experiencia ganada por líderes
+    leaders_upkeep_mult = -0.1              # Reduce el coste de mantenimiento de líderes
+}
+
+mpp_species_leader_bonus_x3 {
+    negative_leader_traits_species = -3
+    species_leader_exp_gain = 0.3
+    leaders_upkeep_mult = -0.3
+}
+
+# =======================================
+# Bonificadores de población biológica
+# =======================================
+mpp_bio_population_bonus = {
+    mpp_population_bonus = yes              # Incluye efectos de mpp_population_bonus
+    species_empire_size_mult = -0.10        # Ajusta penalización por tamaño del imperio
+    pop_environment_tolerance = 0.20        # Incrementa tolerancia ambiental
+    pop_growth_from_immigration = 0.15      # Aumenta crecimiento por inmigración
+    pop_resettlement_cost_mult = -0.75      # Reduce coste de reasentamiento
+}
+
+# =======================================
+# Bonificadores de población robótica
+# =======================================
+mpp_robotic_population_bonus {
+    mpp_population_bonus = yes                  # Incluye efectos de mpp_population_bonus
+    planet_pop_assembly_add = 1                 # Añade al ensamblaje de población robótica
+    planet_pop_assembly_mult = 0.15             # Incrementa eficiencia de ensamblaje
+    planet_pops_robotics_upkeep_mult = -0.15    # Reduce mantenimiento de robots
+    pop_housing_usage_mult = -0.15              # Reduce consumo de vivienda
+    pop_amenities_usage_robotic_mult = -0.15    # Reduce consumo de amenidades por robots
+}
+
+# =======================================
+# Bonificadores de producción de trabajos
+# =======================================
+mpp_planet_production_bonus {
+    mpp_production_bonus = yes
+    mpp_job_production_bonus = yes
+    mpp_upkeep_production_bonus = yes
+}
+
+mpp_production_bonus {
+    planet_jobs_minerals_produces_mult = 0.15   # Incrementa producción de minerales
+    planet_jobs_food_produces_mult = 0.15       # Incrementa producción de comida
+    planet_jobs_energy_produces_mult = 0.15     # Incrementa producción de energía
+    planet_jobs_unity_produces_mult = 0.1       # Incrementa producción de unidad
+}
+
+mpp_job_production_bonus {
+    pop_job_amenities_mult = 0.1                # Incrementa producción de trabajos de amenidades
+    planet_jobs_produces_mult = 0.05            # Incrementa producción general
+    planet_jobs_specialist_produces_mult = 0.1
+    planet_jobs_worker_produces_mult = 0.1
+    planet_jobs_slave_produces_mult = 0.1
+}
+
+mpp_upkeep_production_bonus {
+    planet_jobs_unity_upkeep_mult = -0.1        # Reduce mantenimiento de unidad
+    planet_pops_upkeep_mult = -0.10             # Reduce mantenimiento de población
+    pop_amenities_usage_mult = -0.1             # Reduce consumo de amenidades
+}
+
+# =======================================
+# Bonificadores de investigación planetaria
+# =======================================
+mpp_planet_research_production_bonus {
+    planet_jobs_physics_research_produces_mult = 0.10     # Mejora investigación física
+    planet_jobs_society_research_produces_mult = 0.10     # Mejora investigación sociedad
+    planet_jobs_engineering_research_produces_mult = 0.10 # Mejora investigación ingeniería
+}
+
+# =======================================
+# Bonificadores de operaciones de espionaje
+# =======================================
+mpp_spy_operations_bonus {
+    intel_encryption_add = 5                       # Mejora encriptación de inteligencia
+    espionage_operation_cost_mult = -0.5           # Reduce coste de operaciones de espionaje
+    spy_network_daily_value_mult = 0.5             # Incrementa valor diario de la red de espionaje
+}
+
+# =======================================
+# Bonificadores de naves
+# =======================================
+mpp_ship_bonus {
+    ship_shield_hardening_add = 0.25               # Incrementa blindaje de escudos
+    ship_disengage_chance_mult = 0.25             # Mejora posibilidad de evasión de combate
+    ship_evasion_mult = 0.25                       # Incrementa evasión
+    ship_disengage_opportunities_add = 1          # Añade oportunidad de retirarse
+}
+
+mpp_ship_bonus_x2 {
+    ship_shield_hardening_add = 0.5
+    ship_disengage_chance_mult = 0.5
+    ship_evasion_mult = 0.5
+    ship_disengage_opportunities_add = 2
+}
+
+mpp_ship_speed_bonus {
+    ship_hyperlane_range_add = 1                   # Incrementa rango en hiperespacio
+    ship_speed_mult = 0.25                          # Incrementa velocidad
+    ship_windup_mult = -0.25                        # Reduce tiempo de aceleración
+}
+
+mpp_ship_speed_bonus_x2 {
+    ship_hyperlane_range_add = 2
+    ship_speed_mult = 0.5
+    ship_windup_mult = -0.5
+}
+
+mpp_military_ship_bonus {
+    ship_sensor_range_add = 1                      # Mejora rango de sensores
+    ship_weapon_damage = 0.25                      # Incrementa daño de armas
+    ship_accuracy_add = 25                          # Incrementa precisión de armas
+    ship_fire_rate_mult = 0.25                      # Incrementa velocidad de disparo
+    ship_disengage_chance_mult = -0.50             # Reduce probabilidad de retirada enemiga
+    ship_emergency_ftl_mult = 0.5                  # Mejora FTL de emergencia
+
+    mpp_ship_bonus_x2 = yes
+    mpp_ship_speed_bonus = yes
+}
+
+# =======================================
+# Bonificadores de tamaño y alcance del imperio
+# =======================================
+mpp_empire_size_bonus {
+    empire_size_mult = -0.50                # Ajuste global de penalización por tamaño del imperio
+    empire_size_colonies_mult = -0.50       # Ajuste específico por número de colonias
+    empire_size_districts_mult = -0.50      # Ajuste específico por número de distritos
+    empire_size_systems_mult = -0.50        # Ajuste específico por número de sistemas
+    empire_size_pops_mult = -0.50           # Ajuste específico por número de poblaciones
+}
+
+mpp_empire_upkeep_bonus {
+    ships_upkeep_mult = -0.15                # Reducción del mantenimiento de las flotas
+    armies_upkeep_mult = -0.15               # Reducción del mantenimiento de ejércitos
+    edicts_upkeep_mult = -0.15               # Reducción del coste de decretos
+    planet_structures_upkeep_mult = -0.5     # Reducción del mantenimiento de estructuras planetarias
+    starbase_outpost_cost_mult = -0.5        # Reducción del coste de puestos avanzados
+    country_starbase_influence_cost_mult = -0.5 # Reducción del coste de influencia en estaciones
+}
+
+mpp_empire_naval_bonus {
+    country_naval_cap_mult = 0.15            # Incremento del límite de flota
+    starbase_shipyard_build_speed_mult = 0.15 # Aumento de velocidad de construcción en astilleros
+}
+
+mpp_empire_fleet_bonus {
+    fleet_mia_time_mult = -0.5               # Reducción del tiempo de inactividad de las flotas
+}
+
+# =======================================
+# Bonificadores de investigación
+# =======================================
+mpp_country_research_bonus {
+    country_engineering_tech_research_speed = 0.05 # Aumento de velocidad en investigación de ingeniería
+    country_physics_tech_research_speed = 0.05     # Aumento de velocidad en investigación de física
+    country_society_tech_research_speed = 0.05     # Aumento de velocidad en investigación de sociedad
+}
+
+mpp_country_research_bonus_x5 {
+    country_engineering_tech_research_speed = 0.25
+    country_physics_tech_research_speed = 0.25
+    country_society_tech_research_speed = 0.25
+}
+
+# =======================================
+# Bonificadores de población genéricos
+# =======================================
+mpp_population_bonus = {
+    pop_happiness = 0.1                     # Incrementa la felicidad de la población
+    planet_stability_add = 1                # Incrementa la estabilidad del planeta
+    planet_amenities_add = 1                # Incrementa las amenidades disponibles
+}
+
+mpp_population_bonus_x5 = {
+    pop_happiness = 0.5
+    planet_stability_add = 5
+    planet_amenities_add = 5
+}
+
+# =======================================
+# Bonificadores de líderes de especie
+# =======================================
+mpp_species_leader_bonus {
+    negative_leader_traits_species = -1     # Reduce los rasgos negativos de los líderes
+    species_leader_exp_gain = 0.1           # Incrementa la experiencia ganada por los líderes
+    leaders_upkeep_mult = -0.1              # Reduce el coste de mantenimiento de los líderes
+}
+
+mpp_species_leader_bonus_x3 {
+    negative_leader_traits_species = -3
+    species_leader_exp_gain = 0.3
+    leaders_upkeep_mult = -0.3
+}
+
+# =======================================
+# Bonificadores de población biológica
+# =======================================
+mpp_bio_population_bonus = {
+    mpp_population_bonus = yes              # Referencia a los bonificadores genéricos de población
+    species_empire_size_mult = -0.10        # Ajusta la penalización por tamaño del imperio
+    pop_environment_tolerance = 0.20        # Mejora la tolerancia ambiental de la población
+    pop_growth_from_immigration = 0.15      # Incrementa crecimiento por inmigración
+    pop_resettlement_cost_mult = -0.75      # Reduce coste de reasentamiento de población
+}
+
+# =======================================
+# Bonificadores de población robótica
+# =======================================
+mpp_robotic_population_bonus {
+    mpp_population_bonus = yes              # Referencia a los bonificadores genéricos de población
+    planet_pop_assembly_add = 1             # Aumenta la creación de nuevas unidades de población
+    planet_pop_assembly_mult = 0.15         # Mejora eficiencia de ensamblaje
+    planet_pops_robotics_upkeep_mult = -0.15 # Reduce el mantenimiento de la población robótica
+    pop_housing_usage_mult = -0.15          # Reduce el consumo de vivienda
+    pop_amenities_usage_robotic_mult = -0.15 # Reduce el consumo de amenidades por población robótica
+}
+
+# =======================================
+# Bonificadores de producción de trabajos
+# =======================================
+mpp_planet_production_bonus {
+    mpp_production_bonus = yes
+    mpp_job_production_bonus = yes
+    mpp_upkeep_production_bonus = yes
+}
+
+mpp_production_bonus {
+    planet_jobs_minerals_produces_mult = 0.15   # Mejora producción de minerales
+    planet_jobs_food_produces_mult = 0.15       # Mejora producción de comida
+    planet_jobs_energy_produces_mult = 0.15     # Mejora producción de energía
+    planet_jobs_unity_produces_mult = 0.1       # Mejora producción de unidad
+}
+
+mpp_job_production_bonus {
+    pop_job_amenities_mult = 0.1                # Mejora trabajos de amenidades
+    planet_jobs_produces_mult = 0.05            # Mejora producción general de trabajos
+    planet_jobs_specialist_produces_mult = 0.1
+    planet_jobs_worker_produces_mult = 0.1
+    planet_jobs_slave_produces_mult = 0.1
+}
+
+mpp_upkeep_production_bonus {
+    planet_jobs_unity_upkeep_mult = -0.1        # Reduce mantenimiento de unidad
+    planet_pops_upkeep_mult = -0.10             # Reduce mantenimiento general de población
+    pop_amenities_usage_mult = -0.1             # Reduce consumo de amenidades
+}
+
+# =======================================
+# Bonificadores de investigación planetaria
+# =======================================
+mpp_planet_research_production_bonus {
+    planet_jobs_physics_research_produces_mult = 0.10     # Mejora investigación física
+    planet_jobs_society_research_produces_mult = 0.10     # Mejora investigación sociedad
+    planet_jobs_engineering_research_produces_mult = 0.10 # Mejora investigación ingeniería
+}
+
+# =======================================
+# Bonificadores de espionaje
+# =======================================
+mpp_spy_operations_bonus {
+    intel_encryption_add = 5                      # Incrementa cifrado de inteligencia
+    espionage_operation_cost_mult = -0.5          # Reduce coste de operaciones de espionaje
+    spy_network_daily_value_mult = 0.5            # Aumenta valor diario de red de espionaje
+}
+
+# =======================================
+# Bonificadores de naves
+# =======================================
+mpp_ship_bonus {
+    ship_shield_hardening_add = 0.25              # Mejora blindaje de escudos
+    ship_disengage_chance_mult = 0.25             # Mejora probabilidad de desenganche
+    ship_evasion_mult = 0.25                       # Mejora evasión de la nave
+    ship_disengage_opportunities_add = 1          # Añade oportunidades de desenganche
+}
+
+mpp_ship_bonus_x2 {
+    ship_shield_hardening_add = 0.5
+    ship_disengage_chance_mult = 0.5
+    ship_evasion_mult = 0.5
+    ship_disengage_opportunities_add = 2
+}
+
+mpp_ship_speed_bonus {
+    ship_hyperlane_range_add = 1                  # Aumenta alcance de hiperespacios
+    ship_speed_mult = 0.25                         # Incrementa velocidad de la nave
+    ship_windup_mult = -0.25                       # Reduce tiempo de activación de habilidades
+}
+
+mpp_ship_speed_bonus_x2 {
+    ship_hyperlane_range_add = 2
+    ship_speed_mult = 0.5
+    ship_windup_mult = -0.5
+}
+
+mpp_military_ship_bonus {
+    ship_sensor_range_add = 1                     # Aumenta alcance de sensores
+    ship_weapon_damage = 0.25                      # Incrementa daño de armas
+    ship_accuracy_add = 25                         # Mejora precisión de armas
+    ship_fire_rate_mult = 0.25                     # Mejora velocidad de disparo
+    ship_disengage_chance_mult = -0.50            # Reduce chance de desenganche enemigo
+    ship_emergency_ftl_mult = 0.5                 # Mejora FTL de emergencia
+
+    mpp_ship_bonus_x2 = yes
+    mpp_ship_speed_bonus = yes
+}
+
+mpp_scient_ship_bonus {
+    ship_sensor_range_add = 3                     # Mejora sensores de nave científica
+    ship_disengage_chance_mult = 0.50            # Mejora desenganche de nave científica
+    ship_emergency_ftl_mult = 0.5                # Mejora FTL de emergencia
+
+    mpp_ship_bonus = yes
+    mpp_ship_speed_bonus_x2 = yes
+
+    science_ship_survey_speed = 0.5              # Aumenta velocidad de exploración
+    ship_anomaly_research_speed_mult = 0.5       # Mejora investigación de anomalías
+    ship_anomaly_generation_chance_mult = 1      # Mejora generación de anomalías
+    ship_archaeological_site_excavation_speed_mult = 0.5 # Mejora excavación de sitios arqueológicos
+    ship_archaeological_site_clues_add = 3       # Añade pistas en excavaciones
+}
+
+# =======================================
+# Bonificadores de ejércitos
+# =======================================
+mpp_army_bonus {
+    army_health = 0.5                             # Incrementa salud de unidades
+    army_damage_mult = 0.5                         # Incrementa daño de unidades
+    army_disengage_chance_mult = 0.5              # Incrementa chance de desenganche de unidades
+    army_morale = 0.5                              # Mejora moral de unidades
+    army_morale_damage_mult = 0.5                  # Incrementa daño a la moral enemiga
+}
+
+# =======================================
+# Bonificadores de producción de científicos
+# =======================================
+mpp_scientists_research_production_bonus {
+    leader_scientists_physics_research_produces_add = 5      # Incrementa investigación física de líderes científicos
+    leader_scientists_society_research_produces_add = 5      # Incrementa investigación social de líderes científicos
+    leader_scientists_engineering_research_produces_add = 5  # Incrementa investigación de ingeniería de líderes científicos
+    leader_scientists_volatile_motes_produces_add = 1        # Aumenta producción de motas volátiles
+    leader_scientists_exotic_gases_produces_add = 1          # Aumenta producción de gases exóticos
+    leader_scientists_rare_crystals_produces_add = 1         # Aumenta producción de cristales raros
+    leader_scientists_sr_zro_produces_add = 1                # Aumenta producción de SR Zro
+}
