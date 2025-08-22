@@ -1,0 +1,354 @@
+# ================================
+# Variables base para tecnologías MPP
+# ================================
+@base_tech_cost = 1000              # Costo base para tecnologías repetibles
+@base_ai_weight = 0                 # Peso base AI
+@max_tech_cost = 20000              # Máximo coste alcanzable
+@max_weight_factor = 1000           # Factor máximo de weight_modifier
+@cost_tier_5 = 3000                 # Coste inicial para techs tier 5
+@cost_tier_6 = 5000                 # Coste inicial para techs tier 6
+@max_cost_tier_5 = @max_tech_cost
+@max_cost_tier_6 = @max_tech_cost
+
+# Encapsulaciones para costes y peso
+@default_repetible_cost_tier_5 = {
+    base = @cost_tier_5
+    scaling = 1.5
+    max = @max_cost_tier_5
+}
+
+@default_repetible_cost_tier_6 = {
+    base = @cost_tier_6
+    scaling = 1.5
+    max = @max_cost_tier_6
+}
+
+@default_weight = { factor = 500 }   # Peso AI razonable para tier 5-6
+@default_ai_weight = { factor = 50 } # Peso AI moderado, para que IA pueda investigar sin ignorarlo
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_machine_patterns
+# "Chispa Parangon: Esencia Mecánica"
+# ================================
+# Descripción: Otorga puntos de rasgo adicionales para especies MACHINE, mejorando su capacidad de personalización.
+# Aplicación: Exclusiva de especies de tipo máquina y sus derivados.
+# Enfoque: Progresión mecánica y optimización tecnológica.
+# ================================
+mpp_tech_machine_patterns = {
+    tier = 5
+    area = physics
+    category = { computing }
+    icon = "tech_self_assembling_components"
+
+    is_repeatable = yes
+    max_level = 5
+    cost = @default_repetible_cost_tier_5
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes 
+    }
+
+    modifier = {
+        MACHINE_species_trait_points_add = 1
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_machine_patterns_advanced
+# "Chispa Parangon: Maestría Mecánica"
+# ================================
+# Descripción: Otorga de golpe los puntos de rasgo necesarios para desbloquear el trait avanzado de especies MACHINE.
+# Aplicación: Exclusiva de especies de tipo máquina y sus derivados.
+# Enfoque: Tecnología avanzada y desbloqueo de rasgos raros.
+# ================================
+mpp_tech_machine_patterns_advanced = {
+    tier = 6
+    area = physics
+    category = { computing }
+    icon = "tech_self_aware_logic"
+
+    is_repeatable = yes
+    cost = @default_repetible_cost_tier_6
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+        has_tech = mpp_tech_machine_patterns
+    }
+
+    modifier = {
+        MACHINE_species_trait_points_add = 10
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_robotic_diversity
+# "Códice Robótico: Diversidad Innovadora"
+# ================================
+# Descripción: Permite seleccionar más rasgos para especies ROBOT, ampliando sus posibilidades de adaptación.
+# Aplicación: Exclusiva de especies robóticas y sus plantillas.
+# Enfoque: Diversidad de ensamblajes y flexibilidad estratégica.
+# ================================
+mpp_tech_robotic_diversity = {
+    tier = 5
+    area = engineering
+    category = { industry }
+    icon = "tech_modular_components"
+
+    is_repeatable = yes
+    max_level = 3
+    cost = @default_repetible_cost_tier_5
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+    }
+
+    modifier = {
+        ROBOT_species_trait_picks_add = 1
+    }   
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_biological_patterns
+# "Genoma Parangon: Patrones Biológicos"
+# ================================
+# Descripción: Añade puntos de rasgo adicionales para especies BIOLOGICAL, expandiendo su capacidad de mejora genética.
+# Aplicación: Disponible solo para especies biológicas (orgánicas).
+# Enfoque: Evolución orgánica y refinamiento biotecnológico.
+# ================================
+mpp_tech_biological_patterns = {
+    tier = 5
+    area = society
+    category = { biology }
+    icon = "tech_gene_expressions"
+
+    is_repeatable = yes
+    max_level = 5
+    cost = @default_repetible_cost_tier_5
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+    }
+
+    modifier = {
+        BIOLOGICAL_species_trait_points_add = 1
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_genetic_diversity
+# "Códice Genético Supremo: Diversidad Genética"
+# ================================
+# Descripción: Permite seleccionar más rasgos para especies BIOLOGICAL, incrementando la diversidad genética disponible.
+# Aplicación: Aplica a especies biológicas en general.
+# Enfoque: Ampliación de opciones evolutivas y adaptabilidad.
+# ================================
+mpp_tech_genetic_diversity = {
+    tier = 5
+    area = society
+    category = { biology }
+    icon = "tech_genome_mapping"
+
+    is_repeatable = yes
+    max_level = 3 
+    cost = @default_repetible_cost_tier_5
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+    }
+
+    modifier = {
+        BIOLOGICAL_species_trait_picks_add = 1
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_leadership_expansion
+# "Reformas de Liderazgo Parangon I"
+# ================================
+# Descripción: Incrementa de forma permanente la capacidad máxima de líderes en el país.
+# Aplicación: Aplica a todos los países que desbloqueen esta tecnología.
+# Enfoque: Gobernanza y optimización administrativa.
+# ================================
+mpp_tech_leadership_expansion = {
+    tier = 5
+    area = society
+    category = { government }
+    icon = "tech_government_efficiency"
+
+    is_repeatable = yes
+    cost = @default_repetible_cost_tier_5
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+        NOT = { has_tech = mpp_tech_leadership_expansion_advanced }
+    }
+
+    modifier = {
+        country_leader_cap_add = 2
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_leadership_expansion_advanced
+# "Reformas de Liderazgo Parangon II"
+# ================================
+# Descripción: Incrementa significativamente la capacidad máxima de líderes en el país.
+# Aplicación: Aplica a todos los países que desbloqueen esta tecnología.
+# Enfoque: Gobernanza avanzada y expansión administrativa.
+# ================================
+mpp_tech_leadership_expansion_advanced = {
+    tier = 6
+    area = society
+    category = { government }
+    icon = "tech_effective_bureaucracy"
+
+    is_repeatable = yes
+    cost = @default_repetible_cost_tier_6
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+        has_tech = mpp_tech_leadership_expansion
+    }
+
+    modifier = {
+        country_leader_cap_add = 10
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_diplomatic_expansion
+# "Diplomacia Parangon: Expansión de Enviados"
+# ================================
+# Descripción: Aumenta el número de enviados disponibles, 
+# reforzando la capacidad diplomática y de espionaje del imperio.
+# Aplicación: Todos los imperios con acceso al potencial MPP.
+# Enfoque: Diplomacia expansiva y mayor presencia en la comunidad galáctica.
+# ================================
+mpp_tech_diplomatic_expansion = {
+    tier = 5
+    area = society
+    category = { statecraft }
+    icon = "tech_galactic_administration"
+
+    is_repeatable = yes
+    max_level = 5
+    cost = @default_repetible_cost_tier_5
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+    }
+
+    modifier = {
+        envoys_add = 1
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_diplomatic_expansion_advanced
+# "Diplomacia Parangon: Maestría Diplomática"
+# ================================
+# Descripción: Concede una expansión masiva del cuerpo de enviados,
+# permitiendo un control diplomático y de inteligencia sin precedentes.
+# Aplicación: Imperios avanzados con gran influencia política.
+# Enfoque: Diplomacia de élite y supremacía en federaciones y espionaje.
+# ================================
+mpp_tech_diplomatic_expansion_advanced = {
+    tier = 6
+    area = society
+    category = { statecraft }
+    icon = "tech_galactic_bureaucracy"
+
+    is_repeatable = yes
+    max_level = 2
+    cost = @default_repetible_cost_tier_6
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+        has_tech = mpp_tech_diplomatic_expansion
+    }
+
+    modifier = {
+        envoys_add = 5
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_starbase_expansion
+# "Expansión Parangon: Capacidad de Bases Estelares"
+# ================================
+# Descripción: Incrementa la capacidad máxima de estaciones estelares
+# de manera progresiva, mejorando la proyección militar y control territorial.
+# Aplicación: Todos los imperios con acceso al potencial MPP.
+# Enfoque: Expansión estratégica y poder militar sostenido.
+# ================================
+mpp_tech_starbase_expansion = {
+    tier = 5
+    area = society
+    category = { government }
+    icon = "tech_global_defense_grid"
+
+    is_repeatable = yes
+    max_level = 5
+    cost = @default_repetible_cost_tier_5
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+    }
+
+    modifier = {
+        country_starbase_capacity_add = 1
+    }
+}
+
+# ================================
+# ⚙️ Tecnología: mpp_tech_starbase_expansion_advanced
+# "Expansión Parangon: Dominio Estelar"
+# ================================
+# Descripción: Concede un aumento significativo de la capacidad de
+# estaciones estelares, permitiendo mantener más fortificaciones y
+# proyectar mayor poder militar.
+# Aplicación: Imperios avanzados con gran influencia territorial.
+# Enfoque: Poder militar avanzado y control estratégico galáctico.
+# ================================
+mpp_tech_starbase_expansion_advanced = {
+    tier = 6
+    area = society
+    category = { government }
+    icon = "tech_global_defense_grid"
+
+    is_repeatable = yes
+    max_level = 4
+    cost = @default_repetible_cost_tier_6
+    weight_modifier = @default_weight
+    ai_weight = @default_ai_weight
+
+    potential = { 
+        mpp_has_tech_potential = yes
+        has_tech = mpp_tech_starbase_expansion
+    }
+
+    modifier = {
+        country_starbase_capacity_add = 5
+    }
+}
+
