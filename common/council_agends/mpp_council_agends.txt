@@ -1,0 +1,33 @@
+# ================================
+# Variables base para agendas MPP
+# ================================
+@base_ethic_agenda_cost = 1000      	# Costo base para desbloqueos de agendas relacionadas con Parangon
+@base_ai_weight = 0               		# Peso base AI (probabilidad de investigación automática)
+@default_ai_weight = @base_ai_weight  	# Peso AI por defecto
+
+# ================================
+# 🏛️ Agenda: mpp_agenda_unlock_parangon_assesor_slot
+# "Consejo Parangon: Asesor Extra"
+# ================================
+# Descripción: Permite desbloquear un puesto adicional en el consejo imperial.
+# Aplicación: Disponible únicamente para países no-Gestalt que tengan la DLC Paragons
+#             y la aprobación de un líder Parangon.
+# Enfoque: Potencia la gestión política y la flexibilidad estratégica en el consejo.
+# ================================
+mpp_agenda_unlock_parangon_assesor_slot = {
+    agenda_cost = @base_ethic_agenda_cost
+	ai_weight = @default_ai_weight
+
+    potential = { 
+		mpp_can_unlock_agenda_parangon_dlc = yes 
+    	check_variable_arithmetic = { which = value:country_num_unlockable_council_slots value > 0 }
+	}
+
+    allow = { always = yes }
+
+    modifiers = { }
+
+    effect = {
+        unlock_council_slots = 1
+    }
+}

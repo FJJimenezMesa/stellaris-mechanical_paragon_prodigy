@@ -308,7 +308,6 @@ mpp_system_dark_relic_initializer = {
     # Inspiración: Scavenger Bot System, sin ser demasiado poderosa
     # ===============================================
     init_effect = {
-
         # Crear lista de planetas candidatos (no estrellas, no gas giants)
         planet_list = {
             every_planet = {
