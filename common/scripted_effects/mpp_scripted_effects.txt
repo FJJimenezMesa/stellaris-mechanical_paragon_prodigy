@@ -1,0 +1,23 @@
+# =============================================
+# Scripted Effects MPP Parangon
+# =============================================
+
+# ================================================
+# Effect: mpp_set_flags_paragon_leader_approved
+# ================================================
+# Propósito: Marca que el país tiene un líder Parangon aprobado.
+# Uso: Se llama para habilitar potencial MPP en tecnologías y agendas.
+# ================================================
+mpp_set_flags_paragon_leader_approved = {
+    set_country_flag = mpp_flag_parangon_leader_approved
+}
+
+# ================================================
+# Effect: mpp_add_tech_potential
+# ================================================
+# Propósito: Otorga al país el potencial para desbloquear tecnologías MPP.
+# Mecanismo: Ejecuta mpp_set_flags_paragon_leader_approved como efecto.
+# ================================================
+mpp_add_tech_potential = {
+    mpp_set_flags_paragon_leader_approved = yes
+}
