@@ -1,16 +1,27 @@
-# ===============================================
+# BEGIN_SYSTEM_mpp_system_dark_relic
+# SYSTEM_TYPE: SPECIAL
+# ================================
 # 🌠 MPP System: Dark Relic
-# Sistema aislado con tecnología perdida, vestigios de civilizaciones antiguas
-# y presencia de drones primitivos y robots antiguos.
-# Dominado por un agujero negro central, rodeado de planetas destrozados,
-# lunas tóxicas, cinturones de asteroides y campos de debris inspirados en
-# el Scavenger Bot System.
-# Cada planeta tiene su propia historia: ruinas, restos de estaciones,
-# artefactos antiguos, depósitos raros y efectos ambientales que marcan su peligrosidad.
-# Este sistema sirve como punto de interés narrativo y exploratorio en la galaxia.
-# Incluye zonas de riesgo moderadas y un planeta habitado por robots primitivos.
-# ===============================================
-
+# ================================
+# Lore:
+#   Dark Relic es un sistema aislado, arrasado en el pasado por fuerzas desconocidas,
+#   dejando vestigios de civilizaciones antiguas y tecnología perdida. Sus planetas
+#   contienen ruinas, artefactos antiguos y restos de estaciones olvidadas. El
+#   sistema es un refugio para drones primitivos y robots antiguos, testigos silenciosos
+#   de eras pasadas. El gateway arruinado podría haber sido un punto de entrada
+#   para la extinción de estas civilizaciones, o incluso para su decadencia gradual,
+#   mientras que el agujero negro central actúa como guardián mortal de los secretos
+#   que aún persisten en este sistema.
+#
+# Descripción narrativa:
+#   Dominado por un agujero negro central, Dark Relic está rodeado de planetas
+#   destrozados, lunas tóxicas, cinturones de asteroides y campos de debris.
+#   Cada planeta ofrece su propia historia y desafíos ambientales, desde ruinas
+#   hasta depósitos raros. Este sistema funciona como punto de interés narrativo
+#   y exploratorio, incluyendo zonas de riesgo moderadas y un planeta habitado
+#   por robots primitivos, mientras el gateway arruinado sugiere antiguas rutas
+#   de viaje o catástrofes pasadas.
+#
 # 🌌 Mini-Mapa ASCII del Sistema
 #
 # Leyenda:
@@ -60,13 +71,14 @@
 # Megaconstrucción: Gateway arruinado
 #    ▲  (posición orbital aleatoria)
 #
-# Notas:
-# - Cada planeta puede contener lunas adicionales, objetos ambientales y sitios arqueológicos.
-# - Campos de debris orbitando agregan zonas de riesgo moderadas inspiradas en Scavenger Bot System.
-# - Planeta de robots primitivos sirve como punto narrativo y exploratorio.
-# - Nubes de polvo y efectos de luz aplicados globalmente para dar ambiente visual.
-# - El sistema es narrativamente aislado, rico en reliquias y con peligros ambientales.
-
+# Notas adicionales:
+#   • Cada planeta puede contener lunas adicionales, objetos ambientales y sitios arqueológicos.
+#   • Campos de debris agregan zonas de riesgo moderadas inspiradas en Scavenger Bot System.
+#   • Planeta de robots primitivos sirve como punto narrativo y exploratorio.
+#   • Nubes de polvo y efectos de luz aplicados globalmente para dar ambiente visual.
+#   • El sistema es narrativamente aislado, rico en reliquias y con peligros ambientales.
+# ================================
+# END_SYSTEM_mpp_system_dark_relic
 mpp_system_dark_relic_initializer = {
     name = "mpp_system_dark_relic"
     max_instances = 1

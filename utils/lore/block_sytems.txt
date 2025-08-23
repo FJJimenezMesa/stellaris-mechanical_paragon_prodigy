@@ -1,0 +1,37 @@
+# BEGIN_SYSTEM_<SYSTEM_KEY>
+# SYSTEM_TYPE: SPECIAL
+# ================================
+# 🌠 <Nombre del Sistema>
+# ================================
+# Lore:
+#   <Breve historia del sistema, origen, civilizaciones antiguas, eventos pasados, tecnología perdida, o cualquier detalle narrativo que lo haga único.>
+#
+# Descripción narrativa:
+#   <Cómo define el sistema dentro del juego: peligros ambientales, recursos únicos, ruinas, habitantes especiales, potencial narrativo y exploratorio.>
+#
+# 🌌 Mini-Mapa ASCII del Sistema
+#
+# Leyenda:
+# ⬤  = Agujero negro / estrella central
+# ◎  = Planeta (shrouded, nuked, shattered, gigante gaseoso, barren, etc.)
+# ◉  = Luna
+# *  = Asteroide / escombro / debris field
+# ▲  = Megaconstrucción / artefactos antiguos / clusters
+# ⚙  = Planeta de robots o habitantes especiales
+#
+# Vista superior (órbitas aproximadas):
+#   <Ejemplo de disposición de planetas y lunas, con distancia aproximada y descripción breve>
+#
+# Cinturón de Asteroides (<rango de UA>)
+#   *  *  *  *  *  *  *  *
+#
+# Megaconstrucción: <tipo y posición>
+#   ▲  (posición orbital aleatoria)
+#
+# Notas adicionales:
+#   • <Detalles de peligros ambientales, efectos visuales, nubes de polvo, anomalías, zonas de riesgo.>
+#   • <Objetos de interés narrativo, restos de civilizaciones antiguas, sitios arqueológicos.>
+#   • <Habitantes especiales, NPCs, drones, robots, etc.>
+#   • <Cualquier efecto narrativo o mecánico asociado al sistema dentro del juego.>
+# ================================
+# END_SYSTEM_<SYSTEM_KEY>
