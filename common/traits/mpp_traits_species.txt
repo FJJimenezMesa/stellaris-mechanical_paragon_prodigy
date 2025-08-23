@@ -3,27 +3,71 @@
 # ================================
 @base_ai_weight = 0              		# Peso base AI (IA le asigna al rasgo al generar o seleccionar especies automáticamente.)
 @default_ai_weight = @base_ai_weight  	# Peso AI por defecto
-@default_crossbreding = 1.0      		# Probabilidad de que esta especie pueda cruzarse con otras especies compatibles (1.0 = 100%)
+@default_crossbreeding = 1.0      		# Probabilidad de que esta especie pueda cruzarse con otras especies compatibles (1.0 = 100%)
 
+# BEGIN_LORE_mpp_trait_nano_vector
+# LORE_TYPE: SPECIES_TRAIT
 # ================================
-# 🧬 Species Trait: trait_mpp_parangon_legacy
-# "Legado Parangon"
+# 🧬 Trait: mpp_trait_nano_vector
+# "Vector Nanomolecular Parangón"
 # ================================
-# Descripción: Rasgo poderoso que otorga longevidad, estabilidad y bonificaciones de producción e investigación.
-# Aplicación: Especies de tipo BIOLOGICAL y LITHOID, con posibilidad de cruzamiento avanzado.
-# Enfoque: Rareza, longevidad, resiliencia y sinergias productivas.
+# Lore:
+#   La sangre se transforma en un vehículo de trascendencia. Los individuos portadores
+#   de este rasgo han sido impregnados con la tecnología nanomolecular del líder Parangón,
+#   convirtiendo cada gota de su torrente sanguíneo en un ecosistema consciente de nanites
+#   llamados "sangrenaníticos". No son meros instrumentos, sino symbiotes vivos que
+#   transmiten el legado y conocimiento del Parangón, reescribiendo la biología del
+#   anfitrión y guiando su evolución hacia estados avanzados.
+#
+# Descripción narrativa:
+#   Cada portador se convierte en un nodo activo de la red nanomolecular, capaz de
+#   interactuar con otros nodos, amplificar habilidades naturales y desbloquear
+#   potenciales sobrehumanos. La sangre misma se vuelve un canal de influencia y
+#   poder, conectando biología y tecnología en simbiosis.
+#
+# Mecánicas & beneficios:
+#   • Longevidad Extrema: +50% duración de vida en líderes
+#   • Resiliencia Mejorada: resistencia natural a enfermedades y amenazas ambientales
+#   • Sinergia Productiva: bonificaciones a producción e investigación
+#   • Cruzamiento Avanzado: compatibilidad genética excepcional con otras especies
+#   • Conexión Parangón: acceso a habilidades únicas de la red nanomolecular
+#
+# Aplicación:
+#   Especies BIOLOGICAL con sistema circulatorio compatible
+#   Requiere exposición inicial a los nanites del Parangón
+#
+# Rareza / Coste:
+#   Poco común (Coste: 5 puntos)
+#
+# Sinergias:
+#   • Liderazgo extendido + Investigación avanzada
+#   • Producción mejorada + Cruzamiento interestelar
+#   • Resiliencia biológica + Adaptación planetaria
+#
+# Afecta:
+#   • Poblaciones biológicas (Pops)
+#   • Líderes orgánicos
+#   • Potencial de ascensión biológica
+#
 # ================================
-mpp_trait_parangon_legacy = {
-    cost = -8
-	icon = "gfx/interface/icons/traits/trait_mpp_parangon_legacy.dds"
+# END_LORE_mpp_trait_nano_vector
+mpp_trait_nano_vector = {
+    cost = 5
+	icon = "gfx/interface/icons/traits/mpp_trait_nano_vector.dds"
 	
 	ai_weight = { @default_ai_weight }
 
-	allowed_archetypes = { BIOLOGICAL LITHOID }
+	allowed_archetypes = { BIOLOGICAL }
+    allowed_leader_archetypes = { BIOLOGICAL }
+
+    potential = {
+        is_biological = yes
+    }
+
 	species_potential_add = {
 		can_do_advanced_gene_modding = yes
 	}
-	potential_crossbreeding_chance = @default_crossbreding
+	potential_crossbreeding_chance = @default_crossbreeding
 
     modifier = {
 		leader_age = 50
@@ -36,27 +80,64 @@ mpp_trait_parangon_legacy = {
 }
 
 # ================================
-# 🧬 Species Trait: trait_parangon_creation
-# "Creación Parangon"
+# 🧬 Species Trait: mpp_parangon_nano_symbiosis
+# "Parangón Nano-Simbiosis"
 # ================================
-# Descripción: Potente rasgo mecánico que incrementa producción, felicidad, eficiencia de líderes y trabajos, 
-# además de mejorar ensamblaje y definir costes de esclavos.
-# Aplicación: Exclusivo para especies ROBOT y MACHINE.
+# Descripción narrativa + lore:
+#   Los individuos mecánicos de este trait han logrado establecer un control activo sobre los enjambres de nanites provenientes del líder Parangón. La simbiosis no es solo tecnológica, sino casi simbiótica: la máquina puede guiar, optimizar y sincronizar la acción de los nanorobots, aumentando su eficiencia en producción, investigación y liderazgo.
+#   Estos nanites funcionan como una extensión de sus sistemas internos, permitiendo que la maquinaria adopte estrategias casi orgánicas de crecimiento y supervivencia. La influencia del Parangón sigue siendo la fuente, pero la máquina ahora la dirige de forma consciente y precisa, alcanzando un nivel de integración que los biológicos solo podrían soñar.
+# Descripción:
+#   Control activo sobre enjambres de nanites en cuerpos mecánicos.
+#   "Operancy" implica control funcional directo sobre los nanites.
+# Aplicación: Especies MACHINE
 # Enfoque: Optimización mecánica, colonización eficiente y supremacía tecnológica.
+# Afecta a: Pops y líderes mecánicos.
 # ================================
-mpp_trait_parangon_creation = {
-    cost = 10
-    icon = "gfx/interface/icons/traits/trait_parangon_creation.dds"
-
+mpp_parangon_nano_symbiosis = {
+    cost = 5
+	icon = "gfx/interface/icons/traits/mpp_parangon_nano_symbiosis.dds"
+	
 	ai_weight = { @default_ai_weight }
 
-    allowed_archetypes = { ROBOT MACHINE }
+	allowed_archetypes = { MACHINE }
+    allowed_leader_archetypes = { MACHINE }
+
+    potential = {
+        is_machine = yes
+    }
 
     modifier = {
 		mpp_species_leader_bonus = yes
 		mpp_robotic_population_bonus = yes
 		mpp_job_production_bonus = yes
 		mpp_research_production_bonus = yes
+    }
+}
+
+# ================================
+# 🧬 Species Trait: mpp_parangon_nano_operancy
+# "Parangón Nano-Infusión"
+# ================================
+# Descripción narrativa + lore:
+#   Rasgo exclusivo para robots, los cuales carecen de sangre y no pueden establecer control directo sobre los nanorobots. En cambio, la infusión de nanites se integra parcialmente en sus sistemas, proporcionando aumentos de producción, eficiencia laboral y capacidad de investigación.
+#   Aunque la conexión es limitada, los nanites mantienen el legado del Parangón, sirviendo como un vínculo misterioso que permite a los robots recibir parte de su poder. La infusión nunca alcanza la simbiosis total de las máquinas, pero confiere una ventaja tangible y una presencia narrativa de la influencia del Parangón sobre toda la red mecánica del universo.
+# Descripción:
+#   Rasgo mecánico avanzado que mejora producción, felicidad, eficiencia de líderes y trabajos,
+#   además de mejorar ensamblaje y definir costes de esclavos.
+# Aplicación: Exclusivo para especies ROBOT
+# Enfoque: Optimización mecánica, colonización eficiente y supremacía tecnológica.
+# Afecta a: Pops y líderes robóticos.
+# ================================
+mpp_parangon_nano_operancy = {
+    cost = 10
+    icon = "gfx/interface/icons/traits/mpp_parangon_nano_operancy.dds"
+
+	ai_weight = { @default_ai_weight }
+
+    allowed_archetypes = { ROBOT }
+
+    potential = {
+        is_robot = yes
     }
 
     slave_cost = {
@@ -72,5 +153,12 @@ mpp_trait_parangon_creation = {
             add = 0.5
             from = { has_rural_designation = yes }
         }
+    }
+
+    modifier = {
+		mpp_species_leader_bonus = yes
+		mpp_robotic_population_bonus = yes
+		mpp_job_production_bonus = yes
+		mpp_research_production_bonus = yes
     }
 }

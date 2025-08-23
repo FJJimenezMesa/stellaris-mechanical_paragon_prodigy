@@ -1,10 +1,67 @@
-##############################################
-# 👑 TRAIT PRINCIPAL - PARANGON
-##############################################
+# Nomenclaturas bio
+#   Vessel → marcado por nanos en sangre.
+#   Hollow / Null → hueco, no puede llenarse con la “sangre/nanoherencia”.
+#   Disciple → coincide clase
+#   Acolyte → no coincide clase
+# Ramas de evolución bio
+#   Genesis / Genetic
+#   Syntesis / Synthetic
+#   Unity / Full-Mechanic 
+# Nomenclaturas robot
+#   Prime Engine → Es robot con nanos
+#   Static Frame → Es robot sin nanos
+#   Mimic → coincide clase
+#   Module? → no coincide clase
+# Marcadores finales de ramas nivel+
+#   Apex → nivel+ con nanos
+#   Paragon → nivel++ con nanos (quedaría Apex Paragon)
+#   Vanguard → nivel+ sin con nanos
 
-# Trait que representa al líder Parangon.
-# Otorga bonificaciones masivas a líderes, imperio y subordinados.
-mpp_leader_trait_parangon_leader = {
+# BEGIN_LORE_mpp_leader_trait_mpp_leader
+# LORE_TYPE: LEADER_TRAIT
+# ================================
+# 👑 Ruler Trait: mpp_leader_trait_mpp_leader
+# "El Parangón"
+# ================================
+# Lore:
+#   Este líder ha sido marcado por la presencia de nanites "sangrenaníticos" en su biología o sistemas mecánicos. 
+#   Es el nodo central de la red nanomolecular del Parangón y el conductor del legado vivo que impregna a toda su especie o facción.
+#   Al inicio del juego, si posee el vector, se convierte automáticamente en el Parangón, controlando la actividad de todos los nanites conectados
+#   y actuando como catalizador de evolución y poder. Su influencia es absoluta sobre los nodos subordinados.
+#
+# Descripción narrativa:
+#   Cada nanite subordinado responde a su voluntad, convirtiéndolo en un canal consciente de la red. 
+#   Su cuerpo, biológico o mecánico, funciona como un puente entre la tecnología viva y la estructura social del imperio.
+#   A medida que progresa, puede integrarse más profundamente con la red nanomolecular, desbloqueando habilidades sobrehumanas
+#   y potenciando a líderes y poblaciones.
+#
+# Mecánicas & beneficios:
+#   • Longevidad Extrema: +300 años de duración de vida del líder
+#   • Bonificaciones globales: producción, investigación, flotas, ejércitos y población
+#   • Sinergia Parangón: mejora masiva de líderes subordinados y Pops
+#   • Integración progresiva: posibilidad de ascensión parcial o completa con la red nanomolecular
+#
+# Aplicación:
+#   Solo el líder del imperio
+#   Líderes de clase governor, admiral, scientist y general
+#   Puede ser biológico o mecánico (Machine / Robot)
+#
+# Rareza / Coste:
+#   Único / Exclusivo para el líder inicial del imperio Parangón
+#
+# Sinergias:
+#   • Influencia sobre nanites en Pops y líderes subordinados
+#   • Amplificación de investigación y producción planetaria
+#   • Bonificaciones de flota, ejército y espionaje
+#
+# Afecta:
+#   • Todos los Pops biológicos y mecánicos de la especie/facción
+#   • Todos los líderes subordinados del imperio
+#   • Potencial de ascensión hacia Parangón completo
+#
+# ================================
+# END_LORE_mpp_leader_trait_mpp_leader
+mpp_leader_trait_mpp_leader = {
     councilor_trait = yes                           # Se considera un consejero
     initial = yes                                   # Aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
@@ -12,13 +69,18 @@ mpp_leader_trait_parangon_leader = {
     inline_script = {
         script = trait/icon
         CLASS = leader
-        ICON = GFX_mpp_leader_trait_parangon_leader
+        ICON = GFX_mpp_leader_trait_mpp_leader
         RARITY = paragon
         COUNCIL = yes
-        TIER = none
+        TIER = 3
     }
 
-    leader_class = { governor admiral scientist general } # Clases de líder a las que aplica
+    potential = {
+        ruler = yes                                         # Solo el líder del imperio puede recibir este trait
+        OR = { is_biological = yes is_machine = yes }       # Puede ser líder biológico o máquina
+        has_species_trait = mpp_trait_nano_vector           # Solo si líder tiene el trait de especies nano_vector
+    }
+    leader_class = { governor admiral scientist general }   # Clases de líder a las que aplica
 
     modifier = {
         leader_age = 300                           # Máxima longevidad del líder
@@ -71,7 +133,7 @@ mpp_leader_trait_parangon_leader = {
 
 # Trait que representa líderes influenciados o formados por un Parangon.
 # Bonificaciones moderadas adaptadas a cada clase de líder.
-mpp_leader_trait_has_parangon_leader = {
+mpp_leader_trait_has_mpp_leader = {
     councilor_trait = no                            # No se considera un consejero
     initial = yes                                   # Aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
@@ -79,7 +141,7 @@ mpp_leader_trait_has_parangon_leader = {
     inline_script = {
         script = trait/icon
         CLASS = leader
-        ICON = GFX_mpp_leader_trait_has_parangon_leader
+        ICON = GFX_mpp_leader_trait_has_mpp_leader
         RARITY = paragon
         COUNCIL = no
         TIER = none
