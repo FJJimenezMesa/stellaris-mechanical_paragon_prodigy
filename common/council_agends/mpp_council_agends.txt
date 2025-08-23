@@ -5,16 +5,48 @@
 @base_ai_weight = 0               		# Peso base AI (probabilidad de investigación automática)
 @default_ai_weight = @base_ai_weight  	# Peso AI por defecto
 
+# BEGIN_LORE_mpp_agenda_unlock_council_slot
+# LORE_TYPE: AGENDA
 # ================================
-# 🏛️ Agenda: mpp_agenda_unlock_parangon_assesor_slot
+# 🏛️ Agenda: mpp_agenda_unlock_council_slot
 # "Consejo Parangon: Asesor Extra"
 # ================================
-# Descripción: Permite desbloquear un puesto adicional en el consejo imperial.
-# Aplicación: Disponible únicamente para países no-Gestalt que tengan la DLC Paragons
-#             y la aprobación de un líder Parangon.
-# Enfoque: Potencia la gestión política y la flexibilidad estratégica en el consejo.
+# Lore:
+#   Esta agenda representa la iniciativa del líder Parangón para reforzar su consejo imperial.
+#   Permite a los gobernantes expandir su equipo de asesores, asegurando una gestión más
+#   eficiente y estratégica del imperio.
+#
+# Descripción narrativa:
+#   Al desbloquear un puesto adicional en el consejo, la facción gana mayor flexibilidad
+#   en la administración de políticas, la asignación de recursos y la planificación militar
+#   o científica. Este espacio extra permite integrar consejeros especializados o
+#   representantes de intereses clave dentro del imperio.
+#
+# Mecánicas & beneficios:
+#   • Desbloqueo de 1 puesto adicional en el consejo
+#   • Mejora de la eficiencia política y administrativa
+#   • Incremento de opciones estratégicas para el líder
+#
+# Aplicación:
+#   Países no-Gestalt que tengan la DLC Paragons
+#   Requiere la aprobación de un líder Parangón y disponibilidad de slots en el consejo
+#
+# Rareza / Coste:
+#   Poco común / Coste: 1 slot de agenda
+#
+# Sinergias:
+#   • Combinación con agendas de gestión interna para optimizar políticas
+#   • Mejora la coordinación con líderes subordinados
+#   • Potencia la implementación de proyectos imperiales
+#
+# Afecta:
+#   • Líder del imperio que propone la agenda
+#   • Consejo imperial y sus asesores
+#   • Gestión política y decisiones estratégicas del imperio
+#
 # ================================
-mpp_agenda_unlock_parangon_assesor_slot = {
+# END_LORE_mpp_agenda_unlock_council_slot
+mpp_agenda_unlock_council_slot = {
     agenda_cost = @base_ethic_agenda_cost
 	ai_weight = @default_ai_weight
 

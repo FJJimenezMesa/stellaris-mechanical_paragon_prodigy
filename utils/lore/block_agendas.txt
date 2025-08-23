@@ -1,0 +1,34 @@
+# BEGIN_LORE_<AGENDA_KEY>
+# LORE_TYPE: AGENDA
+# ================================
+# 🏛️ Agenda: <AGENDA_KEY>
+# "<NOMBRE LEGIBLE>"
+# ================================
+# Lore:
+#   <Breve narrativa sobre la agenda, su origen o importancia en la facción o imperio.>
+#
+# Descripción narrativa:
+#   <Cómo la agenda afecta a líderes, población, políticas o imperio en general.>
+#
+# Mecánicas & beneficios:
+#   • <Beneficio 1>
+#   • <Beneficio 2>
+#   • <Beneficio 3>
+#
+# Aplicación:
+#   <Facciones o países aplicables>
+#   <Condiciones iniciales o requisitos>
+#
+# Rareza / Coste:
+#   <Ejemplo: Poco común, Coste: 1-3 puntos, o específico según DLC>
+#
+# Sinergias:
+#   • <Sinergia 1>
+#   • <Sinergia 2>
+#   • <Sinergia 3>
+#
+# Afecta:
+#   • <Lista de pops, líderes, gobierno o estructuras impactadas>
+#
+# ================================
+# END_LORE_<AGENDA_KEY>
