@@ -1,0 +1,34 @@
+# BEGIN_LORE_<TRAIT_OR_EVENT_KEY>
+# LORE_TYPE: SPECIES_TRAIT
+# ================================
+# 🧬 Species Trait: <TRAIT_OR_EVENT_KEY>
+# "<NOMBRE LEGIBLE>"
+# ================================
+# Lore:
+#   <Breve narrativa de contexto y origen del trait.>
+#
+# Descripción narrativa:
+#   <Narrativa inmersiva detallando cómo el trait afecta al portador, su conexión con la historia y el lore del mod.>
+#
+# Mecánicas & beneficios:
+#   • <Beneficio 1>
+#   • <Beneficio 2>
+#   • <Beneficio 3>
+#
+# Aplicación:
+#   <Especies, líderes o pops aplicables>
+#   <Requisitos o condiciones iniciales si los hay>
+#
+# Rareza / Coste:
+#   <Ejemplo: Poco común, Coste: 5 puntos>
+#
+# Sinergias:
+#   • <Sinergia 1>
+#   • <Sinergia 2>
+#   • <Sinergia 3>
+#
+# Afecta:
+#   • <Lista de pops, líderes o elementos impactados>
+#
+# ================================
+# END_LORE_<TRAIT_OR_EVENT_KEY>

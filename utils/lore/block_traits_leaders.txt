@@ -1,0 +1,34 @@
+# BEGIN_LORE_<TRAIT_OR_EVENT_KEY>
+# LORE_TYPE: LEADER_TRAIT
+# ================================
+# 👑 Ruler/Leader Trait: <TRAIT_OR_EVENT_KEY>
+# "<NOMBRE LEGIBLE>"
+# ================================
+# Lore:
+#   <Breve narrativa del origen o importancia del trait.>
+#
+# Descripción narrativa:
+#   <Narrativa inmersiva sobre cómo afecta al líder, su entorno, habilidades y facción.>
+#
+# Mecánicas & beneficios:
+#   • <Beneficio 1>
+#   • <Beneficio 2>
+#   • <Beneficio 3>
+#
+# Aplicación:
+#   <Clases de líder aplicables>
+#   <Condiciones iniciales o requisitos>
+#
+# Rareza / Coste:
+#   <Ejemplo: Único, Exclusivo, Coste: 10 puntos>
+#
+# Sinergias:
+#   • <Sinergia 1>
+#   • <Sinergia 2>
+#   • <Sinergia 3>
+#
+# Afecta:
+#   • <Pops, líderes o elementos impactados>
+#
+# ================================
+# END_LORE_<TRAIT_OR_EVENT_KEY>
