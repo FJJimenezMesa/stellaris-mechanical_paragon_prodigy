@@ -1,0 +1,26 @@
+# -----------------------
+# NAMESPACE
+# -----------------------
+namespace = mpp_events_origin_lrs
+
+# ===================================================
+# Chain: The Lost Robotic System
+# ===================================================
+country_event = {
+    id = mpp_events_origin_lrs.0
+    title = mpp_events_origin_lrs.0.title
+    desc = mpp_events_origin_lrs.0.desc
+    #picture = GFX_evt_ruined_city # TODO crear/buscar uno
+    #show_sound = event_planetary_riot
+    is_triggered_only = yes
+    hide_window = yes
+
+    immediate = {
+        # TODO efectos iniciales (flags, recursos, triggers narrativos)
+    }
+       
+    option = {
+        name = mpp_events_origin_lrs.0.a
+        # TODO efectos de la opción
+    }
+}

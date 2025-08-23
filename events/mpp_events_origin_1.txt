@@ -1,0 +1,206 @@
+# -----------------------
+# NAMESPACE
+# -----------------------
+namespace = mpp_events_origin
+
+# ===================================================
+#  INICIOS DE PARTIDA SEGÚN CONDICIONES
+# ===================================================
+
+# EVENTO PRINCIPAL: Setup Inicial
+country_event = {
+    id = mpp_events_origin.0
+    is_triggered_only = yes
+    hide_window = yes
+
+    immediate = {
+        mpp_set_flags_mpp_origin = yes  # TODO flags: iniciales de configuración
+        
+        # Check inicial de configuración del juego
+        country_event = { id = mpp_events_master.0 }
+
+        # Techs básicas robóticas
+        mpp_add_techs_basic_robot = yes
+
+        # Decisión de inicio
+        if = {
+            # INIT 1: Líder MPP en sistema MPP
+            limit = { 
+                mpp_has_mpp_leader_approved = yes 
+                mpp_is_parangon_homeworld = yes
+            }
+            country_event = { id = mpp_events_origin.1 } 
+        }
+        else_if = {
+            # INIT 2: Líder MPP no en sistema MPP
+            limit = { 
+                mpp_has_mpp_leader_approved = yes 
+                mpp_is_parangon_homeworld = no 
+            }
+            country_event = { id = mpp_events_origin.2 } 
+        }
+        else_if = {
+            # INIT 3: Líder no MPP en sistema MPP
+            limit = { 
+                mpp_has_mpp_leader_approved = no
+                mpp_is_parangon_homeworld = yes 
+            }
+            country_event = { id = mpp_events_origin.3 } 
+        }
+        else = {
+            # INIT 4: Líder no MPP búsqueda de sistema MPP
+            country_event = { id = mpp_events_origin.4 }
+        }
+
+        # FIN de configuración de eventos / inicio
+        mpp_set_flags_mpp_origin_setup_done = yes
+    } 
+    option = { name = mpp_events_origin.0.a }
+}
+
+# ===================================================
+# INIT 1: Líder MPP en sistema MPP --> At Home
+# ===================================================
+country_event = {
+    id = mpp_events_origin.1
+    title = mpp_events_origin.1.title
+    desc = mpp_events_origin.1.desc
+    is_triggered_only = yes
+
+    immediate = {
+        add_resource = { minerals = 250 energy = 250 unity = 50 }
+        mpp_add_techs_mpp_origin = yes
+
+        # TODO flags: marcar inicio “At Home” (ej. set_country_flag = mpp_origin_at_home)
+
+        # Lanzar chain “At Home”
+        country_event = { id = mpp_events_origin_ah.0 }
+    }
+
+    option = { name = mpp_events_origin.1.a }
+}
+
+# ===================================================
+# INIT 2: Líder MPP no en sistema MPP --> Home Comming
+# ===================================================
+country_event = {
+    id = mpp_events_origin.2
+    title = mpp_events_origin.2.title
+    desc = mpp_events_origin.2.desc
+    is_triggered_only = yes
+
+    immediate = {
+        add_resource = { minerals = 500 energy = 500 unity = 100 }
+
+        # TODO flags: marcar inicio “Home Comming” (ej. set_country_flag = mpp_origin_home_comming)
+        
+        country_event = { id = mpp_events_origin_hc.0 }
+    }
+
+    option = { name = mpp_events_origin.2.a }
+}
+
+# ===================================================
+# INIT 3: Líder no MPP en sistema MPP --> Omens of the Paragon
+# ===================================================
+country_event = {
+    id = mpp_events_origin.3
+    title = mpp_events_origin.3.title
+    desc = mpp_events_origin.3.desc
+    is_triggered_only = yes
+
+    immediate = {
+        add_resource = { unity = 150 }
+
+        # TODO flags: marcar inicio “Omens of the Paragon” (ej. set_country_flag = mpp_origin_omens)
+
+        country_event = { id = mpp_events_origin_op.0 }
+    }
+
+    option = { name = mpp_events_origin.3.a }
+}
+
+# ===================================================
+# INIT 4: Líder no MPP búsqueda de sistema MPP --> The Lost Robotic System
+# ===================================================
+country_event = {
+    id = mpp_events_origin.4
+    title = mpp_events_origin.4.title
+    desc = mpp_events_origin.4.desc
+    is_triggered_only = yes
+
+    immediate = {
+        add_resource = { influence = 200 }
+
+        # TODO flags: marcar inicio “Lost Robotic System” (ej. set_country_flag = mpp_origin_lost_robotic)
+
+        country_event = { id = mpp_events_origin_lrs.0 }
+    }
+
+    option = { name = mpp_events_origin.4.a }
+}
+
+# ===================================================
+# CheckPoint: Líder MPP --> Finally At Home
+# ===================================================
+country_event = {
+    id = mpp_events_origin.5
+    title = mpp_events_origin.5.title
+    desc = mpp_events_origin.5.desc
+    is_triggered_only = yes
+    hide_window = yes
+
+    immediate = { 
+        set_country_flag = mpp_origin_finally_home 
+        # TODO flags: quizá limpiar anteriores de INIT si quieres “cerrar” etapa
+    } 
+    option = { name = mpp_events_origin.5.a }
+}
+
+# ===================================================
+# CheckPoint: Líder MPP --> Trying to Avoid the Robots
+# ===================================================
+country_event = {
+    id = mpp_events_origin.6
+    title = mpp_events_origin.6.title
+    desc = mpp_events_origin.6.desc
+    is_triggered_only = yes
+
+    immediate = { 
+        set_country_flag = mpp_origin_trying_to_avoid 
+        # TODO flags: útil para distinguir capital secundaria pero aún con sistema
+    } 
+    option = { name = mpp_events_origin.6.a }
+}
+
+# ===================================================
+# CheckPoint: Líder MPP --> Failure to Avoid robots
+# ===================================================
+country_event = {
+    id = mpp_events_origin.7
+    title = mpp_events_origin.7.title
+    desc = mpp_events_origin.7.desc
+    is_triggered_only = yes
+
+    immediate = { 
+        set_country_flag = mpp_origin_failure_avoid
+        # TODO flags: marcar que la capital se movió de vuelta a sistema MPP
+    } 
+    option = { name = mpp_events_origin.7.a }
+}
+
+# ===================================================
+# CheckPoint: Líder MPP --> The Revenge Begins
+# ===================================================
+country_event = {
+    id = mpp_events_origin.8
+    title = mpp_events_origin.8.title
+    desc = mpp_events_origin.8.desc
+    is_triggered_only = yes
+
+    immediate = { 
+        set_country_flag = mpp_origin_revenge_begins
+        # TODO flags: aquí arranca rama narrativa de pérdida definitiva del hogar
+    }
+    option = { name = mpp_events_origin.8.a }
+}
