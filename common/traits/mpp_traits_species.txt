@@ -1,122 +1,76 @@
 # ================================
-# 👑 Leader Trait: mpp_leader_trait_parangon_leader
-# "Parangon"
+# Variables base para traits de especies MPP
 # ================================
-# Descripción: Representa al líder Parangon. Otorga bonificaciones masivas a líderes, imperio y subordinados.
-# Aplicación: Líderes de cualquier clase (governor, admiral, scientist, general), con capacidad de consejero.
-# Enfoque: Rasgo raro y poderoso, enfocado en longevidad, dominio militar, naval, administrativo y científico.
+@base_ai_weight = 0              		# Peso base AI (IA le asigna al rasgo al generar o seleccionar especies automáticamente.)
+@default_ai_weight = @base_ai_weight  	# Peso AI por defecto
+@default_crossbreding = 1.0      		# Probabilidad de que esta especie pueda cruzarse con otras especies compatibles (1.0 = 100%)
+
 # ================================
-mpp_leader_trait_parangon_leader = {
-    councilor_trait = yes
-    initial = yes
-    randomized = no
+# 🧬 Species Trait: trait_mpp_parangon_legacy
+# "Legado Parangon"
+# ================================
+# Descripción: Rasgo poderoso que otorga longevidad, estabilidad y bonificaciones de producción e investigación.
+# Aplicación: Especies de tipo BIOLOGICAL y LITHOID, con posibilidad de cruzamiento avanzado.
+# Enfoque: Rareza, longevidad, resiliencia y sinergias productivas.
+# ================================
+mpp_trait_parangon_legacy = {
+    cost = -8
+	icon = "gfx/interface/icons/traits/trait_mpp_parangon_legacy.dds"
+	
+	ai_weight = { @default_ai_weight }
 
-    inline_script = {
-        script = trait/icon
-        CLASS = leader
-        ICON = GFX_mpp_leader_trait_parangon_leader
-        RARITY = paragon
-        COUNCIL = yes
-        TIER = none
-    }
-
-    leader_class = { governor admiral scientist general }
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+	species_potential_add = {
+		can_do_advanced_gene_modding = yes
+	}
+	potential_crossbreeding_chance = @default_crossbreding
 
     modifier = {
-        leader_age = 300
-        country_leader_cap_add = 10
-        mpp_species_leader_bonus_x3 = yes
+		leader_age = 50
 
-        mpp_empire_size_bonus = yes
-        mpp_empire_naval_bonus = yes
-        mpp_empire_fleet_bonus = yes
-        mpp_empire_upkeep_bonus = yes
-        mpp_spy_operations_bonus = yes
-
-        mpp_planet_research_production_bonus = yes
-        mpp_planet_production_bonus = yes
-
-        monthly_loyalty = 0.5
-    }
-
-    triggered_modifier = {
-        potential = { leader_class = scientist }
-        modifier = {
-            all_technology_research_speed = 0.15
-            mpp_country_research_bonus_x5 = yes 
-        }
-    }
-
-    triggered_modifier = {
-        potential = { leader_class = admiral }
-        modifier = { mpp_military_ship_bonus = yes }
-    }
-
-    triggered_modifier = {
-        potential = { leader_class = general }
-        modifier = { mpp_army_bonus = yes }
-    }
-
-    triggered_modifier = {
-        potential = { leader_class = governor }
-        modifier = { mpp_population_bonus_x5 = yes }
+    	mpp_species_leader_bonus = yes
+		mpp_bio_population_bonus = yes
+		mpp_job_production_bonus = yes
+		mpp_planet_research_production_bonus = yes
     }
 }
 
 # ================================
-# 👑 Leader Trait: mpp_leader_trait_has_parangon_leader
-# "Pupilo (Has Parangon)"
+# 🧬 Species Trait: trait_parangon_creation
+# "Creación Parangon"
 # ================================
-# Descripción: Representa líderes formados o influenciados por un Parangon. Bonificaciones moderadas adaptadas a cada clase.
-# Aplicación: Líderes de cualquier clase (governor, admiral, scientist, general), sin rol de consejero.
-# Enfoque: Rasgo situacional, útil para crecimiento y mejoras equilibradas.
+# Descripción: Potente rasgo mecánico que incrementa producción, felicidad, eficiencia de líderes y trabajos, 
+# además de mejorar ensamblaje y definir costes de esclavos.
+# Aplicación: Exclusivo para especies ROBOT y MACHINE.
+# Enfoque: Optimización mecánica, colonización eficiente y supremacía tecnológica.
 # ================================
-mpp_leader_trait_has_parangon_leader = {
-    councilor_trait = no
-    initial = yes
-    randomized = no
+mpp_trait_parangon_creation = {
+    cost = 10
+    icon = "gfx/interface/icons/traits/trait_parangon_creation.dds"
 
-    inline_script = {
-        script = trait/icon
-        CLASS = leader
-        ICON = GFX_mpp_leader_trait_has_parangon_leader
-        RARITY = paragon
-        COUNCIL = no
-        TIER = none
-    }
+	ai_weight = { @default_ai_weight }
 
-    leader_class = { governor admiral scientist general }
+    allowed_archetypes = { ROBOT MACHINE }
 
     modifier = {
-        leader_age = 50
-        leader_trait_selection_options_add = 3
+		mpp_species_leader_bonus = yes
+		mpp_robotic_population_bonus = yes
+		mpp_job_production_bonus = yes
+		mpp_research_production_bonus = yes
     }
 
-    triggered_modifier = {
-        potential = { leader_class = admiral }
-        modifier = { mpp_military_ship_bonus = yes }
+    slave_cost = {
+        energy = 750
     }
 
-    triggered_modifier = {
-        potential = { leader_class = general }
-        modifier = { mpp_army_bonus = yes }
-    }
-
-    triggered_modifier = {
-        potential = { leader_class = governor }
+    assembly_score = {
         modifier = {
-            planet_stability_add = 10
-            pop_growth_speed = 0.05
-            mpp_planet_production_bonus = yes
+            add = 1.5
+            from = { has_mining_designation = yes }
         }
-    }
-
-    triggered_modifier = {
-        potential = { leader_class = scientist }
         modifier = {
-            mpp_country_research_bonus = yes
-            mpp_scientists_research_production_bonus = yes
-            mpp_scient_ship_bonus = yes
+            add = 0.5
+            from = { has_rural_designation = yes }
         }
     }
 }
