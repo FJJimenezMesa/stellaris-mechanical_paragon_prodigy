@@ -26,14 +26,47 @@
 @default_weight = { factor = 500 }   # Peso AI razonable para tier 5-6
 @default_ai_weight = { factor = 50 } # Peso AI moderado, para que IA pueda investigar sin ignorarlo
 
+# BEGIN_LORE_mpp_tech_machine_patterns
+# LORE_TYPE: TECH
 # ================================
 # ⚙️ Tecnología: mpp_tech_machine_patterns
-# "Chispa Parangon: Esencia Mecánica"
+# "Chispa Parangón: Esencia Mecánica"
 # ================================
-# Descripción: Otorga puntos de rasgo adicionales para especies MACHINE, mejorando su capacidad de personalización.
-# Aplicación: Exclusiva de especies de tipo máquina y sus derivados.
-# Enfoque: Progresión mecánica y optimización tecnológica.
+# Lore:
+#   Esta tecnología se inspira en la red de nanites desarrollada por el Parangón,
+#   adaptada para el uso de especies y sistemas mecánicos. Proporciona un patrón
+#   de auto-organización que mejora la integración y eficiencia de las máquinas.
+#
+# Descripción narrativa:
+#   Los ingenieros mecánicos y constructores avanzados utilizan estos patrones
+#   para optimizar la estructura y funcionalidad de sus cuerpos y sistemas,
+#   permitiendo una personalización más profunda y un control más directo de
+#   los nanites internos que actúan como catalizadores de mejoras tecnológicas.
+#
+# Mecánicas & beneficios:
+#   • Incrementa los puntos de rasgo disponibles para especies MACHINE
+#   • Mejora la personalización y especialización de líderes y unidades mecánicas
+#   • Potencia la sinergia con otras tecnologías de auto-ensamblaje
+#
+# Aplicación:
+#   Exclusiva para especies MACHINE y sus derivados
+#   Requiere conocimientos avanzados en computación y auto-ensamblaje
+#
+# Rareza / Coste:
+#   Tier 5 / Repetible hasta 5 niveles / Coste según @default_repetible_cost_tier_5
+#
+# Sinergias:
+#   • Combinación con tecnologías de ensamblaje y optimización
+#   • Mejora de eficiencia de líderes mecánicos
+#   • Aceleración en producción y ensamblaje planetario
+#
+# Afecta:
+#   • Especies MACHINE
+#   • Líderes y unidades mecánicas
+#   • Capacidad de personalización y rasgos de las máquinas
+#
 # ================================
+# END_LORE_mpp_tech_machine_patterns
 mpp_tech_machine_patterns = {
     tier = 5
     area = physics
@@ -330,7 +363,7 @@ mpp_tech_starbase_expansion = {
 # Aplicación: Imperios avanzados con gran influencia territorial.
 # Enfoque: Poder militar avanzado y control estratégico galáctico.
 # ================================
-mpp_tech_starbase_expansion_advanced = {
+mpp_tech_starbase_advanced_expansion = {
     tier = 6
     area = society
     category = { government }

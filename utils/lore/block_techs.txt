@@ -1,0 +1,37 @@
+# BEGIN_LORE_<TECH_KEY>
+# LORE_TYPE: TECH
+# ================================
+# ⚙️ Tecnología: <TECH_KEY>
+# "<NOMBRE LEGIBLE>"
+# ================================
+# Lore:
+#   <Breve narrativa sobre el descubrimiento, su origen o inspiración.>
+#   <Puede referirse a los nanites del Parangón, a avances científicos o a la
+#   integración de biología/mecánica con la red nanomolecular.>
+#
+# Descripción narrativa:
+#   <Explicación sobre cómo afecta esta tecnología a la sociedad, las especies,
+#   los líderes o las estructuras del imperio.>
+#
+# Mecánicas & beneficios:
+#   • <Beneficio 1>
+#   • <Beneficio 2>
+#   • <Beneficio 3>
+#
+# Aplicación:
+#   <Qué imperios, especies o condiciones permiten investigar o usar esta tecnología.>
+#   <Ejemplo: Exclusiva para máquinas, disponible solo con cierto prerequisito, etc.>
+#
+# Rareza / Coste:
+#   <Tier de la tecnología, si es repetible, coste, requisitos, etc.>
+#
+# Sinergias:
+#   • <Sinergia 1>
+#   • <Sinergia 2>
+#   • <Sinergia 3>
+#
+# Afecta:
+#   • <Lista de pops, líderes, unidades o estructuras impactadas>
+#
+# ================================
+# END_LORE_<TECH_KEY>
