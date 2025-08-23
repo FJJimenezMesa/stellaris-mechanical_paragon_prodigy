@@ -1,0 +1,33 @@
+# BEGIN_LORE_<ORIGIN_KEY>
+# LORE_TYPE: ORIGIN
+# ================================
+# 🌌 Origin: <ORIGIN_KEY>
+# "<NOMBRE LEGIBLE>"
+# ================================
+# Lore:
+#   <Breve historia del origen, contexto narrativo del imperio.>
+#
+# Descripción narrativa:
+#   <Cómo define a la civilización desde el inicio, su cultura y tecnología.>
+#
+# Mecánicas & beneficios:
+#   • <Beneficio inicial o ventaja de partida>
+#   • <Modificadores únicos o extras>
+#
+# Aplicación:
+#   • <Quién puede elegir este origen>
+#   • <Condiciones especiales si las hay>
+#
+# Rareza / Exclusividad:
+#   • <Único, limitado a 1, requiere DLC, etc.>
+#
+# Sinergias:
+#   • <Traits, líderes o mecánicas compatibles>
+#
+# Afecta:
+#   • <Árboles tecnológicos, diplomacia, narrativa, líderes, etc.>
+#
+# Initializer:
+#   • <Planeta inicial, recursos, anomalías, vecinos, flota inicial, etc.>
+# ================================
+# END_LORE_<ORIGIN_KEY>
