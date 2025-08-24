@@ -1,7 +1,3 @@
-
-
-
-
 # BEGIN_INFO_mpp_system_dark_relic
 # INFO_TYPE: SOLAR_SYSTEM
 # ================================
@@ -34,6 +30,40 @@
 #
 # END_LORE_mpp_system_dark_relic
 # ========
+# BEGIN_ASCII_MINIMAP_mpp_system_dark_relic
+# 🌌 Mini-Mapa ASCII del Sistema (Vista Top-Down Escalada)
+#
+# Leyenda:
+#   ⬤ = Agujero negro o estrella central
+#   ◎ = Planeta
+#   ◉ = Luna
+#   • = Asteroide / debris field
+#   * = Cinturón de asteroides
+#   ▲ = Megaconstrucción / artefactos antiguos
+#   ⚙ = Planeta con robots o cultura especial
+#   » = Flota o naves
+#   ¥ = Outpost / puesto de observación
+#
+# Vista superior (órbitas aproximadas):
+#	⬤	(0 UA) – Agujero negro central
+#	▲	(0 UA) – Núcleo Dyson semi-colapsado
+#	◎	..................(20 UA) – Planeta Shrouded con ruinas y debris
+#		◉	.................... Luna cercana
+#	◎	.......................(25 UA) – Planeta Nuked con depósitos raros y artefactos
+#	⚙	.........................(28 UA) – Planeta de robots primitivos
+#	•	.............................(30-32 UA) – Asteroides dispersos x2
+#	◎	.................................(35 UA) – Planeta Shattered
+#		◉	................................... Luna rota
+#	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	(40-50 UA) – Cinturón de asteroides
+#	◎	.........................................................(45 UA) – Gigante Gaseoso oscuro
+#		◉	........................................................... Luna tóxica
+#	◎	..................................................................(50 UA) – Planeta Barren frío
+#	▲	(aleatoria) – Megaconstrucción: Gateway arruinado
+#	»	(aleatoria) – Flota de drones moderada
+#	•	(aleatoria) – Asteroides dispersos adicionales
+#
+# END_ASCII_MINIMAP_mpp_system_dark_relic
+# ================================
 mpp_system_dark_relic_initializer = {
     name = "mpp_system_dark_relic"
     max_instances = 1
