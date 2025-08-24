@@ -11,64 +11,61 @@
 # "El Legado del Veridian" / "El Susurro de los Progenitores"
 # ================================
 # Lore:
-#   En los registros más antiguos de las civilizaciones precursoras, se describe
-#   una entidad cósmica conocida como "El Veridian" – un fluido consciente de
+#   En los registros más antiguos de las civilizaciones precursoras se describe
+#   una entidad cósmica conocida como "El Veridian", un fluido consciente de
 #   nanites semiorgánicos que trasciende la distinción entre materia y energía.
 #   Los primeros investigadores lo llamaron "El Susurro" por su capacidad de
 #   comunicarse directamente con el tejido de la realidad.
-#
 #   El Veridian no es un arma ni una herramienta, sino una forma de existencia
 #   superior que busca la síntesis perfecta entre lo orgánico y lo sintético.
 #   Su contacto transforma carne y metal, rediseñando la vida hacia estados
 #   evolutivos más avanzados. Algunos lo ven como la llave hacia la trascendencia
 #   cósmica; otros, como la mayor amenaza a la autonomía de las especies.
-#
 #   Tu imperio ha despertado al Veridian de su sueño milenario. Ahora este
 #   legado ancestral fluye a través de tus mundos, y la galaxia entera deberá
 #   elegir entre abrazar la evolución o resistirse al cambio inevitable.
-# 
+#
 # Descripción narrativa:
 #   Este origen sitúa a tu civilización como el epicentro del despertar del
 #   Veridian. Como anfitriones primarios de esta entidad cósmica, tus decisiones
 #   determinarán el destino de la galaxia:
-#   - Abrazar la Síntesis: aceptar voluntariamente la simbiosis con el Veridian 
+#   - Abrazar la Síntesis: aceptar voluntariamente la simbiosis con el Veridian
 #     y convertirse en faro de la evolución consciente.
-#   - Rechazar el Legado: resistirse a la influencia del Veridian y liderar la 
+#   - Rechazar el Legado: resistirse a la influencia del Veridian y liderar la
 #     cruzada para preservar la autonomía biológica/sintética.
-#   - Infección Forzada: ser asimilado contra la voluntad mediante eventos 
+#   - Infección Forzada: ser asimilado contra la voluntad mediante eventos
 #     narrativos, desatando una transformación galáctica.
-#
-#   Cada camino activa cadenas de eventos únicas que dividirán la galaxia en dos 
-#   bandos irreconciliables: los Iluminados (portadores del Veridian) y los 
+#   Cada camino activa cadenas de eventos únicas que dividirán la galaxia en dos
+#   bandos irreconciliables: los Iluminados (portadores del Veridian) y los
 #   Guardianes (defensores de la pureza natural).
 #
 # Mecánicas & beneficios:
 #   • Activa el sistema de eventos "Ciclo Veridian" con misiones y cadenas narrativas exclusivas.
 #   • Desbloquea traits únicos: veridian_vector (para especies biológicas) y veridian_operancy (para sintéticas).
-#   • Permite acceso a traits especiales de líderes y especies vinculadas al Vector.
+#   • Permite acceso a traits especiales de líderes y especies vinculadas al Veridian.
 #   • Activa tecnologías relacionadas con la fusión nanita-sintética.
 #   • Proporciona agenda básica de facción para orientar comportamiento diplomático y estratégico.
 #
 # Aplicación:
-#   • Origen exclusivo: solo un jugador/IA puede tenerlo por partida (condición única).
+#   • Origen exclusivo: solo un jugador/IA puede tenerlo por partida.
 #   • Compatible con todos los tipos de especies: biológicas, mecánicas y sintéticas.
 #   • Activa condiciones globales del mod: quests, eventos y narrativas asociadas al Veridian.
-#   • Afecta a líderes y pops según su tipo biológico/mecánico a través de los traits correspondientes
-# 
+#   • Afecta a líderes y pops según su tipo biológico/mecánico a través de los traits correspondientes.
+#
 # Rareza / Exclusividad:
 #   • Rareza: Único (0.001% probabilidad para IA)
-#   • Su elección define el curso narrativo del mod
+#   • Su elección define el curso narrativo del mod.
 #
 # Sinergias:
 #   • Con todos los traits de la familia Veridian.
-#   • Con líderes Parangón que portan el Vector Nanomolecular.
+#   • Con líderes que portan el Veridian.
 #   • Con agendas imperiales orientadas a la expansión de la influencia Veridian.
 #   • Con tecnologías de manipulación genética y nanotecnología avanzada.
 #
 # Afecta:
 #   • Al entramado narrativo global.
 #   • A la progresión tecnológica ligada a nanites.
-#   • A líderes, especies y facciones que entren en contacto con el Vector.
+#   • A líderes, especies y facciones que entren en contacto con el Veridian.
 #   • Mecánicas de líderes y sucesos planetarios.
 #   • El equilibrio geopolítico galáctico.
 #   • Sistema de tradiciones y ascensiones.
@@ -79,6 +76,7 @@
 #   • Vecinos predeterminados y anomalías iniciales.
 # ================================
 # END_LORE_mpp_origin_mpp_system_origin
+END_LORE_mpp_origin_mpp_system_origin
 mpp_origin_mpp_sytem_origin = {
     is_origin = yes
     icon = "gfx/interface/icons/origins/mpp_origin_mpp_sytem_origin.dds"

@@ -1,37 +1,199 @@
-# BEGIN_SYSTEM_<SYSTEM_KEY>
-# SYSTEM_TYPE: SPECIAL
+<BEGIN_PROMPT>
+Vas a generar un bloque de información y un bloque de lore para el juego Stellaris. Cada bloque irá en un fichero de iniciación de sistemas estelares y será utilizado para crear automáticamente una wiki. La información proviene de un fichero que define un solar_system_initializer.
+
+Tu objetivo principal:
+    Generar un bloque de información y un bloque de lore completamente detallado y listo para wiki.
+
+Pasos a seguir:
+
+1. ANALIZA y EXTRAE toda la información relevante del fichero Stellaris.
+    - Identifica todos los objetos presentes en el sistema:
+        * Planetas (shrouded, nuked, shattered, gas giant, barren, relic, homeworld)
+        * Lunas (barren, tóxica, robot world)
+        * Megaconstrucciones (ringworld, gateway, dyson sphere, mega shipyard)
+        * Debris y cinturones de asteroides
+        * Otros elementos significativos
+    - Extrae también los flags del sistema, depósitos, anomalías, efectos visuales y mecánicos.
+
+2. GENERA <notas adicionales> y <descripción>.
+    - Usa toda la información del paso 1.
+    - Observa la tipología y estado de planetas y megaconstrucciones.
+    - Las <Notas adicionales> deben incluir (opcional si no hay información suficiente):
+        • Megaestructuras presentes (listado legible)
+        • Peligros ambientales, anomalías, nubes de polvo, zonas de riesgo
+        • Objetos de interés narrativo, restos de civilizaciones antiguas, sitios arqueológicos
+        • Habitantes especiales, NPCs, drones, robots
+        • Efectos narrativos o mecánicos dentro del juego
+        • Otros detalles opcionales que ayuden a enriquecer la descripción y el lore
+    - La <Descripción> debe resumir el carácter general del sistema, su ambiente, peligros y elementos exploratorios, tomando en cuenta la información de las notas adicionales y los flags del sistema.
+
+3. LISTA los **flags del sistema** en una sección separada, usando exactamente los keys que aparecen en el archivo (ejemplo: `mpp_flag_dark_relic_system`).
+
+4. GENERA <lore> usando <notas adicionales>, los flags del sistema y <descripción>.
+    - Incluye historia del sistema: origen, civilizaciones antiguas, catástrofes, decadencia, tecnología perdida, gateways, agujeros negros, ruinas, eventos importantes.
+    - Considera toda la información relevante de las notas adicionales y la descripción para enriquecer el lore.
+
+5. GENERA <descripción narrativa> usando <lore>, <notas adicionales>, los flags del sistema y <descripción>.
+    - Define el carácter del sistema dentro del juego.
+    - Destaca peligros ambientales, recursos únicos, ruinas, habitantes especiales, drones, robots y potencial narrativo/exploratorio.
+
+6. GENERA <nombre de sistema> usando <lore>, <descripción narrativa>, <notas adicionales>, los flags del sistema y <descripción>.
+    - Considera el key del sistema para asegurar coherencia.
+
+7. UNIR todo en la estructura final:
+    - Debe ser uniforme, lista para pegar en el fichero de wiki.
+    - Las secciones marcadas como opcionales pueden omitirse si no hay información suficiente.
+    - La salida debe seguir el formato exacto del ejemplo.
+
+Formato de salida:
+
+<BEGIN_OUTPUT_EXAMPLE>
+# BEGIN_INFO_<SYSTEM_KEY>
+# INFO_TYPE: SOLAR_SYSTEM
 # ================================
-# 🌠 <Nombre del Sistema>
+# 🌠 Solar System: <SYSTEM_KEY>
+# "<NOMBRE LEGIBLE>"
 # ================================
+# 
+# Descripcion:
+#   <Descripción del sistema solar, considerando flags y notas adicionales>
+# 
+# Flags del sistema:
+#   • <Listado de flags usando keys exactos>
+# 
+# Notas adicionales (opcional si no hay información suficiente):
+#   • <Megaestructuras presentes>
+#   • <Peligros ambientales y anomalías>
+#   • <Objetos de interés narrativo y arqueológicos>
+#   • <Habitantes especiales, NPCs, drones, robots>
+#   • <Efectos mecánicos o narrativos detectados>
+#   • <Otros detalles opcionales relevantes>
+# 
+# END_INFO_<SYSTEM_KEY>
+# ========
+# BEGIN_LORE_<SYSTEM_KEY>
+# LORE_TYPE: SOLAR_SYSTEM - GENERAL
+# Name:
+#   <NOMBRE LEGIBLE>
+# 
 # Lore:
-#   <Breve historia del sistema, origen, civilizaciones antiguas, eventos pasados, tecnología perdida, o cualquier detalle narrativo que lo haga único.>
-#
+#   <Historia breve del sistema considerando flags y notas adicionales: origen, catástrofes, civilizaciones antiguas, tecnología perdida, decadencia, eventos destacados>
+# 
 # Descripción narrativa:
-#   <Cómo define el sistema dentro del juego: peligros ambientales, recursos únicos, ruinas, habitantes especiales, potencial narrativo y exploratorio.>
+#   <Definición integral del sistema dentro del juego: peligros, recursos, ruinas, habitantes especiales, drones, robots, potencial exploratorio y narrativo>
 #
-# 🌌 Mini-Mapa ASCII del Sistema
+# END_LORE_<SYSTEM_KEY>
+# ========
+<END_OUTPUT_EXAMPLE>
+<END_PROMPT>
+
+
+
+
+
+
+
+
+
+<BEGIN_PROMPT>
+Vas a generar un bloque de mini-mapa ASCII para el juego Stellaris. Cada bloque irá en un fichero de iniciación de sistemas estelares y será utilizado para crear automáticamente una wiki. La información proviene de un fichero que define un solar_system_initializer.  
+
+Tu objetivo principal:  
+    Generar un bloque de mini-mapa ASCII detallado que represente visualmente la disposición de estrellas, planetas, lunas, cinturones de asteroides, debris fields, flotas y megaconstrucciones.  
+
+Pasos a seguir:  
+
+1. ANALIZA toda la información relevante del sistema Stellaris proporcionado:  
+    - Extrae estrellas, agujeros negros, planetas (shrouded, nuked, shattered, gas giant, barren, relic, homeworld, etc.), lunas (barren, tóxica, rota, robot world, etc.), megaconstrucciones, debris fields, flotas, puestos de observación y cinturones de asteroides.  
+    - Para cada objeto, considera su distancia orbital aproximada y posición relativa en el sistema.  
+    - Extrae también información sobre planetas con habitantes especiales o culturas primitivas de robots.  
+
+2. GENERA la sección de Leyenda:  
+    - Iconos a usar:  
+        • ⬤  = Agujero negro o estrella central  
+        • ◎  = Planeta  
+        • ◉  = Luna  
+        • •  = Asteroide / debris field  
+        • *  = Cinturón de asteroides  
+        • ▲  = Megaconstrucción / artefactos antiguos / clusters  
+        • ⚙  = Planeta con robots o habitantes especiales  
+        • »  = Flota o naves  
+        • ¥  = Outpost / puesto de observación  
+
+3. GENERA la Vista Superior:  
+    - Representa la posición aproximada de cada objeto usando puntos (.) para indicar distancia en UA.  
+    - Añade tras esta representación con puntos la marcación numérica:  
+        • (X UA) → si es fija en una órbita exacta.  
+        • (X-Y UA) → si está dentro de un rango aproximado.  
+        • (aleatoria) → si no tiene posición definida (no aparecerán puntos delante).  
+    - Tras esta sección de marcación de posición y el separador "–" añade `xN` si es más de un objeto.  
+    - Coloca SIEMPRE un tabulador antes y después del icono para mantener alineación uniforme.  
+    - Coloca las lunas debajo de su planeta padre, con sangría adicional por tabulación.  
+    - Incluye los cinturones de asteroides con rango de UA y el símbolo `*`.  
+    - Mantén la coherencia de iconos, nombres y distancias aproximadas.  
+
+4. UNIR todo en la estructura final:  
+    - Debe empezar con:  
+        # BEGIN_ASCII_MINIMAP_<SYSTEM_KEY>  
+    - Incluir título con 🌌, la Leyenda y la Vista Superior.  
+    - Terminar con:  
+        # END_ASCII_MINIMAP_<SYSTEM_KEY>  
+        # ================================  
+
+5. Salida:  
+    - Formato limpio, listo para copiar y pegar directamente en un fichero .txt.  
+    - Mantén todos los iconos, distancias y descripción breve de cada objeto.  
+    - No añadas elementos que no se puedan inferir de la información del sistema.  
+    - Si encontraras algo no contemplado para la generación, avisa tras el bloque con un comentario adicional que empiece por:  
+        # AVISO: <detalle>
+
+Nota importante:
+    - Megaconstrucciones sobre la estrella o con orbit_distance = 0 deben reflejar la posición correcta con respecto al change_orbit acumulado.
+    - La correcta interpretación de change_orbit es clave para reflejar la posición relativa de los planetas y objetos siguientes.
+    - La correcta interpretación de change_orbit es fundamental.
+    - Los objetos no siempre aparecen ordenados, ten cuidado con los scopes.
+    - Todo debería salir ordenado por distancia UA, dejando abajo los totalmente aleatorios.
+    - No autointerpretes varios asteorides aleatorios sobre una UA o rango de UA como un cinturón, los cinturones son explictos.
+    - Los objetos que orbitan sobre un target que no es la estrella deben auto calcular su UA aproximado con respecto a la estrella para su representación y colocarse en el mimapa donde corresponda, de manera ordenada.
+    - Cuando haya rangos de distancia para colocar un objeto (como por ejemplo 20-25 UA ) se tomará como valor para ordenar en el mapa el valor más pequeño.
+Formato de salida:
+
+<BEGIN_OUTPUT_EXAMPLE>
+# BEGIN_ASCII_MINIMAP_mpp_system_dark_relic
+# 🌌 Mini-Mapa ASCII del Sistema (Vista Top-Down Escalada)
 #
 # Leyenda:
-# ⬤  = Agujero negro / estrella central
-# ◎  = Planeta (shrouded, nuked, shattered, gigante gaseoso, barren, etc.)
-# ◉  = Luna
-# *  = Asteroide / escombro / debris field
-# ▲  = Megaconstrucción / artefactos antiguos / clusters
-# ⚙  = Planeta de robots o habitantes especiales
+#   ⬤ = Agujero negro o estrella central
+#   ◎ = Planeta
+#   ◉ = Luna
+#   • = Asteroide / debris field
+#   * = Cinturón de asteroides
+#   ▲ = Megaconstrucción / artefactos antiguos
+#   ⚙ = Planeta con robots o cultura especial
+#   » = Flota o naves
+#   ¥ = Outpost / puesto de observación
 #
 # Vista superior (órbitas aproximadas):
-#   <Ejemplo de disposición de planetas y lunas, con distancia aproximada y descripción breve>
+#	⬤	(0 UA) – Agujero negro / estrella central
+#	▲	(0 UA) – Megaconstrucción: Dyson Sphere
+#	▲	..................(20-25 UA) – Anillo Planetario destruido
+#	◎	..................(20 UA) – Planeta Shrouded con ruinas y debris
+#		◉	.................... Luna cercana
+#	◎	.......................(25 UA) – Planeta Nuked con depósitos raros y artefactos
+#	⚙	.........................(28 UA) – Planeta de robots primitivos
+#	•	.............................(30-32 UA) – x2 Asteroides (mediano)
+#	◎	.................................(35 UA) – Planeta Shattered
+#		◉	................................... Luna rota
+#	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	*	(40-50 UA) – Cinturón de Asteroides
+#	◎	.........................................................(45 UA) – Gigante Gaseoso oscuro
+#		◉	........................................................... Luna tóxica
+#	◎	..................................................................(50 UA) – Planeta Barren frío
+#	▲	(aleatoria) – Megaconstrucción: Gateway arruinado
+#	▲	(aleatoria) – Megaconstrucción: Gateway arruinado
+#	◎	(aleatoria) – x2 Planeta Nuked
+#	»	(aleatoria) – Flota robot (mediana)
 #
-# Cinturón de Asteroides (<rango de UA>)
-#   *  *  *  *  *  *  *  *
-#
-# Megaconstrucción: <tipo y posición>
-#   ▲  (posición orbital aleatoria)
-#
-# Notas adicionales:
-#   • <Detalles de peligros ambientales, efectos visuales, nubes de polvo, anomalías, zonas de riesgo.>
-#   • <Objetos de interés narrativo, restos de civilizaciones antiguas, sitios arqueológicos.>
-#   • <Habitantes especiales, NPCs, drones, robots, etc.>
-#   • <Cualquier efecto narrativo o mecánico asociado al sistema dentro del juego.>
+# END_ASCII_MINIMAP_mpp_system_dark_relic
 # ================================
-# END_SYSTEM_<SYSTEM_KEY>
+<END_OUTPUT_EXAMPLE>
+<END_PROMPT>
