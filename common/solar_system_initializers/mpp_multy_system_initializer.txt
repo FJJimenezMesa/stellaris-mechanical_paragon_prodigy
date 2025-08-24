@@ -1,0 +1,176 @@
+##############################
+# Solar System Initializer: Parangon Mechanical Prodigy
+# Inicializa todos los sistemas principales del imperio
+##############################
+pmp_system_initializer = {
+    usage = origin
+    max_instances = 1
+
+    initializers = {
+        mpp_system_admin_initializer
+        mpp_system_trading_initializer
+        mpp_system_scientific_initializer
+        mpp_system_dark_scientific_initializer
+        mpp_system_military_initializer
+        mpp_system_peripheral_1_initializer
+        mpp_system_peripheral_2_initializer
+        mpp_system_peripheral_3_initializer
+    }
+}
+
+# =========================
+# Núcleo Administrativo
+# Centro administrativo del imperio, núcleo de gobierno y control
+# Estrella: Amarilla tipo G
+# =========================
+mpp_system_admin_initializer = {
+    name = "mpp_system_admin"
+
+    connected_systems = {
+        mpp_system_trading
+        mpp_system_scientific
+        mpp_system_military
+    }
+
+    class = "sc_g"
+}
+
+# =========================
+# Trading / Economía
+# Sistema especializado en economía y comercio
+# Estrella: Naranja tipo K
+# =========================
+mpp_system_trading_initializer = {
+    name = "mpp_system_trading"
+
+    connected_systems = {
+        mpp_system_admin
+        mpp_system_scientific
+    }
+
+    class = "sc_k"
+}
+
+# =========================
+# Científico / Cultural
+# Sistema enfocado en investigación y cultura
+# Estrella: Azul tipo A
+# =========================
+mpp_system_scientific_initializer = {
+    name = "mpp_system_scientific"
+
+    connected_systems = {
+        mpp_system_admin
+        mpp_system_trading
+        mpp_system_dark_scientific
+    }
+
+    class = "sc_a"
+}
+
+
+# =========================
+# Sistema Militar
+# Sistema de defensa y proyección militar del imperio
+# Estrella: Roja tipo M
+# =========================
+mpp_system_military_initializer = {
+    name = "mpp_system_military"
+
+    connected_systems = {
+        mpp_system_admin
+        mpp_system_peripheral_1
+        mpp_system_peripheral_2
+        mpp_system_peripheral_3
+    }
+
+    class = "sc_m"
+}
+
+# =========================
+# Sistemas Periféricos
+# Pequeños sistemas defensivos o en ruinas
+# =========================
+mpp_system_peripheral_1_initializer = {
+    name = "mpp_system_peripheral_1"
+
+    connected_systems = {
+        mpp_system_military
+    }
+
+    class = "sc_t"
+}
+
+mpp_system_peripheral_2_initializer = {
+    name = "mpp_system_peripheral_2"
+
+    connected_systems = {
+        mpp_system_military
+    }
+
+    class = "sc_m"
+}
+
+mpp_system_peripheral_3_initializer = {
+    name = "mpp_system_peripheral_3"
+
+    connected_systems = {
+        mpp_system_military
+    }
+
+    class = "sc_m"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

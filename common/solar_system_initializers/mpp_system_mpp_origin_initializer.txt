@@ -1,0 +1,793 @@
+# ================================
+# Variables base para generación de sistemas MPP
+# ================================
+
+@distance = 50
+@jumps = 3
+@planet_min_size = 10
+@planet_max_size = 25
+@base_moon_distance = 5
+@base_moon_distance_2 = 10
+@moon_min_size = 6
+@moon_max_size = 10
+@homeworld_min_size = 30
+@homeworld_max_size = 35
+
+
+
+# BEGIN_LORE_PMP_SYSTEM
+# LORE_TYPE: SOLAR_SYSTEM
+# ================================
+# 🌠 PMP System
+# ================================
+# Descripción:
+#   PMP System es un sistema solar arrasado, testigo de la decadencia de antiguas civilizaciones. 
+#   Su estrella central, un pulsar, domina un conjunto de planetas destruidos, gas gigantes, lunas tóxicas y múltiples cinturones de asteroides. 
+#   Megastructuras ruinosas, gateways y estaciones abandonadas rodean la estrella, mientras un planeta de robots primitivos y un terminal de observación arqueológica 
+#   preservan fragmentos de tecnología perdida. Este sistema es un refugio de depósitos raros, sitios arqueológicos y relics, y constituye un punto clave de interés narrativo y exploratorio.
+#
+# Lore:
+#   Este sistema fue testigo de la caída de civilizaciones avanzadas y la corrupción de sus ecosistemas. 
+#   Los gateways y megastructuras abandonadas sugieren rutas hacia la extinción o decadencia. 
+#   El agujero negro central y los campos de debris refuerzan la sensación de peligro y pérdida. 
+#   Planetas arrasados, lunas tóxicas, relics y restos de robots primitivos narran historias de guerras antiguas, experimentos fallidos y tecnología olvidada.
+#
+# Descripción narrativa:
+#   • Peligros ambientales moderados: campos de debris, radiación pulsar, cinturones de asteroides. 
+#   • Recursos únicos: depósitos de energía, nanites, cristales raros, materiales relic. 
+#   • Ruinas y sitios arqueológicos: Observation Terminal, planeta de robots primitivos, restos de ringworlds dañados. 
+#   • Habitantes especiales: drones primitivos y robots antiguos. 
+#   • Potencial narrativo y exploratorio: megastructuras ruinosas, gateways, artefactos antiguos.
+#
+# 🌌 Mini-Mapa ASCII del Sistema
+#
+# Leyenda:
+# ⬤  = Pulsar central
+# ◎  = Planeta (relic, nuked, shattered, ringworld, gas giant, barren, etc.)
+# ◉  = Luna
+# *  = Asteroide / debris field
+# ▲  = Megaconstrucción / gateway / artefactos antiguos / clusters
+# ⚙  = Planeta de robots primitivos
+#
+# Vista superior (órbitas aproximadas):
+#   40-60 UA Asteroides exteriores: *  *  *  *  *  *  *  *
+#   40 UA Planeta no colonizable (energía) ◎
+#       ◉ Luna Barren
+#       ◉ Luna Barren
+#   30-35 UA Planeta Relic y lunas ◎
+#       ⚙ Observation Terminal
+#       ◉ Barren Moon
+#       ◉ Barren Moon
+#       * * * debris
+#   20 UA Gas Giant ◎
+#       ◉ Luna habitable / megastructuras
+#       ◉ Luna con estación abandonada y debris
+#   15-0 UA Ringworld & Shattered Planets:
+#       ◎ Ringworld Tech dañado
+#       ◎ Ringworld Seam dañado
+#       ◎ Shattered Ring Habitable (home planet)
+#       ◎ Irreparable Damage
+#       ◎ The Interloper (shattered, pequeño)
+#       ◎ Ringworld Seam dañado
+#   0 UA Pulsar Central ⬤
+#       ▲ Dyson Sphere Ruined
+#       ▲ Interstellar Assembly Ruined
+#       ▲ Mega Shipyard Ruined
+#       ▲ Matter Decompressor Ruined
+#       ▲ Quantum Catapult Ruined
+#       ▲ Strategic Coordination Center Ruined
+#       ▲ Mega Art Installation Ruined
+#       ▲ Think Tank Ruined
+#       ▲ Gateway Ruined / Galactic Doorstep
+#       ▲ L-Gate Base
+#       ▲ Gateway Derelict
+#       ▲ Hyper Relay Ruined
+#
+# Notas adicionales:
+#   • Megastructuras alrededor del pulsar incluyen Dyson Sphere, Mega Shipyard, Quantum Catapult, gateways ruinosos y más.
+#   • Planetas y lunas contienen depósitos raros y sitios arqueológicos.
+#   • Campos de debris y cinturones de asteroides crean zonas de riesgo moderadas.
+#   • Ringworlds dañados y shattered planets contienen restos de tecnología avanzada.
+#   • Observation Terminal y planeta de robots primitivos preservan artefactos únicos.
+#   • Nubes de polvo, efectos de luz y debris globales refuerzan la atmósfera de decadencia.
+# ================================
+# END_LORE_PMP_SYSTEM
+# BEGIN_ASCII_MINIMAP_mpp_system_1_mpp_origin
+# 🌌 Mini-Mapa ASCII del Sistema PMP Origin (Vista Top-Down Escalada)
+#
+# Leyenda:
+#   ⬤ = Pulsar central
+#   ◎ = Planeta
+#   ◉ = Luna
+#   • = Asteroide / debris field
+#   * = Cinturón de asteroides
+#   ▲ = Megaconstrucción / artefactos antiguos
+#   ⚙ = Planeta especial / relic
+#   » = Flota o naves
+#   ¥ = Outpost / estación avanzada
+#
+# Vista superior (órbitas aproximadas):
+#	⬤	(0 UA) – Pulsar central
+#	◎	..................(30 UA) – Planeta relic con múltiples depósitos
+#		◉	.................... Luna barren con depósitos variados
+#		◉	.................... Luna machine_broken (Observation Terminal)
+#	◎	..................(20 UA) – Gas giant Nexus con dos lunas barren
+#	◎	..................(40 UA) – Planeta non-colonizable con luna barren
+#	*	*	*	*	*	*	(5-6 UA) – Asteroides cercanos
+#	*	*	*	*	(10-11 UA) – Asteroides medios
+#	*	*	*	*	*	*	(30 UA) – Asteroides externos
+#	*	*	*	*	*	*	*	*	(80 UA) – Asteroid Belt 1
+#	*	*	*	*	*	*	*	*	*	*	(190 UA) – Asteroid Belt 2
+#	▲	(100 UA) – Ring World Ruined, sección 1
+#	▲	(100 UA) – Ring World Ruined, sección 2
+#	▲	(0 UA) – Shattered Ring Habitable (home planet)
+#	▲	(0 UA) – Ringworld Tech Section
+#	▲	(0 UA) – Ringworld Tech Damaged Section
+#	▲	(0 UA) – Ringworld Seam Section
+#	▲	(0 UA) – Ringworld Seam Damaged / Irreparable
+#	◎	(Shattered 2, órbita -1) – The Interloper (mineral-rich)
+#	▲	(135 UA) – Gateway Ruined “Galactic Doorstep”
+#	▲	(135 UA) – L-Gate Base
+#	▲	(135 UA) – Gateway Derelict
+#	▲	(135 UA) – Hyper Relay Ruined
+#	▲	(135 UA) – Mega Shipyard Ruined
+#	▲	(135 UA) – Quantum Catapult Ruined
+#	▲	(135 UA) – Matter Decompressor Ruined
+#	▲	(135 UA) – Strategic Coordination Center Ruined
+#	▲	(135 UA) – Mega Art Installation Ruined
+#	▲	(135 UA) – Think Tank Ruined
+#	▲	(135 UA) – Interstellar Assembly Ruined
+#
+# END_ASCII_MINIMAP_mpp_system_1_mpp_origin
+# ================================
+mpp_system_1_mpp_origin_initializer = {
+    name = "PMP System"
+    flags = { 
+		pmm_origin_system 
+		empire_home_system
+		ring_world_built
+		shattered_ring_system
+		ruined_dyson_system 
+		ruined_mega_shipyard_system 
+	}
+    usage = origin
+    max_instances = 1
+
+    init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		generate_home_system_resources = yes
+
+        spawn_megastructure = {
+			type = "ring_world_ruined"
+			orbit_angle = 0
+			orbit_distance = 100
+			init_effect = {
+				set_megastructure_flag = guaranteed_1
+			}
+		}
+
+		spawn_megastructure = {
+			type = "ring_world_ruined"
+			orbit_angle = 180
+			orbit_distance = 100
+		}
+
+        spawn_megastructure = { 
+            type = "dyson_sphere_ruined" 
+        }
+
+        spawn_megastructure = {
+			name = "NAME_Galactic_Doorstep"
+			type = "gateway_ruined"
+			orbit_distance = 135
+			orbit_angle = 100
+			init_effect = {
+				set_megastructure_flag = doorstep_gateway@root
+				save_event_target_as = doorstep_gateway
+			}
+		}
+
+        spawn_megastructure = {
+			type = lgate_base
+			orbit_distance = 135
+			orbit_angle = 200
+		}
+
+        spawn_megastructure = {
+			type = "gateway_derelict"
+			orbit_distance = 135
+			orbit_angle = 220
+		}
+
+        spawn_megastructure = {
+			type = "hyper_relay_ruined"
+			orbit_distance = 135
+			orbit_angle = 240
+		}
+
+        spawn_megastructure = {
+            type = "mega_shipyard_ruined"
+            planet = star
+            orbit_distance = 135
+			orbit_angle = 260   
+
+            init_effect = {
+                create_ambient_object = {
+                    type = "large_debris_object"
+                    location = this
+                }
+                last_created_ambient_object = {
+                    set_location = {
+                        target = prev
+                        distance = -10
+                        angle = 20
+                    }
+                }
+            }
+		}
+
+        spawn_megastructure = {
+			type = "quantum_catapult_ruined"
+			planet = event_target:solar_start
+            orbit_distance = 135
+			orbit_angle = 270
+
+			init_effect = {
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 20
+					}
+				}
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 150
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 35
+						angle = 90
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 3
+						angle = 270
+					}
+				}
+			}
+		}
+
+        spawn_megastructure = {
+			type = "matter_decompressor_ruined"
+			planet = event_target:solar_start
+            orbit_distance = 135
+			orbit_angle = 320
+
+			init_effect = {
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 20
+					}
+				}
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 150
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 35
+						angle = 90
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 3
+						angle = 270
+					}
+				}
+			}
+		}
+
+        spawn_megastructure = {
+			type = "strategic_coordination_center_ruined"
+			planet = event_target:solar_start
+            orbit_distance = 135
+			orbit_angle = 340
+		}
+
+        spawn_megastructure = {
+			type = "mega_art_installation_ruined"
+			planet = event_target:solar_start
+            orbit_distance = 135
+			orbit_angle = 360
+		}
+
+        spawn_megastructure = {
+			type = "think_tank_ruined"
+			planet = event_target:nexus_planet
+
+			init_effect = {
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 20
+					}
+				}
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 150
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 35
+						angle = 90
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 3
+						angle = 270
+					}
+				}
+			}
+		}
+
+        spawn_megastructure = {
+			type = "interstellar_assembly_ruined"
+			planet = star
+
+			init_effect = {
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 20
+					}
+				}
+				create_ambient_object = {
+					type = "large_debris_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 150
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_01_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 35
+						angle = 90
+					}
+				}
+				create_ambient_object = {
+					type = "medium_debris_02_object"
+					location = this
+				}
+				last_created_ambient_object = {
+					set_location = {
+						target = prev
+						distance = 3
+						angle = 270
+					}
+				}
+			}
+		}
+	}
+
+    class = "sc_pulsar"
+    planet = {
+        class = star
+        orbit_distance = 0
+        orbit_angle = 1
+        size = 20
+        has_ring = no
+        init_effect = {
+			save_event_target_as = solar_start
+		}
+    }
+
+    change_orbit = 20
+
+    planet = {
+        class = pc_relic
+        orbit_distance = 30
+        orbit_angle = 15
+        size = 16
+
+        init_effect = {
+            clear_deposits = yes
+            prevent_anomaly = yes
+
+            add_deposit = d_ruined_arcology
+            add_deposit = d_ruined_arcology
+            add_deposit = d_ruined_arcology
+            add_deposit = d_ruined_arcology
+            add_deposit = d_ruined_arcology
+            add_deposit = d_ruined_arcology
+
+            add_deposit = d_pulsar_scarred
+            add_deposit = d_ancient_facilities
+            add_deposit = d_ancient_facilities
+
+            add_deposit = d_relic_metal_boneyard
+
+            add_modifier = {
+                modifier = pulsar_frying_pan
+                days = -1
+            }
+        }
+
+        moon = {
+            size = 8
+            class = pc_barren
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 5 max = 10 }
+
+            init_effect = {
+                add_deposit = d_ruined_arcology
+                add_deposit = d_ruined_arcology
+                add_deposit = d_ruined_arcology
+                add_deposit = d_ruined_arcology
+                add_deposit = d_ruined_arcology
+                add_deposit = d_ruined_arcology
+
+                add_deposit = d_pulsar_scarred
+                add_deposit = d_ancient_facilities
+                add_deposit = d_ancient_facilities
+
+                add_deposit = d_relic_metal_boneyard
+
+                add_deposit = d_nanites_deposit
+                add_deposit = d_dark_matter_deposit_1
+                add_deposit = d_rare_crystals_3
+                add_deposit = d_exotic_gases_3
+                add_deposit = d_volatile_motes_3
+
+                set_deposit = d_engineering_10
+
+                add_modifier = {
+                    modifier = pulsar_frying_pan
+                    days = -1
+                }
+            }
+        }
+
+        moon {
+            size = 10
+            class = pc_machine_broken
+            orbit_angle = 50
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 10 max = 12 }
+            
+            name = "NAME_Observation_Terminal"
+            init_effect = {
+                prevent_anomaly = yes
+                clear_deposits = yes
+                save_event_target_as = observation_terminal
+                create_archaeological_site = site_ancient_robot_world
+            }
+        }
+    }
+
+    change_orbit = 40
+
+	planet = {
+		class = "pc_ringworld_tech"
+		name = "NAME_Ring_Section"
+		orbit_angle = 240
+		orbit_distance = 0
+	}
+
+	planet = {
+		class = "pc_ringworld_seam"
+		name = "NAME_Ring_Section"
+		orbit_angle = 30
+		orbit_distance = 0
+	}
+
+	planet = {
+		class = "pc_shattered_ring_habitable"
+        home_planet = yes
+		orbit_angle = 15
+		orbit_distance = 0
+		deposit_blockers = none
+		modifiers = none
+		starting_planet = yes
+        size = 30
+		flags = { ignore_startup_effect megastructure }
+		init_effect = {
+			prevent_anomaly = yes
+		}
+	}
+
+	planet = {
+		class = "pc_ringworld_tech_damaged"
+		name = "NAME_Ring_Section"
+		orbit_angle = 120
+		orbit_distance = 0
+	}
+
+	planet = {
+		class = "pc_ringworld_seam_damaged"
+		name = "NAME_Irreparable_Damage"
+		orbit_angle = 30
+		orbit_distance = 0
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+
+		init_effect = {
+			create_ambient_object = {
+				type = "medium_debris_01_object"
+				entity_offset_height = -15
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = 0
+				}
+			}
+			set_deposit = d_engineering_5
+			set_planet_flag = starting_research_target
+			set_planet_flag = starting_deposit
+		}
+	}
+
+	planet = {
+		class = "pc_shattered_2"
+		name = "NAME_The_Interloper"
+		orbit_distance = -1
+		orbit_angle = 0
+		size = 5
+		has_ring = no
+		flags = { ignore_startup_effect starting_mining_target starting_deposit}
+		init_effect = {
+			set_deposit = d_minerals_10
+		}
+	}
+
+	planet = {
+		class = "pc_ringworld_seam_damaged"
+		name = "NAME_Ring_Section"
+		orbit_angle = 30
+		orbit_distance = 1
+	}
+
+    planet = {
+        count = { min = 4 max = 6 }
+        class = pc_asteroid
+        size = { min = 2 max = 3 }
+        orbit_distance = { min = 30 max = 30 }
+        orbit_angle = { min = 90 max = 270 }
+    }
+
+    planet = {
+        class = random_non_ideal
+        orbit_distance = 10
+        orbit_angle = 30
+
+        init_effect = {
+        	add_deposit = d_lithoid_crater
+			add_deposit = d_buried_lithoids
+			add_deposit = d_buried_lithoids
+			add_deposit = d_buried_lithoids
+			add_deposit = d_buried_lithoids
+			add_modifier = { modifier = lithoid_crater }
+        }   
+
+        moon = {
+            class = pc_barren
+            size = { min = @moon_min_size max = @moon_max_size }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 10 max = 12 }
+        }
+
+        moon = {
+            class = pc_barren
+            size = { min = @moon_min_size max = @moon_max_size }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 12 max = 15 }
+        }
+    }
+
+    planet = {
+        count = { min = 4 max = 6 }
+        class = pc_asteroid
+        size = { min = 2 max = 3 }
+        orbit_distance = { min = 10 max = 11 }
+        orbit_angle = { min = 90 max = 270 }
+    }
+
+    planet = {
+        class = pc_gas_giant
+        orbit_distance = 20
+        orbit_angle = 45
+        size = { min = @planet_min_size max = @planet_max_size }
+        flags = { ignore_startup_effect habitat_3_planet has_megastructure }
+
+		init_effect = {
+			set_deposit = d_energy_6
+            save_event_target_as = nexus_planet
+		}
+
+        moon = {
+            class = pc_barren
+            size = { min = @moon_min_size max = @moon_max_size }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 5 max = 10 }
+            flags = { void_dweller_habitat_3 megastructure habitat energy_habitat }
+			deposit_blockers = none
+        }
+
+        moon = {
+            class = pc_barren
+            size = { min = @moon_min_size max = @moon_max_size }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 10 max = 15 }
+
+            init_effect = {
+                create_ambient_object = {
+                    type = "large_debris_object"
+                    entity_offset = { min = 0 max = 20}
+                    entity_offset_height = { min = -0 max = -20 }
+                    location = this
+                }
+                last_created_ambient_object = {
+                    set_location = {
+                        target = prev
+                        distance = 15
+                        angle = random
+                    }
+                }
+                create_ambient_object = {
+                    type = "abandoned_station_object"
+                    entity_offset = { min = 0 max = 20}
+                    entity_offset_height = { min = -0 max = -10 }
+                    location = this
+                }
+                last_created_ambient_object = {
+                    save_global_event_target_as = benefactor_station
+                    set_location = {
+                        target = prev
+                        distance = 30
+                        angle = random
+                    }
+                }
+                create_ambient_object = {
+                    type = "ancient_battlefield_object"
+                    entity_offset = { min = 0 max = 20}
+                    entity_offset_height = { min = -0 max = -20 }
+                    location = this
+                }
+                last_created_ambient_object = {
+                    set_location = {
+                        target = prev
+                        distance = 20
+                        angle = random
+                    }
+                }
+		    }
+        }
+    }
+
+    planet = {
+        class = random_non_colonizable
+        orbit_distance = 40
+        orbit_angle = 60
+        size = { min = @planet_min_size max = @planet_max_size }
+		flags = { ignore_startup_effect mining_planet }
+
+		init_effect = {
+			set_deposit = d_energy_6
+		}
+
+        moon = {
+            size = { min = @moon_min_size max = @moon_max_size }
+            class = pc_barren
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 10 max = 12 }
+        }
+    }
+
+    planet = {
+        count = { min = 10 max = 20 }
+        class = pc_asteroid
+        size = { min = 2 max = 3 }
+        orbit_distance = { min = 5 max = 6 }
+        orbit_angle = { min = 90 max = 270 }
+    }
+
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 80
+    }
+
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 190
+    }
+}

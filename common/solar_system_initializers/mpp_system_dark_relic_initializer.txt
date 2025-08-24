@@ -1,0 +1,461 @@
+
+
+
+
+# BEGIN_INFO_mpp_system_dark_relic
+# INFO_TYPE: SOLAR_SYSTEM
+# ================================
+# 🌠 Solar System: mpp_system_dark_relic
+# "Dark Relic"
+# ================================
+# 
+# Descripcion:
+#   Sistema estelar dominado por un agujero negro central, rodeado de un cinturón de asteroides rocosos y clusters de reliquias antiguas. Contiene planetas shrouded, nuked, shattered, barren frío, un gigante gaseoso con luna tóxica y un planeta con robots primitivos. El sistema presenta abundantes debris, ruinas arqueológicas y efectos visuales de partículas que realzan su atmósfera misteriosa y peligrosa.
+# 
+# Notas adicionales:
+# 	• Megaestructuras presentes: gateway arruinado
+# 	• Flags del sistema: Dark Relic, cultura primitiva, relics, debris fields, actividad de drones, peligros ambientales
+#   • Peligros ambientales y anomalías: radiación, nubes de polvo, niebla azul, debris orbitando, zonas de riesgo por planetas shattered y nuked
+#   • Objetos de interés narrativo: sitios arqueológicos en planetas shrouded y nuked, ruinas antiguas, artefactos orbitando la estrella
+#   • Habitantes especiales y NPCs: flota moderada de drones mineros y de combate, planeta con cultura primitiva de robots
+#   • Efectos mecánicos o narrativos: depósitos raros en planetas nuked y robot planet, exploración incentivada por ruins y debris, posibles conflictos con drones agresivos
+# 
+# END_INFO_mpp_system_dark_relic
+# ========
+# BEGIN_LORE_mpp_system_dark_relic
+# LORE_TYPE: SOLAR_SYSTEM - GENERAL
+# Name:
+#   Dark Relic
+# Lore:
+#   Este sistema se formó alrededor de un agujero negro, testigo de catástrofes que arrasaron sus planetas. Civilizaciones antiguas dejaron reliquias y ruinas dispersas, algunas orbitando la estrella central como vestigios de su poder. La actividad de drones y los depósitos raros indican que antiguas tecnologías siguen operando de forma autónoma. Planetas nuked y shattered muestran la devastación de eventos pasados, mientras un planeta con robots primitivos conserva vestigios de una cultura emergente. La megastructura arruinada sirve como recordatorio de la grandeza perdida de civilizaciones que alguna vez dominaron el sistema.
+# 
+# Descripción narrativa:
+#   Dark Relic es un sistema peligroso y enigmático, ideal para exploración y descubrimiento de recursos raros. La presencia de drones agresivos, zonas irradiadas y debris crea desafíos estratégicos para cualquier expedición. Sus ruinas arqueológicas, clusters de reliquias y planetas con cultura robot primitiva ofrecen un gran potencial narrativo, mientras la atmósfera visual, marcada por polvo, partículas y objetos brillantes, refuerza la sensación de misterio y decadencia.
+#
+# END_LORE_mpp_system_dark_relic
+# ========
+mpp_system_dark_relic_initializer = {
+    name = "mpp_system_dark_relic"
+    max_instances = 1
+
+    usage = misc_system_init
+    flags = { 
+        mpp_flag_dark_relic_system          # Identificador principal del sistema Dark Relic
+        mpp_flag_primitive_culture          # Contiene planeta con cultura primitiva de robots
+        mpp_flag_relics                     # Contiene clusters de reliquias antiguas
+        mpp_flag_debris_fields              # Zonas de riesgo con escombros dispersos
+        mpp_flag_drone_activity             # Flota de drones moderada presente
+        mpp_flag_environmental_hazards      # Niebla, polvo y efectos visuales globales
+    }
+    usage_odds = {
+        base = 0  # probabilidad inicial muy baja
+
+        # Probabilidad alta si está cerca del sistema de investigación
+        modifier = {
+            add = 35
+            near_system_with_flag = mpp_flag_research_hub
+        }
+
+        # Probabilidad alta si está cerca de primitive robot culture
+        modifier = {
+            add = 30
+            near_system_with_flag = mpp_flag_primitive_robot_culture
+        }
+
+        # Probabilidad extra si hay otras megastructuras “custom” alrededor
+        modifier = {
+            add = 25
+            near_system_with_flag = mpp_flag_custom_megastructure
+        }
+
+        # Evitar FE o clusters imperiales
+        modifier = {
+            factor = 0
+            is_fe_cluster = yes
+        }
+        modifier = {
+            factor = 0
+            has_star_flag = empire_cluster
+        }
+
+        # Evitar cuellos de botella
+        modifier = {
+            factor = 0
+            is_bottleneck_system = yes
+        }
+    }
+
+    # ===============================================
+    # Estrella central
+    # Fuente gravitatoria y punto de referencia para órbitas de debris y planetas
+    # ===============================================
+    class = "sc_black_hole"  # Agujero negro central del sistema
+    planet = {
+        class = star
+        orbit_distance = 0
+        size = 20
+        has_ring = no
+        init_effect = {
+            save_event_target_as = mpp_star_dark_relic
+        }
+    }
+
+    # ===============================================
+    # Asteroid belt cercano al agujero negro
+    # Inspiración: Scavenger Bot System, añade zona de riesgo con debris y artefactos
+    # ===============================================
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 40
+        count = 20
+        init_effect = {
+            save_event_target_as = mpp_asteroid_belt_dark_relic
+        }
+    }
+
+    # ===============================================
+    # Planeta shrouded con debris y ruinas antiguas
+    # Inspiración: Scavenger Bot System, punto de interés exploratorio
+    # ===============================================
+    planet = {
+        class = "pc_shrouded"
+        orbit_distance = 20
+        orbit_angle = 45
+        size = 18
+        has_ring = no
+        init_effect = {
+            save_event_target_as = mpp_shrouded_planet_dark_relic
+            create_archaeological_site = ancrel_site_1
+        }
+    }
+
+    # ===============================================
+    # Planeta nuked con depósitos raros y artefactos
+    # Inspiración: Scavenger Bot System y zonas de peligro
+    # ===============================================
+    planet = {
+        class = "pc_nuked"
+        orbit_distance = 25
+        orbit_angle = 120
+        size = 20
+        has_ring = no
+        init_effect = {
+            save_event_target_as = mpp_nuked_planet_dark_relic       
+            clear_deposits = yes
+            clear_blockers = yes
+            add_deposit = d_metal_boneyard
+            add_deposit = d_irradiated_valley
+            add_deposit = d_impact_crater
+            add_deposit = d_ore_rich_caverns
+            add_deposit = d_underwater_vent
+            add_deposit = d_radioactive_wasteland
+            add_deposit = d_city_ruins
+            create_archaeological_site = ancrel_site_2
+        }
+    }
+
+    # ===============================================
+    # Planeta shattered con luna rota
+    # Inspiración: debris fields del Scavenger Bot System, zona de riesgo elevada
+    # ===============================================
+    planet = {
+        class = "pc_shattered"
+        orbit_distance = 35
+        orbit_angle = 1
+        size = 16
+        has_ring = no
+        init_effect = {
+            prevent_anomaly = yes
+            save_event_target_as = mpp_shattered_planet_dark_relic
+        }
+        moon = {
+            class = "pc_broken"
+            size = 6
+            orbit_distance = 12
+            orbit_angle = 50
+            has_ring = no
+            init_effect = {
+                save_event_target_as = mpp_shattered_moon_dark_relic
+            }
+        }
+    }
+
+    # ===============================================
+    # Gigante gaseoso oscuro con luna tóxica
+    # Inspiración: zonas hostiles y debris fields de Scavenger Bot System
+    # ===============================================
+    planet = {
+        class = "pc_gas_giant"
+        orbit_distance = 45
+        orbit_angle = 165
+        size = 30
+        has_ring = yes
+        init_effect = { 
+            prevent_anomaly = yes
+            save_event_target_as = mpp_gas_giant_dark_relic
+        }
+        moon = {
+            class = "pc_toxic"
+            size = 7
+            orbit_distance = 15
+            orbit_angle = 100
+            init_effect = {
+                prevent_anomaly = yes
+                save_event_target_as = mpp_toxic_moon_dark_relic
+            }
+        }
+    }
+
+    # ===============================================
+    # Planeta barren frío
+    # Inspiración: debris menores del Scavenger Bot System
+    # Zona de riesgo leve, sensación de sistema antiguo
+    # ===============================================
+    planet = {
+        class = "pc_barren_cold"
+        orbit_distance = 50
+        orbit_angle = 210
+        size = 15
+        has_ring = no
+        init_effect = {
+            save_event_target_as = mpp_barren_cold_planet_dark_relic
+        }
+    }
+
+    # ===============================================
+    # Asteroides dispersos adicionales
+    # Inspiración: Scavenger Bot System, obstáculos en periferia
+    # ===============================================
+    planet = {
+        count = { min = 8 max = 12 }
+        class = pc_asteroid
+        size = { min = 2 max = 4 }
+        orbit_distance = { min = 25 max = 60 }
+        orbit_angle = { min = 0 max = 360 }
+    }
+
+    # ===============================================
+    # Planeta de robots primitivos
+    # Inspiración: Distar Robo Cat, punto narrativo y de exploración
+    # ===============================================
+    planet = {
+        count = 1
+        orbit_distance = 28
+        orbit_angle = 150
+        size = { min = 12 max = 25 }
+        class = "rl_cool_moist_planets"
+        anomaly = "DISTAR_ROBO_CAT"
+        init_effect = {
+            prevent_anomaly = yes
+            set_planet_flag = mpp_planet_primitive_robot_planet
+            save_event_target_as = mpp_primitive_robot_planet_dark_relic
+            add_deposit = d_city_ruins
+            add_deposit = d_city_ruins
+            add_deposit = d_failing_infrastructure
+            add_deposit = d_failing_infrastructure
+            add_deposit = d_metal_boneyard
+        }
+    }
+    
+    # ===============================================
+    # Megastructura arruinada para exploración arqueológica
+    # ===============================================
+    init_effect = {
+        spawn_megastructure = {
+            type = "gateway_ruined"
+            random_pos = yes
+            orbit_angle = 360
+            add_modifier = { modifier = glowing_object; days = -1 }
+            add_modifier = { modifier = flicker_light; days = -1 }
+        }
+    }
+
+    # ===============================================
+    # Flota de drones moderada
+    # Inspiración: Scavenger Bot System, sin ser demasiado poderosa
+    # ===============================================
+    init_effect = {
+        # Crear lista de planetas candidatos (no estrellas, no gas giants)
+        planet_list = {
+            every_planet = {
+                limit = {
+                    is_star = no
+                    NOT = { is_planet_class = pc_gas_giant }
+                }
+                save_event_target_as = prev
+            }
+        }
+
+        # Seleccionar un planeta aleatorio de la lista
+        random_list = {
+            list = planet_list
+            count = 1
+            save_event_target_as = chosen_planet
+        }
+
+        # Añadir depósito mínimo al planeta seleccionado
+        event_target:chosen_planet = {
+            add_deposit = shipclass_mining_station
+        }
+
+        # Crear flota de drones sobre el planeta seleccionado
+        event_target:chosen_planet = {
+            create_drone_country = yes
+            save_event_target_as = mining_drones
+            create_fleet = {
+                name = "NAME_Ancient_Mining_Drones"
+                effect = {
+                    set_owner = event_target:mining_drones
+                    while = { count = 6 create_ship = { design = "NAME_Ancient_Mining_Drone" } }
+                    while = { count = 3 create_ship = { design = "NAME_Ancient_Combat_Drone" } }
+                    set_location = PREVPREV
+                    set_fleet_stance = aggressive
+                    set_aggro_range = 80
+                    queue_actions = { repeat = { wait = { duration = 999 random = 10 } } }
+                }
+            }
+            create_mining_station = { owner = event_target:mining_drones }
+        }
+    }
+
+    # Ambientación visual centralizada
+    init_effect = {
+
+        # Nube de partículas azul alrededor del agujero negro
+        create_ambient_object = {
+            type = "particle_cloud"
+            location = event_target:mpp_star_dark_relic
+            entity_offset = { x = 0 y = 0 z = 0 }
+            entity_scale = { min = 5 max = 15 }
+            particle_color = { r = 50 g = 100 b = 200 a = 100 }
+            rotation_speed = { x = 0 y = 0 z = 5 }
+        }
+
+        # Objetos ambientales del cinturón de asteroides
+        event_target:mpp_asteroid_belt_dark_relic = {
+            every_asteroid = {
+                create_ambient_object = { type = "medium_debris_01_object" location = this }
+                create_ambient_object = { type = "small_debris_object" location = this }
+                create_ambient_object = { type = "ancient_artifact_object" location = this }
+                last_created_ambient_object = {
+                    add_modifier = { modifier = glowing_object; days = -1 }
+                    add_modifier = { modifier = flicker_light; days = -1 }
+                    set_rotation = { x = random y = random z = random }
+                }
+            }
+        }
+
+        # Cluster de reliquias orbitando la estrella central
+        repeat = 15
+        create_ambient_object = { type = "ancient_artifact_object" location = prev }
+        last_created_ambient_object = {
+            set_orbit = {
+                target = event_target:mpp_star_dark_relic
+                distance = { min = 25 max = 60 }
+                angle = random
+                orbit_speed = { min = 1 max = 5 }
+                rotate_axis = { x = random y = random z = random }
+            }
+            add_modifier = { modifier = glowing_object; days = -1 }
+            add_modifier = { modifier = slow_rotation; days = -1 }
+            add_modifier = { modifier = flicker_light; days = -1 }
+        }
+
+        # Partículas, modifiers y Objetos ambientales asociados al planeta Shrouded
+        create_particle_effect = { type = "dust_cloud"; intensity = 0.6 location = event_target:mpp_shrouded_planet_dark_relic }
+        add_modifier = { modifier = flicker_light; days = -1 location = event_target:mpp_shrouded_planet_dark_relic }
+        create_ambient_object = { type = "large_debris_object" location = event_target:mpp_shrouded_planet_dark_relic }
+        create_ambient_object = { type = "medium_debris_01_object" location = event_target:mpp_shrouded_planet_dark_relic }
+        create_ambient_object = { type = "medium_debris_02_object" location = event_target:mpp_shrouded_planet_dark_relic }
+        create_ambient_object = { type = "small_debris_object" location = event_target:mpp_shrouded_planet_dark_relic }
+        create_ambient_object = { type = "ancient_artifact_object" location = event_target:mpp_shrouded_planet_dark_relic }
+        create_ambient_object = { type = "abandoned_station_object" location = event_target:mpp_shrouded_planet_dark_relic }
+    
+        # Partículas, modifiers y objetos ambientales asociados al planeta Nuked
+        create_particle_effect = { type = "radiation_glow"; intensity = 0.8 location = event_target:mpp_nuked_planet_dark_relic }
+        add_modifier = { modifier = flicker_light; days = -1 location = event_target:mpp_nuked_planet_dark_relic }
+        create_ambient_object = { type = "abandoned_starbase_01_object" location = event_target:mpp_nuked_planet_dark_relic }
+        create_ambient_object = { type = "large_debris_object" location = event_target:mpp_nuked_planet_dark_relic }
+        create_ambient_object = { type = "ancient_artifact_object" location = event_target:mpp_nuked_planet_dark_relic }
+
+        # Partículas, modifiers y objetos ambientales asociados al planeta Shattered
+        add_modifier = { modifier = slow_rotation; days = -1 location = event_target:mpp_shattered_planet_dark_relic }
+        add_modifier = { modifier = flicker_light; days = -1 location = event_target:mpp_shattered_planet_dark_relic }
+        create_ambient_object = { type = "large_debris_object" location = event_target:mpp_shattered_planet_dark_relic }
+        create_ambient_object = { type = "medium_debris_01_object" location = event_target:mpp_shattered_planet_dark_relic }
+        create_ambient_object = { type = "ancient_artifact_object" location = event_target:mpp_shattered_planet_dark_relic }
+
+        # Partículas, modifiers y objetos ambientales asociados a la luna rota
+        add_modifier = { modifier = slow_rotation; days = -1 location = event_target:mpp_shattered_moon_dark_relic }
+        add_modifier = { modifier = flicker_light; days = -1 location = event_target:mpp_shattered_moon_dark_relic }
+        create_ambient_object = { type = "small_debris_object" location = event_target:mpp_shattered_moon_dark_relic }
+        create_ambient_object = { type = "ancient_artifact_object" location = event_target:mpp_shattered_moon_dark_relic }
+    
+        # Partículas, modifiers y objetos ambientales asociados a la luna tóxica
+        create_ambient_object = { type = "ancient_artifact_object" location = event_target:mpp_toxic_moon_dark_relic }
+        create_ambient_object = { type = "medium_debris_02_object" location = event_target:mpp_toxic_moon_dark_relic }
+        create_ambient_object = { type = "small_debris_object" location = event_target:mpp_toxic_moon_dark_relic }
+        add_modifier = { modifier = glowing_object; days = -1 location = event_target:mpp_toxic_moon_dark_relic }
+        add_modifier = { modifier = flicker_light; days = -1 location = event_target:mpp_toxic_moon_dark_relic }
+
+        # Partículas, modifiers y objetos ambientales asociados al planeta barren frío
+        create_ambient_object = { type = "medium_debris_02_object" location = event_target:mpp_barren_cold_planet_dark_relic }
+        create_ambient_object = { type = "small_debris_object" location = event_target:mpp_barren_cold_planet_dark_relic }
+        add_modifier = { modifier = dust_cloud; days = -1 location = event_target:mpp_barren_cold_planet_dark_relic }
+        add_modifier = { modifier = flicker_light; days = -1 location = event_target:mpp_barren_cold_planet_dark_relic }
+
+        # Objetos ambientales y modifiers para el planeta de robots primitivos
+        create_ambient_object = { type = "medium_debris_01_object" location = event_target:mpp_primitive_robot_planet_dark_relic }
+        create_ambient_object = { type = "small_debris_object" location = event_target:mpp_primitive_robot_planet_dark_relic }
+        add_modifier = { modifier = flicker_light; days = -1 location = event_target:mpp_primitive_robot_planet_dark_relic }
+
+        # Objetos ambientales alrededor de la estrella
+        repeat = 5
+        create_ambient_object = { type = "large_debris_object" location = prev }
+        last_created_ambient_object = {
+            set_orbit = {
+                target = event_target:mpp_star_dark_relic
+                distance = { min = 20 max = 55 }
+                angle = random
+                orbit_speed = { min = 1 max = 4 }
+                rotate_axis = { x = random y = random z = random }
+            }
+            add_modifier = { modifier = slow_rotation; days = -1 }
+            add_modifier = { modifier = flicker_light; days = -1 }
+        }
+
+        # Objetos ambientales alrededor de la estrella
+        repeat = 8
+        create_ambient_object = { type = "medium_debris_01_object" location = prev }
+        last_created_ambient_object = {
+            set_orbit = {
+                target = event_target:mpp_star_dark_relic
+                distance = { min = 25 max = 60 }
+                angle = random
+                orbit_speed = { min = 1 max = 3 }
+            }
+            add_modifier = { modifier = flicker_light; days = -1 }
+        }
+
+        # Objetos ambientales alrededor de la estrella
+        repeat = 12
+        create_ambient_object = { type = "small_debris_object" location = prev }
+        last_created_ambient_object = {
+            set_orbit = {
+                target = event_target:mpp_star_dark_relic
+                distance = { min = 25 max = 65 }
+                angle = random
+                orbit_speed = { min = 0.5 max = 2 }
+            }
+            add_modifier = { modifier = flicker_light; days = -1 }
+        }
+
+        # Efecto global del sistema. Añade coherencia visual y vestigios de debris menores en todos los planetas
+        every_planet = {
+            create_ambient_object = { type = "small_debris_object" location = this }
+            create_ambient_object = { type = "medium_debris_02_object" location = this }
+            add_modifier = { modifier = flicker_light; days = -1 }
+        }
+    }
+
+}
