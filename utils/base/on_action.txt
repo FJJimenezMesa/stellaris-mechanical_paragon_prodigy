@@ -1,0 +1,38 @@
+on_action = {
+    ###############################
+    # ACCIONES AL ACTIVARSE EL CIVIC / TRAIT
+    ###############################
+    on_gained = {                        # Se ejecuta cuando se adquiere el civic/trait
+        # Cambios de background o apariencia
+        change_background_job = noble      # Ejemplo de cambio de fondo de líder
+        change_culture = "culture_example" # Cambio de cultura
+        add_species_trait = "trait_example" # Añade un trait específico a la especie
+
+        # Modificaciones temporales o permanentes
+        leader_trait_selection_options_add = 1
+        add_modifier = { modifier = "modifier_example" days = -1 } # -1 = permanente
+
+        # Recursos y economía
+        add_resource = { resource = energy amount = 100 }           # Añade energía
+        add_resource = { resource = minerals amount = 50 }          # Añade minerales
+    }
+
+    on_lost = {                          # Se ejecuta si se pierde el civic/trait
+        remove_modifier = "modifier_example"
+        remove_species_trait = "trait_example"
+        remove_resource = { resource = energy amount = 50 }
+    }
+
+    ###############################
+    # NOTIFICACIONES Y EFECTOS ESPECIALES
+    ###############################
+    notify_player = yes                   # Notifica al jugador del cambio
+    play_sound = "event_sound_example"    # Reproduce un sonido
+    trigger_event = "event_id_example"    # Dispara un evento del juego
+
+    ###############################
+    # CONDICIONES
+    ###############################
+    potential = { has_civic = "civic_example" }  # Condición para que el on_action se ejecute
+    limit = { owner = { ethics = ethic_example } } # Limita la acción a ciertas condiciones
+}
