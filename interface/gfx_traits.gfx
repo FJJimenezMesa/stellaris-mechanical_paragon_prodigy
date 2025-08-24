@@ -1,0 +1,11 @@
+spriteTypes = {
+    spriteType = {
+        name = "GFX_leader_trait_parangon_leader"
+        texturefile = "gfx/interface/icons/leader_traits/parangon_leader.dds"
+    }
+
+    spriteType = {
+        name = "GFX_leader_trait_has_parangon_leader"
+        texturefile = "gfx/interface/icons/leader_traits/has_parangon_leader.dds"
+    }
+}
