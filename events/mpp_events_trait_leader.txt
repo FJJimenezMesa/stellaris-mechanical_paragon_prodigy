@@ -1,0 +1,129 @@
+# -----------------------
+# Eventos relacionados con los traits de líderes
+# NAMESPACE 
+# -----------------------
+
+namespace = mpp_events_trait_leader
+
+# ---------------------------------------------------
+# Evento inicial que aplica el trait Parangon al líder actual del país
+# Este evento se dispara solo una vez y automáticamente al inicio
+# ---------------------------------------------------
+country_event = {
+    id = mpp_events_trait_leader.0
+    is_triggered_only = yes       # No se dispara automáticamente por el motor, solo por trigger
+    hide_window = yes             # No mostrar ventana al jugador
+
+    immediate = {
+        ruler = {
+            leader_event = { id = mpp_events_trait_leader.1 }  # Llama al evento que aplica el trait
+        }
+    }
+}
+
+# ---------------------------------------------------
+# Evento que verifica si el líder del país es elegible para el trait Parangon
+# Aplica el trait si se cumplen las condiciones
+# ---------------------------------------------------
+leader_event = {
+    id = mpp_events_trait_leader.1
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        if = {
+            limit = { 
+                ruler = yes                        # Solo al líder gobernante
+                mpp_is_parangon_legacy = yes      # Flag de legacy Parangon
+            }
+            
+            add_trait = mpp_leader_trait_parangon_leader  # Aplica el trait Parangon
+        }
+    }
+}
+
+# ---------------------------------------------------
+# Evento que aplica el trait Parangon a líderes recién contratados
+# Se verifica la clase del líder y si existe algún líder Parangon en posesión del país
+# ---------------------------------------------------
+leader_event = {
+    id = mpp_events_trait_leader.2
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        # Científico contratado
+        if = {
+            limit = {
+                leader_class = scientist
+                NOT = { has_trait = leader_trait_has_parangon_leader }  # No tiene el trait ya
+                owner = {
+                    any_owned_leader = {                                  # Algún líder en posesión con Parangon
+                        leader_class = scientist
+                        has_trait = leader_trait_parangon_leader
+                    }
+                }
+            }
+            add_trait = leader_trait_has_parangon_leader
+        }
+
+        # Almirante contratado
+        if = {
+            limit = {
+                leader_class = admiral
+                NOT = { has_trait = leader_trait_has_parangon_leader }
+                owner = {
+                    any_owned_leader = {
+                        leader_class = scientist
+                        has_trait = leader_trait_parangon_leader
+                    }
+                }
+            }
+            add_trait = leader_trait_has_parangon_leader
+        }
+
+        # General contratado
+        if = {
+            limit = {
+                leader_class = general
+                NOT = { has_trait = leader_trait_has_parangon_leader }
+                owner = {
+                    any_owned_leader = {
+                        leader_class = scientist
+                        has_trait = leader_trait_parangon_leader
+                    }
+                }
+            }
+            add_trait = leader_trait_has_parangon_leader
+        }
+
+        # Gobernador contratado
+        if = {
+            limit = {
+                leader_class = governor
+                NOT = { has_trait = leader_trait_has_parangon_leader }
+                owner = {
+                    any_owned_leader = {
+                        leader_class = scientist
+                        has_trait = leader_trait_parangon_leader
+                    }
+                }
+            }
+            add_trait = leader_trait_has_parangon_leader
+        }
+    }
+}
+
+# ---------------------------------------------------
+# Evento que establece un flag global para el país
+# Indica que se ha aprobado un líder Parangon
+# ---------------------------------------------------
+country_event = {
+    id = mpp_events_trait_leader.3
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        set_country_flag = parangon_leader_approved
+    }
+}
