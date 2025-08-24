@@ -63,7 +63,7 @@ mpp_trait_nano_vector = {
 # Enfoque: Optimización mecánica, colonización eficiente y supremacía tecnológica.
 # Afecta a: Pops y líderes mecánicos.
 # ================================
-mpp_parangon_nano_symbiosis = {
+mpp_trait_nano_symbiosis = {
     cost = 5
 	icon = "gfx/interface/icons/traits/mpp_parangon_nano_symbiosis.dds"
 	
@@ -98,7 +98,7 @@ Aunque la conexión es limitada, los nanites mantienen el legado del Parangón, 
 # Enfoque: Optimización mecánica, colonización eficiente y supremacía tecnológica.
 # Afecta a: Pops y líderes robóticos.
 # ================================
-mpp_parangon_nano_operancy = {
+mpp_trait_nano_operancy = {
     cost = 10
     icon = "gfx/interface/icons/traits/mpp_parangon_nano_operancy.dds"
 
