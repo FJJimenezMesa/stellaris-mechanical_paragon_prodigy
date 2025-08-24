@@ -1,0 +1,77 @@
+scripted_modifier_template = {
+    ###############################
+    # IDENTIFICACIÓN BÁSICA
+    ###############################
+    name = "scripted_modifier_example"         # Identificador interno único
+    desc = "scripted_modifier_example_desc"   # Texto descriptivo
+    is_permanent = yes                         # Si es permanente o temporal
+    hidden = no                                # Si se muestra al jugador
+    negative = no                              # Si es un efecto negativo
+    icon = "GFX_scripted_modifier_icon"        # Icono en la UI
+    tier = 1                                   # Nivel de rareza/importancia
+
+    ###############################
+    # METADATA DE UI
+    ###############################
+    category = "utility"                       # Categoría en la UI
+    sort_order = 10                            # Orden dentro de la categoría
+    custom_tooltip = "scripted_modifier_custom_tooltip"
+
+    ###############################
+    # MANEJO DE DLC
+    ###############################
+    required_dlc = none                        # DLC necesario
+    excluded_dlc = none                        # DLC que excluye este efecto
+
+    ###############################
+    # MODIFICADORES ESTÁTICOS
+    ###############################
+    modifier = {
+        army_morale = 0.05
+        ship_weapon_damage = 0.1
+        pop_happiness = 0.02
+        planet_jobs_worker_produces_mult = 0.05
+    }
+
+    ###############################
+    # CONDICIONES DE APLICACIÓN
+    ###############################
+    potential = {
+        has_technology = "tech_example_1"
+        is_planet_class = pc_continental
+    }
+
+    limit = {
+        owner = { country_size > 10 }
+    }
+
+    ###############################
+    # TRIGGERED / DINÁMICOS
+    ###############################
+    triggered_modifier = {
+        potential = { owner = { is_federation_leader = yes } }
+        army_morale = 0.1
+    }
+
+    triggered_planet_modifier = {
+        potential = { is_homeworld = yes }
+        habitability = 0.15
+    }
+
+    ###############################
+    # EFECTOS ESPECIALES
+    ###############################
+    on_add = {
+        log = "Scripted modifier applied!"
+    }
+    on_remove = {
+        log = "Scripted modifier removed!"
+    }
+
+    ###############################
+    # RELACIONES CON OTROS MODIFICADORES
+    ###############################
+    replace_modifiers = { "scripted_modifier_example_old" }
+    opposites = { "scripted_modifier_example_negative" }
+    requires_modifiers = { "scripted_modifier_required" }
+}

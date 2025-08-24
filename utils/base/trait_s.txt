@@ -1,0 +1,103 @@
+species_trait_template = {
+    ###############################
+    # IDENTIFICACIÓN BÁSICA
+    ###############################
+    species_class = { mammalian reptilian avian aquatic robotic }   # Clases de especie aplicables
+    negative = no                                                  # Sí si es un trait negativo
+    initial = no                                                   # Sí si aparece garantizado al inicio
+    randomized = no                                                # Sí si aparece aleatoriamente
+    restricted_to_government = no                                  # Sí si solo puede aparecer en ciertos gobiernos
+    hidden = no                                                    # Oculta la existencia del trait a la vista del jugador
+
+    ###############################
+    # ICONO Y RAREZA
+    ###############################
+    icon = "GFX_species_trait_example"                             # Icono representativo del trait
+    rarity = common                                                  # Rareza del trait
+    tier = 1                                                         # Nivel de rareza/impacto
+
+    ###############################
+    # MODIFICADORES DIRECTOS
+    ###############################
+    modifier = {
+        pop_happiness = 0.05                                       # Bonus de felicidad de la población
+        habitability = 0.05                                         # Mejora de habitabilidad
+        species_leader_exp_gain = 0.05                               # Bonus de experiencia de líderes de la especie
+        planet_jobs_worker_produces_mult = 0.0                       # Producción de trabajos (ajustable)
+        army_morale = 0.0                                            # Moral del ejército (ajustable)
+        ship_weapon_damage = 0.0                                     # Daño de armas de naves (ajustable)
+    }
+
+    ###############################
+    # MODIFICADORES CONDICIONADOS
+    ###############################
+    triggered_modifier = {
+        potential = { is_hive_species = no }                        # Solo si la especie no es tipo colmena
+        pop_happiness = 0.03                                         # Bonus de felicidad condicionado
+    }
+
+    triggered_planet_modifier = {
+        potential = { is_homeworld = yes }                          # Solo en el mundo natal
+        habitability = 0.1                                           # Mejora de habitabilidad en el planeta natal
+    }
+
+    triggered_desc = {
+        trigger = { population > 50 }                                # Activación basada en población
+        exclusive_trigger = { negative = yes }                      # Solo si es negativo
+        text = "species_trait_triggered_example"                    # Texto a mostrar en UI
+    }
+
+    ###############################
+    # PRODUCCIÓN / GASTO DE RECURSOS
+    ###############################
+    resource_modifier = {
+        energy_production = 5                                       # Bonus de energía producido por la especie
+        food_upkeep = 3                                              # Consumo de comida adicional
+    }
+
+    ###############################
+    # RELACIONES CON OTROS TRAITS
+    ###############################
+    replace_traits = { "species_trait_example_basic" }             # Traits que reemplaza
+    opposites = { "species_trait_opposite_example" }               # Traits opuestos
+    requires_traits = { "species_trait_required_example" }         # Traits requeridos
+    requires_governments = { "gov_democracy" "gov_autocracy" }    # Gobiernos requeridos
+    prerequisites = { "tech_example_1" "tech_example_2" }         # Tecnologías necesarias
+
+    ###############################
+    # CONDICIONES DE APARICIÓN
+    ###############################
+    species_potential_add = {
+        has_species_dlc = yes                                       # Requiere DLC específico
+        is_pool_species = yes                                       # Solo especies del pool de generación
+        has_synthetic_dlc = no                                      # DLC opcionales
+        has_nemesis_dlc = no
+    }
+
+    selectable_weight = { 
+        weight = 5
+        inline_script = "species/ethic_weight_mult"                # Modificador de selección basado en ética
+    }
+
+    ###############################
+    # EFECTOS ESPECIALES
+    ###############################
+    on_gained_effect = {
+        species_trait_selection_options_add = 1                     # Añade opciones de selección
+    }
+
+    custom_subtitle = "species_trait_custom_subtitle"              # Subtítulo en UI
+    custom_tooltip = "species_trait_custom_tooltip"                # Tooltip básico
+    custom_tooltip_with_modifiers = "species_trait_custom_tooltip_modifiers"  # Tooltip con modificadores
+
+    ###############################
+    # NUEVAS SECCIONES DE SPECIAL TRAITS
+    ###############################
+    notify_on_gained = no                                           # Evita notificación al jugador
+
+    ###############################
+    # METADATA DE UI
+    ###############################
+    species_trait_category = "Physical"                             # Categoría en UI
+    species_trait_ui_priority = 10                                   # Orden de aparición en UI
+}

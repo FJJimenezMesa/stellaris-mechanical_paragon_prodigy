@@ -1,0 +1,86 @@
+agenda_template = {
+    ###############################
+    # IDENTIFICACIÓN BÁSICA
+    ###############################
+    agenda_class = { leader faction empire }                   # Tipo de agenda: líder, facción o imperio
+    unique = yes                                               # Si es única o genérica
+    hidden = no                                                # Si se oculta al jugador
+    negative = no                                              # Si es agenda negativa
+    initial = no                                               # Si aparece desde el inicio
+
+    ###############################
+    # ICONO Y RAREZA
+    ###############################
+    icon = "GFX_agenda_example"                                # Icono representativo
+    rarity = common                                             # Rareza (common, rare, epic, legendary)
+    tier = 1                                                    # Nivel de impacto
+
+    ###############################
+    # MODIFICADORES DIRECTOS
+    ###############################
+    modifier = {
+        faction_approval = 0.05                                 # Modificador directo a aprobación de facción
+        pop_happiness = 0.05                                     # Modificador directo a felicidad
+        influence_gain_mult = 0.0                                 # Bonus de influencia
+        resource_production = 0.0                                 # Bonus de recursos
+    }
+
+    ###############################
+    # MODIFICADORES CONDICIONADOS
+    ###############################
+    triggered_modifier = {
+        potential = { government_type = "democracy" }           # Solo si cumple condición
+        pop_happiness = 0.1
+    }
+
+    triggered_desc = {
+        trigger = { year >= 2300 }                               # Texto mostrado al cumplirse la condición
+        exclusive_trigger = { negative = yes }
+        text = "agenda_triggered_example"
+    }
+
+    ###############################
+    # RELACIONES CON OTROS AGENDAS
+    ###############################
+    replace_agendas = { "agenda_example_basic" }               # Agendas reemplazadas
+    opposites = { "agenda_opposite_example" }                  # Agendas opuestas
+    requires_agendas = { "agenda_required_example" }           # Agendas requeridas
+    prerequisites = { "tech_example_1" "tech_example_2" }     # Tecnologías requeridas
+    blocked_by_agendas = { "agenda_blocked_example" }          # Agendas que bloquean esta
+
+    ###############################
+    # CONDICIONES DE APARICIÓN
+    ###############################
+    agenda_potential_add = {
+        has_dlc = yes                                           # Requiere DLC específico
+        is_pool_agenda = yes                                    # Solo agendas del pool de generación
+    }
+
+    selectable_weight = {
+        weight = 5
+        inline_script = "agenda/ethic_weight_mult"             # Modificador de selección basado en ética
+    }
+
+    ###############################
+    # EFECTOS ESPECIALES
+    ###############################
+    on_gained_effect = {
+        change_faction_trait = "trait_example"                 # Efecto al obtener la agenda
+        leader_trait_selection_options_add = 1
+    }
+
+    custom_subtitle = "agenda_custom_subtitle"                 # Subtítulo en UI
+    custom_tooltip = "agenda_custom_tooltip"                   # Tooltip básico
+    custom_tooltip_with_modifiers = "agenda_custom_tooltip_modifiers"  # Tooltip con modificadores
+
+    ###############################
+    # NUEVAS SECCIONES DE SPECIAL AGENDAS
+    ###############################
+    notify_on_gained = no                                      # Evita notificación al jugador
+
+    ###############################
+    # METADATA DE UI
+    ###############################
+    agenda_category = "Expansionist"                            # Categoría en UI
+    agenda_ui_priority = 10                                     # Orden de aparición en UI
+}

@@ -1,0 +1,30 @@
+# BEGIN_INFO_<KEY>
+# INFO_TYPE: <INFO_TYPE>
+# ================================
+# <TEXT_ICON> <TYPE>: <KEY>
+# 
+# "<NOMBRE LEGIBLE>"
+# ================================
+# Descripción:
+#   <DESCRIPTION>
+# 
+# <CUSTOM_BLOCK_BY_INFO_TYPE>
+# 
+# END_INFO_<KEY>
+# BEGIN_LORE_<KEY>
+# LORE_TYPE: <INFO_TYPE> - <LORE_TYPE> 
+# Lore:
+#   <LORE>
+#
+# Descripción narrativa:
+#   <LORE DESCRIPTION>
+#
+# END_LORE_<KEY>
+# ================================
+
+
+KEY
+INFO_TYPE --> SOLAR_SYSTEM | AGENDA | ORIGIN | SPECIES_TRAIT | LEADER_TRAIT | EVENT
+TEXT_ICON -->     🌠           🏛️      🌌         🧬               👑        ⚙  
+LORE_TYPE --> GENERAL | VERIDIAN
+CUSTOM_BLOCK_BY_INFO_TYPE

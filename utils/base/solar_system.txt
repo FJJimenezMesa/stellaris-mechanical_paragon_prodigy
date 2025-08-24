@@ -1,0 +1,74 @@
+solar_system_initializer_template = {
+    ###############################
+    # IDENTIFICACIÓN BÁSICA
+    ###############################
+    name = "solar_system_initializer_example"      # Identificador interno único
+    desc = "solar_system_initializer_example_desc" # Descripción para la UI
+    hidden = no                                     # Si se muestra al jugador
+    category = "system_generation"                 # Categoría en la UI
+    sort_order = 10                                # Orden de visualización
+
+    ###############################
+    # MANEJO DE DLC
+    ###############################
+    required_dlc = none                             # DLC necesario
+    excluded_dlc = none                             # DLC que excluye este initializer
+
+    ###############################
+    # PARÁMETROS DE GENERACIÓN
+    ###############################
+    star_type = "star_yellow"                       # Tipo de estrella inicial
+    star_size = "medium"                             # Tamaño de la estrella
+    num_planets = 5                                  # Número de planetas
+    planet_classes = { pc_terrestrial pc_gas_giant pc_asteroid } # Tipos de planetas
+    has_anomalies = yes                              # Si genera anomalías
+    has_nova = no                                    # Si puede tener eventos de nova
+
+    ###############################
+    # CONDICIONES DE APLICACIÓN
+    ###############################
+    potential = {
+        galaxy_size > 50
+        has_tech = "tech_stellar_cartography"
+    }
+
+    limit = {
+        is_starting_system = yes
+    }
+
+    ###############################
+    # EFECTOS AL GENERAR
+    ###############################
+    on_generate = {
+        add_starbase = {
+            type = "research_station"
+            orbit = "inner"
+        }
+        add_planet = {
+            class = pc_terrestrial
+            size = "large"
+            habitability = 0.8
+        }
+    }
+
+    ###############################
+    # MODIFICADORES ESPECIALES
+    ###############################
+    modifiers = {
+        system_research_output_mult = 0.05
+        system_trade_value_mult = 0.1
+    }
+
+    ###############################
+    # RELACIONES Y REEMPLAZOS
+    ###############################
+    replace_initializers = { "solar_system_initializer_old_example" }
+    requires_initializers = { "solar_system_initializer_required" }
+    opposites = { "solar_system_initializer_negative" }
+
+    ###############################
+    # LOGGING Y NOTIFICACIONES
+    ###############################
+    notify_on_generate = yes
+    log_on_generate = "Solar system initialized successfully"
+}

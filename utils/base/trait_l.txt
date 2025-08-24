@@ -1,0 +1,137 @@
+leader_trait_template = {
+    ###############################
+    # IDENTIFICACIÓN BÁSICA
+    ###############################
+    leader_class = { admiral scientist general governor }   # Clases de líder a las que aplica este trait
+    councilor_trait = no                                     # Sí si es un trait exclusivo de concejales
+    destiny_trait = no                                       # Sí si es un trait Paragon/Destino
+    negative = no                                            # Sí si es un trait negativo
+    veteran_class_locked_trait = no                          # Sí si solo pueden tenerlo líderes veteranos
+    initial = no                                             # Sí si aparece garantizado al inicio del juego
+    randomized = no                                          # Sí si puede aparecer aleatoriamente
+    immortal_leaders = no                                    # Sí si afecta solo a líderes inmortales
+    hide_age = no                                            # Oculta la edad del líder en la UI
+    is_councilor_trait_for_ruler = no                       # Sí si el trait afecta al imperio por ser consejero
+
+    ###############################
+    # ICONO Y RAREZA
+    ###############################
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = "GFX_leader_trait_example"                    # Icono que representa el trait
+        RARITY = common                                      # Rareza visual del trait
+        COUNCIL = no                                         # Indica si se usa en concejo
+        TIER = 1                                             # Nivel de rareza/impacto
+    }
+    destiny_background_icon = "GFX_leader_background_destiny_1"  # Fondo si es trait Paragon
+
+    ###############################
+    # MODIFICADORES DIRECTOS
+    ###############################
+    self_modifier = {
+        leaders_upkeep_mult = -0.1                            # Reducción de mantenimiento del líder
+        leaders_cost_mult = -0.2                               # Reducción del coste de contratación
+        species_leader_exp_gain = 0.1                          # Bonus de experiencia para la especie del líder
+        leader_age = 10                                        # Edad adicional o modificada del líder
+        leader_trait_selection_options_add = 1                 # Añade opciones de selección de traits
+        negative_traits_leader = 0                              # Reduce posibilidad de traits negativos
+    }
+
+    modifier = {
+        faction_approval = 0.05                                # Aumento de aprobación en facción
+        country_unity_produces_mult = 0.05                     # Bonus de producción por unidad nacional
+        army_morale = 0.0                                      # Moral de ejército (ajustable)
+        ship_weapon_damage = 0.0                               # Daño de armas de naves (ajustable)
+    }
+
+    planet_modifier = {
+        habitability = 0.05                                    # Bonus de habitabilidad en planetas
+        pop_happiness = 0.05                                   # Bonus de felicidad de población
+        planet_jobs_worker_produces_mult = 0.0                # Producción de trabajos de planetas (ajustable)
+    }
+
+    system_modifier = {
+        starbase_build_speed_mult = 0.05                        # Velocidad de construcción de estaciones
+        system_research_output_mult = 0.05                      # Bonus de producción científica del sistema
+    }
+
+    ###############################
+    # MODIFICADORES CONDICIONADOS
+    ###############################
+    triggered_self_modifier = { 
+        potential = { is_councilor = no }                     # Solo si no es consejero
+        leaders_upkeep_mult = -0.25                            # Modificador de mantenimiento solo bajo esta condición
+    }
+
+    triggered_modifier = { 
+        potential = { owner = { is_gestalt = no } }           # Solo si el imperio no es gestalt
+        pop_happiness = 0.03                                   # Bonus de felicidad condicionado
+    }
+
+    triggered_planet_modifier = {
+        potential = { is_homeworld = yes }                    # Solo afecta al mundo natal
+        habitability = 0.1                                     # Mejora la habitabilidad del planeta natal
+    }
+
+    triggered_desc = {
+        trigger = { leader_age > 50 }                          # Condición de activación
+        exclusive_trigger = { negative = yes }                # Solo si es un trait negativo
+        text = "leader_trait_triggered_example"               # Texto a mostrar en la UI
+    }
+
+    ###############################
+    # PRODUCCIÓN / GASTO DE RECURSOS
+    ###############################
+    inline_script = { script = paragon/leader_resource_produces RESOURCE = energy AMOUNT = 5 }  # Producción de energía
+    inline_script = { script = paragon/leader_resource_upkeep RESOURCE = food AMOUNT = 3 }       # Consumo de comida
+
+    ###############################
+    # RELACIONES CON OTROS TRAITS
+    ###############################
+    replace_traits = { "leader_trait_example_basic" }      # Traits reemplazados
+    opposites = { "leader_trait_opposite_example" }        # Traits opuestos
+    requires_traits = { "leader_trait_required_example" }  # Traits requeridos
+    requires_governments = { "gov_democracy" "gov_autocracy" } # Gobiernos requeridos
+    prerequisites = { "tech_example_1" "tech_example_2" } # Tecnologías necesarias
+    fleet_specialization_tag = carrier                     # Especialización de flota asociada
+
+    ###############################
+    # CONDICIONES DE APARICIÓN
+    ###############################
+    leader_potential_add = {
+        has_paragon_dlc = yes
+        is_pool_leader = yes
+        # DLC opcionales
+        has_synthetic_dlc = no
+        has_nemesis_dlc = no
+    }
+
+    selectable_weight = { 
+        weight = 5
+        inline_script = "paragon/ethic_weight_mult"          # Modifica peso de selección según ética
+    }
+
+    ###############################
+    # EFECTOS ESPECIALES
+    ###############################
+    on_gained_effect = {
+        change_background_job = noble
+        leader_trait_selection_options_add = 1
+    }
+
+    custom_subtitle = "leader_trait_custom_subtitle"       # Subtítulo personalizado en la UI
+    custom_tooltip = "leader_trait_custom_tooltip"         # Tooltip base
+    custom_tooltip_with_modifiers = "leader_trait_custom_tooltip_modifiers"  # Tooltip con modificadores
+
+    ###############################
+    # NUEVAS SECCIONES DE SPECIAL TRAITS
+    ###############################
+    notify_on_gained = no                                   # Evita notificación al jugador
+
+    ###############################
+    # METADATA DE UI
+    ###############################
+    leader_trait_category = "Military"                     # Categoría en UI
+    leader_trait_ui_priority = 10                           # Orden de aparición en UI
+}

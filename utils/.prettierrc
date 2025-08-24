@@ -1,0 +1,16 @@
+{
+  "tabWidth": 4,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "overrides": [
+    {
+      "files": "*.txt",
+      "options": {
+        "tabWidth": 4,
+        "parser": "babel"
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+technology_template = {
+    ###############################
+    # IDENTIFICACIÓN BÁSICA
+    ###############################
+    tech_class = { physics society engineering }                # Rama tecnológica
+    tier = 1                                                     # Nivel de la tecnología
+    area = ""                                                    # Área de la tecnología (opcional)
+    cost = 1000                                                  # Costo base de investigación
+    prerequisites = { }                                          # Tecnologías requeridas
+    replaces_tech = { }                                          # Tecnologías que reemplaza
+    blocked_by = { }                                             # Tecnologías que bloquean
+    negative = no                                                # Si es tecnología negativa
+
+    ###############################
+    # ICONO Y RAREZA
+    ###############################
+    icon = "GFX_tech_example"                                    # Icono representativo
+    rarity = common                                               # Rareza del tech (common, rare, epic, legendary)
+    tier = 1                                                     # Nivel de rareza/impacto
+
+    ###############################
+    # MODIFICADORES DIRECTOS
+    ###############################
+    modifier = {
+        research_speed_mult = 0.05                                # Incremento a velocidad de investigación
+        energy_production = 0.05                                   # Bonus de energía
+        mineral_production = 0.0                                   # Bonus de minerales (ajustable)
+        influence_gain = 0.0                                       # Ganancia de influencia
+        army_damage_mult = 0.0                                     # Bonus a daño de ejército
+        ship_weapon_damage = 0.0                                   # Bonus a daño de naves
+    }
+
+    ###############################
+    # MODIFICADORES CONDICIONADOS
+    ###############################
+    triggered_modifier = {
+        potential = { has_species_trait = "intelligent" }          # Solo si la especie tiene trait específico
+        research_speed_mult = 0.1
+    }
+
+    triggered_desc = {
+        trigger = { tech_level >= 5 }                              # Descripción activada según condiciones
+        exclusive_trigger = { negative = yes }
+        text = "technology_triggered_example"
+    }
+
+    ###############################
+    # PRODUCCIÓN / GASTO DE RECURSOS
+    ###############################
+    resource_modifier = {
+        energy_upkeep = 5
+        alloy_upkeep = 3
+    }
+
+    ###############################
+    # RELACIONES CON OTRAS TECNOLOGÍAS
+    ###############################
+    requires_tech = { "tech_required_example" }                  # Tecnologías requeridas
+    replaces_tech = { "tech_to_replace_example" }                # Tecnologías reemplazadas
+    blocked_by_tech = { "tech_blocked_example" }                 # Bloqueadas por otras
+    mutually_exclusive = { "tech_mutually_exclusive_example" }  # Tecnologías mutuamente excluyentes
+
+    ###############################
+    # CONDICIONES DE APARICIÓN
+    ###############################
+    tech_potential_add = {
+        has_dlc = yes                                             # Requiere DLC específico
+        is_pool_tech = yes                                        # Solo tecnologías del pool de generación
+    }
+
+    selectable_weight = {
+        weight = 5
+        inline_script = "tech/ethic_weight_mult"                 # Modificador de selección basado en ética
+    }
+
+    ###############################
+    # EFECTOS ESPECIALES
+    ###############################
+    on_researched_effect = {
+        unlock_building = "building_example"                     # Ejemplo de efecto al ser investigada
+        leader_trait_selection_options_add = 1
+    }
+
+    custom_subtitle = "tech_custom_subtitle"                     # Subtítulo en UI
+    custom_tooltip = "tech_custom_tooltip"                       # Tooltip básico
+    custom_tooltip_with_modifiers = "tech_custom_tooltip_modifiers"  # Tooltip con modificadores
+
+    ###############################
+    # NUEVAS SECCIONES DE SPECIAL TECH
+    ###############################
+    notify_on_researched = no                                     # Evita notificación al jugador
+
+    ###############################
+    # METADATA DE UI
+    ###############################
+    tech_category = "Weapons"                                     # Categoría en UI
+    tech_ui_priority = 10                                         # Orden de aparición en UI
+}
