@@ -1,0 +1,25 @@
+# -----------------------
+# ACCIONES AUTOMÁTICAS RELACIONADAS CON TRAITS DE LÍDERES
+# -----------------------
+
+# Al crear el líder del país (ruler):
+#   - Aplica el trait Parangon si corresponde
+#   - Marca el líder como aprobado
+#   - Aplica eventos de origen personalizados
+on_ruler_created = {
+    events = {  
+        events_trait_leader_paragon.1    # Aplicar trait Parangon al líder si cumple condiciones
+        events_trait_leader_paragon.3    # Marcar líder aprobado para evitar reaplicación
+        events_origin_pmp.1              # Evento de origen personalizado (ejemplo)
+    }
+}
+
+# Al contratar un nuevo líder:
+#   - Comprobar propagación del trait HAS_PARANGON desde otros líderes de la facción
+#   - Marcar líder aprobado para evitar reaplicación
+on_leader_hired = {
+    events = { 
+        events_trait_leader_paragon.2    # Propagar trait HAS_PARANGON a líderes nuevos
+        events_trait_leader_paragon.3    # Marcar líder aprobado
+    }
+}
