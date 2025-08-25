@@ -1,0 +1,27 @@
+@mppLeaderResearchBonus = 5
+
+
+# ================================
+# Variables base para tecnologías MPP
+# ================================
+
+@mpp_tech_default_weight = 0.8                  # Peso base general para que la tech aparezca en el árbol
+@mpp_tech_default_ai_weight = 0.6               # Peso base para que la AI elija la tech
+@mpp_tech_base_weight = 1.0                     # Peso base general para techs repetibles
+@mpp_tech_base_ai_weight = 0.8                  # Peso base AI para techs repetibles
+@mpp_tech_base_cost = 1000                      # Coste base para tecnologías repetibles
+@mpp_tech_t4_cost = 3000                        # Coste inicial para techs Tier 4
+@mpp_tech_t5_cost = 5000                        # Coste inicial para techs Tier 5
+@mpp_tech_t6_cost = 5000                        # Coste inicial para techs Tier 6
+@mpp_tech_t4_cost_per_level = 2500              # Incremento de coste por nivel para techs Tier 4
+@mpp_tech_t5_cost_per_level = 3500              # Incremento de coste por nivel para techs Tier 5
+@mpp_tech_t6_cost_per_level = 5000              # Incremento de coste por nivel para techs Tier 6
+@mpp_tech_rep_weight_factor = 0.2               # Reducción de peso si ya se eligió otra tech repetible
+@mpp_tech_mpp_capital_rep_weight_factor = 0.5   # Aumento de peso si la capital del páis es capital MPP
+@mpp_tech_mpp_system_rep_weight_factor = 0.2    # Aumento de peso si el páis tiene un sistema MPP
+
+
+
+tech = {
+    valor1 = 1
+}
