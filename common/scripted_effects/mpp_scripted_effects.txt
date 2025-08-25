@@ -1,97 +1,142 @@
-# ================================================
+# ================================================ 
 # Scripted Effects MPP
 # ================================================
 
-@mppFlagsList = {
-    # ----------------------------
-    # FLAGS: AÑADIR / HABILITAR
-    # ----------------------------
-    mpp_set_flags_mpp_origin                    # Marca que el país tiene origen MPP
-    mpp_set_flags_mpp_origin_setup_done        # Marca que la configuración inicial de origen MPP se completó
-    mpp_set_flags_mpp_leader_approved          # Marca que el país posee un líder Parangon aprobado
-    mpp_add_mpp_tech_potential                 # Otorga al país el potencial para desbloquear tecnologías MPP
-    mpp_unlock_mpp_agenda                       # Habilita la agenda MPP para el país
-
-    # ----------------------------
-    # FLAGS: QUITAR / DESHABILITAR
-    # ----------------------------
-    mpp_remove_flags_mpp_leader_approved       # Elimina la marca de líder Parangon aprobado
-    mpp_remove_mpp_tech_potential              # Elimina el potencial tecnológico MPP del país
-    mpp_lock_mpp_agenda                         # Deshabilita la agenda MPP del país
-}
-
-@mppTechsList = {
-    mpp_add_techs_basic_robot      # Tecnologías iniciales de robots
-    mpp_add_techs_mpp_origin       # Tecnologías específicas de origen MPP
-}
-
-# ================================================
+# ================================================ 
 # SECCIÓN: FLAGS
-# ================================================
+# ================================================ 
 
 # ----------------------------
 # Flag: Origen MPP
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_set_flags_mpp_origin
-#   type: flag
-#   name: Origen MPP
-#   target: country
-#   description: Marca que el país tiene origen MPP.
-#   related_effects:
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_set_flags_mpp_origin
+# type           : flag
+# name           : Origen MPP
+# target         : country
+# description    : Marca que el país tiene origen MPP.
+# related_effects: 
+# notes          : 
 # END_INFO
 mpp_set_flags_mpp_origin = {
-    set_country_flag = mpp_flag_mpp_origin
+    set_global_flag = mpp_flag_mpp_origin
 }
 
 # ----------------------------
 # Flag: Configuración de Origen MPP
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_set_flags_mpp_origin_setup_done
-#   type: flag
-#   name: Origen MPP Configuración Completada
-#   target: country
-#   description: Marca que la configuración inicial de origen MPP se completó.
-#   related_effects: mpp_set_flags_mpp_origin
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_set_flags_mpp_origin_setup_done
+# type           : flag
+# name           : Origen MPP Configuración Completada
+# target         : country
+# description    : Marca que la configuración inicial de origen MPP se completó.
+# related_effects: mpp_set_flags_mpp_origin
+# notes          : 
 # END_INFO
 mpp_set_flags_mpp_origin_setup_done = {
-    set_country_flag = mpp_flag_mpp_origin_setup_done
+    set_global_flag = mpp_flag_mpp_origin_setup_done
 }
 
 # ----------------------------
-# Flag: Líder Parangon
+# Flag: Origen MPP (Sistema)
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_set_flags_mpp_leader_approved
-#   type: flag
-#   name: Líder Parangon Aprobado
-#   target: country,ruler,leader,pop
-#   description: Marca que el país posee un líder Parangon aprobado, habilitando potenciales en tecnologías y agendas.
-#   related_effects: mpp_add_mpp_tech_potential mpp_unlock_mpp_agenda
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_set_flags_mpp_system_origin
+# type           : flag
+# name           : Origen MPP Sistema
+# target         : system
+# description    : Marca que el sistema pertenece al origen MPP.
+# related_effects: mpp_set_flags_mpp_origin
+# notes          :
+# END_INFO
+mpp_set_flags_mpp_system_origin = {
+    set_star_flag = mpp_flag_mpp_system_origin
+}
+
+# ----------------------------
+# Flag: Eliminar Origen MPP (Sistema)
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_remove_flags_mpp_system_origin
+# type           : flag
+# name           : Eliminar Origen MPP Sistema
+# target         : system
+# description    : Elimina la marca de sistema de origen MPP.
+# related_effects: mpp_remove_flags_mpp_origin
+# notes          :
+# END_INFO
+mpp_remove_flags_mpp_system_origin = {
+    remove_star_flag = mpp_flag_mpp_system_origin
+}
+
+# ----------------------------
+# Flag: Origen MPP (Capital)
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_set_flags_mpp_capital_origin
+# type           : flag
+# name           : Origen MPP Capital
+# target         : planet
+# description    : Marca que el planeta capital del país es de origen MPP.
+# related_effects: mpp_set_flags_mpp_origin
+# notes          : 
+# END_INFO
+mpp_set_flags_mpp_capital_origin = {
+    set_planet_flag = mpp_flag_mpp_origin_capital
+}
+
+# ----------------------------
+# Flag: Eliminar Origen MPP (Capital)
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_remove_flags_mpp_origin_capital
+# type           : flag
+# name           : Eliminar Origen MPP Capital
+# target         : planet
+# description    : Elimina la marca de capital de origen MPP.
+# related_effects: mpp_remove_flags_mpp_origin
+# notes          : 
+# END_INFO
+mpp_remove_flags_mpp_capital_origin = {
+    remove_planet_flag = mpp_flag_mpp_origin_capital
+}
+
+# ----------------------------
+# Flag: Líder MPP
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_set_flags_mpp_leader_approved
+# type           : flag
+# name           : Líder MPP Aprobado
+# target         : country,                                            ruler, leader, pop
+# description    : Marca que el país posee un líder MPP aprobado, habilitando potenciales en tecnologías y agendas.
+# related_effects: mpp_add_mpp_tech_potential mpp_unlock_mpp_agenda
+# notes          : 
 # END_INFO
 mpp_set_flags_mpp_leader_approved = {
     set_country_flag = mpp_flag_mpp_leader_approved
 }
 
 # ----------------------------
-# Flag: Eliminar Líder Parangon
+# Flag: Eliminar Líder MPP
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_remove_flags_mpp_leader_approved
-#   type: flag
-#   name: Eliminar Líder Parangon
-#   target: country
-#   description: Elimina la marca de líder Parangon aprobado.
-#   related_effects: mpp_set_flags_mpp_leader_approved
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_remove_flags_mpp_leader_approved
+# type           : flag
+# name           : Eliminar Líder MPP
+# target         : country
+# description    : Elimina la marca de líder MPP aprobado.
+# related_effects: mpp_set_flags_mpp_leader_approved
+# notes          : 
 # END_INFO
 mpp_remove_flags_mpp_leader_approved = {
     remove_country_flag = mpp_flag_mpp_leader_approved
@@ -101,14 +146,14 @@ mpp_remove_flags_mpp_leader_approved = {
 # Flag: Potencial Tecnológico
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_add_mpp_tech_potential
-#   type: flag
-#   name: Potencial Tecnológico MPP
-#   target: country
-#   description: Otorga al país el potencial para desbloquear tecnologías MPP.
-#   related_effects: mpp_set_flags_mpp_leader_approved mpp_add_techs_basic_robot
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_add_mpp_tech_potential
+# type           : flag
+# name           : Potencial Tecnológico MPP
+# target         : country
+# description    : Otorga al país el potencial para desbloquear tecnologías MPP.
+# related_effects: mpp_set_flags_mpp_leader_approved mpp_add_techs_basic_robot
+# notes          : 
 # END_INFO
 mpp_add_mpp_tech_potential = {
     set_country_flag = mpp_flag_has_mpp_tech_potential
@@ -118,14 +163,14 @@ mpp_add_mpp_tech_potential = {
 # Flag: Eliminar Potencial Tecnológico
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_remove_mpp_tech_potential
-#   type: flag
-#   name: Eliminar Potencial Tecnológico MPP
-#   target: country
-#   description: Elimina el potencial tecnológico MPP del país.
-#   related_effects: mpp_add_mpp_tech_potential
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_remove_mpp_tech_potential
+# type           : flag
+# name           : Eliminar Potencial Tecnológico MPP
+# target         : country
+# description    : Elimina el potencial tecnológico MPP del país.
+# related_effects: mpp_add_mpp_tech_potential
+# notes          : 
 # END_INFO
 mpp_remove_mpp_tech_potential = {
     remove_country_flag = mpp_flag_has_mpp_tech_potential
@@ -135,14 +180,14 @@ mpp_remove_mpp_tech_potential = {
 # Flag: Agendas MPP
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_unlock_mpp_agenda
-#   type: flag
-#   name: Habilitar Agenda MPP
-#   target: country
-#   description: Habilita la agenda MPP para el país.
-#   related_effects: mpp_set_flags_mpp_leader_approved
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_unlock_mpp_agenda
+# type           : flag
+# name           : Habilitar Agenda MPP
+# target         : country
+# description    : Habilita la agenda MPP para el país.
+# related_effects: mpp_set_flags_mpp_leader_approved
+# notes          : 
 # END_INFO
 mpp_unlock_mpp_agenda = {
     set_country_flag = mpp_flag_has_mpp_agenda
@@ -152,35 +197,35 @@ mpp_unlock_mpp_agenda = {
 # Flag: Bloquear Agenda MPP
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_lock_mpp_agenda
-#   type: flag
-#   name: Bloquear Agenda MPP
-#   target: country
-#   description: Deshabilita la agenda MPP del país.
-#   related_effects: mpp_unlock_mpp_agenda
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_lock_mpp_agenda
+# type           : flag
+# name           : Bloquear Agenda MPP
+# target         : country
+# description    : Deshabilita la agenda MPP del país.
+# related_effects: mpp_unlock_mpp_agenda
+# notes          : 
 # END_INFO
 mpp_lock_mpp_agenda = {
     remove_country_flag = mpp_flag_has_mpp_agenda
 }
 
-# ================================================
+# ================================================ 
 # SECCIÓN: TECNOLOGÍAS
-# ================================================
+# ================================================ 
 
 # ----------------------------
 # Tecnologías básicas de robots
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_add_techs_basic_robot
-#   type: technology
-#   name: Tecnologías Básicas de Robots
-#   target: country
-#   description: Desbloquea tecnologías iniciales para robótica.
-#   related_effects: tech_powered_exoskeletons tech_robotic_workers tech_assembly_pattern
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_add_techs_basic_robot
+# type           : technology
+# name           : Tecnologías Básicas de Robots
+# target         : country
+# description    : Desbloquea tecnologías iniciales para robótica.
+# related_effects: tech_powered_exoskeletons tech_robotic_workers tech_assembly_pattern
+# notes          : 
 # END_INFO
 mpp_add_techs_basic_robot = {
     give_technology = { tech = tech_powered_exoskeletons message = no }
@@ -192,14 +237,14 @@ mpp_add_techs_basic_robot = {
 # Tecnologías de origen MPP
 # ----------------------------
 # BEGIN_INFO
-#   info_type: scripted_effect
-#   id: mpp_add_techs_mpp_origin
-#   type: technology
-#   name: Tecnologías de Origen MPP
-#   target: country
-#   description: Desbloquea tecnologías específicas de origen MPP.
-#   related_effects: tech_archaeostudies tech_orbital_trash_dispersal
-#   notes:
+# info_type      : scripted_effect
+# id             : mpp_add_techs_mpp_origin
+# type           : technology
+# name           : Tecnologías de Origen MPP
+# target         : country
+# description    : Desbloquea tecnologías específicas de origen MPP.
+# related_effects: tech_archaeostudies tech_orbital_trash_dispersal
+# notes          : 
 # END_INFO
 mpp_add_techs_mpp_origin = {
     give_technology = { tech = tech_archaeostudies message = no }

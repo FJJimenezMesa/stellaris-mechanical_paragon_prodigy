@@ -2,57 +2,95 @@
 # Scripted Triggers MPP
 # ================================================
 
-@mppTriggersFlagsList {
-    mpp_has_origin_mpp                 # Comprobar Origen MPP
-    mpp_has_mpp_leader_approved        # Comprobar Líder Parangon aprobado
-    mpp_has_tech_potential             # Comprobar Potencial Tecnológico MPP
-    mpp_has_mpp_agenda                 # Comprobar Agenda MPP desbloqueada
-    mpp_can_unlock_mpp_agenda          # Comprobar si se puede desbloquear Agenda MPP
-    mpp_can_unlock_agenda_mpp_parangon_dlc # Comprobar desbloqueo DLC Parangon
-}
-
-@mppHasTraitList {
-    mpp_has_trait_nano_vector          # Comprobar trait Nano Vector (biológico)
-    mpp_has_trait_nano_symbiosis       # Comprobar trait Nano Symbiosis (mecánico)
-    mpp_has_trait_nano_operancy        # Comprobar trait Nano Operancy (robótico)
-}
-
-@mppHasLeaderTraitList {
-    mpp_has_leader_trait_mpp_leader       # Comprobar líder con trait MPP Leader
-    mpp_has_leader_trait_has_mpp_leader   # Comprobar líder con trait Has MPP Leader
-}
-
 # ================================================
 # SECCIÓN: FLAGS / CHECKS
 # ================================================
 
 # ----------------------------
-# Trigger: Origen MPP
+# Trigger: Cualquier Origen MPP
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_has_origin_mpp
+#   id: mpp_any_mpp_origin
 #   type: condition
-#   name: Comprobar Origen MPP
-#   target: ruler
-#   description: Comprueba si el líder posee el origen MPP.
+#   name: Comprobar cualquier Origen MPP
+#   target: global
+#   description: Comprueba si está definida la flag global mpp_flag_mpp_origin.
 #   related_effects: mpp_set_flags_mpp_origin
-#   notes:
+#   notes: Devuelve TRUE si el origen MPP fue marcado de forma global.
 # END_INFO
-mpp_has_origin_mpp = {
-    has_origin = mpp_mpp_origin
+mpp_any_mpp_origin = {
+    has_global_flag = mpp_flag_mpp_origin
 }
 
 # ----------------------------
-# Trigger: Líder Parangon Aprobado
+# Trigger: Sistema Origen MPP
+# ----------------------------
+# BEGIN_INFO
+#   info_type: scripted_trigger
+#   id: mpp_has_system_mpp
+#   type: condition
+#   name: Comprobar Sistema Origen MPP
+#   target: country
+#   description: Comprueba si el país/ruler tiene algún sistema marcado con la flag mpp_flag_mpp_system_origin.
+#   related_effects: mpp_set_flags_mpp_origin
+#   notes:
+# END_INFO
+mpp_has_mpp_origin = {
+    OR = {
+        has_origin = mpp_origin_mpp_sytem_origin
+    }
+}
+
+# ----------------------------
+# Trigger: Capital Origen MPP
+# ----------------------------
+# BEGIN_INFO
+#   info_type: scripted_trigger
+#   id: mpp_in_mpp_capital_origin
+#   type: condition
+#   name: Comprobar Capital Origen MPP
+#   target: country
+#   description: Comprueba si la capital del país/ruler tiene la flag mpp_flag_mpp_origin_capital.
+#   related_effects: mpp_set_flags_mpp_origin
+#   notes:
+# END_INFO
+# ============================================================
+mpp_has_system_mpp = {
+    any_system = {
+        has_star_flag = mpp_flag_mpp_system_origin
+        is_owned_by = root
+    }
+}
+
+# ============================================================
+# INFO: mpp_in_mpp_capital_origin
+# Comprueba si la capital del país (o ruler/country)
+# está marcada con la flag mpp_flag_mpp_origin_capital
+#
+# Uso esperado:
+#   trigger = { mpp_in_mpp_capital_origin = yes }
+#
+# Devuelve:
+#   TRUE  -> si el sistema capital tiene la flag.
+#   FALSE -> en cualquier otro caso.
+# ============================================================
+mpp_in_mpp_capital_origin = {
+    capital_scope = {
+        has_planet_flag = mpp_flag_mpp_origin_capital
+    }
+}
+
+# ----------------------------
+# Trigger: Líder MPP Aprobado
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
 #   id: mpp_has_mpp_leader_approved
 #   type: condition
-#   name: Comprobar Líder Parangon
+#   name: Comprobar Líder MPP
 #   target: country
-#   description: Comprueba si el país tiene la bandera de líder Parangon aprobado.
+#   description: Comprueba si el país tiene la bandera de líder MPP aprobado.
 #   related_effects: mpp_set_flags_mpp_leader_approved
 #   notes:
 # END_INFO
@@ -65,7 +103,7 @@ mpp_has_mpp_leader_approved = {
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_has_tech_potential
+#   id: mpp_has_mpp_tech_potential
 #   type: condition
 #   name: Comprobar Potencial Tecnológico MPP
 #   target: country
@@ -73,9 +111,9 @@ mpp_has_mpp_leader_approved = {
 #   related_effects: mpp_add_mpp_tech_potential
 #   notes:
 # END_INFO
-mpp_has_tech_potential = {
-    OR = { 
-        mpp_has_origin_mpp = yes
+mpp_has_mpp_tech_potential = {
+    OR = {
+        mpp_has_mpp_origin = yes
         mpp_has_mpp_leader_approved = yes
     }
 }
@@ -116,19 +154,19 @@ mpp_can_unlock_mpp_agenda = {
 }
 
 # ----------------------------
-# Trigger: Puede Desbloquear Agenda MPP DLC Parangon
+# Trigger: Puede Desbloquear Agenda MPP DLC Paragon
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_can_unlock_agenda_mpp_parangon_dlc
+#   id: mpp_can_unlock_agenda_mpp_paragon_dlc
 #   type: condition
-#   name: Comprobar Desbloqueo Agenda DLC Parangon
+#   name: Comprobar Desbloqueo Agenda DLC Paragon
 #   target: country
-#   description: Comprueba si el país puede desbloquear agendas MPP de la DLC Parangon.
+#   description: Comprueba si el país puede desbloquear agendas MPP de la DLC Paragon.
 #   related_effects: mpp_can_unlock_mpp_agenda
 #   notes:
 # END_INFO
-mpp_can_unlock_agenda_mpp_parangon_dlc = {
+mpp_can_unlock_mpp_agenda_paragon_dlc = {
     mpp_can_unlock_mpp_agenda = yes
     has_paragon_dlc = yes
 }
@@ -142,7 +180,7 @@ mpp_can_unlock_agenda_mpp_parangon_dlc = {
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_has_trait_nano_vector
+#   id: mpp_has_mpp_trait_nano_vector
 #   type: condition
 #   name: Comprobar Trait Nano Vector
 #   target: species
@@ -150,11 +188,11 @@ mpp_can_unlock_agenda_mpp_parangon_dlc = {
 #   related_effects: mpp_trait_nano_vector
 #   notes:
 # END_INFO
-mpp_has_trait_nano_vector = {
+mpp_has_mpp_trait_nano_vector = {
     if = {
         limit = {
-            archetype = BIOLOGICAL
-            has_trait = mpp_trait_nano_vector 
+            is_archetype = BIOLOGICAL
+            has_trait = mpp_trait_nano_vector
         }
     }
 }
@@ -164,7 +202,7 @@ mpp_has_trait_nano_vector = {
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_has_trait_nano_symbiosis
+#   id: mpp_has_mpp_trait_nano_symbiosis
 #   type: condition
 #   name: Comprobar Trait Nano Symbiosis
 #   target: species
@@ -172,11 +210,11 @@ mpp_has_trait_nano_vector = {
 #   related_effects: mpp_trait_nano_symbiosis
 #   notes:
 # END_INFO
-mpp_has_trait_nano_symbiosis = {
+mpp_has_mpp_trait_nano_symbiosis = {
     if = {
         limit = {
-            archetype = MACHINE
-            has_trait = mpp_trait_nano_symbiosis 
+            is_archetype = MACHINE
+            has_trait = mpp_trait_nano_symbiosis
         }
     }
 }
@@ -186,7 +224,7 @@ mpp_has_trait_nano_symbiosis = {
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_has_trait_nano_operancy
+#   id: mpp_has_mpp_trait_nano_operancy
 #   type: condition
 #   name: Comprobar Trait Nano Operancy
 #   target: species
@@ -194,11 +232,11 @@ mpp_has_trait_nano_symbiosis = {
 #   related_effects: mpp_trait_nano_operancy
 #   notes:
 # END_INFO
-mpp_has_trait_nano_operancy = {
+mpp_has_mpp_trait_nano_operancy = {
     if = {
         limit = {
-            archetype = ROBOT
-            has_trait = mpp_trait_nano_operancy 
+            is_archetype = ROBOT
+            has_trait = mpp_trait_nano_operancy
         }
     }
 }
@@ -208,7 +246,7 @@ mpp_has_trait_nano_operancy = {
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_has_leader_trait_mpp_leader
+#   id: mpp_has_mpp_leader_trait_mpp_leader
 #   type: condition
 #   name: Comprobar Líder MPP
 #   target: leader
@@ -216,8 +254,8 @@ mpp_has_trait_nano_operancy = {
 #   related_effects: mpp_leader_trait_mpp_leader
 #   notes:
 # END_INFO
-mpp_has_leader_trait_mpp_leader = {
-    has_trait = mpp_leader_trait_mpp_leader 
+mpp_has_leader_mpp_trait_mpp_leader = {
+    has_trait = mpp_leader_trait_mpp_leader
 }
 
 # ----------------------------
@@ -225,7 +263,7 @@ mpp_has_leader_trait_mpp_leader = {
 # ----------------------------
 # BEGIN_INFO
 #   info_type: scripted_trigger
-#   id: mpp_has_leader_trait_has_mpp_leader
+#   id: mpp_has_mpp_leader_trait_has_mpp_leader
 #   type: condition
 #   name: Comprobar Líder con Trait MPP
 #   target: leader
@@ -233,6 +271,7 @@ mpp_has_leader_trait_mpp_leader = {
 #   related_effects: mpp_leader_trait_has_mpp_leader
 #   notes:
 # END_INFO
-mpp_has_leader_trait_has_mpp_leader = {
-    has_trait = mpp_leader_trait_has_mpp_leader 
+mpp_has_mpp_leader_trait_has_mpp_leader = {
+    has_trait = mpp_leader_trait_has_mpp_leader
 }
+
