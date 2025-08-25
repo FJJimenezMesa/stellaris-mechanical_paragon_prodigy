@@ -1,28 +1,119 @@
-# Archivos temporales de VS Code
+# =========================================
+# IDEs
+# =========================================
+# PhpStorm / JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
 .vscode/
 *.code-workspace
 
-# Archivos de logs y temporales
-*.log
-*.tmp
-*.bak
+# Sublime
+*.sublime-project
+*.sublime-workspace
 
-# Archivos de Python generados (si usas scripts como el de formateo)
+# =========================================
+# Sistema operativo
+# =========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+__MACOSX/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.nfs*
+
+# =========================================
+# Lenguajes / Dependencias
+# =========================================
+# PHP / Composer
+vendor/
+composer.lock
+.env
+.env.local
+.env.*.local
+.phpunit.result.cache
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json
+yarn.lock
+
+# Python
 __pycache__/
 *.pyc
 
-# Archivos específicos de Stellaris que no quieres versionar
-*.sav          # partidas guardadas
-*.log          # logs del juego
-*.backup       # backups del juego/mod
-*.bin          # binarios del juego (si los modificas por algún motivo)
-
-# Carpeta de exportación del mod (si creas una versión empaquetada)
-export/
-
-# Otros archivos generados automáticamente
-.DS_Store      # macOS
-Thumbs.db      # Windows
-
-# Dependencias externas (si las hubiera)
+# Dependencias externas (personalizadas)
 libs/
+
+# =========================================
+# Archivos de logs, temporales y caché
+# =========================================
+logs/
+*.log
+*.tmp
+*.bak
+*.old
+*.orig
+*.rej
+*.swp
+*.swo
+*.swn
+.cache/
+.cache-loader/
+coverage/
+build/
+dist/
+tmp/
+temp/
+
+# =========================================
+# Modding Stellaris
+# =========================================
+*.sav       # partidas guardadas
+*.backup    # backups del juego/mod
+*.bin       # binarios del juego
+export/     # carpeta de exportación del mod
+
+# Archivos del launcher / caché local
+paradox-launcher.log
+pdx_settings.json
+pdx_local_cache/
+ugc_content/
+dlc_load.json
+
+# =========================================
+# Otros binarios y compresiones
+# =========================================
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+
+# =========================================
+# Git
+# =========================================
+.gitattributes
