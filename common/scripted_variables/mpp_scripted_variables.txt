@@ -6,9 +6,9 @@
 # ================================
 
 @mpp_tech_default_weight = 0.8                  # Peso base general para que la tech aparezca en el árbol
-@mpp_tech_default_ai_weight = 0.6               # Peso base para que la AI elija la tech
+@mpp_tech_default_ai_weight_factor = 0.6               # Peso base para que la AI elija la tech
 @mpp_tech_base_weight = 1.0                     # Peso base general para techs repetibles
-@mpp_tech_base_ai_weight = 0.8                  # Peso base AI para techs repetibles
+@mpp_tech_base_ai_weight_factor = 0.8                  # Peso base AI para techs repetibles
 @mpp_tech_base_cost = 1000                      # Coste base para tecnologías repetibles
 @mpp_tech_t4_cost = 3000                        # Coste inicial para techs Tier 4
 @mpp_tech_t5_cost = 5000                        # Coste inicial para techs Tier 5

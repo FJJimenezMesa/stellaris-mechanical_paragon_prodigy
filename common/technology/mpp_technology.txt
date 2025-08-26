@@ -66,7 +66,6 @@ mpp_tech_machine_patterns = {
     }
 
     # -----
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -83,6 +82,9 @@ mpp_tech_machine_patterns = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -116,7 +118,6 @@ mpp_tech_machine_patterns_advanced = {
 
     # -----
     is_rare = yes
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -133,6 +134,9 @@ mpp_tech_machine_patterns_advanced = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -163,7 +167,6 @@ mpp_tech_robotic_diversity = {
     }
 
     # -----
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -180,6 +183,9 @@ mpp_tech_robotic_diversity = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -210,7 +216,6 @@ mpp_tech_biological_patterns = {
     }
 
     # -----
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -227,6 +232,9 @@ mpp_tech_biological_patterns = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -257,7 +265,6 @@ mpp_tech_genetic_diversity = {
     }
 
     # -----
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -274,6 +281,9 @@ mpp_tech_genetic_diversity = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -305,7 +315,6 @@ mpp_tech_leadership_expansion = {
     }
 
     # -----
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -322,6 +331,9 @@ mpp_tech_leadership_expansion = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -354,7 +366,6 @@ mpp_tech_leadership_expansion_advanced = {
 
     # -----
     is_rare = yes
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -371,6 +382,9 @@ mpp_tech_leadership_expansion_advanced = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -402,7 +416,6 @@ mpp_tech_diplomatic_expansion = {
     }
 
     # -----
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -419,6 +432,9 @@ mpp_tech_diplomatic_expansion = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -452,7 +468,6 @@ mpp_tech_diplomatic_expansion_advanced = {
 
     # -----
     is_rare = yes
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -469,6 +484,9 @@ mpp_tech_diplomatic_expansion_advanced = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -500,7 +518,6 @@ mpp_tech_starbase_expansion = {
     }
 
     # -----
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -517,6 +534,9 @@ mpp_tech_starbase_expansion = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
@@ -551,7 +571,6 @@ mpp_tech_starbase_advanced_expansion = {
 
     # -----
     is_rare = yes
-    ai_weight = @mpp_tech_default_ai_weight
     weight = @mpp_tech_default_weight
     weight_groups = {
         repeatable
@@ -568,6 +587,9 @@ mpp_tech_starbase_advanced_expansion = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
             mpp_in_mpp_capital_origin = yes
         }
+    }
+    ai_weight = {
+        factor = @mpp_tech_base_ai_weight_factor
     }
 }
 
