@@ -1,0 +1,15 @@
+# ================================
+# 📐 Scripted Values para lógica de Traits MPP
+# ================================
+
+mpp_purge_all_bad_traits_exp_change_total = {
+    base = @mpp_remove_trait_base_exp             # Penalización base por purga
+    complex_trigger_modifier = {                  # Suma -300 por cada trait negativo (ignora tiers)
+        trigger = num_leader_traits
+        parameters = {
+            negative = yes
+            count_tiers = no
+        }
+        mode = add
+    }
+}
