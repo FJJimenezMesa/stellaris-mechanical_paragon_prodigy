@@ -234,7 +234,7 @@ mpp_add_techs_basic_robot = {
 }
 
 # ----------------------------
-# Tecnologías de origen MPP
+# ⚙️ Scripted Effect: Tecnologías de origen MPP
 # ----------------------------
 # BEGIN_INFO
 # info_type      : scripted_effect
@@ -249,4 +249,154 @@ mpp_add_techs_basic_robot = {
 mpp_add_techs_mpp_origin = {
     give_technology = { tech = tech_archaeostudies message = no }
     give_technology = { tech = tech_orbital_trash_dispersal message = no }
+}
+
+
+# ----------------------------
+# ⚙️ Scripted Effect: Restaurar Traits Negativos Pendientes
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_purge_pending_negative_traits_effect
+# type           : leader
+# name           : Restaurar Traits Negativos Pendientes
+# target         : leader
+# description    : Restaura el contador de traits negativos pendientes y aplica una pequeña probabilidad de perder uno de esos traits.
+# related_effects: mpp_purge_negative_traits_effect, mpp_purge_all_negative_traits_effect
+# notes          :
+#   • Cambia el valor de leader_pending_negative_traits_unmodified.
+#   • 10% de probabilidad de perder un trait pendiente.
+# END_INFO
+mpp_purge_pending_negative_traits_effect = {
+    hidden_effect = {
+        # Restaurar traits pendientes con pequeña probabilidad de perder alguno
+        change_variable = {
+            which = leader_pending_negative_tra its_unmodified
+            value = value:leader_num_negative_leader_trait_tiers
+        }
+        random = {
+            chance = 10
+            subtract_variable = {
+                which = leader_pending_negative_traits_unmodified
+                value = 1
+            }
+        }
+    }
+}
+
+# ----------------------------
+# ⚙️ Scripted Effect: Purga Total de Traits Negativos
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_purge_all_negative_traits_effect
+# type           : leader
+# name           : Purga Total de Traits Negativos
+# target         : leader
+# description    : Elimina todos los traits negativos de un líder y ajusta su experiencia según el número de traits eliminados.
+# related_effects: mpp_purge_pending_negative_traits_effect
+# notes          :
+#   • Llama internamente a mpp_purge_pending_negative_traits_effect.
+#   • Ajusta la experiencia usando mpp_purge_all_bad_traits_exp_change_total.
+# END_INFO
+mpp_purge_all_negative_traits_effect = {
+    hidden_effect = {
+        add_experience = value:mpp_purge_all_bad_traits_exp_change_total
+    }
+    mpp_purge_pending_negative_traits_effect = yes
+
+    remove_trait = all_negative
+}
+
+# ----------------------------
+# ⚙️ Scripted Effect: Purga Traits Negativos
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_purge_negative_traits_effect
+# type           : leader
+# name           : Purga de Traits Negativos
+# target         : leader
+# description    : Efecto combinado que gestiona la purga de traits negativos de un líder.
+#                  Primero actualiza el contador de traits pendientes, y después aplica la lógica de purga parcial
+#                  para reducir o eliminar los traits negativos actuales con las probabilidades definidas.
+# related_effects: mpp_purge_pending_negative_traits_effect, mpp_purge_random_negative_traits_effect
+# notes          :
+#   • Ejecuta mpp_purge_pending_negative_traits_effect para ajustar el contador de traits pendientes.
+#   • Luego ejecuta mpp_purge_random_negative_traits_effect para aplicar la lógica de eliminación/retención.
+#   • Funciona como wrapper central de la purga "normal" (no total).
+#   • Ajusta experiencia del líder en función de los traits eliminados o añadidos.
+# END_INFO
+mpp_purge_negative_traits_effect = {
+    mpp_purge_pending_negative_traits_effect = yes
+
+    mpp_purge_random_negative_traits_effect = yes
+}
+
+# ----------------------------
+# ⚙️ Scripted Effect: Purga Aleatoria de Traits Negativos
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_purge_random_negative_traits_effect
+# type           : leader
+# name           : Purga Aleatoria de Traits Negativos
+# target         : leader
+# description    : Quita la mayoría de traits negativos del líder dejando uno o más según la lógica de chance.
+# related_effects: mpp_purge_negative_traits_effect
+# notes          :
+#   • Guarda el número original de traits negativos en temp_negatives_count.
+#   • Si hay 1 trait negativo, se aplica @mpp_purge_random_negative_trait_chance de eliminarlo.
+#   • Si hay más de 1, se eliminan todos, luego se añade N-1 traits negativos.
+#   • El random final realiza un "shuffle", añadiendo con chance @mpp_purge_random_negative_trait_chance un trait extra.
+#   • Ajusta la experiencia según los traits eliminados o añadidos.
+# END_INFO
+mpp_purge_random_negative_traits_effect = {
+    # Guardar número original de traits negativos para cálculo de experiencia
+    set_variable = {
+        which = temp_negatives_count
+        value = value:leader_num_negative_leader_trait_tiers
+    }
+
+    hidden_effect = {
+        # Caso: solo 1 trait negativo
+        if = {
+            limit = {
+                check_variable = {
+                    which = temp_negatives_count value = 1
+                }
+            }
+            random = {
+                chance = @mpp_purge_random_negative_trait_chance                   # 50% de chance de eliminar ese único trait
+                remove_trait = all_negative
+                add_experience = value:mpp_purge_all_bad_traits_exp_change_total
+            }
+        }
+        # Más de 1 trait negativo
+        else = {
+            # Más de 1 trait negativo: eliminar todos
+            remove_trait = all_negative
+            add_experience = value:mpp_purge_all_bad_traits_exp_change_total
+
+            if = {
+                limit = {
+                    check_variable = {
+                        which = temp_negatives_count value > 1
+                    }
+                }
+                subtract_variable = { which = temp_negatives_count value = 1 }
+                while = {
+                    count = value:temp_negatives_count
+                    add_trait = "random_negative"
+                    add_experience = @mpp_trait_base_exp
+                }
+            }
+
+            random = {
+                chance = @mpp_purge_random_negative_trait_chance
+                add_trait = "random_negative"
+                add_experience = @mpp_trait_base_exp
+            }
+        }
+    }
 }

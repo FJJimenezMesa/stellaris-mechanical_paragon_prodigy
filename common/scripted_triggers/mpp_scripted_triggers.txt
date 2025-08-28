@@ -275,3 +275,79 @@ mpp_has_mpp_leader_trait_has_mpp_leader = {
     has_trait = mpp_leader_trait_has_mpp_leader
 }
 
+# ----------------------------
+# ⚙️ Scripted Trigger: Imperio Máquina
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_is_machine_empire
+# name           : Imperio Máquina
+# target         : empire
+# type           : condition
+# related_effects: mpp_agenda_purge_bad_traits
+# description    : Comprueba si el imperio es de tipo máquina (gestalt o no).
+# notes          :
+#   • Puede usarse para filtrar agendas, eventos y decisiones específicas de imperios máquina.
+# END_INFO
+mpp_is_machine_empire = {
+    has_authority = auth_machine_intelligence
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Imperio Máquina sin Gestalt
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_is_machine_empire_no_gestal
+# name           : Imperio Máquina sin Gestalt
+# target         : empire
+# type           : condition
+# related_effects: mpp_agenda_purge_bad_traits
+# description    : Comprueba si el imperio es máquina pero excluye colmenas (gestalt biológicas).
+# notes          :
+#   • Útil para limitar agendas o eventos solo a máquinas “normales”.
+# END_INFO
+mpp_is_machine_empire_no_gestal = {
+    has_authority = auth_machine_intelligence
+    NOT = { has_authority = auth_hive_mind }
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Imperio Biológico
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_is_biological_empire
+# name           : Imperio Biológico
+# target         : empire
+# type           : condition
+# related_effects: mpp_agenda_purge_bad_traits
+# description    : Comprueba si el imperio es biológico, incluyendo colmenas (gestalt biológicas).
+# notes          :
+#   • Puede usarse para agendas y eventos que afecten tanto a imperios normales como colmenas.
+# END_INFO
+mpp_is_biological_empire = {
+    OR = {
+        is_regular_empire = yes
+        has_authority = auth_hive_mind
+    }
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Imperio Biológico sin Gestalt
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_is_biological_empire_no_gestal
+# name           : Imperio Biológico sin Gestalt
+# target         : empire
+# type           : condition
+# related_effects: mpp_agenda_purge_bad_traits
+# description    : Comprueba si el imperio es biológico normal, excluyendo colmenas y máquinas gestalt.
+# notes          :
+#   • Útil para limitar agendas o eventos solo a imperios biológicos “tradicionales”.
+# END_INFO
+mpp_is_biological_empire_no_gestal = {
+    is_regular_empire = yes
+    NOT = { has_authority = auth_hive_mind }
+}

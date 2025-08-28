@@ -21,7 +21,31 @@
 @mpp_tech_mpp_system_rep_weight_factor = 0.2    # Aumento de peso si el páis tiene un sistema MPP
 
 
+# ================================
+# 🏛️ Variables base para agendas MPP
+# ================================
 
-tech = {
-    valor1 = 1
+@mpp_agenda_default_ai_weight_factor = 0.6      # Peso base AI por defecto para agendas
+@mpp_agenda_base_cost = 1000                    # Coste base para agendas
+@mpp_agenda_base_ai_weight_factor = 0.8         # Peso base AI para agendas repetibles
+
+# ----------------
+# 📜 Lista de tecnologías MPP
+# ----------------
+
+mpp_agenda_list = {
+    mpp_agenda_unlock_council_slot      = "mpp_agenda_unlock_council_slot"
+    mpp_agenda_purge_bad_traits         = "mpp_agenda_purge_bad_traits"
 }
+
+# ================================
+# ⚙️ Variables base para lógica de Traits MPP
+# ================================
+
+@mpp_trait_base_exp = 300                               # Experiencia otorgada al añadir un trait negativo
+@mpp_remove_trait_base_exp = -300                       # Experiencia restada al eliminar un trait negativo
+@mpp_purge_all_negative_trait_chance = 75               # % de probabilidad de eliminar todos los traits negativos
+@mpp_purge_random_negative_trait_chance = 50            # % de probabilidad de eliminar 1 trait negativo tras una purga parcial
+@mpp_purge_negative_trait_nano_vector_chance = 50       # % de probabilidad de eliminar 1 trait negativo asociado a Nano Vector
+@mpp_purge_negative_trait_nano_symbiosis_chance = 95    # % de probabilidad de eliminar 1 trait negativo asociado a Nano Symbiosis
+@mpp_modifier_leader_research_bonus = 5                 # Multiplicador de bonificaciones de investigación de líder

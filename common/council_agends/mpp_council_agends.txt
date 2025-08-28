@@ -1,15 +1,13 @@
 # ================================
-# Variables base para agendas MPP
+# Agendas MPP
 # ================================
-@base_ethic_agenda_cost = 1000      	# Costo base para desbloqueos de agendas relacionadas con Parangon
-@base_ai_weight = 0               		# Peso base AI (probabilidad de investigación automática)
-@default_ai_weight = @base_ai_weight  	# Peso AI por defecto
+
 
 # BEGIN_LORE_mpp_agenda_unlock_council_slot
 # LORE_TYPE: AGENDA
 # ================================
 # 🏛️ Agenda: mpp_agenda_unlock_council_slot
-# "Consejo Parangon: Asesor Extra"
+# "Consejo MPP: Asesor Extra"
 # ================================
 # Lore:
 #   Esta agenda representa la iniciativa del líder Parangón para reforzar su consejo imperial.
@@ -46,20 +44,156 @@
 #
 # ================================
 # END_LORE_mpp_agenda_unlock_council_slot
+# ----------------------------
+# 🏛️ Agenda: Desbloqueo de Slot en el Consejo MPP
+# ----------------------------
+# BEGIN_INFO
+# info_type      : agenda
+# id             : mpp_agenda_unlock_council_slot
+# type           : country
+# name           : Desbloqueo de Slot en el Consejo
+# target         : country
+# duration       : permanent
+# prerequisites  : mpp_can_unlock_agenda_paragon_dlc, country_num_unlockable_council_slots > 0
+# related_effects: unlock_council_slots
+# effect_summary : Desbloquea un slot adicional en el consejo del imperio
+# description    : Permite aumentar el número de slots disponibles en el consejo del imperio para asignar líderes.
+# application    : Aplica al país que cumple los requisitos de potencial
+# focus          : Expansión de capacidad en el consejo
+# tags           : council, slot, expansion
+# notes          :
+#   • El efecto principal es unlock_council_slots = 1
+#   • Se activa únicamente si el país tiene slots desbloqueables disponibles
+# END_INFO
+
 mpp_agenda_unlock_council_slot = {
-    agenda_cost = @base_ethic_agenda_cost
-	ai_weight = @default_ai_weight
+    agenda_cost = @mpp_agenda_base_cost
 
-    potential = { 
-		mpp_can_unlock_agenda_parangon_dlc = yes 
-    	check_variable_arithmetic = { which = value:country_num_unlockable_council_slots value > 0 }
-	}
+    potential = {
+        mpp_can_unlock_agenda_paragon_dlc = yes
+        check_variable_arithmetic = { which = value:country_num_unlockable_council_slots value > 0 }
+    }
 
-    allow = { always = yes }
-
-    modifiers = { }
+    modifiers = {}
+    # finish_modifier = agenda_gestalt_purge_traits_finish ??
 
     effect = {
         unlock_council_slots = 1
     }
+
+    # -----
+    allow = { always = yes }
+    ai_weight = {
+        # base = 9999 ? añadir?
+        factor = @mpp_agenda_base_ai_weight_factor
+    }
 }
+
+# ----------------------------
+# 🏛️ Agenda: Purga de Traits Negativos MPP
+# ----------------------------
+# BEGIN_INFO
+# info_type      : agenda
+# id             : mpp_agenda_purge_bad_traits
+# name           : Purga de Traits Negativos
+# target         : leaders
+# duration       : permanent
+# prerequisites  : mpp_can_unlock_mpp_agenda, mpp_is_machine_empire_no_gestal, mpp_is_biological_empire_no_gestal
+# effect_summary : Purga de traits negativos en líderes con MPP traits.
+# description    : Permite eliminar traits negativos de los líderes del imperio, con mayor eficacia según traits MPP.
+# application    : Aplica a líderes de imperios con traits MPP, gobernantes y no gobernantes
+# focus          : Purga de traits negativos de líderes
+# related_effects: mpp_purge_negative_traits_effect
+# tags           : machine, biological, leader
+# notes          :
+#   • Líderes gobernantes con mpp_trait_nano_symbiosis eliminan todos los traits negativos automáticamente.
+#   • Líderes gobernantes con mpp_trait_nano_vector tienen una chance de eliminar todos los traits negativos (@mpp_purge_all_negative_trait_chance%).
+#   • Líderes no gobernantes con mpp_trait_nano_vector tienen chance de purga parcial (@mpp_purge_negative_trait_nano_vector_chance%).
+#   • Líderes no gobernantes con mpp_trait_nano_symbiosis tienen casi 100% de chance de purga parcial (@mpp_purge_negative_trait_nano_symbiosis_chance%).
+# END_INFO
+mpp_agenda_purge_bad_traits = {
+    agenda_cost = @mpp_agenda_base_cost
+
+    potential = {
+        mpp_can_unlock_mpp_agenda = yes
+        OR = {
+            mpp_is_machine_empire_no_gestal = yes
+            mpp_is_biological_empire_no_gestal = yes
+        }
+    }
+
+    allow = { always = yes }
+
+    modifiers = {}  # No hay modificadores mientras la agenda está activa
+
+    finish_modifier = mpp_agenda_purge_bad_traits_finish  # Efecto final al terminar la agenda
+
+    effect = {
+        custom_tooltip = council_agenda_mpp_purge_bad_traits_effect_desc
+
+        every_owned_leader = {
+
+            # -----------------------------------
+            # Líderes gobernantes (ruler)
+            # -----------------------------------
+
+            # Ruler con trait Nano Symbiosis → elimina todos los traits negativos automáticamente
+            if = {
+                limit = {
+                    ruler = yes
+                    has_trait = mpp_trait_nano_symbiosis
+                }
+                effect = { mpp_purge_all_negative_traits_effect = yes }
+            }
+
+            # Ruler con trait Nano Vector → chance de eliminar todos los traits negativos
+            if = {
+                limit = {
+                    ruler = yes
+                    has_trait = mpp_trait_nano_vector
+                }
+                random = {
+                    chance = @mpp_purge_all_negative_trait_chance
+                    effect = { mpp_purge_all_negative_traits_effect = yes }
+                }
+            }
+
+            # -----------------------------------
+            # Líderes no gobernantes (non-ruler)
+            # -----------------------------------
+
+            # Non-ruler con trait Nano Vector → chance de purga parcial de traits negativos
+            if = {
+                limit = {
+                    ruler = no
+                    has_trait = mpp_trait_nano_vector
+                    num_leader_traits = {
+                        value > 0
+                        negative = yes
+                    }
+                }
+                random = {
+                    chance = @mpp_purge_negative_trait_nano_vector_chance
+                    effect = { mpp_purge_negative_traits_effect = yes }
+                }
+            }
+
+            # Non-ruler con trait Nano Symbiosis → chance de purga parcial de traits negativos
+            if = {
+                limit = {
+                    ruler = no
+                    has_trait = mpp_trait_nano_symbiosis
+                    num_leader_traits = {
+                        value > 0
+                        negative = yes
+                    }
+                }
+                random = {
+                    chance = @mpp_purge_negative_trait_nano_symbiosis_chance
+                    effect = { mpp_purge_negative_traits_effect = yes }
+                }
+            }
+        }
+    }
+}
+
