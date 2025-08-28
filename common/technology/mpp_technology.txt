@@ -107,7 +107,6 @@ mpp_tech_machine_patterns_advanced = {
     cost = @mpp_tech_t6_cost
 
     potential = {
-        # Solo disponible si
         mpp_has_mpp_tech_potential = yes
         has_technology = mpp_tech_machine_patterns
     }

@@ -1,14 +1,11 @@
-@mppLeaderResearchBonus = 5
-
-
 # ================================
-# Variables base para tecnologías MPP
+# 🔬 Variables base para tecnologías MPP
 # ================================
 
 @mpp_tech_default_weight = 0.8                  # Peso base general para que la tech aparezca en el árbol
-@mpp_tech_default_ai_weight_factor = 0.6               # Peso base para que la AI elija la tech
+@mpp_tech_default_ai_weight_factor = 0.6        # Peso base para que la AI elija la tech
 @mpp_tech_base_weight = 1.0                     # Peso base general para techs repetibles
-@mpp_tech_base_ai_weight_factor = 0.8                  # Peso base AI para techs repetibles
+@mpp_tech_base_ai_weight_factor = 0.8           # Peso base AI para techs repetibles
 @mpp_tech_base_cost = 1000                      # Coste base para tecnologías repetibles
 @mpp_tech_t4_cost = 3000                        # Coste inicial para techs Tier 4
 @mpp_tech_t5_cost = 5000                        # Coste inicial para techs Tier 5
@@ -17,9 +14,26 @@
 @mpp_tech_t5_cost_per_level = 3500              # Incremento de coste por nivel para techs Tier 5
 @mpp_tech_t6_cost_per_level = 5000              # Incremento de coste por nivel para techs Tier 6
 @mpp_tech_rep_weight_factor = 0.2               # Reducción de peso si ya se eligió otra tech repetible
-@mpp_tech_mpp_capital_rep_weight_factor = 0.5   # Aumento de peso si la capital del páis es capital MPP
-@mpp_tech_mpp_system_rep_weight_factor = 0.2    # Aumento de peso si el páis tiene un sistema MPP
+@mpp_tech_mpp_capital_rep_weight_factor = 0.5   # Aumento de peso si la capital del país es capital MPP
+@mpp_tech_mpp_system_rep_weight_factor = 0.2    # Aumento de peso si el país tiene un sistema MPP
 
+# ----------------
+# 📜 Lista de tecnologías MPP
+# ----------------
+
+mpp_tech_list = {
+    mpp_tech_machine_patterns                   = "mpp_tech_machine_patterns"                   # Chispa Parangón: Esencia Mecánica
+    mpp_tech_machine_patterns_advanced          = "mpp_tech_machine_patterns_advanced"          # Chispa Parangon: Maestría Mecánica
+    mpp_tech_robotic_diversity                  = "mpp_tech_robotic_diversity"                  # Códice Robótico: Diversidad Innovadora
+    mpp_tech_biological_patterns                = "mpp_tech_biological_patterns"                # Genoma Parangon: Patrones Biológicos
+    mpp_tech_genetic_diversity                  = "mpp_tech_genetic_diversity"                  # Códice Genético Supremo: Diversidad Genética
+    mpp_tech_leadership_expansion               = "mpp_tech_leadership_expansion"               # Reformas de Liderazgo Parangon I
+    mpp_tech_leadership_expansion_advanced      = "mpp_tech_leadership_expansion_advanced"      # Reformas de Liderazgo Parangon II
+    mpp_tech_diplomatic_expansion               = "mpp_tech_diplomatic_expansion"               # Diplomacia Parangon: Expansión de Enviados
+    mpp_tech_diplomatic_expansion_advanced      = "mpp_tech_diplomatic_expansion_advanced"      # Diplomacia Parangon: Maestría Diplomática
+    mpp_tech_starbase_expansion                 = "mpp_tech_starbase_expansion"                 # Expansión Parangon: Capacidad de Bases Estelares
+    mpp_tech_starbase_advanced_expansion        = "mpp_tech_starbase_advanced_expansion"        # Expansión Parangon: Dominio Estelar
+}
 
 # ================================
 # 🏛️ Variables base para agendas MPP
