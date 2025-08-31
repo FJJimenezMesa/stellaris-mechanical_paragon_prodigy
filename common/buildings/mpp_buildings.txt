@@ -1,40 +1,92 @@
-building_robot_assembly_vector_upgrade = {
+# ----------------------------
+# 🏢 Building: Robot Assembly Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : building
+# id             : mpp_building_robot_assembly_vector_upgrade
+# name           : Robot Assembly Vector Upgrade
+# type           : upgrade
+# target         : planet
+# description    : Mejora la planta de ensamblaje de robots, aumentando la probabilidad de que los pops robóticos reciban el trait nano_vector.
+# prerequisites  : building_robot_assembly_complex
+# modifiers      : mpp_robot_factory_vector_upgrade
+# related_effects: mpp_events_master.11
+# tags           : planet_building, mpp, nano_traits, robot_pops
+# notes          :
+#   • Requiere la existencia de building_robot_assembly_plant en el planeta.
+#   • Incrementa las probabilidades de traits de tipo Vector en pops robóticos.
+#   • Genera costes de mineral y mantenimiento energético.
+# END_INFO
+mpp_building_robot_assembly_vector_upgrade = {
     base_buildtime = 30
     category = pop_assembly_upgrade
     icon = "gfx/interface/icons/upgrades/mpp_robot_vector.dds"
 
+    desc = {
+        text = "mpp_building_robot_assembly_vector_upgrade_desc"
+    }
+    triggered_desc = {
+        trigger = {
+            ruler = { has_trait = mpp_trait_nano_symbiosis }
+        }
+        text = "mpp_building_robot_assembly_vector_upgrade_symbiosis_desc"
+    }
+
+    # Requisitos para poder construir
     potential = {
         exists = owner
         has_building = building_robot_assembly_plant
     }
 
+    # Recursos necesarios para construcción y mantenimiento
     resources = {
         category = planet_buildings
-        cost = {
-            minerals = 250
-        }
-        upkeep = {
-            energy = 2
-        }
+        cost = { minerals = 250 }
+        upkeep = { energy = 2 }
     }
 
-    modifier = {
-        mpp_robot_factory_vector_upgrade = yes
+    # Opciones de on_build/on_destroy
+    on_built = {
+        mpp_set_flags_planet_has_robot_factory_vector_upgrade = yes
     }
-
-    prerequisites = {
-        building_robot_assembly_complex
-    }
-
-    triggered_desc = {
-        text = "Este upgrade aumenta la probabilidad de que los pops robóticos reciban nano_vector."
+    on_destroy = {
+        mpp_remove_flags_planet_has_robot_factory_vector_upgrade = yes
     }
 }
 
-building_machine_assembly_vector_upgrade = {
+# ----------------------------
+# 🏢 Building: Machine Assembly Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : building
+# id             : mpp_building_machine_assembly_vector_upgrade
+# name           : Machine Assembly Vector Upgrade
+# type           : upgrade
+# target         : planet
+# description    : Mejora la planta de ensamblaje de máquinas, aumentando la probabilidad de que los pops mecánicos reciban el trait nano_vector.
+# prerequisites  : building_machine_assembly_complex
+# modifiers      : mpp_machine_factory_vector_upgrade
+# related_effects: mpp_events_master.12
+# tags           : planet_building, mpp, nano_traits, machine_pops
+# notes          :
+#   • Requiere la existencia de building_machine_assembly_plant en el planeta.
+#   • Incrementa las probabilidades de traits de tipo Vector en pops mecánicos.
+#   • Genera costes de mineral y mantenimiento energético.
+# END_INFO
+mpp_building_machine_assembly_vector_upgrade = {
     base_buildtime = 30
     category = pop_assembly_upgrade
     icon = "gfx/interface/icons/upgrades/mpp_machine_vector.dds"
+
+    desc = {
+        text = "mpp_building_machine_assembly_vector_upgrade_desc"
+    }
+    triggered_desc = {
+        trigger = {
+            ruler = { has_trait = mpp_trait_nano_symbiosis }
+        }
+        text = "mpp_building_machine_assembly_vector_upgrade_symbiosis_desc"
+    }
 
     potential = {
         exists = owner
@@ -43,23 +95,15 @@ building_machine_assembly_vector_upgrade = {
 
     resources = {
         category = planet_buildings
-        cost = {
-            minerals = 250
-        }
-        upkeep = {
-            energy = 2
-        }
+        cost = { minerals = 250 }
+        upkeep = { energy = 2 }
     }
 
-    modifier = {
-        mpp_machine_factory_vector_upgrade = yes
+    # Opciones de on_build/on_destroy
+    on_built = {
+        mpp_set_flags_planet_has_machine_factory_vector_upgrade = yes
     }
-
-    prerequisites = {
-        building_machine_assembly_complex
-    }
-
-    triggered_desc = {
-        text = "Este upgrade aumenta la probabilidad de que los pops mecánicos reciban nano_vector."
+    on_destroy = {
+        mpp_remove_flags_planet_has_machine_factory_vector_upgrade = yes
     }
 }

@@ -207,6 +207,42 @@ mpp_can_unlock_mpp_agenda_paragon_dlc = {
     has_paragon_dlc = yes
 }
 
+# ----------------------------
+# ⚙️ Scripted Trigger: Planeta con Robot Factory Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_planet_has_robot_factory_vector_upgrade
+# name           : Planeta con Robot Factory Vector Upgrade
+# target         : planet
+# type           : condition
+# related_effects: building_robot_assembly_vector_upgrade, mpp_set_flags_planet_has_robot_factory_vector_upgrade
+# description    : Comprueba si el planeta tiene el upgrade Robot Factory Vector.
+# notes          :
+#   • Útil para condicionar eventos, modifiers o efectos específicos de pops robóticos.
+# END_INFO
+mpp_planet_has_robot_factory_vector_upgrade = {
+    has_planet_flag = mpp_flag_robot_factory_vector_upgrade
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Planeta con Machine Factory Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_planet_has_machine_factory_vector_upgrade
+# name           : Planeta con Machine Factory Vector Upgrade
+# target         : planet
+# type           : condition
+# related_effects: building_machine_assembly_vector_upgrade, mpp_set_flags_planet_has_machine_factory_vector_upgrade
+# description    : Comprueba si el planeta tiene el upgrade Machine Factory Vector.
+# notes          :
+#   • Útil para condicionar eventos, modifiers o efectos específicos de pops mecánicos.
+# END_INFO
+mpp_planet_has_machine_factory_vector_upgrade = {
+    has_planet_flag = mpp_flag_machine_factory_vector_upgrade
+}
+
 # ================================================
 # SECCIÓN: TRAITS
 # ================================================

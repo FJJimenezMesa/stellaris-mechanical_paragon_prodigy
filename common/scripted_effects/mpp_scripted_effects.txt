@@ -246,6 +246,74 @@ mpp_lock_mpp_agenda = {
     remove_country_flag = mpp_flag_has_mpp_agenda
 }
 
+# ----------------------------
+# Flag: Planeta con Robot Factory Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_set_flags_planet_has_robot_factory_vector_upgrade
+# type           : flag
+# name           : Activar Robot Factory Vector Upgrade
+# target         : planet
+# description    : Marca el planeta como poseedor del upgrade de Robot Factory Vector, habilitando efectos relacionados con pops robóticos.
+# related_effects: building_robot_assembly_vector_upgrade
+# notes          :
+# END_INFO
+mpp_set_flags_planet_has_robot_factory_vector_upgrade = {
+    set_planet_flag = mpp_flag_robot_factory_vector_upgrade
+}
+
+# ----------------------------
+# Flag: Quitar Robot Factory Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_remove_flags_planet_has_robot_factory_vector_upgrade
+# type           : flag
+# name           : Desactivar Robot Factory Vector Upgrade
+# target         : planet
+# description    : Elimina la marca de upgrade de Robot Factory Vector del planeta.
+# related_effects: building_robot_assembly_vector_upgrade
+# notes          :
+# END_INFO
+mpp_remove_flags_planet_has_robot_factory_vector_upgrade = {
+    remove_planet_flag = mpp_flag_robot_factory_vector_upgrade
+}
+
+# ----------------------------
+# Flag: Planeta con Machine Factory Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_set_flags_planet_has_machine_factory_vector_upgrade
+# type           : flag
+# name           : Activar Machine Factory Vector Upgrade
+# target         : planet
+# description    : Marca el planeta como poseedor del upgrade de Machine Factory Vector, habilitando efectos relacionados con pops mecánicos.
+# related_effects: building_machine_assembly_vector_upgrade
+# notes          :
+# END_INFO
+mpp_set_flags_planet_has_machine_factory_vector_upgrade = {
+    set_planet_flag = mpp_flag_machine_factory_vector_upgrade
+}
+
+# ----------------------------
+# Flag: Quitar Machine Factory Vector Upgrade
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_remove_flags_planet_has_machine_factory_vector_upgrade
+# type           : flag
+# name           : Desactivar Machine Factory Vector Upgrade
+# target         : planet
+# description    : Elimina la marca de upgrade de Machine Factory Vector del planeta.
+# related_effects: building_machine_assembly_vector_upgrade
+# notes          :
+# END_INFO
+mpp_remove_flags_planet_has_machine_factory_vector_upgrade = {
+    remove_planet_flag = mpp_flag_machine_factory_vector_upgrade
+}
+
 # ================================================ 
 # SECCIÓN: TECNOLOGÍAS
 # ================================================ 
