@@ -1,12 +1,4 @@
 # ================================
-# Variables base para traits de especies MPP
-# ================================
-@base_ai_weight = 0              		# Peso base AI (IA le asigna al rasgo al generar o seleccionar especies automáticamente.)
-@default_ai_weight = @base_ai_weight  	# Peso AI por defecto
-@default_crossbreeding = 1.0      		# Probabilidad de que esta especie pueda cruzarse con otras especies compatibles (1.0 = 100%)
-
-
-# ================================
 # 🧬 Species Trait: mpp_trait_nano_vector
 # "Infección de nanorobots"
 # ================================
@@ -22,35 +14,76 @@
 # Afecta a: Pops y líderes biológicos.
 # ================================
 mpp_trait_nano_vector = {
-    cost = 5
-	icon = "gfx/interface/icons/traits/mpp_trait_nano_vector.dds"
-	
-	ai_weight = { @default_ai_weight }
+    cost = 0
+    initial = no
+    randomized = no
+    icon = "gfx/interface/icons/traits/mpp_trait_nano_vector.dds"
 
-	allowed_archetypes = { BIOLOGICAL }
-    allowed_leader_archetypes = { BIOLOGICAL }
+    opposites = { mpp_trait_nano_vector_null mpp_trait_nano_symbiosis }
 
-    potential = {
-        is_biological = yes
+    allowed_archetypes = { BIOLOGICAL MACHINE }
+
+    species_potential_add = {
+        AND = {
+            OR = {
+                mpp_is_biological_empire_no_gestal = yes
+                mpp_is_machine_empire_no_gestal = yes
+            }
+            OR = {
+                mpp_has_mpp_leader_with_vector_approved = yes
+                mpp_has_mpp_leader_with_symbiosis_approved = yes
+            }
+        }
+    }
+    species_possible_remove = {
+        always = no  # nunca se puede quitar manualmente
+    }
+    species_possible_merge_remove = {
+        always = no  # nunca se puede quitar al fusionar especies
+    }
+    potential_crossbreeding_chance = @mpp_nano_vector_crossbreeding
+    ai_weight = { @mpp_nano_vector_ai_weight }
+
+    triggered_leader_modifier = {
+        leader_age = 50
     }
 
-	species_potential_add = {
-		can_do_advanced_gene_modding = yes
-	}
-	potential_crossbreeding_chance = @default_crossbreeding
+    # --- Efectos condicionados ---
+    triggered_pop_modifier = {
+        potential = {
+            species = { is_archetype = BIOLOGICAL }
+        }
 
-    modifier = {
-		leader_age = 50
+        modifier = {
+            mpp_bio_population_bonus = yes
+            mpp_planet_job_production_bonus = yes
+            mpp_planet_job_production_mult_bonus = yes
+        }
+    }
 
-    	mpp_species_leader_bonus = yes
-		mpp_bio_population_bonus = yes
-		mpp_job_production_bonus = yes
-		mpp_planet_research_production_bonus = yes
+    triggered_pop_modifier = {
+        potential = {
+            species = { is_archetype = MACHINE }
+        }
+        modifier = {
+            mpp_robotic_population_bonus = yes
+            mpp_planet_job_production_bonus = yes
+            mpp_planet_job_production_mult_bonus = yes
+        }
+    }
+
+    slave_cost = {
+        energy = 250
+    }
+    assembly_score = {
+        modifier = {
+            add = 0.5
+        }
     }
 }
 
 # ================================
-# 🧬 Species Trait: mpp_parangon_nano_symbiosis
+# 🧬 Species Trait: mpp_trait_nano_symbiosis
 # "Parangón Nano-Simbiosis"
 # ================================
 # Descripción narrativa + lore:
@@ -64,23 +97,70 @@ mpp_trait_nano_vector = {
 # Afecta a: Pops y líderes mecánicos.
 # ================================
 mpp_trait_nano_symbiosis = {
-    cost = 5
-	icon = "gfx/interface/icons/traits/mpp_parangon_nano_symbiosis.dds"
-	
-	ai_weight = { @default_ai_weight }
+    cost = 0
+    initial = no
+    randomized = no
+    icon = "gfx/interface/icons/traits/mpp_trait_nano_symbiosis.dds"
 
-	allowed_archetypes = { MACHINE }
-    allowed_leader_archetypes = { MACHINE }
+    opposites = { mpp_trait_nano_vector mpp_trait_nano_vector_null }
 
-    potential = {
-        is_machine = yes
+    allowed_archetypes = { BIOLOGICAL MACHINE }
+
+    species_potential_add = {
+        AND = {
+            OR = {
+                mpp_is_biological_empire_no_gestal = yes
+                mpp_is_machine_empire_no_gestal = yes
+            }
+            mpp_has_mpp_leader_with_symbiosis_approved = yes
+        }
+    }
+    species_possible_remove = {
+        always = no  # Nunca se puede quitar
+    }
+    species_possible_merge_remove = {
+        always = no  # Tampoco al fusionar especies
+    }
+    potential_crossbreeding_chance = @mpp_nano_symbiosis_crossbreeding
+    ai_weight = { @mpp_nano_symbiosis_ai_weight }  # La IA no lo usa
+
+    triggered_leader_modifier = {
+        leader_age = 50
     }
 
-    modifier = {
-		mpp_species_leader_bonus = yes
-		mpp_robotic_population_bonus = yes
-		mpp_job_production_bonus = yes
-		mpp_research_production_bonus = yes
+    # --- Efectos condicionados ---
+    triggered_pop_modifier = {
+        potential = {
+            species = { is_archetype = BIOLOGICAL }
+        }
+
+        modifier = {
+            mpp_bio_population_bonus = yes
+            mpp_planet_job_production_bonus = yes
+            mpp_planet_job_production_mult_bonus = yes
+            mpp_research_production_bonus = yes
+        }
+    }
+
+    triggered_pop_modifier = {
+        potential = {
+            species = { is_archetype = MACHINE }
+        }
+        modifier = {
+            mpp_robotic_population_bonus = yes
+            mpp_planet_job_production_bonus = yes
+            mpp_planet_job_production_mult_bonus = yes
+            mpp_research_production_bonus = yes
+        }
+    }
+
+    slave_cost = {
+        energy = 500
+    }
+    assembly_score = {
+        modifier = {
+            add = 0.5
+        }
     }
 }
 
@@ -88,9 +168,9 @@ mpp_trait_nano_symbiosis = {
 # 🧬 Species Trait: mpp_parangon_nano_operancy
 # "Parangón Nano-Infusión"
 # ================================
-Descripción narrativa + lore:
-Rasgo exclusivo para robots, los cuales carecen de sangre y no pueden establecer control directo sobre los nanorobots. En cambio, la infusión de nanites se integra parcialmente en sus sistemas, proporcionando aumentos de producción, eficiencia laboral y capacidad de investigación.
-Aunque la conexión es limitada, los nanites mantienen el legado del Parangón, sirviendo como un vínculo misterioso que permite a los robots recibir parte de su poder. La infusión nunca alcanza la simbiosis total de las máquinas, pero confiere una ventaja tangible y una presencia narrativa de la influencia del Parangón sobre toda la red mecánica del universo.
+# Descripción narrativa + lore:
+# Rasgo exclusivo para robots, los cuales carecen de sangre y no pueden establecer control directo sobre los nanorobots. En cambio, la infusión de nanites se integra parcialmente en sus sistemas, proporcionando aumentos de producción, eficiencia laboral y capacidad de investigación.
+# Aunque la conexión es limitada, los nanites mantienen el legado del Parangón, sirviendo como un vínculo misterioso que permite a los robots recibir parte de su poder. La infusión nunca alcanza la simbiosis total de las máquinas, pero confiere una ventaja tangible y una presencia narrativa de la influencia del Parangón sobre toda la red mecánica del universo.
 # Descripción:
 #   Rasgo mecánico avanzado que mejora producción, felicidad, eficiencia de líderes y trabajos,
 #   además de mejorar ensamblaje y definir costes de esclavos.
@@ -99,22 +179,38 @@ Aunque la conexión es limitada, los nanites mantienen el legado del Parangón, 
 # Afecta a: Pops y líderes robóticos.
 # ================================
 mpp_trait_nano_operancy = {
-    cost = 10
+    cost = 0
+    initial = no
+    randomized = no
     icon = "gfx/interface/icons/traits/mpp_parangon_nano_operancy.dds"
 
-	ai_weight = { @default_ai_weight }
+    opposites = { mpp_trait_nano_operancy_null }  # Excluyente con trait nulo
 
     allowed_archetypes = { ROBOT }
 
-    potential = {
-        is_robot = yes
+    species_potential_add = {
+        OR = {
+            mpp_has_mpp_leader_with_vector_approved = yes
+            mpp_has_mpp_leader_with_symbiosis_approved = yes
+        }
     }
+    species_possible_remove = {
+        always = no  # Nunca se puede quitar
+    }
+    species_possible_merge_remove = {
+        always = no  # Tampoco al fusionar especies
+    }
+    potential_crossbreeding_chance = @mpp_nano_operancy_crossbreeding
+    ai_weight = { @mpp_nano_operancy_ai_weight }  # No lo usa la IA
+
 
     slave_cost = {
-        energy = 750
+        energy = 250
     }
-
     assembly_score = {
+        modifier = {
+            add = 0.5
+        }
         modifier = {
             add = 1.5
             from = { has_mining_designation = yes }
@@ -125,10 +221,35 @@ mpp_trait_nano_operancy = {
         }
     }
 
-    modifier = {
-		mpp_species_leader_bonus = yes
-		mpp_robotic_population_bonus = yes
-		mpp_job_production_bonus = yes
-		mpp_research_production_bonus = yes
+    triggered_pop_modifier = {
+        potential = {
+            species = { is_archetype = ROBOT }
+        }
+        mpp_species_leader_bonus = yes
+        mpp_robotic_population_bonus = yes
+        mpp_job_production_bonus = yes
+        mpp_research_production_bonus = yes
     }
+}
+
+mpp_trait_nano_vector_null = {
+    cost = 0
+    icon = "gfx/interface/icons/traits/mpp_trait_null.dds"
+
+    opposites = { mpp_trait_nano_vector mpp_trait_nano_symbiosis }
+
+    allowed_archetypes = { BIOLOGICAL MACHINE }
+
+    modifier = {} # no efectos, solo bloquea
+}
+
+mpp_trait_nano_operancy_null = {
+    cost = 0
+    icon = "gfx/interface/icons/traits/mpp_trait_null.dds"
+
+    opposites = { mpp_trait_nano_operancy }
+
+    allowed_archetypes = { ROBOT }
+
+    modifier = {} # no efectos, solo bloquea
 }

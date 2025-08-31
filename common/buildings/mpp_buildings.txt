@@ -1,0 +1,65 @@
+building_robot_assembly_vector_upgrade = {
+    base_buildtime = 30
+    category = pop_assembly_upgrade
+    icon = "gfx/interface/icons/upgrades/mpp_robot_vector.dds"
+
+    potential = {
+        exists = owner
+        has_building = building_robot_assembly_plant
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 250
+        }
+        upkeep = {
+            energy = 2
+        }
+    }
+
+    modifier = {
+        mpp_robot_factory_vector_upgrade = yes
+    }
+
+    prerequisites = {
+        building_robot_assembly_complex
+    }
+
+    triggered_desc = {
+        text = "Este upgrade aumenta la probabilidad de que los pops robóticos reciban nano_vector."
+    }
+}
+
+building_machine_assembly_vector_upgrade = {
+    base_buildtime = 30
+    category = pop_assembly_upgrade
+    icon = "gfx/interface/icons/upgrades/mpp_machine_vector.dds"
+
+    potential = {
+        exists = owner
+        has_building = building_machine_assembly_plant
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 250
+        }
+        upkeep = {
+            energy = 2
+        }
+    }
+
+    modifier = {
+        mpp_machine_factory_vector_upgrade = yes
+    }
+
+    prerequisites = {
+        building_machine_assembly_complex
+    }
+
+    triggered_desc = {
+        text = "Este upgrade aumenta la probabilidad de que los pops mecánicos reciban nano_vector."
+    }
+}

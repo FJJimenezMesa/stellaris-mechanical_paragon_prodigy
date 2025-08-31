@@ -1,0 +1,79 @@
+# -----------------------
+# ACCIONES AUTOMÁTICAS RELACIONADAS CON TRAITS DE LÍDERES
+# -----------------------
+
+# Al crear el líder del país (ruler):
+#   - Aplica el trait Parangon si corresponde
+#   - Marca el líder como aprobado
+#   - Aplica eventos de origen personalizados
+on_ruler_created = {
+    events = {  
+        events_trait_leader_paragon.1    # Aplicar trait Parangon al líder si cumple condiciones
+        events_trait_leader_paragon.3    # Marcar líder aprobado para evitar reaplicación
+        events_origin_pmp.1              # Evento de origen personalizado (ejemplo)
+    }
+}
+
+# Al contratar un nuevo líder:
+#   - Comprobar propagación del trait HAS_PARANGON desde otros líderes de la facción
+#   - Marcar líder aprobado para evitar reaplicación
+on_leader_hired = {
+    events = { 
+        events_trait_leader_paragon.2    # Propagar trait HAS_PARANGON a líderes nuevos
+        events_trait_leader_paragon.3    # Marcar líder aprobado
+    }
+}
+
+# -----------------------
+# ACCIONES AUTOMÁTICAS RELACIONADAS CON TRAITS DE ESPECIES
+# -----------------------
+
+# ----------------------------
+# ⚙️ On Action: on_pop_grown
+# ----------------------------
+# BEGIN_INFO
+# info_type      : on_action
+# trigger        : on_pop_grown
+# target         : pops
+# description    : Se dispara cuando un pop biológico alcanza la edad adulta en el planeta.
+# application    : pops biológicos recién crecidos
+# focus          : Aplicación de traits según condiciones del líder y del planeta
+# related_effects: mpp_events_master.10
+# parameters     :
+# tags           : on_action, mpp, pop_traits
+# notes          :
+#   • Se activa únicamente para pops biológicos
+# END_INFO
+on_pop_grown = {
+    events = {
+        mpp_events_master.10   # Evento para pops biológicos: intenta aplicar traits nano_vector o symbiosis al añadir un pop
+    }
+}
+
+# ----------------------------
+# ⚙️ On Action: on_pop_assembled
+# ----------------------------
+# BEGIN_INFO
+# info_type      : on_action
+# trigger        : on_pop_assembled
+# target         : pops
+# description    : Se dispara cada vez que un pop robot o máquina es ensamblado en el planeta.
+# application    : pops robot o máquina recién ensamblados
+# focus          : Aplicación de traits según condiciones del líder y del planeta
+# related_effects: mpp_events_master.11, mpp_events_master.12
+# parameters     :
+# tags           : on_action, mpp, pop_traits
+# notes          :
+#   • Se activa únicamente para pops robot o máquina
+# END_INFO
+on_pop_assembled = {
+    events = {
+        crisis.2055
+        crisis.2312
+        necroids.250
+        # Nuevos
+        mpp_events_master.11   # Evento para pops robots: intenta aplicar traits nano_vector o symbiosis al ensamblar un robot
+        mpp_events_master.12   # Evento para pops máquinas: intenta aplicar traits nano_vector o symbiosis al ensamblar una máquina
+    }
+}
+

@@ -126,6 +126,42 @@ mpp_set_flags_mpp_leader_approved = {
 }
 
 # ----------------------------
+# Flag: Líder Nano Vector
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_set_flags_nano_vector_leader_approved
+# type           : flag
+# name           : Líder Nano Vector Aprobado
+# target         : country, ruler, leader, pop
+# description    : Marca que el país posee un líder con aprobación de Nano Vector, habilitando potenciales en tecnologías y agendas específicas.
+# related_effects: mpp_add_mpp_tech_potential mpp_unlock_mpp_agenda
+# notes          :
+# END_INFO
+
+mpp_set_flags_nano_vector_leader_approved = {
+    set_country_flag = mpp_flag_nano_vector_leader_approved
+}
+
+# ----------------------------
+# Flag: Líder Nano Symbiosis
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : mpp_set_flags_nano_symbiosis_leader_approved
+# type           : flag
+# name           : Líder Nano Symbiosis Aprobado
+# target         : country, ruler, leader, pop
+# description    : Marca que el país posee un líder con aprobación de Nano Symbiosis, habilitando potenciales en tecnologías y agendas específicas.
+# related_effects: mpp_add_mpp_tech_potential mpp_unlock_mpp_agenda
+# notes          :
+# END_INFO
+
+mpp_set_flags_nano_symbiosis_leader_approved = {
+    set_country_flag = mpp_flag_nano_symbiosis_leader_approved
+}
+
+# ----------------------------
 # Flag: Eliminar Líder MPP
 # ----------------------------
 # BEGIN_INFO

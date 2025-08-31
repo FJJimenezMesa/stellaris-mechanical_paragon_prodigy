@@ -102,6 +102,10 @@ mpp_country_research_speed_bonus = {
     country_society_tech_research_speed = 0.1       # Aumenta velocidad de investigación sociedad
 }
 
+mpp_country_leader_cap_bonus = {
+    country_leader_cap_add = 10                     # Incrementa el número máximo de líderes permitido
+}
+
 ##########################################################################
 # System Modifiers
 ##########################################################################
@@ -152,9 +156,9 @@ mpp_planet_production_bonus = {
 }
 
 mpp_planet_job_production_bonus = {
-    planet_jobs_minerals_produces_mult = 0.15   # Incrementa producción de minerales
-    planet_jobs_food_produces_mult = 0.15       # Incrementa producción de comida
-    planet_jobs_energy_produces_mult = 0.15     # Incrementa producción de energía
+    planet_jobs_minerals_produces_mult = 0.1    # Incrementa producción de minerales
+    planet_jobs_food_produces_mult = 0.1        # Incrementa producción de comida
+    planet_jobs_energy_produces_mult = 0.1      # Incrementa producción de energía
     planet_jobs_unity_produces_mult = 0.1       # Incrementa producción de unidad
 }
 
@@ -168,7 +172,7 @@ mpp_planet_job_production_mult_bonus = {
 
 mpp_planet_upkeep_production_bonus = {
     planet_jobs_unity_upkeep_mult = -0.1        # Reduce mantenimiento de unidad
-    planet_pops_upkeep_mult = -0.10             # Reduce mantenimiento de población
+    planet_pops_upkeep_mult = -0.1              # Reduce mantenimiento de población
     pop_amenities_usage_mult = -0.1             # Reduce consumo de amenidades
 }
 

@@ -82,3 +82,308 @@ country_event = {
         # Evento técnico: no debería verse en partida
     }
 }
+
+# ----------------------------
+# ⚡ Event: mpp_events_master.10
+# ----------------------------
+# BEGIN_INFO
+# info_type      : event
+# id             : mpp_events_master.10
+# name           : Evento de asignación de traits a pops biológicos
+# type           : master
+# target         : pops biológicos
+# description    : Aplica traits mpp_trait_nano_vector o mpp_trait_nano_symbiosis a pops biológicos según el líder aprobado del planeta.
+# related_events : []
+# notes          :
+#   • Se dispara solo si el pop es biológico
+#   • Considera el tipo de líder activo (Vector o Symbiosis)
+# END_INFO
+planet_event = {
+    id = mpp_events_master.10
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        fromfrom = {
+            # Pop scope
+            is_archetype = BIOLOGICAL
+            owner = {
+                # Country scope
+                OR = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
+            }
+        }
+    }
+
+    immediate = {
+        fromfrom = {
+            # Pop scope
+            if = {
+                limit = {
+                    owner = {
+
+                        mpp_has_mpp_leader_with_vector_approved = yes
+                    }
+                }
+                random_list = {
+                    @mpp_nano_vector_bio_vector_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_vector
+                    }
+                    @mpp_nano_vector_bio_null_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_vector_null
+                    }
+                    0 = {}
+                }
+            }
+            else_if = {
+                limit = {
+                    owner = {
+                        mpp_has_mpp_leader_with_symbiosis_approved = yes
+                    }
+                }
+                random_list = {
+                    @mpp_nano_symbiosis_bio_symbiosis_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_symbiosis
+                    }
+                    @mpp_nano_symbiosis_bio_vector_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_vector
+                    }
+                    @mpp_nano_symbiosis_bio_null_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_vector_null
+                    }
+                    0 = {}
+                }
+            }
+        }
+    }
+}
+
+# ----------------------------
+# ⚡ Event: mpp_events_master.11
+# ----------------------------
+# BEGIN_INFO
+# info_type      : event
+# id             : mpp_events_master.11
+# name           : Evento de asignación de traits a pops robot
+# type           : master
+# target         : pops robot
+# description    : Aplica traits mpp_trait_nano_operancy a pops robot, considerando upgrades de la fábrica y tipo de líder.
+# related_events : []
+# notes          :
+#   • Se dispara solo si el pop es robot
+#   • Diferencia entre fábrica con upgrade y sin upgrade
+#   • Considera el tipo de líder activo (Vector o Symbiosis)
+# END_INFO
+planet_event = {
+    id = mpp_events_master.11
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        fromfrom = {
+                is_robot_pop = yes
+            owner = {
+                # Country scope
+                OR = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
+            }
+        }
+    }
+
+    immediate = {
+        fromfrom = {
+            if = {
+                limit = {
+                    owner = {
+                        mpp_has_mpp_leader_with_vector_approved = yes
+                    }
+                    NOT {
+                        planet_owner = { has_modifier = mpp_robot_factory_vector_upgrade }
+                    }
+                }
+                random_list = {
+                    @mpp_nano_vector_robot_operancy_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy
+                    }
+                    @mpp_nano_vector_robot_null_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy_null
+                    }
+                    0 = {}
+                }
+            }
+            else_if = {
+                limit = {
+                    owner = {
+                        mpp_has_mpp_leader_with_vector_approved = yes
+                    }
+                    planet_owner = { has_modifier = mpp_robot_factory_vector_upgrade }
+                }
+                random_list = {
+                    @mpp_nano_vector_robot_operancy_upgraded_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy
+                    }
+                    @mpp_nano_vector_robot_null_upgraded_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy_null
+                    }
+                    0 = {}
+                }
+            }
+            else_if = {
+                limit = {
+                    owner = {
+                        mpp_has_mpp_leader_with_symbiosis_approved = yes
+                    }
+                    NOT {
+                        planet_owner = { has_modifier = mpp_robot_factory_vector_upgrade }
+                    }
+                }
+                random_list = {
+                    @mpp_nano_symbiosis_robot_operancy_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy
+                    }
+                    @mpp_nano_symbiosis_robot_null_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy_null
+                    }
+                    0 = {}
+                }
+            }
+            else_if = {
+                limit = {
+                    owner = {
+                        mpp_has_mpp_leader_with_symbiosis_approved = yes
+                    }
+                    planet_owner = { has_modifier = mpp_robot_factory_vector_upgrade }
+                }
+                random_list = {
+                    @mpp_nano_symbiosis_robot_operancy_upgraded_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy
+                    }
+                    @mpp_nano_symbiosis_robot_null_upgraded_pop_chance = {
+                        add_trait_no_notify = mpp_trait_nano_operancy_null
+                    }
+                    0 = {}
+                }
+            }
+        }
+    }
+}
+
+# ----------------------------
+# ⚡ Event: mpp_events_master.12
+# ----------------------------
+# BEGIN_INFO
+# info_type      : event
+# id             : mpp_events_master.12
+# name           : Evento de asignación de traits a pops máquina
+# type           : master
+# target         : pops máquina
+# description    : Aplica traits mpp_trait_nano_vector o mpp_trait_nano_symbiosis a pops máquina, considerando upgrades de la fábrica y tipo de líder.
+# related_events : []
+# notes          :
+#   • Se dispara solo si el pop es máquina
+#   • Diferencia entre fábrica con upgrade y sin upgrade
+#   • Considera el tipo de líder activo (Vector o Symbiosis)
+# END_INFO
+planet_event = {
+    id = mpp_events_master.12
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        fromfrom = {
+            is_archetype = MACHINE
+            owner = {
+                # Country scope
+                OR = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
+            }
+        }
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                owner = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
+                }
+                NOT {
+                    planet_owner = { has_modifier = mpp_machine_factory_vector_upgrade }
+                }
+            }
+            random_list = {
+                @mpp_nano_vector_machine_vector_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector
+                }
+                @mpp_nano_vector_machine_null_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector_null
+                }
+                0 = {}
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
+                }
+                planet_owner = { has_modifier = mpp_machine_factory_vector_upgrade }
+            }
+            random_list = {
+                @mpp_nano_vector_machine_vector_upgraded_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector
+                }
+                @mpp_nano_vector_machine_null_upgraded_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector_null
+                }
+                0 = {}
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
+                NOT {
+                    planet_owner = { has_modifier = mpp_machine_factory_vector_upgrade }
+                }
+            }
+            random_list = {
+                @mpp_nano_symbiosis_machine_symbiosis_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_symbiosis
+                }
+                @mpp_nano_symbiosis_machine_vector_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector
+                }
+                @mpp_nano_symbiosis_machine_null_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector_null
+                }
+                0 = {}
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
+                planet_owner = { has_modifier = mpp_machine_factory_vector_upgrade }
+            }
+            random_list = {
+                @mpp_nano_symbiosis_machine_symbiosis_upgraded_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_symbiosis
+                }
+                @mpp_nano_symbiosis_machine_vector_upgraded_pop_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector
+                }
+                @mpp_nano_symbiosis_machine_null_pop_upgraded_chance = {
+                    add_trait_no_notify = mpp_trait_nano_vector_null
+                }
+                0 = {}
+            }
+        }
+    }
+}

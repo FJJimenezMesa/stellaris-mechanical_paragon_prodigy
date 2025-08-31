@@ -99,6 +99,42 @@ mpp_has_mpp_leader_approved = {
 }
 
 # ----------------------------
+# Trigger: Líder Nano Vector Aprobado
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_has_mpp_leader_with_vector_approved
+# type           : condition
+# name           : Comprobar Líder Nano Vector
+# target         : country
+# description    : Comprueba si el país tiene la bandera de líder aprobado para Nano Vector.
+# related_effects: mpp_set_flags_nano_vector_leader_approved
+# notes          :
+# END_INFO
+
+mpp_has_mpp_leader_with_vector_approved = {
+    has_country_flag = mpp_flag_nano_vector_leader_approved
+}
+
+# ----------------------------
+# Trigger: Líder Nano Symbiosis Aprobado
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_has_mpp_leader_with_symbiosis_approved
+# type           : condition
+# name           : Comprobar Líder Nano Symbiosis
+# target         : country
+# description    : Comprueba si el país tiene la bandera de líder aprobado para Nano Symbiosis.
+# related_effects: mpp_set_flags_nano_symbiosis_leader_approved
+# notes          :
+# END_INFO
+
+mpp_has_mpp_leader_with_symbiosis_approved = {
+    has_country_flag = mpp_flag_nano_symbiosis_leader_approved
+}
+
+# ----------------------------
 # Trigger: Potencial Tecnológico MPP
 # ----------------------------
 # BEGIN_INFO

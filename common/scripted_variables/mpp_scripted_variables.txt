@@ -1,5 +1,5 @@
 # ================================
-# 🔬 Variables base para tecnologías MPP
+# 🔬 Variables para tecnologías MPP
 # ================================
 
 @mpp_tech_default_weight = 0.8                  # Peso base general para que la tech aparezca en el árbol
@@ -22,21 +22,21 @@
 # ----------------
 
 mpp_tech_list = {
-    mpp_tech_machine_patterns                   = "mpp_tech_machine_patterns"                   # Chispa Parangón: Esencia Mecánica
-    mpp_tech_machine_patterns_advanced          = "mpp_tech_machine_patterns_advanced"          # Chispa Parangon: Maestría Mecánica
-    mpp_tech_robotic_diversity                  = "mpp_tech_robotic_diversity"                  # Códice Robótico: Diversidad Innovadora
-    mpp_tech_biological_patterns                = "mpp_tech_biological_patterns"                # Genoma Parangon: Patrones Biológicos
-    mpp_tech_genetic_diversity                  = "mpp_tech_genetic_diversity"                  # Códice Genético Supremo: Diversidad Genética
-    mpp_tech_leadership_expansion               = "mpp_tech_leadership_expansion"               # Reformas de Liderazgo Parangon I
-    mpp_tech_leadership_expansion_advanced      = "mpp_tech_leadership_expansion_advanced"      # Reformas de Liderazgo Parangon II
-    mpp_tech_diplomatic_expansion               = "mpp_tech_diplomatic_expansion"               # Diplomacia Parangon: Expansión de Enviados
-    mpp_tech_diplomatic_expansion_advanced      = "mpp_tech_diplomatic_expansion_advanced"      # Diplomacia Parangon: Maestría Diplomática
-    mpp_tech_starbase_expansion                 = "mpp_tech_starbase_expansion"                 # Expansión Parangon: Capacidad de Bases Estelares
-    mpp_tech_starbase_advanced_expansion        = "mpp_tech_starbase_advanced_expansion"        # Expansión Parangon: Dominio Estelar
+    mpp_tech_machine_patterns               = "mpp_tech_machine_patterns"                   # Chispa Parangón: Esencia Mecánica
+    mpp_tech_machine_patterns_advanced      = "mpp_tech_machine_patterns_advanced"          # Chispa Parangon: Maestría Mecánica
+    mpp_tech_robotic_diversity              = "mpp_tech_robotic_diversity"                  # Códice Robótico: Diversidad Innovadora
+    mpp_tech_biological_patterns            = "mpp_tech_biological_patterns"                # Genoma Parangon: Patrones Biológicos
+    mpp_tech_genetic_diversity              = "mpp_tech_genetic_diversity"                  # Códice Genético Supremo: Diversidad Genética
+    mpp_tech_leadership_expansion           = "mpp_tech_leadership_expansion"               # Reformas de Liderazgo Parangon I
+    mpp_tech_leadership_expansion_advanced  = "mpp_tech_leadership_expansion_advanced"      # Reformas de Liderazgo Parangon II
+    mpp_tech_diplomatic_expansion           = "mpp_tech_diplomatic_expansion"               # Diplomacia Parangon: Expansión de Enviados
+    mpp_tech_diplomatic_expansion_advanced  = "mpp_tech_diplomatic_expansion_advanced"      # Diplomacia Parangon: Maestría Diplomática
+    mpp_tech_starbase_expansion             = "mpp_tech_starbase_expansion"                 # Expansión Parangon: Capacidad de Bases Estelares
+    mpp_tech_starbase_advanced_expansion    = "mpp_tech_starbase_advanced_expansion"        # Expansión Parangon: Dominio Estelar
 }
 
 # ================================
-# 🏛️ Variables base para agendas MPP
+# 🏛️ Variables para agendas MPP
 # ================================
 
 @mpp_agenda_default_ai_weight_factor = 0.6      # Peso base AI por defecto para agendas
@@ -48,18 +48,62 @@ mpp_tech_list = {
 # ----------------
 
 mpp_agenda_list = {
-    mpp_agenda_unlock_council_slot      = "mpp_agenda_unlock_council_slot"
-    mpp_agenda_purge_bad_traits         = "mpp_agenda_purge_bad_traits"
+    mpp_agenda_unlock_council_slot  = "mpp_agenda_unlock_council_slot"
+    mpp_agenda_purge_bad_traits     = "mpp_agenda_purge_bad_traits"
 }
 
 # ================================
-# ⚙️ Variables base para lógica de Traits MPP
+# ⚙️ Variables para lógica de Traits MPP
 # ================================
 
+# Variables para modificación de traits
 @mpp_trait_base_exp = 300                               # Experiencia otorgada al añadir un trait negativo
 @mpp_remove_trait_base_exp = -300                       # Experiencia restada al eliminar un trait negativo
 @mpp_purge_all_negative_trait_chance = 75               # % de probabilidad de eliminar todos los traits negativos
 @mpp_purge_random_negative_trait_chance = 50            # % de probabilidad de eliminar 1 trait negativo tras una purga parcial
 @mpp_purge_negative_trait_nano_vector_chance = 50       # % de probabilidad de eliminar 1 trait negativo asociado a Nano Vector
 @mpp_purge_negative_trait_nano_symbiosis_chance = 95    # % de probabilidad de eliminar 1 trait negativo asociado a Nano Symbiosis
-@mpp_modifier_leader_research_bonus = 5                 # Multiplicador de bonificaciones de investigación de líder
+
+# Variables de traits de especies
+@mpp_nano_vector_ai_weight = 0                      # Peso de la IA para considerar Nano Vector
+@mpp_nano_vector_crossbreeding = 0.75               # Probabilidad de pasar traits Nano Vector en cruzamiento
+@mpp_nano_symbiosis_ai_weight = 0                   # Peso de la IA para considerar Nano Symbiosis
+@mpp_nano_symbiosis_crossbreeding = 0.75            # Probabilidad de pasar traits Nano Symbiosis en cruzamiento
+@mpp_nano_operancy_ai_weight = 0                    # Peso de la IA para considerar Nano Operancy
+@mpp_nano_operancy_crossbreeding = 0.75             # Probabilidad de pasar traits Nano Operancy en cruzamiento
+
+# Bio pops - Variables de asignación de traits
+@mpp_nano_vector_bio_vector_pop_chance = 50         # % de que reciba trait mpp_trait_nano_vector bajo Vector
+@mpp_nano_vector_bio_null_pop_chance = 50           # % de que reciba trait mpp_trait_nano_vector_null bajo Vector
+@mpp_nano_symbiosis_bio_vector_pop_chance = 50      # % de que reciba trait mpp_trait_nano_vector bajo Symbiosis
+@mpp_nano_symbiosis_bio_symbiosis_pop_chance = 25   # % de que reciba trait mpp_trait_nano_symbiosis bajo Symbiosis
+@mpp_nano_symbiosis_bio_null_pop_chance = 25        # % de que reciba trait mpp_trait_nano_vector_null bajo Symbiosis
+
+# Robot pops - Variables de asignación de traits (sin upgrade)
+@mpp_nano_vector_robot_operancy_pop_chance = 20     # % de que reciba trait mpp_trait_nano_operancy bajo Vector
+@mpp_nano_vector_robot_null_pop_chance = 80         # % de que reciba trait mpp_trait_nano_operancy_null bajo Vector
+@mpp_nano_symbiosis_robot_operancy_pop_chance = 35  # % de que reciba trait mpp_trait_nano_operancy bajo Symbiosis
+@mpp_nano_symbiosis_robot_null_pop_chance = 65      # % de que reciba trait mpp_trait_nano_operancy_null bajo Symbiosis
+
+# Robot pops - Variables de asignación de traits (upgrade)
+@mpp_nano_vector_robot_operancy_upgraded_pop_chance = 50    # % de que reciba trait mpp_trait_nano_operancy bajo Vector con upgrade
+@mpp_nano_vector_robot_null_upgraded_pop_chance  = 50       # % de que reciba trait mpp_trait_nano_operancy_null bajo Vector con upgrade
+@mpp_nano_symbiosis_robot_operancy_upgraded_pop_chance = 75 # % de que reciba trait mpp_trait_nano_operancy bajo Symbiosis con upgrade
+@mpp_nano_symbiosis_robot_null_upgraded_pop_chance = 25     # % de que reciba trait mpp_trait_nano_operancy_null bajo Symbiosis con upgrade
+
+# Machine pops - Variables de asignación de traits (sin upgrade)
+@mpp_nano_vector_machine_vector_pop_chance = 15         # % de que reciba trait mpp_trait_nano_vector bajo Vector
+@mpp_nano_vector_machine_null_pop_chance = 85           # % de que reciba trait mpp_trait_nano_vector_null bajo Vector
+@mpp_nano_symbiosis_machine_vector_pop_chance = 25      # % de que reciba trait mpp_trait_nano_vector bajo Symbiosis
+@mpp_nano_symbiosis_machine_symbiosis_pop_chance = 25   # % de que reciba trait mpp_trait_nano_symbiosis bajo Symbiosis
+@mpp_nano_symbiosis_machine_null_pop_chance = 50        # % de que reciba trait mpp_trait_nano_vector_null bajo Symbiosis
+
+# Machine pops - Variables de asignación de traits (upgrade)
+@mpp_nano_vector_machine_vector_upgraded_pop_chance = 65        # % de que reciba trait mpp_trait_nano_vector bajo Vector con upgrade
+@mpp_nano_vector_machine_null_upgraded_pop_chance = 35          # % de que reciba trait mpp_trait_nano_vector_null bajo Vector con upgrade
+@mpp_nano_symbiosis_machine_vector_upgraded_pop_chance  = 45    # % de que reciba trait mpp_trait_nano_vector bajo Symbiosis con upgrade
+@mpp_nano_symbiosis_machine_symbiosis_upgraded_pop_chance = 45  # % de que reciba trait mpp_trait_nano_symbiosis bajo Symbiosis con upgrade
+@mpp_nano_symbiosis_machine_null_upgraded_pop_chance = 10       # % de que reciba trait mpp_trait_nano_vector_null bajo Symbiosis con upgrade
+
+# Variables de traits de líderes
+@mpp_modifier_leader_research_bonus = 5             # Multiplicador de bonificaciones de investigación de líder
