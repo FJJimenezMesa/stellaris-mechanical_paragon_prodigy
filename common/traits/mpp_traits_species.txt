@@ -26,8 +26,10 @@ mpp_trait_nano_vector = {
     species_potential_add = {
         AND = {
             OR = {
-                mpp_is_biological_empire_no_gestal = yes
-                mpp_is_machine_empire_no_gestal = yes
+                from = {
+                    mpp_is_biological_empire_no_gestal = yes
+                    mpp_is_machine_empire_no_gestal = yes
+                }
             }
             OR = {
                 mpp_has_mpp_leader_with_vector_approved = yes
@@ -45,30 +47,30 @@ mpp_trait_nano_vector = {
     ai_weight = { @mpp_nano_vector_ai_weight }
 
     triggered_leader_modifier = {
-        leader_age = 50
+        mpp_leader_age = 50
     }
 
     # --- Efectos condicionados ---
-    triggered_pop_modifier = {
+    triggered_pop_group_modifier = {
         potential = {
             species = { is_archetype = BIOLOGICAL }
         }
 
         modifier = {
-            mpp_bio_population_bonus = yes
-            mpp_planet_job_production_bonus = yes
-            mpp_planet_job_production_mult_bonus = yes
+            mpp_planet_population_bio_bonus = 1
+            mpp_planet_job_production_bonus = 1
+            mpp_planet_job_production_mult_bonus = 1
         }
     }
 
-    triggered_pop_modifier = {
+    triggered_pop_group_modifier = {
         potential = {
             species = { is_archetype = MACHINE }
         }
         modifier = {
-            mpp_robotic_population_bonus = yes
-            mpp_planet_job_production_bonus = yes
-            mpp_planet_job_production_mult_bonus = yes
+            mpp_planet_population_robotic_bonus = 1
+            mpp_planet_job_production_bonus = 1
+            mpp_planet_job_production_mult_bonus = 1
         }
     }
 
@@ -109,8 +111,10 @@ mpp_trait_nano_symbiosis = {
     species_potential_add = {
         AND = {
             OR = {
-                mpp_is_biological_empire_no_gestal = yes
-                mpp_is_machine_empire_no_gestal = yes
+                from = {
+                    mpp_is_biological_empire_no_gestal = yes
+                    mpp_is_machine_empire_no_gestal = yes
+                }
             }
             mpp_has_mpp_leader_with_symbiosis_approved = yes
         }
@@ -125,33 +129,31 @@ mpp_trait_nano_symbiosis = {
     ai_weight = { @mpp_nano_symbiosis_ai_weight }  # La IA no lo usa
 
     triggered_leader_modifier = {
-        leader_age = 50
+        mpp_leader_age = 50
     }
 
     # --- Efectos condicionados ---
-    triggered_pop_modifier = {
+    triggered_pop_group_modifier = {
         potential = {
             species = { is_archetype = BIOLOGICAL }
         }
 
         modifier = {
-            mpp_bio_population_bonus = yes
-            mpp_planet_job_production_bonus = yes
-            mpp_planet_job_production_mult_bonus = yes
-            mpp_research_production_bonus = yes
+            mpp_planet_population_bio_bonus = 1
+            mpp_planet_job_production_bonus = 1
+            mpp_planet_job_production_mult_bonus = 1
+            mpp_planet_job_research_production_bonus = 1
         }
     }
 
-    triggered_pop_modifier = {
+    triggered_pop_group_modifier = {
         potential = {
             species = { is_archetype = MACHINE }
         }
-        modifier = {
-            mpp_robotic_population_bonus = yes
-            mpp_planet_job_production_bonus = yes
-            mpp_planet_job_production_mult_bonus = yes
-            mpp_research_production_bonus = yes
-        }
+            mpp_planet_population_robotic_bonus = 1
+            mpp_planet_job_production_bonus = 1
+            mpp_planet_job_production_mult_bonus = 1
+            mpp_planet_job_research_production_bonus = 1
     }
 
     slave_cost = {
@@ -221,14 +223,18 @@ mpp_trait_nano_operancy = {
         }
     }
 
-    triggered_pop_modifier = {
+    triggered_pop_group_modifier = {
         potential = {
             species = { is_archetype = ROBOT }
         }
-        mpp_species_leader_bonus = yes
-        mpp_robotic_population_bonus = yes
-        mpp_job_production_bonus = yes
-        mpp_research_production_bonus = yes
+
+        modifier = {
+            mpp_leader_species_bonus = 1
+            mpp_planet_population_bonus = 1
+            mpp_planet_job_production_bonus = 1
+            mpp_planet_job_research_production_bonus = 1
+        }
+
     }
 }
 

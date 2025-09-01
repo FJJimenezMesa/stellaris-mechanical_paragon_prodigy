@@ -2,6 +2,10 @@
 # Scripted Triggers MPP
 # ================================================
 
+mpp_is_debug_active = {
+    @mpp_is_debug_active = yes
+}
+
 # ================================================
 # SECCIÓN: FLAGS / CHECKS
 # ================================================
@@ -380,8 +384,10 @@ mpp_is_machine_empire = {
 #   • Útil para limitar agendas o eventos solo a máquinas “normales”.
 # END_INFO
 mpp_is_machine_empire_no_gestal = {
-    has_authority = auth_machine_intelligence
-    NOT = { has_authority = auth_hive_mind }
+    this.owner = {
+        has_authority = auth_machine_intelligence
+        NOT = { has_authority = auth_hive_mind }
+    }
 }
 
 # ----------------------------
@@ -422,4 +428,52 @@ mpp_is_biological_empire = {
 mpp_is_biological_empire_no_gestal = {
     is_regular_empire = yes
     NOT = { has_authority = auth_hive_mind }
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Ruler y Líder misma clase
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_ruler_and_leader_same_class
+# name           : Ruler y Líder misma clase
+# target         : leader
+# type           : condition
+# related_traits : mpp_leader_trait_bio_disciple, mpp_leader_trait_machine_mimic
+# description    : Comprueba si la clase del líder coincide con la del ruler actual del imperio.
+# notes          :
+#   • Se usa para asignar los traits "Disciple" (bio) o "Mimic" (machine).
+#   • Evalúa si el ruler y el líder comparten clase (admiral, scientist, governor, general).
+# END_INFO
+mpp_ruler_and_leader_same_class = {
+    OR = {
+        AND = { leader_class = scientist owner = { ruler = { leader_class = scientist } } }
+        AND = { leader_class = admiral owner = { ruler = { leader_class = admiral } } }
+        AND = { leader_class = general owner = { ruler = { leader_class = general } } }
+        AND = { leader_class = governor owner = { ruler = { leader_class = governor } } }
+    }
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Ruler y Líder distinta clase
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_ruler_and_leader_not_same_class
+# name           : Ruler y Líder distinta clase
+# target         : leader
+# type           : condition
+# related_traits : mpp_leader_trait_bio_acolyte, mpp_leader_trait_machine_module
+# description    : Comprueba si la clase del líder NO coincide con la del ruler actual del imperio.
+# notes          :
+#   • Se usa para asignar los traits "Acolyte" (bio) o "Module" (machine).
+#   • Evalúa si el ruler y el líder son de clases diferentes (admiral, scientist, governor, general).
+# END_INFO
+mpp_ruler_and_leader_not_same_class = {
+    OR = {
+        AND = { leader_class = scientist owner = { ruler = { NOT = { leader_class = scientist } } } }
+        AND = { leader_class = admiral owner = { ruler = { NOT = { leader_class = admiral } } } }
+        AND = { leader_class = general owner = { ruler = { NOT = { leader_class = general } } } }
+        AND = { leader_class = governor owner = { ruler = { NOT = { leader_class = governor } } } }
+    }
 }

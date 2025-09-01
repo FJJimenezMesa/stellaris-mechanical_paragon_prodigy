@@ -1,4 +1,10 @@
 # ================================
+# 🔬 Variables de configuración MPP
+# ================================
+
+@mpp_is_debug_active = yes
+
+# ================================
 # 🔬 Variables para tecnologías MPP
 # ================================
 
@@ -22,17 +28,17 @@
 # ----------------
 
 mpp_tech_list = {
-    mpp_tech_machine_patterns               = "mpp_tech_machine_patterns"                   # Chispa Parangón: Esencia Mecánica
-    mpp_tech_machine_patterns_advanced      = "mpp_tech_machine_patterns_advanced"          # Chispa Parangon: Maestría Mecánica
-    mpp_tech_robotic_diversity              = "mpp_tech_robotic_diversity"                  # Códice Robótico: Diversidad Innovadora
-    mpp_tech_biological_patterns            = "mpp_tech_biological_patterns"                # Genoma Parangon: Patrones Biológicos
-    mpp_tech_genetic_diversity              = "mpp_tech_genetic_diversity"                  # Códice Genético Supremo: Diversidad Genética
-    mpp_tech_leadership_expansion           = "mpp_tech_leadership_expansion"               # Reformas de Liderazgo Parangon I
-    mpp_tech_leadership_expansion_advanced  = "mpp_tech_leadership_expansion_advanced"      # Reformas de Liderazgo Parangon II
-    mpp_tech_diplomatic_expansion           = "mpp_tech_diplomatic_expansion"               # Diplomacia Parangon: Expansión de Enviados
-    mpp_tech_diplomatic_expansion_advanced  = "mpp_tech_diplomatic_expansion_advanced"      # Diplomacia Parangon: Maestría Diplomática
-    mpp_tech_starbase_expansion             = "mpp_tech_starbase_expansion"                 # Expansión Parangon: Capacidad de Bases Estelares
-    mpp_tech_starbase_advanced_expansion    = "mpp_tech_starbase_advanced_expansion"        # Expansión Parangon: Dominio Estelar
+    mpp_tech_machine_patterns               = "mpp_tech_machine_patterns"
+    mpp_tech_machine_patterns_advanced      = "mpp_tech_machine_patterns_advanced"
+    mpp_tech_robotic_diversity              = "mpp_tech_robotic_diversity"
+    mpp_tech_biological_patterns            = "mpp_tech_biological_patterns"
+    mpp_tech_genetic_diversity              = "mpp_tech_genetic_diversity"
+    mpp_tech_leadership_expansion           = "mpp_tech_leadership_expansion"
+    mpp_tech_leadership_expansion_advanced  = "mpp_tech_leadership_expansion_advanced"
+    mpp_tech_diplomatic_expansion           = "mpp_tech_diplomatic_expansion"
+    mpp_tech_diplomatic_expansion_advanced  = "mpp_tech_diplomatic_expansion_advanced"
+    mpp_tech_starbase_expansion             = "mpp_tech_starbase_expansion"
+    mpp_tech_starbase_advanced_expansion    = "mpp_tech_starbase_advanced_expansion"
 }
 
 # ================================

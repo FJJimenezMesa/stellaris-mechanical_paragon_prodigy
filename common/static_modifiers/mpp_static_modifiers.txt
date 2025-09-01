@@ -126,14 +126,8 @@ mpp_planet_population_bonus = {
     planet_amenities_add = 1                    # Aumenta amenidades del planeta
 }
 
-mpp_planet_population_bonus_x5 = {
-    pop_happiness = 0.5                          # Multiplicador de felicidad de la población
-    planet_stability_add = 5                     # Multiplicador de estabilidad planetaria
-    planet_amenities_add = 5                     # Multiplicador de amenidades del planeta
-}
-
 mpp_planet_population_bio_bonus = {
-    mpp_planet_population_bonus = yes           # Incluye efectos de mpp_population_bonus
+    mpp_planet_population_bonus = 1           # Incluye efectos de mpp_population_bonus
     species_empire_size_mult = -0.1             # Reduce penalización por tamaño del imperio
     pop_environment_tolerance = 0.1             # Incrementa tolerancia ambiental
     pop_growth_from_immigration = 1             # Aumenta crecimiento por inmigración
@@ -141,7 +135,7 @@ mpp_planet_population_bio_bonus = {
 }
 
 mpp_planet_population_robotic_bonus = {
-    mpp_planet_population_bonus = yes           # Incluye efectos de mpp_population_bonus
+    mpp_planet_population_bonus = 1           # Incluye efectos de mpp_population_bonus
     planet_pop_assembly_add = 1                 # Añade al ensamblaje de población robótica
     planet_pop_assembly_mult = 0.15             # Incrementa eficiencia de ensamblaje
     planet_pops_robotics_upkeep_mult = -0.15    # Reduce mantenimiento de robots
@@ -150,9 +144,9 @@ mpp_planet_population_robotic_bonus = {
 }
 
 mpp_planet_production_bonus = {
-    mpp_planet_job_production_bonus = yes       # Incluye efectos de producción básica de trabajos
-    mpp_planet_job_production_mult_bonus = yes  # Incluye efectos de multiplicador de producción
-    mpp_planet_upkeep_production_bonus = yes    # Incluye efectos de reducción de mantenimiento
+    mpp_planet_job_production_bonus = 1       # Incluye efectos de producción básica de trabajos
+    mpp_planet_job_production_mult_bonus = 1  # Incluye efectos de multiplicador de producción
+    mpp_planet_upkeep_production_bonus = 1    # Incluye efectos de reducción de mantenimiento
 }
 
 mpp_planet_job_production_bonus = {
@@ -196,16 +190,14 @@ mpp_planet_job_research_production_bonus = {
 # Modificadores aplicables a líderes individuales según sus skills o traits
 # Ejemplos: experiencia ganada, velocidad de research, liderazgo, autoridad
 
+mpp_leader_age = {
+    leader_age = 1
+}
+
 mpp_leader_species_bonus = {
     negative_leader_traits_species = -1         # Reduce rasgos negativos de los líderes
     species_leader_exp_gain = 0.1               # Incrementa la experiencia ganada por líderes
     leaders_upkeep_mult = -0.1                  # Reduce el coste de mantenimiento de líderes
-}
-
-mpp_leader_species_bonus_x3 = {
-    negative_leader_traits_species = -3         # Reduce más rasgos negativos de los líderes
-    species_leader_exp_gain = 0.3               # Incrementa experiencia ganada por líderes x3
-    leaders_upkeep_mult = -0.3                  # Reduce coste de mantenimiento de líderes x3
 }
 
 ##########################################################################
@@ -246,23 +238,10 @@ mpp_ship_defense_bonus = {
     ship_disengage_opportunities_add = 1        # Añade oportunidad de retirarse
 }
 
-mpp_ship_defense_bonus_x2 = {
-    ship_shield_hardening_add = 0.5             # Incrementa más el blindaje de escudos
-    ship_disengage_chance_mult = 0.5            # Mejora más la evasión
-    ship_evasion_mult = 0.5                     # Incrementa más la evasión
-    ship_disengage_opportunities_add = 2        # Añade más oportunidades de retirarse
-}
-
 mpp_ship_speed_bonus = {
     ship_hyperlane_range_add = 1                # Incrementa rango en hiperespacio
     ship_speed_mult = 0.25                      # Incrementa velocidad
     ship_windup_mult = -0.25                    # Reduce tiempo de aceleración
-}
-
-mpp_ship_speed_bonus_x2 = {
-    ship_hyperlane_range_add = 2                # Incrementa más rango de hiperespacio
-    ship_speed_mult = 0.5                       # Incrementa más velocidad
-    ship_windup_mult = -0.5                     # Reduce más tiempo de aceleración
 }
 
 mpp_military_ship_bonus = {
@@ -273,8 +252,8 @@ mpp_military_ship_bonus = {
     ship_disengage_chance_mult = -0.50          # Reduce probabilidad de retirada enemiga
     ship_emergency_ftl_mult = 0.5               # Mejora FTL de emergencia
 
-    mpp_ship_defense_bonus_x2 = yes             # Incluye efectos del bono de defensa x2
-    mpp_ship_speed_bonus = yes                  # Incluye efectos de velocidad de nave
+    mpp_ship_defense_bonus = 2             # Incluye efectos del bono de defensa x2
+    mpp_ship_speed_bonus = 2                  # Incluye efectos de velocidad de nave
 }
 
 mpp_science_ship_bonus = {
@@ -282,8 +261,8 @@ mpp_science_ship_bonus = {
     ship_disengage_chance_mult = 0.50           # Mejora desenganche de nave científica
     ship_emergency_ftl_mult = 0.5               # Mejora FTL de emergencia
 
-    mpp_ship_defense_bonus = yes                # Incluye efectos básicos de bono de defensa
-    mpp_ship_speed_bonus_x2 = yes               # Incluye efectos de velocidad x2
+    mpp_ship_defense_bonus = 1                # Incluye efectos básicos de bono de defensa
+    mpp_ship_speed_bonus = 2               # Incluye efectos de velocidad x2
 
     science_ship_survey_speed = 0.5                         # Aumenta velocidad de exploración
     ship_anomaly_research_speed_mult = 0.5                  # Mejora investigación de anomalías
