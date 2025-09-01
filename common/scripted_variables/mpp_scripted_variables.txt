@@ -111,5 +111,19 @@ mpp_agenda_list = {
 @mpp_nano_symbiosis_machine_symbiosis_upgraded_pop_chance = 45  # % de que reciba trait mpp_trait_nano_symbiosis bajo Symbiosis con upgrade
 @mpp_nano_symbiosis_machine_null_upgraded_pop_chance = 10       # % de que reciba trait mpp_trait_nano_vector_null bajo Symbiosis con upgrade
 
-# Variables de traits de líderes
+# Líderes - Variables de asignación de traits
+@mpp_nano_vector_leader_vector_chance = 35
+@mpp_nano_vector_leader_null_chance = 15
+@mpp_nano_vector_leader_no_trait_chance = 50
+@mpp_nano_symbiosis_leader_vector_chance = 45
+@mpp_nano_symbiosis_leader_symbiosis_chance = 35
+@mpp_nano_symbiosis_leader_null_chance = 10
+@mpp_nano_symbiosis_leader_no_trait_chance = 10
+
+@mpp_nano_vector_leader_vector_update_chance = 10
+@mpp_nano_vector_leader_vector_fail_update_chance = 90
+@mpp_nano_symbiosis_leader_vector_update_chance = 20
+@mpp_nano_symbiosis_leader_vector_fail_update_chance = 80
+
+# Variables modificadores de traits de líderes
 @mpp_modifier_leader_research_bonus = 5             # Multiplicador de bonificaciones de investigación de líder

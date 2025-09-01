@@ -2,6 +2,52 @@
 # ACCIONES AUTOMÁTICAS RELACIONADAS CON TRAITS DE LÍDERES
 # -----------------------
 
+# ----------------------------
+# ⚙️ On Action: on_added_to_leader_pool
+# ----------------------------
+# BEGIN_INFO
+# info_type      : on_action
+# trigger        : on_added_to_leader_pool
+# target         : leaders
+# description    : Se dispara cuando un líder es añadido a la pool de líderes del imperio.
+# application    : Líderes recién añadidos a la pool
+# focus          : Asignación inicial de traits según el ruler y condiciones del imperio
+# related_effects: mpp_events_master.20, mpp_events_master.22
+# parameters     :
+# tags           : on_action, mpp, leader_traits
+# notes          :
+#   • Se asegura de asignar traits iniciales y limpiar traits antiguos si es necesario.
+# END_INFO
+on_added_to_leader_pool = {
+    events = {
+        mpp_events_master.20   # Asigna traits iniciales a líderes recién añadidos
+        mpp_events_master.22   # Limpia y actualiza traits de líderes según condiciones del ruler
+    }
+}
+
+# ----------------------------
+# ⚙️ On Action: on_leader_level_up
+# ----------------------------
+# BEGIN_INFO
+# info_type      : on_action
+# trigger        : on_leader_level_up
+# target         : leaders
+# description    : Se dispara cuando un líder sube de nivel.
+# application    : Líderes que han ganado experiencia y suben de nivel
+# focus          : Actualización de traits del líder según traits del ruler y condiciones del imperio
+# related_effects: mpp_events_master.21, mpp_events_master.22
+# parameters     :
+# tags           : on_action, mpp, leader_traits
+# notes          :
+#   • Se asegura de actualizar traits dinámicamente cuando los líderes evolucionan.
+# END_INFO
+on_leader_level_up = {
+    events = {
+        mpp_events_master.21   # Actualiza traits al subir de nivel
+        mpp_events_master.22   # Limpia y actualiza traits de líderes según condiciones del ruler
+    }
+}
+
 # Al crear el líder del país (ruler):
 #   - Aplica el trait Parangon si corresponde
 #   - Marca el líder como aprobado
@@ -68,10 +114,6 @@ on_pop_grown = {
 # END_INFO
 on_pop_assembled = {
     events = {
-        crisis.2055
-        crisis.2312
-        necroids.250
-        # Nuevos
         mpp_events_master.11   # Evento para pops robots: intenta aplicar traits nano_vector o symbiosis al ensamblar un robot
         mpp_events_master.12   # Evento para pops máquinas: intenta aplicar traits nano_vector o symbiosis al ensamblar una máquina
     }

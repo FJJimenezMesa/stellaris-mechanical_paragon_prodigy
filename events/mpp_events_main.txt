@@ -460,3 +460,417 @@ planet_event = {
         }
     }
 }
+
+# ----------------------------
+# ⚡ Event: mpp_events_master.20
+# ----------------------------
+# BEGIN_INFO
+# info_type      : event
+# id             : mpp_events_master.20
+# name           : Asignación inicial de traits a líderes
+# type           : master
+# target         : líderes recién añadidos a la pool
+# description    : Intenta asignar traits mpp_trait_nano_vector o mpp_trait_nano_symbiosis a líderes cuando son añadidos a la pool de líderes.
+# related_events : mpp_events_master.22
+# notes          :
+#   • Se dispara solo al añadir líderes a la pool
+#   • Considera si el líder tiene traits vector o symbiosis aprobados
+# END_INFO
+country_event = {
+    id = mpp_events_master.20
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        from = {
+            OR = {
+                is_archetype = BIOLOGICAL
+                is_archetype = MACHINE
+            }
+            OR = {
+                owner = {
+                    # Country scope
+                    OR = {
+                        mpp_has_mpp_leader_with_vector_approved = yes
+                        mpp_has_mpp_leader_with_symbiosis_approved = yes
+                    }
+                }
+                ruler = {
+                    # Ruler scope
+                    OR = {
+                        has_trait = mpp_trait_nano_vector
+                        has_trait = mpp_trait_nano_symbiosis
+                    }
+                }
+            }
+        }
+    }
+
+    immediate = {
+        from = {
+            if = {
+                limit = {
+                    OR = {
+                        owner = {
+                            mpp_has_mpp_leader_with_vector_approved = yes
+                        }
+                        ruler = {
+                            has_trait = mpp_trait_nano_vector
+                        }
+                    }
+                }
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_leader_vector_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_leader_null_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_leader_no_trait_chance
+                        }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        owner = {
+                            mpp_has_mpp_leader_with_symbiosis_approved = yes
+                        }
+                        ruler = {
+                            has_trait = mpp_trait_nano_symbiosis
+                        }
+                    }
+                }
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_leader_symbiosis_chance
+                        }
+                        mpp_add_species_trait_nano_symbiosis = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_leader_vector_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_leader_null_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_leader_no_trait_chance
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+# ----------------------------
+# ⚡ Event: mpp_events_master.21
+# ----------------------------
+# BEGIN_INFO
+# info_type      : event
+# id             : mpp_events_master.21
+# name           : Actualización de traits al subir de nivel
+# type           : master
+# target         : líderes que suben de nivel
+# description    : Actualiza traits de líderes según los traits del ruler y condiciones del imperio cuando suben de nivel.
+# related_events : mpp_events_master.22
+# notes          :
+#   • Se dispara solo cuando un líder sube de nivel
+#   • Asegura que los traits estén alineados con Vector o Symbiosis
+# END_INFO
+country_event = {
+    id = mpp_events_master.21
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        from = {
+            OR = {
+                is_archetype = BIOLOGICAL
+                is_archetype = MACHINE
+            }
+            OR = {
+                owner = {
+                    # Country scope
+                    OR = {
+                        mpp_has_mpp_leader_with_vector_approved = yes
+                        mpp_has_mpp_leader_with_symbiosis_approved = yes
+                    }
+                }
+                ruler = {
+                    # Ruler scope
+                    OR = {
+                        has_trait = mpp_trait_nano_vector
+                        has_trait = mpp_trait_nano_symbiosis
+                    }
+                }
+            }
+        }
+    }
+
+    immediate = {
+        from = {
+            if = {
+                limit = {
+                    NOT = { has_trait = mpp_trait_nano_vector }
+                    NOT = { has_trait = mpp_trait_nano_symbiosis }
+                    NOT = { has_trait = mpp_trait_nano_vector_null }
+                }
+                owner = {
+                    event_target:mpp_events_master.20
+                }
+            }
+            else_if = {
+                limit = {
+                    has_trait = mpp_trait_nano_vector
+                }
+                if = {
+                    limit = {
+                        OR = {
+                            owner = {
+                                mpp_has_mpp_leader_with_vector_approved = yes
+                            }
+                            ruler = {
+                                has_trait = mpp_trait_nano_vector
+                            }
+                        }
+                    }
+                    random_list = {
+                        1 = {
+                            modifier = {
+                                factor = @mpp_nano_vector_leader_vector_update_chance
+                            }
+                            mpp_update_vector_trait = yes
+                        }
+                        1 = {
+                            modifier = {
+                                factor = @mpp_nano_vector_leader_vector_fail_update_chance
+                            }
+                            mpp_update_vector_trait = yes
+                        }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        OR = {
+                            owner = {
+                                mpp_has_mpp_leader_with_symbiosis_approved = yes
+                            }
+                            ruler = {
+                                has_trait = mpp_trait_nano_symbiosis
+                            }
+                        }
+                    }
+                    random_list = {
+                        1 = {
+                            modifier = {
+                                factor = @mpp_nano_symbiosis_leader_vector_update_chance
+                            }
+                            mpp_update_vector_trait = yes
+                        }
+                        1 = {
+                            modifier = {
+                                factor = @mpp_nano_symbiosis_leader_vector_fail_update_chance
+                            }
+                            mpp_update_vector_trait = yes
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+# ----------------------------
+# ⚡ Event: mpp_events_master.22
+# ----------------------------
+# BEGIN_INFO
+# info_type      : event
+# id             : mpp_events_master.22
+# name           : Limpieza y reasignación de traits de líderes
+# type           : master
+# target         : líderes existentes
+# description    : Limpia los traits antiguos y reasigna nuevos traits a líderes según el ruler y condiciones actuales del imperio.
+# related_events : mpp_events_master.20, mpp_events_master.21
+# notes          :
+#   • Se puede disparar tanto al añadir líderes como al subir de nivel
+#   • Garantiza coherencia de traits con las reglas de Vector y Symbiosis
+# END_INFO
+country_event = {
+    id = mpp_events_master.22
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        from = {
+            OR = {
+                is_archetype = BIOLOGICAL
+                is_archetype = MACHINE
+            }
+            OR = {
+                owner = {
+                    # Country scope
+                    OR = {
+                        mpp_has_mpp_leader_with_vector_approved = yes
+                        mpp_has_mpp_leader_with_symbiosis_approved = yes
+                    }
+                }
+                ruler = {
+                    # Ruler scope
+                    OR = {
+                        has_trait = mpp_trait_nano_vector
+                        has_trait = mpp_trait_nano_symbiosis
+                    }
+                }
+            }
+        }
+    }
+
+    immediate = {
+        from = {
+            remove_trait = mpp_leader_trait_bio_disciple
+            remove_trait = mpp_leader_trait_bio_vessel_disciple
+            remove_trait = mpp_leader_trait_bio_vanguard_vessel_disciple
+            remove_trait = mpp_leader_trait_bio_null_disciple
+            remove_trait = mpp_leader_trait_bio_acolyte
+            remove_trait = mpp_leader_trait_bio_vessel_acolyte
+            remove_trait = mpp_leader_trait_bio_vanguard_vessel_acolyte
+            remove_trait = mpp_leader_trait_bio_null_acolyte
+
+            remove_trait = mpp_leader_trait_machine_mimic
+            remove_trait = mpp_leader_trait_machine_prime_engine_mimic
+            remove_trait = mpp_leader_trait_machine_apex_prime_engine_mimic
+            remove_trait = mpp_leader_trait_machine_null_mimic
+            remove_trait = mpp_leader_trait_machine_module
+            remove_trait = mpp_leader_trait_machine_prime_engine_module
+            remove_trait = mpp_leader_trait_machine_apex_prime_engine_module
+            remove_trait = mpp_leader_trait_machine_null_module
+
+            if = {
+                limit = {
+                    is_archetype = BIOLOGICAL
+                }
+                if = {
+                    limit = {
+                        has_trait = mpp_trait_nano_vector
+                    }
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_vessel_disciple }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_vessel_acolyte }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        has_trait = mpp_trait_nano_symbiosis
+                    }
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_vanguard_vessel_disciple }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_vanguard_vessel_acolyte }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        has_trait = mpp_trait_nano_vector_null
+                    }
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_null_disciple }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_null_acolyte }
+                    }
+                }
+                else = {
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_disciple }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_bio_acolyte }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    is_archetype = MACHINE
+                }
+                if = {
+                    limit = {
+                        has_trait = mpp_trait_nano_vector
+                    }
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_prime_engine_mimic }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_prime_engine_module }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        has_trait = mpp_trait_nano_symbiosis
+                    }
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_apex_prime_engine_mimic }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_apex_prime_engine_module }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        has_trait = mpp_trait_nano_vector_null
+                    }
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_null_mimic }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_null_module }
+                    }
+                }
+                else = {
+                    if = {
+                        limit = { mpp_ruler_and_leader_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_mimic }
+                    }
+                    else_if = {
+                        limit = { mpp_ruler_and_leader_not_same_class = yes }
+                        add_trait = { trait = mpp_leader_trait_machine_module }
+                    }
+                }
+            }
+        }
+    }
+}

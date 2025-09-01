@@ -17,6 +17,1205 @@
 #   Paragon → nivel++ con nanos (quedaría Apex Paragon)
 #   Vanguard → nivel+ sin con nanos
 
+# Ruler
+
+mpp_ruler_trait_nano_vector = {
+    cost = 1
+    starting_ruler_trait = yes
+    force_councilor_trait = yes                     # Se considera un consejero
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+    immortal_leaders = yes
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_mpp_ruler_trait_nano_vector
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    leader_potential_add = {
+        # Solo el líder del imperio puede recibir este trait
+        is_ruler = yes
+        # Puede ser líder biológico o máquina
+        OR = {
+            owner = { species = { is_archetype = BIOLOGICAL } }
+            owner = { species = { is_archetype = MACHINE } }
+        }
+    }
+
+    requires_traits = {
+        mpp_trait_nano_vector       # Solo si líder tiene el trait de especies nano_vector
+    }
+
+    opposites = { mpp_ruler_trait_nano_symbiosis }
+
+    #	self_modifier = { }					Modifier applied to the leader itself.
+    #	modifier = { }						Modifier applied to scope leader is assigned to (e.g. fleet, or science ship) or country if councilor trait.
+    #	planet_modifier = { }				Modifier applied to planet if General assigned to defense army.
+    #	system_modifier = { }				Modifier applied to system if General or Governor is assigned to planet within it.
+    #
+    #	triggered_modifier = { }			Modifier applied to location the leader is assigned to if the given condition is fullfilled. THIS = Leader
+    #	triggered_self_modifier = { }		Modifier applied to the leader itself if the given condition is fullfilled. THIS = Leader
+    #	triggered_planet_modifier = { }		Modifier applied to the planet on which General is assigned to defend if the given condition is fullfilled. THIS = Leader
+
+    # Modificadores aplicados así mismo
+    self_modifier = {
+        mpp_ruler_self = 1
+    }
+
+    # Modificadores aplicados así mismo
+    self_modifier = {
+        mpp_ruler_self = 1
+    }
+
+    # Modificadores aplicados al scope de líder (e.g. fleet, or science ship)
+    modifier = {
+        mpp_ruler = 1
+    }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = { leader_class = scientist }
+        modifier = {
+            mpp_ruler_scientist = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = admiral }
+        modifier = {
+            mpp_ruler_admiral = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = general }
+        modifier = {
+            mpp_ruler_general = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = governor }
+        modifier = {
+            mpp_ruler_governor = 1
+        }
+    }
+}
+
+mpp_ruler_trait_nano_symbiosis = {
+    #starting_ruler_trait = yes
+    #cost = 1
+    force_councilor_trait = yes                     # Se considera un consejero
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+    immortal_leaders = yes
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_mpp_ruler_trait_nano_symbiosis
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    leader_potential_add = {
+        # Solo el líder del imperio puede recibir este trait
+        is_ruler = yes
+        # Puede ser líder biológico o máquina
+        OR = {
+            owner = { species = { is_archetype = BIOLOGICAL } }
+            owner = { species = { is_archetype = MACHINE } }
+        }
+    }
+
+    requires_traits = {
+        mpp_trait_nano_symbiosis       # Solo si líder tiene el trait de especies nano_symbiosis
+    }
+
+    opposites = { mpp_ruler_trait_nano_vector }
+
+    # Modificadores aplicados así mismo
+    self_modifier = {
+        mpp_ruler_self = 2
+    }
+
+    # Modificadores aplicados al scope de líder (e.g. fleet, or science ship)
+    modifier = {
+        mpp_ruler = 2
+    }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = { leader_class = scientist }
+        modifier = {
+            mpp_ruler_scientist = 2
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = admiral }
+        modifier = {
+            mpp_ruler_admiral = 2
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = general }
+        modifier = {
+            mpp_ruler_general = 2
+        }
+    }
+
+    triggered_modifier = {
+        potential = { leader_class = governor }
+        modifier = {
+            mpp_ruler_governor = 2
+        }
+    }
+}
+
+# Bio
+
+mpp_leader_trait_bio_disciple = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 1
+        }
+    }
+}
+
+mpp_leader_trait_bio_vessel_disciple = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 1
+            mpp_leader_scientist_vector = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 1
+            mpp_leader_admiral_vector = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 1
+            mpp_leader_general_vector = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 1
+            mpp_leader_governor_vector = 1
+        }
+    }
+}
+
+mpp_leader_trait_bio_vanguard_vessel_disciple = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 1
+            mpp_leader_scientist_symbiosis = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 1
+            mpp_leader_admiral_symbiosis = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 1
+            mpp_leader_general_symbiosis = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 1
+            mpp_leader_governor_symbiosis = 1
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            starbase_defense_platform_capacity_add = 1
+            shipclass_military_station_hull_mult = 0.15
+        }
+    }
+}
+
+mpp_leader_trait_bio_null_disciple = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no
+    # No se asigna aleatoriamente
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general = 1
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor = 1
+        }
+    }
+}
+
+mpp_leader_trait_bio_acolyte = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+             mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+             mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 0.5
+        }
+    }
+}
+
+mpp_leader_trait_bio_vessel_acolyte = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 0.5
+            mpp_leader_scientist_vector = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 0.5
+            mpp_leader_admiral_vector = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 0.5
+            mpp_leader_general_vector = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 0.5
+            mpp_leader_governor_vector = 0.5
+        }
+    }
+}
+
+mpp_leader_trait_bio_vanguard_vessel_acolyte= {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 0.5
+            mpp_leader_scientist_symbiosis = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 0.5
+            mpp_leader_admiral_symbiosis = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 0.5
+            mpp_leader_general_symbiosis = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 0.5
+            mpp_leader_governor_symbiosis = 0.5
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            starbase_defense_platform_capacity_add = 0.5
+            shipclass_military_station_hull_mult = 0.075
+        }
+    }
+}
+
+mpp_leader_trait_bio_null_acolyte = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general = 0.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor = 0.5
+        }
+    }
+}
+
+# Machine
+
+
+mpp_leader_trait_machine_mimic = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 1.5
+        }
+    }
+}
+
+mpp_leader_trait_machine_prime_engine_mimic = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 1.5
+            mpp_leader_scientist_vector = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 1.5
+            mpp_leader_admiral_vector = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 1.5
+            mpp_leader_general_vector = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 1.5
+            mpp_leader_governor_vector = 1.5
+        }
+    }
+}
+
+mpp_leader_trait_machine_apex_prime_engine_mimic = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 1.5
+            mpp_leader_scientist_symbiosis = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 1.5
+            mpp_leader_admiral_symbiosis = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 1.5
+            mpp_leader_general_symbiosis = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 1.5
+            mpp_leader_governor_symbiosis = 1.5
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            starbase_defense_platform_capacity_add = 1.5
+            shipclass_military_station_hull_mult = 0.25
+        }
+    }
+}
+
+mpp_leader_trait_machine_null_mimic = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general = 1.5
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor = 1.5
+        }
+    }
+}
+
+mpp_leader_trait_machine_module = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 0.75
+        }
+    }
+}
+
+mpp_leader_trait_machine_prime_engine_module = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 0.75
+            mpp_leader_scientist_vector = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 0.75
+            mpp_leader_admiral_vector = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 0.75
+            mpp_leader_general_vector = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 0.75
+            mpp_leader_governor_vector = 0.75
+        }
+    }
+}
+
+mpp_leader_trait_machine_apex_prime_engine_module = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist_disciple = 0.75
+            mpp_leader_scientist_symbiosis = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral_disciple = 0.75
+            mpp_leader_admiral_symbiosis = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general_disciple = 0.75
+            mpp_leader_general_symbiosis = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor_disciple = 0.75
+            mpp_leader_governor_symbiosis = 0.75
+        }
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            starbase_defense_platform_capacity_add = 0.75
+            shipclass_military_station_hull_mult = 0.1
+        }
+    }
+}
+
+mpp_leader_trait_machine_null_module = {
+    initial = no                                    # No aparece inicialmente
+    randomized = no                                 # No se asigna aleatoriamente
+
+    inline_script = {
+        script = trait/icon
+        CLASS = leader
+        ICON = GFX_
+        RARITY = paragon
+        COUNCIL = yes
+        TIER = 3
+    }
+
+    # Clases de líder a las que aplica
+    leader_class = { governor admiral scientist general }
+
+    # Bonificaciones específicas por clase de líder
+    triggered_modifier = {
+        potential = {
+            leader_class = scientist
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_scientist = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = admiral
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_admiral = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = general
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_general = 0.75
+        }
+    }
+
+    triggered_modifier = {
+        potential = {
+            leader_class = governor
+            mpp_ruler_and_leader_not_same_class = yes
+        }
+        modifier = {
+            mpp_leader_governor = 0.75
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # BEGIN_LORE_mpp_leader_trait_mpp_leader
 # LORE_TYPE: LEADER_TRAIT
 # ================================
@@ -60,9 +1259,9 @@
 #   • Potencial de ascensión hacia Parangón completo
 #
 # ================================
-# END_LORE_mpp_leader_trait_mpp_leader
-mpp_leader_trait_mpp_leader = {
-    councilor_trait = yes                           # Se considera un consejero
+# END_LORE_mpp_leader_trait_mpp_paragon
+mpp_leader_trait_paragon = {
+    force_councilor_trait = yes                     # Se considera un consejero
     initial = yes                                   # Aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
 
@@ -75,54 +1274,70 @@ mpp_leader_trait_mpp_leader = {
         TIER = 3
     }
 
-    potential = {
-        ruler = yes                                         # Solo el líder del imperio puede recibir este trait
-        OR = { is_biological = yes is_machine = yes }       # Puede ser líder biológico o máquina
-        has_species_trait = mpp_trait_nano_vector           # Solo si líder tiene el trait de especies nano_vector
+    leader_potential_add = {
+        is_ruler = yes                                          # Solo el líder del imperio puede recibir este trait
+        OR = { }                                                # Puede ser líder biológico o máquina
+        has_trait = mpp_trait_nano_vector        # Solo si líder tiene el trait de especies nano_vector
     }
+
+    requires_traits = { mpp_trait_nano_vector }
+
     leader_class = { governor admiral scientist general }   # Clases de líder a las que aplica
 
+    immortal_leaders = yes
+
     modifier = {
-        leader_age = 300                           # Máxima longevidad del líder
-        country_leader_cap_add = 10                # Incrementa número de líderes posibles
-        mpp_species_leader_bonus_x3 = yes          # Bonificaciones de líder de especie
+        country_leader_cap_add = 10
 
-        mpp_empire_size_bonus = yes                # Bonificaciones por tamaño del imperio
-        mpp_empire_naval_bonus = yes               # Bonificaciones navales
-        mpp_empire_fleet_bonus = yes               # Bonificaciones de flota
-        mpp_empire_upkeep_bonus = yes              # Reducciones de mantenimiento
-        mpp_spy_operations_bonus = yes             # Bonificaciones de espionaje
+        mpp_leader_species_bonus = 3
 
-        mpp_planet_research_production_bonus = yes # Mejora producción de investigación planetaria
-        mpp_planet_production_bonus = yes          # Mejora producción de trabajos y recursos planetarios
+        mpp_empire_size_global_bonus = 1
+        mpp_empire_size_components_bonus = 1
+        mpp_empire_military_upkeep_bonus = 1
+        mpp_empire_administrative_upkeep_bonus = 1
+        mpp_empire_infrastructure_upkeep_bonus = 1
+        mpp_empire_shipyard_bonus = 1
+        mpp_empire_fleet_bonus = 1
+        mpp_empire_spy_operations_bonus = 1
+
+        mpp_country_naval_capacity_bonus = 1
+        mpp_country_research_speed_bonus = 1
+        mpp_country_leader_cap_bonus = 1
+        mpp_empire_spy_operations_bonus = 1
+        mpp_empire_spy_operations_bonus = 1
+
+        mpp_planet_population_bio_bonus = 1
+        mpp_planet_population_robotic_bonus = 1
+        mpp_planet_production_bonus = 1
+        mpp_planet_job_research_production_bonus = 1
     }
 
     # Bonificaciones específicas por clase de líder
     triggered_modifier = {
         potential = { leader_class = scientist }
         modifier = {
-            mpp_country_research_bonus_x5 = yes     # Investigación acelerada
+            mpp_country_research_speed_bonus = 5
         }
     }
 
     triggered_modifier = {
         potential = { leader_class = admiral }
         modifier = {
-            mpp_military_ship_bonus = yes           # Mejora de naves militares
+            mpp_military_ship_bonus = 1
         }
     }
 
     triggered_modifier = {
         potential = { leader_class = general }
         modifier = {
-            mpp_army_bonus = yes                     # Mejora de ejércitos
+            mpp_general_army_bonus = 1
         }
     }
 
     triggered_modifier = {
         potential = { leader_class = governor }
         modifier = {
-            mpp_population_bonus_x5 = yes            # Bonificación masiva de población
+            mpp_planet_population_bonus = 5            # Bonificación masiva de población
         }
     }
 }
@@ -133,8 +1348,8 @@ mpp_leader_trait_mpp_leader = {
 
 # Trait que representa líderes influenciados o formados por un Parangon.
 # Bonificaciones moderadas adaptadas a cada clase de líder.
-mpp_leader_trait_has_mpp_leader = {
-    councilor_trait = no                            # No se considera un consejero
+mpp_leader_trait_has_paragon_leader = {
+    force_councilor_trait = no                            # No se considera un consejero
     initial = yes                                   # Aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
 
@@ -149,41 +1364,44 @@ mpp_leader_trait_has_mpp_leader = {
 
     leader_class = { governor admiral scientist general }
 
+    self_modifier = {
+        mpp_leader_age = 50
+    }
+
     modifier = {
-        leader_age = 50                              # Longevidad moderada
-        leader_trait_selection_options_add = 3       # Más opciones de selección de traits
+        leader_trait_selection_options_add = 3
     }
 
     # Bonificaciones según clase de líder
     triggered_modifier = {
         potential = { leader_class = admiral }
         modifier = {
-            mpp_military_ship_bonus = yes            # Bonificación de naves militares
+            mpp_military_ship_bonus = 1
         }
     }
 
     triggered_modifier = {
         potential = { leader_class = general }
         modifier = {
-            mpp_army_bonus = yes                      # Bonificación de ejércitos
+            mpp_general_army_bonus = 1
         }
     }
 
     triggered_modifier = {
         potential = { leader_class = governor }
         modifier = {
-            planet_stability_add = 10                 # Aumenta estabilidad planetaria
-            pop_growth_speed = 0.05                   # Incrementa crecimiento poblacional
-            mpp_planet_production_bonus = yes         # Mejora producción planetaria
+            planet_stability_add = 10
+            mpp_planet_production_bonus = 1
         }
     }
 
     triggered_modifier = {
         potential = { leader_class = scientist }
         modifier = {
-            mpp_country_research_bonus = yes           # Bonificación de investigación del país
-            mpp_scientists_research_production_bonus = yes # Mejora producción de líderes científicos
-            mpp_scient_ship_bonus = yes               # Bonificación de naves científicas
+            mpp_country_research_speed_bonus = 1
+            mpp_planet_job_research_production_bonus = 1
+            mpp_scientists_research_production_bonus = 1
+            mpp_science_ship_bonus = 1
         }
     }
 }
