@@ -4,7 +4,7 @@
 
 mpp_debug_log_error_invalid_scope = {
     if = {
-        limit = { @mpp_is_debug_active = yes }
+        limit = { mpp_is_debug_active = yes }
         if = { limit = { is_scope_type = none } log_error = "❌ [MPP] Current scope: none" }
         else_if = { limit = { is_scope_type = megastructure } log_error = "❌ [MPP] Current scope: megastructure" }
         else_if = { limit = { is_scope_type = planet } log_error = "❌ [MPP] Current scope: planet" }

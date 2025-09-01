@@ -127,13 +127,18 @@ planet_event = {
                     }
                 }
                 random_list = {
-                    @mpp_nano_vector_bio_vector_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_vector
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_bio_vector_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
                     }
-                    @mpp_nano_vector_bio_null_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_vector_null
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_bio_null_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
                     }
-                    0 = {}
                 }
             }
             else_if = {
@@ -143,16 +148,24 @@ planet_event = {
                     }
                 }
                 random_list = {
-                    @mpp_nano_symbiosis_bio_symbiosis_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_symbiosis
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_bio_symbiosis_pop_chance
+                        }
+                        mpp_add_species_trait_nano_symbiosis = yes
                     }
-                    @mpp_nano_symbiosis_bio_vector_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_vector
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_bio_vector_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
                     }
-                    @mpp_nano_symbiosis_bio_null_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_vector_null
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_bio_null_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
                     }
-                    0 = {}
                 }
             }
         }
@@ -194,79 +207,107 @@ planet_event = {
     }
 
     immediate = {
-        fromfrom = {
-            if = {
-                limit = {
-                    owner = {
-                        mpp_has_mpp_leader_with_vector_approved = yes
-                    }
-                    NOT {
-                        planet_owner = {
-                            mpp_planet_has_robot_factory_vector_upgrade = yes
+        if = {
+            limit = {
+                this = {
+                    NOT = { mpp_planet_has_robot_factory_vector_upgrade = yes }
+                }
+                owner = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
+                }
+            }
+            fromfrom = {
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_robot_operancy_pop_chance
                         }
+                        mpp_add_species_trait_nano_operancy = yes
                     }
-                }
-                random_list = {
-                    @mpp_nano_vector_robot_operancy_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_robot_null_pop_chance
+                        }
+                        mpp_add_species_trait_nano_operancy_null = yes
                     }
-                    @mpp_nano_vector_robot_null_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy_null
-                    }
-                    0 = {}
                 }
             }
-            else_if = {
-                limit = {
-                    owner = {
-                        mpp_has_mpp_leader_with_vector_approved = yes
-                    }
-                    planet_owner = { mpp_planet_has_robot_factory_vector_upgrade = yes }
+        }
+        else_if = {
+            limit = {
+                this = {
+                    mpp_planet_has_robot_factory_vector_upgrade = yes
                 }
-                random_list = {
-                    @mpp_nano_vector_robot_operancy_upgraded_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy
-                    }
-                    @mpp_nano_vector_robot_null_upgraded_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy_null
-                    }
-                    0 = {}
+                owner = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
                 }
             }
-            else_if = {
-                limit = {
-                    owner = {
-                        mpp_has_mpp_leader_with_symbiosis_approved = yes
-                    }
-                    NOT {
-                        planet_owner = { mpp_planet_has_robot_factory_vector_upgrade = yes }
-                    }
-                }
+            fromfrom = {
                 random_list = {
-                    @mpp_nano_symbiosis_robot_operancy_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_robot_operancy_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_operancy = yes
                     }
-                    @mpp_nano_symbiosis_robot_null_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy_null
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_robot_null_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_operancy_null = yes
                     }
-                    0 = {}
                 }
             }
-            else_if = {
-                limit = {
-                    owner = {
-                        mpp_has_mpp_leader_with_symbiosis_approved = yes
-                    }
-                    planet_owner = { mpp_planet_has_robot_factory_vector_upgrade = yes }
+        }
+        else_if = {
+            limit = {
+                this = {
+                    NOT = { mpp_planet_has_robot_factory_vector_upgrade = yes }
                 }
+                owner = {
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
+            }
+            fromfrom = {
                 random_list = {
-                    @mpp_nano_symbiosis_robot_operancy_upgraded_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_robot_operancy_pop_chance
+                        }
+                        mpp_add_species_trait_nano_operancy = yes
                     }
-                    @mpp_nano_symbiosis_robot_null_upgraded_pop_chance = {
-                        add_trait_no_notify = mpp_trait_nano_operancy_null
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_robot_null_pop_chance
+                        }
+                        mpp_add_species_trait_nano_operancy_null = yes
                     }
-                    0 = {}
+                }
+            }
+        }
+        else_if = {
+            limit = {
+                this = {
+                    mpp_planet_has_robot_factory_vector_upgrade = yes
+                }
+                owner = {
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
+            }
+            fromfrom = {
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_robot_operancy_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_operancy = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_robot_null_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_operancy_null = yes
+                    }
                 }
             }
         }
@@ -310,80 +351,111 @@ planet_event = {
     immediate = {
         if = {
             limit = {
+                this = { NOT { mpp_planet_has_machine_factory_vector_upgrade = yes } }
                 owner = {
                     mpp_has_mpp_leader_with_vector_approved = yes
                 }
-                NOT {
-                    planet_owner = { mpp_planet_has_machine_factory_vector_upgrade = yes }
-                }
             }
-            random_list = {
-                @mpp_nano_vector_machine_vector_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector
+            fromfrom = {
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_machine_vector_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_machine_null_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
+                    }
                 }
-                @mpp_nano_vector_machine_null_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector_null
-                }
-                0 = {}
             }
         }
         else_if = {
             limit = {
+                this = { mpp_planet_has_machine_factory_vector_upgrade = yes }
                 owner = {
                     mpp_has_mpp_leader_with_vector_approved = yes
                 }
-                planet_owner = { mpp_planet_has_machine_factory_vector_upgrade = yes }
             }
-            random_list = {
-                @mpp_nano_vector_machine_vector_upgraded_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector
+            fromfrom = {
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_machine_vector_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_vector_machine_null_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
+                    }
                 }
-                @mpp_nano_vector_machine_null_upgraded_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector_null
-                }
-                0 = {}
-            }
-        }
-        else_if = {
-            limit = {
-                owner = {
-                    mpp_has_mpp_leader_with_symbiosis_approved = yes
-                }
-                NOT {
-                    planet_owner = { mpp_planet_has_machine_factory_vector_upgrade = yes }
-                }
-            }
-            random_list = {
-                @mpp_nano_symbiosis_machine_symbiosis_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_symbiosis
-                }
-                @mpp_nano_symbiosis_machine_vector_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector
-                }
-                @mpp_nano_symbiosis_machine_null_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector_null
-                }
-                0 = {}
             }
         }
         else_if = {
             limit = {
+                this = { NOT { mpp_planet_has_machine_factory_vector_upgrade = yes } }
                 owner = {
                     mpp_has_mpp_leader_with_symbiosis_approved = yes
                 }
-                planet_owner = { mpp_planet_has_machine_factory_vector_upgrade = yes }
+
             }
-            random_list = {
-                @mpp_nano_symbiosis_machine_symbiosis_upgraded_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_symbiosis
+            fromfrom = {
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_machine_symbiosis_pop_chance
+                        }
+                        mpp_add_species_trait_nano_symbiosis = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_machine_vector_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_machine_null_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
+                    }
                 }
-                @mpp_nano_symbiosis_machine_vector_upgraded_pop_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector
+            }
+        }
+        else_if = {
+            limit = {
+                this = { mpp_planet_has_machine_factory_vector_upgrade = yes }
+                owner = {
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
                 }
-                @mpp_nano_symbiosis_machine_null_pop_upgraded_chance = {
-                    add_trait_no_notify = mpp_trait_nano_vector_null
+            }
+            fromfrom = {
+                random_list = {
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_machine_symbiosis_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_symbiosis = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_machine_vector_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector = yes
+                    }
+                    1 = {
+                        modifier = {
+                            factor = @mpp_nano_symbiosis_machine_null_upgraded_pop_chance
+                        }
+                        mpp_add_species_trait_nano_vector_null = yes
+                    }
                 }
-                0 = {}
             }
         }
     }

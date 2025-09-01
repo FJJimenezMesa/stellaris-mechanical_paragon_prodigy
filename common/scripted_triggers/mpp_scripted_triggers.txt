@@ -3,7 +3,10 @@
 # ================================================
 
 mpp_is_debug_active = {
-    @mpp_is_debug_active = yes
+    check_variable = {
+        which = @mpp_debug
+        value = 1
+    }
 }
 
 # ================================================

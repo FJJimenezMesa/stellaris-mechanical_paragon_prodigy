@@ -2,7 +2,7 @@
 # 🔬 Variables de configuración MPP
 # ================================
 
-@mpp_is_debug_active = yes
+@mpp_debug = 1
 
 # ================================
 # 🔬 Variables para tecnologías MPP
