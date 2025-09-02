@@ -202,7 +202,7 @@ mpp_add_species_trait = {
     # Parámetro esperado: TRAIT
     [[TRAIT]
         # Aplica el trait
-        add_trait = { trait = $TRAIT$ }
+        add_trait = $TRAIT$
         if = {
             limit = { mpp_is_debug_active = yes }
             mpp_debug_check_scope_pop_or_leader = yes
@@ -225,7 +225,7 @@ mpp_remove_species_trait = {
         # Quita el trait
         if = {
             limit = { has_trait = $TRAIT$ }
-            remove_trait = { trait = $TRAIT$ }
+            remove_trait = $TRAIT$
         }
         if = {
             limit = { mpp_is_debug_active = yes }
