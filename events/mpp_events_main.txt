@@ -634,7 +634,7 @@ country_event = {
                     NOT = { has_trait = mpp_trait_nano_vector_null }
                 }
                 owner = {
-                    event_target:mpp_events_master.20
+                    country_event = { id = mpp_events_master.20 }
                 }
             }
             else_if = {
@@ -773,11 +773,11 @@ country_event = {
                     }
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_vessel_disciple }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_vessel_disciple }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_vessel_acolyte }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_vessel_acolyte }
                     }
                 }
                 else_if = {
@@ -786,11 +786,11 @@ country_event = {
                     }
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_vanguard_vessel_disciple }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_vanguard_vessel_disciple }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_vanguard_vessel_acolyte }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_vanguard_vessel_acolyte }
                     }
                 }
                 else_if = {
@@ -799,21 +799,21 @@ country_event = {
                     }
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_null_disciple }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_null_disciple }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_null_acolyte }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_null_acolyte }
                     }
                 }
                 else = {
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_disciple }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_disciple }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_bio_acolyte }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_bio_acolyte }
                     }
                 }
             }
@@ -827,11 +827,11 @@ country_event = {
                     }
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_prime_engine_mimic }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_prime_engine_mimic }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_prime_engine_module }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_prime_engine_module }
                     }
                 }
                 else_if = {
@@ -840,11 +840,11 @@ country_event = {
                     }
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_apex_prime_engine_mimic }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_apex_prime_engine_mimic }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_apex_prime_engine_module }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_apex_prime_engine_module }
                     }
                 }
                 else_if = {
@@ -853,21 +853,21 @@ country_event = {
                     }
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_null_mimic }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_null_mimic }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_null_module }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_null_module }
                     }
                 }
                 else = {
                     if = {
                         limit = { mpp_ruler_and_leader_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_mimic }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_mimic }
                     }
                     else_if = {
                         limit = { mpp_ruler_and_leader_not_same_class = yes }
-                        add_trait = { trait = mpp_leader_trait_machine_module }
+                        mpp_add_leader_trait = { TRAIT = mpp_leader_trait_machine_module }
                     }
                 }
             }

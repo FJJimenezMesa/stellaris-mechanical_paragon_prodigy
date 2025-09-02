@@ -225,7 +225,7 @@ mpp_remove_species_trait = {
         # Quita el trait
         if = {
             limit = { has_trait = $TRAIT$ }
-            remove_trait =  $TRAIT$
+            remove_trait = { trait = $TRAIT$ }
         }
         if = {
             limit = { mpp_is_debug_active = yes }
@@ -264,4 +264,49 @@ mpp_add_species_trait_nano_operancy_null = {
 mpp_update_vector_trait = {
     mpp_remove_species_trait = { TRAIT = mpp_trait_nano_vector }
     mpp_add_species_trait_nano_symbiosis = yes
+}
+
+mpp_add_leader_trait = {
+    optimize_memory      # optimización de memoria
+
+    # Parámetro esperado: TRAIT
+    [[TRAIT]
+        # Aplica el trait
+        add_trait = $TRAIT$
+        if = {
+            limit = { mpp_is_debug_active = yes }
+            mpp_debug_check_scope_leader = yes
+        }
+    ]
+    [[!TRAIT]
+        # No se pasó un trait, log de error
+        if = {
+            limit = { mpp_is_debug_active = yes }
+            log_error = "❌ MPP: No trait specified in mpp_add_leader_trait!"
+        }
+    ]
+}
+
+mpp_remove_leader_trait = {
+    optimize_memory      # optimización de memoria
+
+    # Parámetro esperado: TRAIT
+    [[TRAIT]
+        # Quita el trait
+        if = {
+            limit = { has_trait = $TRAIT$ }
+            remove_trait = $TRAIT$
+        }
+        if = {
+            limit = { mpp_is_debug_active = yes }
+            mpp_debug_check_scope_leader = yes
+        }
+    ]
+    [[!TRAIT]
+        # No se pasó un trait, log de error
+        if = {
+            limit = { mpp_is_debug_active = yes }
+            log_error = "❌ MPP: No trait specified in mpp_remove_leader_trait!"
+        }
+    ]
 }

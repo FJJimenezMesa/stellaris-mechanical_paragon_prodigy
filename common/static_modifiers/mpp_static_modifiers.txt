@@ -23,17 +23,17 @@ mpp_nano_vector_planet = {
     icon_frame = 2
 
     planet_pop_assembly_mult = 0.15             # % a la producción de ensamblaje de población
-    robot_build_speed_mult = 0.15               # % a la velocidad de construcción de robots
-    robot_cost = -0.1                           # % al coste de robots
+    # robot_build_speed_mult = 0.15               # % a la velocidad de construcción de robots
+    # robot_cost = -0.1                           # % al coste de robots
     planet_max_districts_add = 1                # N al máximo de distritos
     planet_pops_robotics_upkeep_mult = 0.05
     planet_jobs_robotic_produces_mult = -0.20
-    mech_pop_happiness # todo rev
-    planet_emigration_push_add = 100 # todo rev sólo mechs / robo
-    planet_immigration_pull_add = 20 # todo rev sólo mechs / robo
+    # mech_pop_happiness # todo rev
+    # planet_emigration_push_add = 100 # todo rev sólo mechs / robo
+    # planet_immigration_pull_add = 20 # todo rev sólo mechs / robo
     planet_resettlement_unemployed_destination_mult = 0.25 # todo rev sólo mechs / robo
-    planet_immigration_pull_mult = 0.25 # todo rev sólo mechs / robo
-    planet_emigration_push_add = 50 # Todo rev non mechs / robo
+    # planet_immigration_pull_mult = 0.25 # todo rev sólo mechs / robo
+    # planet_emigration_push_add = 50 # Todo rev non mechs / robo
     planet_housing_mult = -0.1 # todo rev sólo mechs / robo
 }
 
@@ -421,6 +421,8 @@ mpp_leader_governor_symbiosis = {
     starbase_shipyard_build_speed_mult = 0.15
     starbase_shipyard_build_cost_mult = -0.15
     planet_administrators_unity_produces_mult = 0.1
+    starbase_defense_platform_capacity_add = 1
+    shipclass_military_station_hull_mult = 0.15
 }
 
 mpp_leader_scientist = {

@@ -32,8 +32,10 @@ mpp_trait_nano_vector = {
                 }
             }
             OR = {
-                mpp_has_mpp_leader_with_vector_approved = yes
-                mpp_has_mpp_leader_with_symbiosis_approved = yes
+                from = {
+                    mpp_has_mpp_leader_with_vector_approved = yes
+                    mpp_has_mpp_leader_with_symbiosis_approved = yes
+                }
             }
         }
     }
@@ -43,42 +45,43 @@ mpp_trait_nano_vector = {
     species_possible_merge_remove = {
         always = no  # nunca se puede quitar al fusionar especies
     }
-    potential_crossbreeding_chance = @mpp_nano_vector_crossbreeding
-    ai_weight = { @mpp_nano_vector_ai_weight }
+    potential_crossbreeding_chance = 0 # TODO @mpp_nano_vector_crossbreeding
 
-    triggered_leader_modifier = {
-        modifier = {
-            mpp_leader_age = 50
-        }
+    modifier = {
+        mpp_planet_job_production_bonus = 1
+        mpp_planet_job_production_mult_bonus = 1
     }
 
     # --- Efectos condicionados ---
-    triggered_pop_group_modifier = {
+    triggered_pop_modifier = {
         potential = {
             species = { is_archetype = BIOLOGICAL }
         }
-
-        modifier = {
-            mpp_planet_population_bio_bonus = 1
-            mpp_planet_job_production_bonus = 1
-            mpp_planet_job_production_mult_bonus = 1
-        }
+        mpp_leader_age = 50
+        mpp_planet_population_bio_bonus = 1
     }
 
-    triggered_pop_group_modifier = {
+    triggered_pop_modifier = {
         potential = {
             species = { is_archetype = MACHINE }
         }
-        modifier = {
-            mpp_planet_population_robotic_bonus = 1
-            mpp_planet_job_production_bonus = 1
-            mpp_planet_job_production_mult_bonus = 1
-        }
+        mpp_planet_population_robotic_bonus = 1
+    }
+
+    slave_cost = {
+        energy = 500
     }
 
     assembly_score = {
         modifier = {
             add = 0.5
+        }
+    }
+
+    ai_weight = {
+        base = 100
+        modifier = {
+            set = @mpp_nano_vector_ai_weight
         }
     }
 }
@@ -115,7 +118,7 @@ mpp_trait_nano_symbiosis = {
                     mpp_is_machine_empire_no_gestal = yes
                 }
             }
-            mpp_has_mpp_leader_with_symbiosis_approved = yes
+            from = { mpp_has_mpp_leader_with_symbiosis_approved = yes }
         }
     }
     species_possible_remove = {
@@ -124,43 +127,44 @@ mpp_trait_nano_symbiosis = {
     species_possible_merge_remove = {
         always = no  # Tampoco al fusionar especies
     }
-    potential_crossbreeding_chance = @mpp_nano_symbiosis_crossbreeding
-    ai_weight = { @mpp_nano_symbiosis_ai_weight }  # La IA no lo usa
+    potential_crossbreeding_chance = 0 # TODO  @mpp_nano_symbiosis_crossbreeding
 
-    triggered_leader_modifier = {
-        mpp_leader_age = 50
-    }
-
-    # --- Efectos condicionados ---
-    triggered_pop_group_modifier = {
-        potential = {
-            species = { is_archetype = BIOLOGICAL }
-        }
-
-        modifier = {
-            mpp_planet_population_bio_bonus = 1
-            mpp_planet_job_production_bonus = 1
-            mpp_planet_job_production_mult_bonus = 1
-            mpp_planet_job_research_production_bonus = 1
-        }
-    }
-
-    triggered_pop_group_modifier = {
-        potential = {
-            species = { is_archetype = MACHINE }
-        }
-        mpp_planet_population_robotic_bonus = 1
+    modifier = {
         mpp_planet_job_production_bonus = 1
         mpp_planet_job_production_mult_bonus = 1
         mpp_planet_job_research_production_bonus = 1
     }
 
-    slave_cost = {
-        energy = 500
+    # --- Efectos condicionados ---
+    triggered_pop_modifier = {
+        potential = {
+             species = { is_archetype = BIOLOGICAL }
+        }
+        mpp_leader_age = 50
+        mpp_planet_population_bio_bonus = 1
     }
+
+    triggered_pop_modifier = {
+        potential = {
+            species = { is_archetype = MACHINE }
+        }
+        mpp_planet_population_robotic_bonus = 1
+    }
+
+    slave_cost = {
+        energy = 750
+    }
+
     assembly_score = {
         modifier = {
-            add = 0.5
+            add = 0.75
+        }
+    }
+
+    ai_weight = {
+        base = 100
+        modifier = {
+            set = @mpp_nano_symbiosis_ai_weight
         }
     }
 }
@@ -191,8 +195,10 @@ mpp_trait_nano_operancy = {
 
     species_potential_add = {
         OR = {
-            mpp_has_mpp_leader_with_vector_approved = yes
-            mpp_has_mpp_leader_with_symbiosis_approved = yes
+            from = {
+                mpp_has_mpp_leader_with_vector_approved = yes
+                mpp_has_mpp_leader_with_symbiosis_approved = yes
+            }
         }
     }
     species_possible_remove = {
@@ -201,8 +207,18 @@ mpp_trait_nano_operancy = {
     species_possible_merge_remove = {
         always = no  # Tampoco al fusionar especies
     }
-    potential_crossbreeding_chance = @mpp_nano_operancy_crossbreeding
-    ai_weight = { @mpp_nano_operancy_ai_weight }  # No lo usa la IA
+    potential_crossbreeding_chance = 0 # TODO  @mpp_nano_operancy_crossbreeding
+
+    modifier = {
+        mpp_leader_species_bonus = 1
+        mpp_planet_population_bonus = 1
+        mpp_planet_job_production_bonus = 1
+        mpp_planet_job_research_production_bonus = 1
+    }
+
+    slave_cost = {
+        energy = 500
+    }
 
     assembly_score = {
         modifier = {
@@ -218,18 +234,11 @@ mpp_trait_nano_operancy = {
         }
     }
 
-    triggered_pop_group_modifier = {
-        potential = {
-            species = { is_archetype = ROBOT }
-        }
-
+    ai_weight = {
+        base = 100
         modifier = {
-            mpp_leader_species_bonus = 1
-            mpp_planet_population_bonus = 1
-            mpp_planet_job_production_bonus = 1
-            mpp_planet_job_research_production_bonus = 1
+            set = @mpp_nano_operancy_ai_weight
         }
-
     }
 }
 

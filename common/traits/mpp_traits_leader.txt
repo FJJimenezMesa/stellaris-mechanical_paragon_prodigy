@@ -22,7 +22,7 @@
 mpp_ruler_trait_nano_vector = {
     cost = 1
     starting_ruler_trait = yes
-    force_councilor_trait = yes                     # Se considera un consejero
+    councilor_trait = yes                     # Se considera un consejero
     initial = no                                    # No aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
     immortal_leaders = yes
@@ -112,7 +112,7 @@ mpp_ruler_trait_nano_vector = {
 mpp_ruler_trait_nano_symbiosis = {
     #starting_ruler_trait = yes
     #cost = 1
-    force_councilor_trait = yes                     # Se considera un consejero
+    councilor_trait = yes                    # Se considera un consejero
     initial = no                                    # No aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
     immortal_leaders = yes
@@ -367,17 +367,6 @@ mpp_leader_trait_bio_vanguard_vessel_disciple = {
             mpp_leader_governor_symbiosis = 1
         }
     }
-
-    triggered_planet_modifier = {
-        potential = {
-            leader_class = governor
-            mpp_ruler_and_leader_same_class = yes
-        }
-        modifier = {
-            starbase_defense_platform_capacity_add = 1
-            shipclass_military_station_hull_mult = 0.15
-        }
-    }
 }
 
 mpp_leader_trait_bio_null_disciple = {
@@ -615,17 +604,6 @@ mpp_leader_trait_bio_vanguard_vessel_acolyte= {
         modifier = {
             mpp_leader_governor_disciple = 0.5
             mpp_leader_governor_symbiosis = 0.5
-        }
-    }
-
-    triggered_planet_modifier = {
-        potential = {
-            leader_class = governor
-            mpp_ruler_and_leader_not_same_class = yes
-        }
-        modifier = {
-            starbase_defense_platform_capacity_add = 0.5
-            shipclass_military_station_hull_mult = 0.075
         }
     }
 }
@@ -871,17 +849,6 @@ mpp_leader_trait_machine_apex_prime_engine_mimic = {
             mpp_leader_governor_symbiosis = 1.5
         }
     }
-
-    triggered_planet_modifier = {
-        potential = {
-            leader_class = governor
-            mpp_ruler_and_leader_same_class = yes
-        }
-        modifier = {
-            starbase_defense_platform_capacity_add = 1.5
-            shipclass_military_station_hull_mult = 0.25
-        }
-    }
 }
 
 mpp_leader_trait_machine_null_mimic = {
@@ -1121,17 +1088,6 @@ mpp_leader_trait_machine_apex_prime_engine_module = {
             mpp_leader_governor_symbiosis = 0.75
         }
     }
-
-    triggered_planet_modifier = {
-        potential = {
-            leader_class = governor
-            mpp_ruler_and_leader_not_same_class = yes
-        }
-        modifier = {
-            starbase_defense_platform_capacity_add = 0.75
-            shipclass_military_station_hull_mult = 0.1
-        }
-    }
 }
 
 mpp_leader_trait_machine_null_module = {
@@ -1261,7 +1217,7 @@ mpp_leader_trait_machine_null_module = {
 # ================================
 # END_LORE_mpp_leader_trait_mpp_paragon
 mpp_leader_trait_paragon = {
-    force_councilor_trait = yes                     # Se considera un consejero
+    councilor_trait = yes                     # Se considera un consejero
     initial = yes                                   # Aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
 
@@ -1349,7 +1305,6 @@ mpp_leader_trait_paragon = {
 # Trait que representa líderes influenciados o formados por un Parangon.
 # Bonificaciones moderadas adaptadas a cada clase de líder.
 mpp_leader_trait_has_paragon_leader = {
-    force_councilor_trait = no                            # No se considera un consejero
     initial = yes                                   # Aparece inicialmente
     randomized = no                                 # No se asigna aleatoriamente
 
