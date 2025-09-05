@@ -6,7 +6,7 @@
 # id             : [effect_id]
 # name           : [Nombre descriptivo del efecto]
 # type           : effect
-# scope          : [scope en el que debe usarse: planet / system / country / fleet / etc.]
+# scope          : [planet / system / country / fleet / pop / etc.]
 # target         : [target afectado, si aplica]
 # parameters     :
 #   • [param1] = [qué significa / obligatorio u opcional]
@@ -28,7 +28,7 @@
 # info_type      : scripted_trigger
 # id             : [trigger_id]
 # name           : [Nombre descriptivo del trigger]
-# scope          : [scope en el que se evalúa: planet / system / country / fleet / etc.]
+# scope          : [planet / system / country / fleet / pop / etc.]
 # target         : [líderes / país / planeta / sistema / etc.]
 # type           : boolean
 # parameters     :
@@ -53,7 +53,7 @@
 # id             : [value_id]
 # name           : [Nombre descriptivo del value]
 # type           : numeric
-# scope          : [scope en el que se evalúa: planet / system / country / fleet / etc.]
+# scope          : [planet / system / country / fleet / pop / etc.]
 # parameters     :
 #   • [param1] = [qué significa / obligatorio u opcional]
 #   • [param2] = [...]
@@ -76,7 +76,7 @@
 # info_type      : scripted_loc
 # id             : [loc_id]
 # name           : [Nombre descriptivo de la loc]
-# scope          : [scope en el que se evalúa: planet / system / country / etc.]
+# scope          : [planet / system / country / etc.]
 # random         : [yes/no → define si se elige aleatoriamente entre entradas válidas]
 # parameters     :
 #   • [param1] = [qué significa / obligatorio u opcional]
@@ -135,7 +135,6 @@
 #   • Influye en civics disponibles y eventos iniciales.
 #   • Se aplica automáticamente al crear el imperio o especie.
 # END_INFO
-
 
 # ----------------------------
 # 🔬 Technology: [Nombre de la tecnología]
@@ -395,5 +394,6 @@
 #   • [Nota 1 relevante al trait]
 #   • [Nota 2 relevante al trait]
 # END_INFO
+
 
 
