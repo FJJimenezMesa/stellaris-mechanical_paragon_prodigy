@@ -1,0 +1,399 @@
+# ----------------------------
+# ⚙️ Scripted Effect: [Nombre del efecto]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_effect
+# id             : [effect_id]
+# name           : [Nombre descriptivo del efecto]
+# type           : effect
+# scope          : [scope en el que debe usarse: planet / system / country / fleet / etc.]
+# target         : [target afectado, si aplica]
+# parameters     :
+#   • [param1] = [qué significa / obligatorio u opcional]
+#   • [param2] = [...]
+# description    : [Explicación clara de lo que hace el efecto]
+# related_effects: [efectos vanilla o custom relacionados]
+# notes          :
+#   • [Nota 1: advertencias, limitaciones, compatibilidad]
+#   • [Nota 2]
+# examples       :
+#   • [ejemplo de uso 1]
+#   • [ejemplo de uso 2]
+# END_INFO
+
+# ----------------------------
+# ⚙️ Scripted Trigger: [Nombre del Trigger]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : [trigger_id]
+# name           : [Nombre descriptivo del trigger]
+# scope          : [scope en el que se evalúa: planet / system / country / fleet / etc.]
+# target         : [líderes / país / planeta / sistema / etc.]
+# type           : boolean
+# parameters     :
+#   • [param1] = [qué significa / obligatorio u opcional]
+#   • [param2] = [...]
+# description    : [Explicación clara de lo que comprueba el trigger]
+# related_triggers: [otros triggers similares o relacionados]
+# related_effects : [efectos que dependen de este trigger, si aplica]
+# notes          :
+#   • [Nota 1: advertencias, limitaciones, compatibilidad]
+#   • [Nota 2]
+# examples       :
+#   • [ejemplo de uso 1 en un evento / efecto]
+#   • [ejemplo de uso 2]
+# END_INFO
+
+# ----------------------------
+# 📐 Scripted Value: [Nombre del value]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_value
+# id             : [value_id]
+# name           : [Nombre descriptivo del value]
+# type           : numeric
+# scope          : [scope en el que se evalúa: planet / system / country / fleet / etc.]
+# parameters     :
+#   • [param1] = [qué significa / obligatorio u opcional]
+#   • [param2] = [...]
+# returns        : [int / float / bool]
+# formula        : [explicación de cómo se calcula el valor]
+# description    : [Para qué sirve este value]
+# related_values : [otros values relacionados]
+# notes          :
+#   • [Nota 1: advertencias, limitaciones, compatibilidad]
+#   • [Nota 2]
+# examples       :
+#   • [ejemplo de uso 1]
+#   • [ejemplo de uso 2]
+# END_INFO
+
+# ----------------------------
+# 📝 Scripted Loc: [Nombre del bloque de loc]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_loc
+# id             : [loc_id]
+# name           : [Nombre descriptivo de la loc]
+# scope          : [scope en el que se evalúa: planet / system / country / etc.]
+# random         : [yes/no → define si se elige aleatoriamente entre entradas válidas]
+# parameters     :
+#   • [param1] = [qué significa / obligatorio u opcional]
+#   • [param2] = [...]
+# description    : [Explicación clara de qué texto devuelve y cómo se usa]
+# related_triggers: [triggers que influyen en esta loc, si aplica]
+# related_effects : [efectos que pueden llamar a esta loc, si aplica]
+# notes          :
+#   • [Nota 1: advertencias o limitaciones, ej. “no soporta nested variables”]
+#   • [Nota 2: compatibilidad o estilo de escritura]
+# examples       :
+#   • Uso en localización: "[Root.GetMyScriptedLoc]"
+# END_INFO
+
+# ----------------------------
+# 🏛️ Civic: [Nombre del Civic]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : civic
+# id             : [civic_id]
+# name           : [Nombre descriptivo del civic]
+# description    : [Explicación clara de los efectos y restricciones del civic]
+# target         : empire
+# prerequisites  : [otros civics, ethics, technologies requeridos]
+# modifiers      : [bonificaciones o efectos pasivos del civic]
+# related_effects: [eventos o efectos dependientes del civic]
+# restrictions   : [limitaciones, ej. solo ciertos ethics o origins]
+# tags           : [etiquetas, ej. internal, narrative, mpp]
+# icon           : [nombre del icono a mostrar en la UI]
+# notes          :
+#   • Define rasgos permanentes del gobierno o imperio.
+#   • Puede afectar la disponibilidad de policies, leaders o eventos.
+#   • Aplicado al inicio o al cambio de gobierno.
+# END_INFO
+
+# ----------------------------
+# 🌍 Origin: [Nombre del Origin]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : origin
+# id             : [origin_id]
+# name           : [Nombre descriptivo del origin]
+# description    : [Explicación clara del trasfondo y efectos del origin]
+# target         : species / empire
+# prerequisites  : [otros origins, civics, conditions]
+# modifiers      : [bonificaciones o malus automáticos]
+# related_effects: [eventos o efectos dependientes del origin]
+# restrictions   : [limitaciones, ej. solo ciertos ethics o government types]
+# starting_systems : [si aplica, sistemas iniciales o planetas]
+# starting_resources : [recursos iniciales específicos]
+# unique_flags   : [flags únicos asociados al origin]
+# tags           : [etiquetas, ej. internal, narrative, mpp]
+# icon           : [nombre del icono a mostrar en la UI]
+# notes          :
+#   • Define el trasfondo inicial y la identidad de la especie o imperio.
+#   • Influye en civics disponibles y eventos iniciales.
+#   • Se aplica automáticamente al crear el imperio o especie.
+# END_INFO
+
+
+# ----------------------------
+# 🔬 Technology: [Nombre de la tecnología]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : technology
+# id              : [tech_id]
+# tier            : [nivel de la tech, ej. 1–5]
+# area            : [physics / society / engineering]
+# category        : [categoría de la tech, ej. particles / computing / statecraft]
+# name            : [Nombre legible de la tecnología]
+# target          : [species / leaders / country / ships / stations / etc.]
+# prerequisites   : [lista de techs requeridas]
+# weight          : [peso base de investigación]
+# weight_modifiers: [factores que alteran el peso, ej. ética, autoridad, etc.]
+# cost            : [coste de investigación]
+# start_tech      : [yes/no → si está disponible al inicio]
+# feature_flags   : [flags especiales que habilita, ej. megastructures]
+# related_techs   : [techs alternativas o que evolucionan de esta]
+# levels          : [número de niveles, -1 = ilimitado]
+# description     : [Descripción narrativa o mecánica]
+# application     : [A qué o a quién aplica el efecto de la tecnología]
+# unlocks         : [unidades, edificios, decisiones, etc. que desbloquea]
+# focus           : [Objetivo principal de la tech, ej. “expansión naval”]
+# ai_weight       : [condiciones de elección por la IA]
+# notes           :
+#   • [Nota 1: advertencia o limitación]
+#   • [Nota 2: sinergias o conflictos con otras techs]
+#   • [Nota 3: consideraciones de balance]
+# END_INFO
+
+# ----------------------------
+# 📜 Agenda: [Nombre de la agenda]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : agenda
+# id              : [agenda_id]
+# name            : [Nombre descriptivo de la agenda]
+# target          : [leaders / country / other]
+# duration        : [permanent / years_X / until_condition]
+# prerequisites   : [lista de requisitos previos]
+# effect_summary  : [Resumen breve del efecto principal]
+# description     : [Descripción narrativa o mecánica detallada]
+# application     : [A quién o qué aplica la agenda: país, líder, flotas, etc.]
+# focus           : [Objetivo principal de la agenda: militar, economía, diplomacia...]
+# related_effects : [efectos activados por esta agenda]
+# weight          : [peso base de selección de la IA]
+# modifiers       : [factores que alteran la probabilidad de elección]
+# tags            : [etiquetas clasificatorias, separadas por comas]
+# ai_considerations: [condiciones específicas para IA]
+# notes           :
+#   • [Nota 1: advertencia o limitación]
+#   • [Nota 2: sinergias o conflictos con otras agendas]
+#   • [Nota 3: consideraciones de balance]
+# END_INFO
+
+# ----------------------------
+# 🏢 Building: [Nombre del edificio]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : building
+# id              : [building_id]
+# name            : [Nombre descriptivo del edificio]
+# type            : [passive / active / resource / unique / etc.]
+# category        : [amenities / research / military / industrial / etc.]
+# target          : planet
+# description     : [Explicación clara de la función del edificio y sus efectos sobre el planeta o la población]
+# prerequisites   : [lista de tecnologías, tradiciones o edificios necesarios]
+# cost            : [recursos requeridos para construir]
+# upkeep          : [mantenimiento en recursos]
+# jobs_provided   : [lista de empleos generados, ej. 2_researcher, 1_priest]
+# modifiers       : [modificadores aplicados, ej. producción, investigación, estabilidad]
+# related_effects : [eventos o efectos que dependen de este edificio]
+# unique          : [yes / no, indica si solo puede construirse una vez por planeta o imperio]
+# upgrade_path    : [id de edificios relacionados en cadena de mejora]
+# tags            : [etiquetas clasificatorias, ej. planet_building, mpp, nano_traits]
+# notes           :
+#   • [Nota 1: limitaciones especiales del edificio]
+#   • [Nota 2: interacción con mecánicas específicas]
+#   • [Nota 3: consideraciones de balance o IA]
+# END_INFO
+
+# ----------------------------
+# 🎯 On Action: [Nombre del On Action]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : on_action
+# id              : [on_action_id]
+# trigger         : [nombre_del_on_action]
+# target          : [pop / planet / system / country / galaxy]
+# scope           : [ROOT / FROM / PREV / etc.]
+# frequency       : [instant / daily / monthly / yearly]
+# description     : [Explicación clara de cuándo se dispara y qué hace el on_action]
+# application     : [A quién o qué aplica el on_action]
+# focus           : [Objetivo principal del on_action]
+# related_effects : [eventos o efectos que llama o afecta]
+# events          : [lista de eventos asociados, ej. event.my_mod.1, event.my_mod.2]
+# scripted_effects: [efectos llamados, si aplica]
+# parameters      : [lista de parámetros opcionales, si aplica]
+# tags            : [etiquetas, ej. on_action, mpp, economy, warfare]
+# notes           :
+#   • [Nota 1: comportamiento esperado]
+#   • [Nota 2: limitaciones o bugs conocidos]
+#   • [Nota 3: interacción con otros on_actions]
+# END_INFO
+
+# ----------------------------
+# 🕹️ Master Event: [Nombre del evento]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : event
+# id              : [event_id]
+# name            : [Nombre descriptivo del evento]
+# type            : master
+# target          : [pop / planet / system / country / galaxy]
+# trigger         : [condiciones que activan el evento, si aplica]
+# immediate       : [efectos que se ejecutan al dispararse el evento]
+# options         : [resumen de las opciones disponibles para el jugador/IA]
+# description     : [Explicación clara de la función del evento]
+# related_events  : [lista de eventos relacionados, encadenados o dependientes]
+# related_effects : [efectos que llama o sobre los que influye]
+# tags            : [etiquetas, ej. narrative, anomaly, mpp, internal]
+# notes           :
+#   • [Nota 1 relevante al evento]
+#   • [Nota 2 relevante al evento]
+#   • [Nota 3 relevante al evento]
+# END_INFO
+
+# ----------------------------
+# 📖 History Event: [Nombre del evento narrativo]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : event
+# id              : [id_del_evento]
+# name            : [Nombre descriptivo del evento narrativo / historia]
+# type            : story
+# target          : [planet / country / pops / system / galaxy]
+# description     : [Explicación clara de lo que representa el evento histórico o narrativo]
+# related_events  : [lista de eventos relacionados, si aplica]
+# tags            : [etiquetas, ej. narrative, history, mpp]
+# notes           :
+#   • [Nota 1 sobre la narrativa o encadenamiento]
+#   • [Nota 2 sobre la narrativa o encadenamiento]
+# END_INFO
+
+# ----------------------------
+# ⛓️ Chained Event: [Nombre del evento encadenado]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : event
+# id              : [event_id]
+# name            : [Nombre descriptivo del evento encadenado]
+# type            : child / chained
+# target          : [pop / planet / system / country / galaxy]
+# trigger         : [normalmente se dispara desde un evento master]
+# immediate       : [efectos automáticos al dispararse]
+# options         : [si hay, normalmente sin intervención del jugador]
+# parent_event    : [id del evento master que lo llama]
+# related_effects : [efectos que modifica o llama]
+# tags            : [etiquetas, ej. chained, internal, mpp]
+# notes           :
+#   • [Nota 1 relevante al evento encadenado]
+#   • [Nota 2 relevante al evento encadenado]
+# END_INFO
+
+# ----------------------------
+# 🔔 Notification Event: [Nombre del evento notificación]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : event
+# id              : [event_id]
+# name            : [Nombre descriptivo del evento de notificación]
+# type            : notification
+# target          : [pop / planet / system / country / galaxy]
+# trigger         : [condiciones que activan la notificación]
+# text            : [mensaje que verá el jugador]
+# related_events  : [eventos relacionados, si aplica]
+# related_effects : [efectos disparados por la notificación, si aplica]
+# tags            : [etiquetas, ej. info, alert, mpp]
+# notes           :
+#   • [Nota 1 relevante a la notificación]
+#   • [Nota 2 relevante a la notificación]
+# END_INFO
+
+# ----------------------------
+# ☠️ Nemesis Event: [Nombre del evento Nemesis]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : event
+# id              : [event_id]
+# name            : [Nombre descriptivo del evento Nemesis]
+# type            : nemesis
+# target          : [galaxy / system / country / pops / planet]
+# trigger         : [condiciones especiales Nemesis, ej. crisis activa, porcentaje de sistemas bajo amenaza]
+# immediate       : [efectos que se aplican al activarse, ej. daños, spawns, modifiers]
+# options         : [opciones para jugador o IA, si aplica]
+# related_events  : [eventos encadenados o dependientes de la crisis Nemesis]
+# related_effects : [efectos sobre sistemas, pops, o modificadores de galaxia]
+# tags            : [nemesis, crisis, narrative, mpp]
+# notes           :
+#   • Diseñado para ser disparado solo durante la fase Nemesis.
+#   • Permite combinar efectos globales y locales.
+#   • Se puede encadenar con notificaciones o eventos narrativos.
+# END_INFO
+
+# ----------------------------
+# 🔹Static Modifier: [Nombre del Modificador]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : static_modifier
+# id             : [modifier_id]
+# name           : [Nombre descriptivo del modificador]
+# target         : [planet / country / pop / etc.]
+# effect         : [Qué modifica y cómo afecta, ej. +10% producción]
+# duration       : permanent
+# tags           : [etiquetas, ej. economy, mpp, happiness]
+# notes          :
+#   • [Nota 1 relevante al modificador]
+#   • [Nota 2 relevante al modificador]
+# END_INFO
+
+# ----------------------------
+# 🧑‍💼 Leader Trait: [Nombre del rasgo]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : leader_trait
+# id             : [trait_id]
+# name           : [Nombre descriptivo del rasgo de líder]
+# type           : [passive / active / special]
+# target         : leader
+# description    : [Explicación clara de lo que hace el trait sobre las estadísticas o capacidades del líder]
+# prerequisites  : [condiciones previas, si aplica, ej. tecnología o civics]
+# modifiers      : [modificadores aplicados por este trait]
+# related_effects: [eventos, decisiones u otros efectos dependientes del trait]
+# tags           : [etiquetas, ej. leader_trait, mpp, special]
+# notes          :
+#   • [Nota 1 relevante al trait]
+#   • [Nota 2 relevante al trait]
+# END_INFO
+
+
+# ----------------------------
+# 🧬 Species Trait: [Nombre del rasgo]
+# ----------------------------
+# BEGIN_INFO
+# info_type      : species_trait
+# id             : [trait_id]
+# name           : [Nombre descriptivo del rasgo de especie]
+# type           : [biological / societal / environmental / special]
+# target         : species
+# description    : [Explicación clara de lo que hace el trait sobre las especies, su planeta o su población]
+# prerequisites  : [condiciones previas, si aplica, ej. tecnologías o civics]
+# modifiers      : [modificadores aplicados por este trait]
+# related_effects: [eventos, decisiones u otros efectos dependientes del trait]
+# tags           : [etiquetas, ej. species_trait, mpp, environmental]
+# notes          :
+#   • [Nota 1 relevante al trait]
+#   • [Nota 2 relevante al trait]
+# END_INFO
+
+
