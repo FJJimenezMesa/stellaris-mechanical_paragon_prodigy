@@ -309,3 +309,11 @@ mpp_set_flags_planet_has_machine_factory_vector_upgrade = {
 mpp_remove_flags_planet_has_machine_factory_vector_upgrade = {
     remove_planet_flag = mpp_flag_machine_factory_vector_upgrade
 }
+
+mpp_add_flags_paragon_origin = {
+    set_country_flag = mpp_flag_mpp_origin_paragon
+}
+
+mpp_add_flags_paragon_leader_aproved = {
+    set_country_flag = mpp_flag_paragon_leader_aproved
+}

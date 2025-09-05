@@ -1,0 +1,100 @@
+# -----------------------
+# NAMESPACE 
+# -----------------------
+
+namespace = mpp_events_paragon
+
+# ---------------------------------------------------
+# Evento inicial que aplica el trait Parangón al líder actual del país
+# Este evento se dispara solo una vez y automáticamente al inicio
+# ---------------------------------------------------
+country_event = {
+    id = mpp_events_paragon.0
+    is_triggered_only = yes       # No se dispara automáticamente por el motor, solo por trigger
+    hide_window = yes             # No mostrar ventana al jugador
+
+    immediate = {
+        this.ruler = {
+            leader_event = { id = mpp_events_paragon.1 }  # Llama al evento que aplica el trait
+        }
+    }
+}
+
+# ---------------------------------------------------
+# Evento que verifica si el líder del país es elegible para el trait Parangón
+# Aplica el trait si se cumplen las condiciones
+# ---------------------------------------------------
+country_event = {
+    id = mpp_events_paragon.1
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        if = {
+            limit = { mpp_is_paragon_origin = yes }
+
+            this.ruler = {
+                mpp_add_leader_trait = { TRAIT = mpp_leader_trait_paragon }  # Aplica el trait Parangón
+            }
+
+            mpp_add_flags_paragon_leader_aproved = yes
+        }
+    }
+}
+
+# ---------------------------------------------------
+# Evento que aplica el trait Parangón a líderes recién contratados
+# Se verifica la clase del líder y si existe algún líder Parangón en posesión del país
+# ---------------------------------------------------
+leader_event = {
+    id = mpp_events_paragon.2
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        if = {
+            limit = {
+                NOT = { has_trait = mpp_leader_trait_has_paragon_leader }
+                ruler = {
+                    has_trait = mpp_leader_trait_paragon
+                }
+            }
+
+            # Científico contratado
+            if = {
+                limit = {
+                    leader_class = scientist
+                    mpp_ruler_and_leader_same_class = yes
+                }
+                mpp_add_leader_trait = { TRAIT = mpp_leader_trait_has_paragon_leader }
+            }
+
+            # Almirante contratado
+            if = {
+                limit = {
+                    leader_class = admiral
+                    mpp_ruler_and_leader_same_class = yes
+                }
+                mpp_add_leader_trait = { TRAIT = mpp_leader_trait_has_paragon_leader }
+            }
+
+            # General contratado
+            if = {
+                limit = {
+                    leader_class = general
+                    mpp_ruler_and_leader_same_class = yes
+                }
+                mpp_add_leader_trait = { TRAIT = mpp_leader_trait_has_paragon_leader }
+            }
+
+            # Gobernador contratado
+            if = {
+                limit = {
+                    leader_class = governor
+                    mpp_ruler_and_leader_same_class = yes
+                }
+                mpp_add_leader_trait = { TRAIT = mpp_leader_trait_has_paragon_leader }
+            }
+        }
+    }
+}

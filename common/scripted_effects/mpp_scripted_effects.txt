@@ -181,7 +181,8 @@ mpp_purge_random_negative_traits_effect = {
                 }
                 subtract_variable = { which = temp_negatives_count value = 1 }
                 while = {
-                    count = value:temp_negatives_count
+                    count = temp_negatives_count
+                    #noinspection ParadoxScriptUnresolvedExpression
                     add_trait = "random_negative"
                     add_experience = @mpp_trait_base_exp
                 }
@@ -189,11 +190,14 @@ mpp_purge_random_negative_traits_effect = {
 
             random = {
                 chance = @mpp_purge_random_negative_trait_chance
+                #noinspection ParadoxScriptUnresolvedExpression
                 add_trait = "random_negative"
                 add_experience = @mpp_trait_base_exp
             }
         }
     }
+
+    clear_variable = temp_negatives_count
 }
 
 mpp_add_species_trait = {
@@ -202,7 +206,9 @@ mpp_add_species_trait = {
     # Parámetro esperado: TRAIT
     [[TRAIT]
         # Aplica el trait
-        add_trait = $TRAIT$
+        modify_species = {
+            add_trait = $TRAIT$
+        }
         if = {
             limit = { mpp_is_debug_active = yes }
             mpp_debug_check_scope_pop_or_leader = yes
@@ -224,8 +230,10 @@ mpp_remove_species_trait = {
     [[TRAIT]
         # Quita el trait
         if = {
-            limit = { has_trait = $TRAIT$ }
-            remove_trait = $TRAIT$
+            limit = { species = { has_trait = $TRAIT$ } }
+            modify_species = {
+                remove_trait = $TRAIT$
+            }
         }
         if = {
             limit = { mpp_is_debug_active = yes }

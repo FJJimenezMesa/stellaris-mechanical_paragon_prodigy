@@ -91,8 +91,8 @@ mpp_origin_mpp_sytem_origin = {
     potential = { always = yes }
     possible = {}
 
-    initializers = { 
-        mpp_system_mpp_origin_initializer
+    initializers = {
+        mpp_system_dark_relic_initializer
     }
 	
     flags = { 

@@ -18,10 +18,10 @@
 #   • Genera costes de mineral y mantenimiento energético.
 # END_INFO
 mpp_building_robot_assembly_vector_upgrade = {
+    category = pop_assembly
     base_buildtime = 30
-    category = pop_assembly_upgrade
-    icon = "gfx/interface/icons/upgrades/mpp_robot_vector.dds"
 
+    icon = "gfx/interface/icons/upgrades/mpp_robot_vector.dds"
     desc = {
         text = "mpp_building_robot_assembly_vector_upgrade_desc"
     }
@@ -74,10 +74,10 @@ mpp_building_robot_assembly_vector_upgrade = {
 #   • Genera costes de mineral y mantenimiento energético.
 # END_INFO
 mpp_building_machine_assembly_vector_upgrade = {
+    category = pop_assembly
     base_buildtime = 30
-    category = pop_assembly_upgrade
-    icon = "gfx/interface/icons/upgrades/mpp_machine_vector.dds"
 
+    icon = "gfx/interface/icons/upgrades/mpp_machine_vector.dds"
     desc = {
         text = "mpp_building_machine_assembly_vector_upgrade_desc"
     }

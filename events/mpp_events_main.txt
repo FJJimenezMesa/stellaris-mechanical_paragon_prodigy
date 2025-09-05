@@ -106,7 +106,9 @@ planet_event = {
     trigger = {
         fromfrom = {
             # Pop scope
-            is_archetype = BIOLOGICAL
+            species = {
+                is_archetype = BIOLOGICAL
+            }
             owner = {
                 # Country scope
                 OR = {
@@ -337,7 +339,9 @@ planet_event = {
 
     trigger = {
         fromfrom = {
-            is_archetype = MACHINE
+            species = {
+                is_archetype = MACHINE
+            }
             owner = {
                 # Country scope
                 OR = {
@@ -603,8 +607,10 @@ country_event = {
     trigger = {
         from = {
             OR = {
-                is_archetype = BIOLOGICAL
-                is_archetype = MACHINE
+                species = {
+                    is_archetype = BIOLOGICAL
+                    is_archetype = MACHINE
+                }
             }
             OR = {
                 owner = {
@@ -721,8 +727,10 @@ country_event = {
     trigger = {
         from = {
             OR = {
-                is_archetype = BIOLOGICAL
-                is_archetype = MACHINE
+                species = {
+                    is_archetype = BIOLOGICAL
+                    is_archetype = MACHINE
+                }
             }
             OR = {
                 owner = {
@@ -765,7 +773,9 @@ country_event = {
 
             if = {
                 limit = {
-                    is_archetype = BIOLOGICAL
+                    species = {
+                        is_archetype = BIOLOGICAL
+                    }
                 }
                 if = {
                     limit = {
@@ -819,7 +829,9 @@ country_event = {
             }
             else_if = {
                 limit = {
-                    is_archetype = MACHINE
+                    species = {
+                        is_archetype = MACHINE
+                    }
                 }
                 if = {
                     limit = {
