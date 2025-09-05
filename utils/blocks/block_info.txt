@@ -341,6 +341,28 @@
 # END_INFO
 
 # ----------------------------
+# 🧪 Event (Test / Hack): [Nombre del evento experimental]
+# ----------------------------
+# BEGIN_INFO
+# info_type       : event
+# id              : [event_id]
+# name            : [Nombre descriptivo del evento experimental o de prueba]
+# type            : test / hack
+# target          : [pop / planet / system / country / galaxy]
+# trigger         : [condiciones que activan el evento, opcional]
+# immediate       : [efectos automáticos al dispararse el evento, opcional]
+# options         : [opciones del jugador, normalmente vacío o debug]
+# description     : [Explicación de lo que prueba o hackea este evento]
+# related_events  : [otros eventos experimentales o dependientes, si aplica]
+# related_effects : [efectos disparados o modificados por este evento]
+# tags            : [etiquetas, ej. debug, hack, test, internal]
+# notes           :
+#   • Usar solo para pruebas o experimentos internos.
+#   • No recomendado para partidas en vivo.
+#   • Puede disparar efectos inestables o modificar variables internas.
+# END_INFO
+
+# ----------------------------
 # 🔹Static Modifier: [Nombre del Modificador]
 # ----------------------------
 # BEGIN_INFO
