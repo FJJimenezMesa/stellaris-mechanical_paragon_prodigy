@@ -1,0 +1,117 @@
+# ================================================
+# Scripted Triggers MPP: TRAITS
+# ================================================
+
+# ----------------------------
+# Trigger: Nano Vector
+# ----------------------------
+# BEGIN_INFO
+#   info_type: scripted_trigger
+#   id: mpp_has_mpp_trait_nano_vector
+#   type: condition
+#   name: Comprobar Trait Nano Vector
+#   target: species
+#   description: Comprueba si la especie tiene el trait Nano Vector.
+#   related_effects: mpp_trait_nano_vector
+#   notes:
+# END_INFO
+mpp_has_mpp_trait_nano_vector = {
+    if = {
+        limit = {
+            is_archetype = BIOLOGICAL
+            has_trait = mpp_trait_nano_vector
+        }
+    }
+}
+
+# ----------------------------
+# Trigger: Nano Symbiosis
+# ----------------------------
+# BEGIN_INFO
+#   info_type: scripted_trigger
+#   id: mpp_has_mpp_trait_nano_symbiosis
+#   type: condition
+#   name: Comprobar Trait Nano Symbiosis
+#   target: species
+#   description: Comprueba si la especie tiene el trait Nano Symbiosis.
+#   related_effects: mpp_trait_nano_symbiosis
+#   notes:
+# END_INFO
+mpp_has_mpp_trait_nano_symbiosis = {
+    if = {
+        limit = {
+            is_archetype = MACHINE
+            has_trait = mpp_trait_nano_symbiosis
+        }
+    }
+}
+
+# ----------------------------
+# Trigger: Nano Operancy
+# ----------------------------
+# BEGIN_INFO
+#   info_type: scripted_trigger
+#   id: mpp_has_mpp_trait_nano_operancy
+#   type: condition
+#   name: Comprobar Trait Nano Operancy
+#   target: species
+#   description: Comprueba si la especie tiene el trait Nano Operancy.
+#   related_effects: mpp_trait_nano_operancy
+#   notes:
+# END_INFO
+mpp_has_mpp_trait_nano_operancy = {
+    if = {
+        limit = {
+            is_archetype = ROBOT
+            has_trait = mpp_trait_nano_operancy
+        }
+    }
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Ruler y Líder misma clase
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_ruler_and_leader_same_class
+# name           : Ruler y Líder misma clase
+# target         : leader
+# type           : condition
+# related_traits : mpp_leader_trait_bio_disciple, mpp_leader_trait_machine_mimic
+# description    : Comprueba si la clase del líder coincide con la del ruler actual del imperio.
+# notes          :
+#   • Se usa para asignar los traits "Disciple" (bio) o "Mimic" (machine).
+#   • Evalúa si el ruler y el líder comparten clase (admiral, scientist, governor, general).
+# END_INFO
+mpp_ruler_and_leader_same_class = {
+    OR = {
+        AND = { leader_class = scientist owner = { ruler = { leader_class = scientist } } }
+        AND = { leader_class = admiral owner = { ruler = { leader_class = admiral } } }
+        AND = { leader_class = general owner = { ruler = { leader_class = general } } }
+        AND = { leader_class = governor owner = { ruler = { leader_class = governor } } }
+    }
+}
+
+# ----------------------------
+# ⚙️ Scripted Trigger: Ruler y Líder distinta clase
+# ----------------------------
+# BEGIN_INFO
+# info_type      : scripted_trigger
+# id             : mpp_ruler_and_leader_not_same_class
+# name           : Ruler y Líder distinta clase
+# target         : leader
+# type           : condition
+# related_traits : mpp_leader_trait_bio_acolyte, mpp_leader_trait_machine_module
+# description    : Comprueba si la clase del líder NO coincide con la del ruler actual del imperio.
+# notes          :
+#   • Se usa para asignar los traits "Acolyte" (bio) o "Module" (machine).
+#   • Evalúa si el ruler y el líder son de clases diferentes (admiral, scientist, governor, general).
+# END_INFO
+mpp_ruler_and_leader_not_same_class = {
+    OR = {
+        AND = { leader_class = scientist owner = { ruler = { NOT = { leader_class = scientist } } } }
+        AND = { leader_class = admiral owner = { ruler = { NOT = { leader_class = admiral } } } }
+        AND = { leader_class = general owner = { ruler = { NOT = { leader_class = general } } } }
+        AND = { leader_class = governor owner = { ruler = { NOT = { leader_class = governor } } } }
+    }
+}

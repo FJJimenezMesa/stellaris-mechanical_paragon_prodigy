@@ -76,7 +76,7 @@ mpp_tech_machine_patterns = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -127,7 +127,7 @@ mpp_tech_machine_patterns_advanced = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -176,7 +176,7 @@ mpp_tech_robotic_diversity = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -225,7 +225,7 @@ mpp_tech_biological_patterns = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -274,7 +274,7 @@ mpp_tech_genetic_diversity = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -324,7 +324,7 @@ mpp_tech_leadership_expansion = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -375,7 +375,7 @@ mpp_tech_leadership_expansion_advanced = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -425,7 +425,7 @@ mpp_tech_diplomatic_expansion = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -477,7 +477,7 @@ mpp_tech_diplomatic_expansion_advanced = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -527,7 +527,7 @@ mpp_tech_starbase_expansion = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
@@ -580,7 +580,7 @@ mpp_tech_starbase_advanced_expansion = {
     weight_modifier = {
         modifier = {
             factor = @mpp_tech_mpp_system_rep_weight_factor
-            mpp_has_system_mpp = yes
+            mpp_country_has_system_mpp = yes
         }
         modifier = {
             factor = @mpp_tech_mpp_capital_rep_weight_factor
