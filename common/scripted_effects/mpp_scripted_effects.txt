@@ -318,3 +318,12 @@ mpp_remove_leader_trait = {
         }
     ]
 }
+
+mpp_seed_random = {
+    set_variable_to_random_value = {
+        which   = mpp_rand
+        min     = $MIN|0$
+        max     = $MAX|1$
+        rounded = yes
+    }
+}

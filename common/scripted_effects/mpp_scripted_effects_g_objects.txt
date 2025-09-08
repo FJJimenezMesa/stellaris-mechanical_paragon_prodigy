@@ -1,0 +1,86 @@
+mpp_add_asteroid_belt = {
+    # Si el parámetro TYPE está definido → usar ese tipo exacto de cinturón de asteroides
+    [[TYPE]
+        add_asteroid_belt = {
+            type = $TYPE$       # Ejemplo: rocky_asteroid_belt, icy_asteroid_belt, etc.
+            radius = $RADIUS$   # Radio del cinturón
+        }
+    ]
+
+    # Si no se ha definido TYPE → elegir aleatoriamente entre los tipos disponibles
+    [[!TYPE]
+        mpp_add_random_asteroid_belt = {
+            RADIUS = $RADIUS$   # Pasa el radio a la función que decide el tipo aleatoriamente
+        }
+    ]
+}
+
+mpp_add_random_asteroid_belt = {
+    # random_list asegura que se elija uno de los tipos con probabilidad igual (peso = 1)
+    random_list = {
+        1 = { add_asteroid_belt = { type = rocky_asteroid_belt radius = $RADIUS$ } }
+        1 = { add_asteroid_belt = { type = icy_asteroid_belt radius = $RADIUS$ } }
+        1 = { add_asteroid_belt = { type = crystal_asteroid_belt radius = $RADIUS$ } }
+        1 = { add_asteroid_belt = { type = debris_asteroid_belt radius = $RADIUS$ } }
+        1 = { add_asteroid_belt = { type = empty_asteroid_belt radius = $RADIUS$ } }
+    }
+}
+
+mpp_add_asteroids = {
+    # Si se define COUNT → asignar esa cantidad a la variable temporal tCount
+    [[COUNT]
+        set_variable = {
+            which = tCount
+            value = $COUNT|1$    # $COUNT|1$ → si no se pasa COUNT, usa valor por defecto 1
+        }
+    ]
+
+    # Si NO se define COUNT → generar un número aleatorio entre MIN_COUNT y MAX_COUNT
+    [[!COUNT]
+        set_variable_to_random_value = {
+            which = tCount
+            min = $MIN_COUNT|1$  # valor mínimo por defecto = 1
+            max = $MAX_COUNT|1$  # valor máximo por defecto = 1 (revisar si debería ser >1)
+            rounded = yes        # asegura número entero
+        }
+    ]
+
+    # Bucle while: ejecuta el bloque interno tCount veces
+    while = {
+        count = tCount
+
+        # Caso 1: TYPE definido → añade planeta del tipo especificado
+        [[TYPE]
+            spawn_planet = {
+                class = $TYPE$            # Ejemplo: pc_asteroid, pc_ice_asteroid, etc.
+                orbit_distance = $ORBIT|50$
+                size = $SIZE|2$
+
+                init_effect = {
+                    mpp_setName_randomPlanet = yes  # Asigna nombre aleatorio al planeta
+                }
+            }
+        ]
+        # Caso 2: TYPE no definido → genera un asteroide aleatorio
+        [[!TYPE]
+            mpp_add_random_asteroid = {
+                SIZE = $SIZE|2$                 # tamaño del asteroide (por defecto 2)
+                ORBIT = $ORBIT|50$              # distancia orbital (por defecto 50)
+                ORBIT_OFFSET = $ORBIT_OFFSET|0$ # offset para variar posiciones
+            }
+        ]
+    }
+
+    # Limpia la variable temporal usada en el bucle
+    clear_variable = tCount
+}
+
+mpp_add_random_asteroid = {
+    # random_list: escoge un tipo de asteroide con probabilidad igual (peso = 1)
+    random_list = {
+        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
+        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_ice_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
+        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_crystal_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
+        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_rare_crystal_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
+    }
+}

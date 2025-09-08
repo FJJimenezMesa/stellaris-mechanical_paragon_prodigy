@@ -13,3 +13,18 @@ mpp_purge_all_bad_traits_exp_change_total = {
         mode = add
     }
 }
+
+mpp_random_value = {
+    base = 0
+    add  = mpp_rand   # lee la variable guardada en el mismo scope
+}
+
+mpp_get_min_orbit = {
+    base = $ORBIT|0$
+    subtract = $ORBIT_OFFSET|0$
+}
+
+mpp_get_max_orbit = {
+    base = $ORBIT|0$
+    add =  $ORBIT_OFFSET|0$
+}
