@@ -8,8 +8,8 @@ namespace = mpp_events_origin_op
 # ===================================================
 country_event = {
     id = mpp_events_origin_op.0
-    title = mpp_events_origin_op.0.title
-    desc = mpp_events_origin_op.0.desc
+    title = "mpp_events_origin_op.0.title"
+    desc = "mpp_events_origin_op.0.desc"
     #picture = GFX_evt_ruined_city # TODO crear/buscar uno
     #show_sound = event_planetary_riot
     is_triggered_only = yes
@@ -17,10 +17,5 @@ country_event = {
 
     immediate = {
         # TODO efectos iniciales (flags, recursos, triggers narrativos)
-    }
-       
-    option = {
-        name = mpp_events_origin_op.0.a
-        # TODO efectos de la opción
     }
 }

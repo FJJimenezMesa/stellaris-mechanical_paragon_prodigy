@@ -8,12 +8,12 @@
 # LORE_TYPE: ORIGIN
 # ================================
 # 🌌 Origin: mpp_origin_mpp_system_origin
-# "El Legado del Veridian" / "El Susurro de los Progenitores"
+# "El Legado del Prometeo" / "El Susurro de los Progenitores"
 # ================================
 # Lore:
 #   En los registros más antiguos de las civilizaciones precursoras se describe
 #   una entidad cósmica conocida como "El Veridian", un fluido consciente de
-#   nanites semiorgánicos que trasciende la distinción entre materia y energía.
+#   nanites semi-orgánicos que trasciende la distinción entre materia y energía.
 #   Los primeros investigadores lo llamaron "El Susurro" por su capacidad de
 #   comunicarse directamente con el tejido de la realidad.
 #   El Veridian no es un arma ni una herramienta, sino una forma de existencia
@@ -76,7 +76,6 @@
 #   • Vecinos predeterminados y anomalías iniciales.
 # ================================
 # END_LORE_mpp_origin_mpp_system_origin
-END_LORE_mpp_origin_mpp_system_origin
 mpp_origin_mpp_sytem_origin = {
     is_origin = yes
     icon = "gfx/interface/icons/origins/mpp_origin_mpp_sytem_origin.dds"

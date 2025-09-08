@@ -1,0 +1,14 @@
+namespace = mpp_test
+
+event = {
+    id = mpp_test.1
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        add_modifier = {
+            modifier = mpp_country_leader_cap_bonus
+            days = -1
+        }
+    }
+}

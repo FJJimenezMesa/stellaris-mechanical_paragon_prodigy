@@ -66,7 +66,7 @@ mpp_purge_pending_negative_traits_effect = {
     hidden_effect = {
         # Restaurar traits pendientes con pequeña probabilidad de perder alguno
         change_variable = {
-            which = leader_pending_negative_tra its_unmodified
+            which = leader_pending_negative_traits_unmodified
             value = value:leader_num_negative_leader_trait_tiers
         }
         random = {
@@ -249,29 +249,9 @@ mpp_remove_species_trait = {
     ]
 }
 
-mpp_add_species_trait_nano_vector = {
-    mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
-}
-
-mpp_add_species_trait_nano_vector_null = {
-    mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
-}
-
-mpp_add_species_trait_nano_symbiosis = {
-    mpp_add_species_trait = { TRAIT = mpp_trait_nano_symbiosis }
-}
-
-mpp_add_species_trait_nano_operancy = {
-    mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy }
-}
-
-mpp_add_species_trait_nano_operancy_null = {
-    mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy_null }
-}
-
 mpp_update_vector_trait = {
     mpp_remove_species_trait = { TRAIT = mpp_trait_nano_vector }
-    mpp_add_species_trait_nano_symbiosis = yes
+    mpp_add_species_trait = { TRAIT = mpp_trait_nano_symbiosis }
 }
 
 mpp_add_leader_trait = {

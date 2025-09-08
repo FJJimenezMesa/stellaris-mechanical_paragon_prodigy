@@ -125,13 +125,13 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_vector_bio_vector_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_vector_bio_null_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                 }
             }
@@ -146,19 +146,19 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_bio_symbiosis_pop_chance
                         }
-                        mpp_add_species_trait_nano_symbiosis = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_symbiosis }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_bio_vector_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_bio_null_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                 }
             }
@@ -216,13 +216,13 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_vector_robot_operancy_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_vector_robot_null_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy_null }
                     }
                 }
             }
@@ -242,13 +242,13 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_vector_robot_operancy_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_vector_robot_null_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy_null }
                     }
                 }
             }
@@ -268,13 +268,13 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_robot_operancy_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_robot_null_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy_null }
                     }
                 }
             }
@@ -294,13 +294,13 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_robot_operancy_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_robot_null_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_operancy_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_operancy_null }
                     }
                 }
             }
@@ -358,13 +358,13 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_vector_machine_vector_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_vector_machine_null_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                 }
             }
@@ -382,13 +382,13 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_vector_machine_vector_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_vector_machine_null_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                 }
             }
@@ -407,19 +407,19 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_machine_symbiosis_pop_chance
                         }
-                        mpp_add_species_trait_nano_symbiosis = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_symbiosis }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_machine_vector_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_machine_null_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                 }
             }
@@ -437,19 +437,19 @@ planet_event = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_machine_symbiosis_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_symbiosis = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_symbiosis }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_machine_vector_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_machine_null_upgraded_pop_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                 }
             }
@@ -522,13 +522,13 @@ country_event = {
                         modifier = {
                             factor = @mpp_nano_vector_leader_vector_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_vector_leader_null_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                     1 = {
                         modifier = {
@@ -553,19 +553,19 @@ country_event = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_leader_symbiosis_chance
                         }
-                        mpp_add_species_trait_nano_symbiosis = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_symbiosis }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_leader_vector_chance
                         }
-                        mpp_add_species_trait_nano_vector = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector }
                     }
                     1 = {
                         modifier = {
                             factor = @mpp_nano_symbiosis_leader_null_chance
                         }
-                        mpp_add_species_trait_nano_vector_null = yes
+                        mpp_add_species_trait = { TRAIT = mpp_trait_nano_vector_null }
                     }
                     1 = {
                         modifier = {

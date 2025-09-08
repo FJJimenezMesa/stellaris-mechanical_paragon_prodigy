@@ -4,16 +4,16 @@
 namespace = mpp_events_origin_ah
 
 @countDownDays_atHome_1 = 5
-@countDownDays_atHome_2 = { 365*2 }
-@countDownDays_atHome_3 = { 365*3 }
+@countDownDays_atHome_2 = 730       # 365 * 2
+@countDownDays_atHome_3 = 1095      # 365 * 3
 
 # ===================================================
 # Chain: At Home
 # ===================================================
 country_event = {
     id = mpp_events_origin_ah.0
-    title = mpp_events_origin_ah.0.title
-    desc = mpp_events_origin_ah.0.desc
+    title = "mpp_events_origin_ah.0.title"
+    desc = "mpp_events_origin_ah.0.desc"
     #picture = GFX_evt_ruined_city # TODO crear/buscar uno
     #show_sound = event_planetary_riot
     is_triggered_only = yes
@@ -22,20 +22,16 @@ country_event = {
     immediate = {
         # Chain de eventos narrativos tras llegar a casa
         # TODO Encapsular listado de eventos? mover a otro archivo? 
-        country_event = { id = mpp_events_origin_ah.1 days = @countDownDays_atHome_1 } 
-        country_event = { id = mpp_events_origin_ah.2 days = @countDownDays_atHome_2 }    
+        country_event = { id = mpp_events_origin_ah.1 days = @countDownDays_atHome_1 }
+        country_event = { id = mpp_events_origin_ah.2 days = @countDownDays_atHome_2 }
         country_event = { id = mpp_events_origin_ah.3 days = @countDownDays_atHome_3 }
-    }
-    option = {
-        name = mpp_events_origin_ah.0.a
-        # TODO efectos de la opción inicial
     }
 }
 
 country_event = {
     id = mpp_events_origin_ah.1
-    title = mpp_events_origin_ah.1.title
-    desc = mpp_events_origin_ah.1.desc
+    title = "mpp_events_origin_ah.1.title"
+    desc = "mpp_events_origin_ah.1.desc"
     is_triggered_only = yes
     hide_window = no
 
@@ -43,15 +39,15 @@ country_event = {
         # TODO Evento narrativo avisando de que va a pasar tras llegar a casa 1
     }
     option = {
-        name = mpp_events_origin_ah.1.a
+        name = "mpp_events_origin_ah.1.a"
         # TODO efectos
     }
 }
 
 country_event = {
     id = mpp_events_origin_ah.2
-    title = mpp_events_origin_ah.2.title
-    desc = mpp_events_origin_ah.2.desc
+    title = "mpp_events_origin_ah.2.title"
+    desc = "mpp_events_origin_ah.2.desc"
     is_triggered_only = yes
     hide_window = no
 
@@ -66,8 +62,8 @@ country_event = {
 
 country_event = {
     id = mpp_events_origin_ah.3
-    title = mpp_events_origin_ah.3.title
-    desc = mpp_events_origin_ah.3.desc
+    title = "mpp_events_origin_ah.3.title"
+    desc = "mpp_events_origin_ah.3.desc"
     is_triggered_only = yes
     hide_window = no
 
@@ -75,7 +71,7 @@ country_event = {
         # TODO Evento narrativo avisando de que va a pasar tras llegar a casa 3
     }
     option = {
-        name = mpp_events_origin_ah.3.a
+        name = "mpp_events_origin_ah.3.a"
         # TODO efectos
     }
 }

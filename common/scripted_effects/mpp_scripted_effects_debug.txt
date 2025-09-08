@@ -43,3 +43,27 @@ mpp_debug_check_scope_leader = {
         mpp_debug_log_error_invalid_scope = yes
     }
 }
+
+# Debug scope printing
+mpp_debug_print_scope_effect = {
+    log_error = "------------------------------"
+    log_error = "❌ - MPP - Printing the current scopes (effect) -"
+    log_error = "❌ - MPP - This: \\[This.GetName]"
+    log_error = "❌ - MPP - Root: \\[Root.GetName]"
+    log_error = "❌ - MPP - Prev: \\[Prev.GetName]"
+    log_error = "❌ - MPP - PrevPrev: \\[PrevPrev.GetName]"
+    log_error = "❌ - MPP - PrevPrevPrev: \\[PrevPrevPrev.GetName]"
+    log_error = "❌ - MPP - PrevPrevPrevPrev: \\[PrevPrevPrevPrev.GetName]"
+    log_error = "❌ - MPP - From: \\[From.GetName]"
+    log_error = "❌ - MPP - FromFrom: \\[FromFrom.GetName]"
+    log_error = "❌ - MPP - FromFromFrom: \\[FromFromFrom.GetName]"
+    log_error = "❌ - MPP - FromFromFromFrom: \\[FromFromFromFrom.GetName]"
+    log_error = "❌ - MPP - This's Solar System: \\[This.GetStarName]"
+    log_error = "❌ - MPP - This's Planet: \\[This.Planet.GetName]"
+    log_error = "❌ - MPP - This's Sector: \\[This.Sector.GetName]"
+    log_error = "❌ - MPP - Root's Solar System: \\[Root.GetStarName]"
+    log_error = "❌ - MPP - Root's Owner's Name: \\[Root.Owner.GetName]"
+    log_error = "❌ - MPP - Root's Owner's Capital's Name: \\[Root.Owner.Capital.GetName]"
+    log_error = "❌ - MPP - Owner: \\[Owner.GetName]"
+    log_error = "------------------------------"
+}
