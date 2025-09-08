@@ -1,0 +1,332 @@
+mpp_setName_random = {
+    random_list = {
+        1 = { mpp_setName_randomPrometheus = yes }
+        1 = { mpp_setName_randomPrometheusGods = yes }
+        1 = { mpp_setName_randomDark = yes }
+        1 = { mpp_setName_randomFire = yes }
+        1 = { mpp_setName_randomCold = yes }
+        1 = { mpp_setName_randomDead = yes }
+        1 = { mpp_setName_randomToxic = yes }
+        1 = { mpp_setName_randomNano = yes }
+    }
+}
+
+mpp_setName_randomPrometheus = {
+    set_name = {
+        key = "MPP_NAME_randomPrometheus"
+        variable_string = "\\[This.MPPGetNameRandomPrometheus\\]"
+    }
+}
+
+mpp_setName_randomPrometheusGods = {
+    set_name = {
+        key = "MPP_NAME_randomPrometheusGods"
+        variable_string = "\\[This.MPPGetNameRandomPrometheusGods\\]"
+    }
+}
+
+mpp_setName_randomDark = {
+    set_name = {
+        key = "MPP_NAME_randomDark"
+        variable_string = "\\[This.MPPGetNameRandomDark\\]"
+    }
+}
+
+mpp_setName_randomFire = {
+    set_name = {
+        key = "MPP_NAME_randomFire"
+        variable_string = "\\[This.MPPGetNameRandomFire\\]"
+    }
+}
+
+mpp_setName_randomCold = {
+
+    set_name = {
+        key = "MPP_NAME_randomCold"
+        variable_string = "\\[This.MPPGetNameRandomCold\\]"
+    }
+}
+
+mpp_setName_randomDead = {
+    set_name = {
+        key = "MPP_NAME_randomDead"
+        variable_string = "\\[This.MPPGetNameRandomDead\\]"
+    }
+}
+
+mpp_setName_randomToxic = {
+    set_name = {
+        key = "MPP_NAME_randomToxic"
+        variable_string = "\\[This.MPPGetNameRandomToxic\\]"
+    }
+}
+
+mpp_setName_randomNano = {
+    set_name = {
+        key = "MPP_NAME_randomNano"
+        variable_string = "\\[This.MPPGetNameRandomNano\\]"
+    }
+}
+
+mpp_setName_randomTerm = {
+    set_name = {
+        key = "MPP_NAME_randomTerm"
+        variable_string = "\\[This.MPPGetNameRandomTerm\\]"
+    }
+}
+
+mpp_setName_pcType = {
+    if = {
+        limit = { mpp_is_planet_scope = yes }
+
+        if = {
+            limit = { mpp_is_planet_class_asteroid = yes }
+            set_name = MPP_NAME_ASTEROID
+        }
+        else_if = {
+            limit = { mpp_is_planet_class_star = yes }
+            set_name = MPP_NAME_STAR
+        }
+        else_if = {
+            limit = { mpp_is_planet_class_habitat = yes }
+            set_name = MPP_NAME_HABITAT
+        }
+        else_if = {
+            limit = { mpp_is_planet_class_ring = yes }
+            set_name = MPP_NAME_RING
+        }
+        else_if = {
+            limit = { mpp_is_planet_class_planet = yes }
+            if = {
+                limit = { is_moon = no }
+                set_name = MPP_NAME_PLANET
+            }
+            else = {
+                set_name = MPP_NAME_MOON
+            }
+        }
+        else = {
+            set_name = MPP_NAME_GALACIC_OBJECT
+        }
+    }
+}
+
+mpp_setName_randomPlanet = {
+    if = {
+        limit = { mpp_is_planet_class_asteroid = yes }
+
+        mpp_changeName_add_starName = {
+            SET_MODE = yes
+        }
+        mpp_changeName_add_slash = yes
+        mpp_changeName_add_pcType = yes
+        mpp_changeName_add_pcTypeCount = yes
+        mpp_changeName_add_slash = yes
+        mpp_changeName_add_randomTerm = yes
+
+    } else_if = {
+        limit = { mpp_is_planet_scope = yes }
+        mpp_setName_pcType = yes
+        mpp_changeName_add_space = yes
+        mpp_changeName_add_randomTerm = yes
+    }
+}
+
+mpp_changeName_add_space = {
+    set_name = {
+        key = "MPP_NAME_add_space"
+        variable_string = "\\[This.GetName\\]"
+    }
+}
+
+mpp_changeName_add_slash = {
+    set_name = {
+        key = "MPP_NAME_add_slash"
+        variable_string = "\\[This.GetName\\]"
+    }
+}
+
+mpp_changeName_add_starName = {
+    if = {
+        limit = { mpp_is_planet_scope = yes }
+
+        save_event_target_as = tPlanet
+
+        solar_system = {
+            star = {
+                event_target:tPlanet = {
+                    [[SET_MODE]
+                        set_name = {
+                            key = "MPP_NAME_add_starName"
+                            variable_string = "\\[This.GetName\\]"
+                            variable_string = "\\[Prev.GetName\\]"
+                        }
+                    ]
+                    [[!SET_MODE]
+                        set_name = {
+                            key = "MPP_NAME_add_starName"
+                            variable_string = "\\[Prev.GetName\\]"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+
+mpp_changeName_add_randomTerm = {
+    set_name = {
+        key = "MPP_NAME_add_randomTerm"
+        variable_string = "\\[This.GetName\\]"
+        variable_string = "\\[This.MPPGetNameRandomTerm\\]"
+    }
+}
+
+mpp_changeName_add_pcType = {
+    if = {
+        limit = { mpp_is_planet_scope = yes }
+
+        set_name = {
+            key = "MPP_NAME_add_pcType"
+            variable_string = "\\[This.GetName\\]"
+            variable_string = "\\[This.MPPGetNamePcType\\]"
+        }
+    }
+}
+
+mpp_changeName_add_number = {
+    [[NUMBER]
+        set_variable = {
+            which = tNumber
+            value = $NUMBER$
+        }
+        set_name = {
+            key = "MPP_NAME_add_number"
+            variable_string = "\\[This.GetName\\]"
+            variable_string = "\\[This.tNumber\\]"
+        }
+        clear_variable = tNumber
+    ]
+}
+
+mpp_changeName_add_pcTypeCount = {
+    if = {
+        limit = { mpp_is_planet_scope = yes }
+
+        set_variable = {
+            which = pcTypeCount
+            value = 0
+        }
+        save_event_target_as = rootPlanet
+
+        from = {
+            # System scope
+            if = {
+                limit = { mpp_is_galactic_object = yes }
+
+                every_system_planet = {
+                    # Planet scope
+                    if = {
+                        limit = {
+                            OR = {
+                                # --- ASTEROIDS ---
+                                AND = {
+                                    # Planet scope
+                                    is_planet_class = pc_asteroid
+                                    event_target:rootPlanet = {
+                                        # Root planet scope
+                                        is_planet_class = pc_asteroid
+                                    }
+                                }
+                                AND = { is_planet_class = pc_ice_asteroid event_target:rootPlanet = { is_planet_class = pc_ice_asteroid } }
+                                AND = { is_planet_class = pc_crystal_asteroid event_target:rootPlanet = { is_planet_class = pc_crystal_asteroid } }
+                                AND = { is_planet_class = pc_rare_crystal_asteroid event_target:rootPlanet = { is_planet_class = pc_rare_crystal_asteroid } }
+
+                                # --- STARS ---
+                                AND = { is_planet_class = pc_a_star event_target:rootPlanet = { is_planet_class = pc_a_star } }
+                                AND = { is_planet_class = pc_b_star event_target:rootPlanet = { is_planet_class = pc_b_star } }
+                                AND = { is_planet_class = pc_f_star event_target:rootPlanet = { is_planet_class = pc_f_star } }
+                                AND = { is_planet_class = pc_g_star event_target:rootPlanet = { is_planet_class = pc_g_star } }
+                                AND = { is_planet_class = pc_k_star event_target:rootPlanet = { is_planet_class = pc_k_star } }
+                                AND = { is_planet_class = pc_m_star event_target:rootPlanet = { is_planet_class = pc_m_star } }
+                                AND = { is_planet_class = pc_m_giant_star event_target:rootPlanet = { is_planet_class = pc_m_giant_star } }
+                                AND = { is_planet_class = pc_t_star event_target:rootPlanet = { is_planet_class = pc_t_star } }
+                                AND = { is_planet_class = pc_toxoid_star event_target:rootPlanet = { is_planet_class = pc_toxoid_star } }
+                                AND = { is_planet_class = pc_neutron_star event_target:rootPlanet = { is_planet_class = pc_neutron_star } }
+                                AND = { is_planet_class = pc_pulsar event_target:rootPlanet = { is_planet_class = pc_pulsar } }
+
+                                # --- HABITATS ---
+                                AND = { is_planet_class = pc_habitat event_target:rootPlanet = { is_planet_class = pc_habitat } }
+                                AND = { is_planet_class = pc_habitat_shielded event_target:rootPlanet = { is_planet_class = pc_habitat_shielded } }
+                                AND = { is_planet_class = pc_crystal_habitat event_target:rootPlanet = { is_planet_class = pc_crystal_habitat } }
+
+                                # --- RINGWORLDS ---
+                                AND = { is_planet_class = pc_cybrex event_target:rootPlanet = { is_planet_class = pc_cybrex } }
+                                AND = { is_planet_class = pc_ringworld_habitable event_target:rootPlanet = { is_planet_class = pc_ringworld_habitable } }
+                                AND = { is_planet_class = pc_ringworld_habitable_damaged event_target:rootPlanet = { is_planet_class = pc_ringworld_habitable_damaged } }
+                                AND = { is_planet_class = pc_ringworld_seam event_target:rootPlanet = { is_planet_class = pc_ringworld_seam } }
+                                AND = { is_planet_class = pc_ringworld_seam_damaged event_target:rootPlanet = { is_planet_class = pc_ringworld_seam_damaged } }
+                                AND = { is_planet_class = pc_ringworld_shielded event_target:rootPlanet = { is_planet_class = pc_ringworld_shielded } }
+                                AND = { is_planet_class = pc_ringworld_tech event_target:rootPlanet = { is_planet_class = pc_ringworld_tech } }
+                                AND = { is_planet_class = pc_ringworld_tech_damaged event_target:rootPlanet = { is_planet_class = pc_ringworld_tech_damaged } }
+                                AND = { is_planet_class = pc_shattered_ring_habitable event_target:rootPlanet = { is_planet_class = pc_shattered_ring_habitable } }
+
+                                # --- PLANETS ---
+                                AND = { is_planet_class = pc_alpine event_target:rootPlanet = { is_planet_class = pc_alpine } }
+                                AND = { is_planet_class = pc_arctic event_target:rootPlanet = { is_planet_class = pc_arctic } }
+                                AND = { is_planet_class = pc_arid event_target:rootPlanet = { is_planet_class = pc_arid } }
+                                AND = { is_planet_class = pc_barren event_target:rootPlanet = { is_planet_class = pc_barren } }
+                                AND = { is_planet_class = pc_barren_cold event_target:rootPlanet = { is_planet_class = pc_barren_cold } }
+                                AND = { is_planet_class = pc_broken event_target:rootPlanet = { is_planet_class = pc_broken } }
+                                AND = { is_planet_class = pc_city event_target:rootPlanet = { is_planet_class = pc_city } }
+                                AND = { is_planet_class = pc_continental event_target:rootPlanet = { is_planet_class = pc_continental } }
+                                AND = { is_planet_class = pc_desert event_target:rootPlanet = { is_planet_class = pc_desert } }
+                                AND = { is_planet_class = pc_egg_cracked event_target:rootPlanet = { is_planet_class = pc_egg_cracked } }
+                                AND = { is_planet_class = pc_frozen event_target:rootPlanet = { is_planet_class = pc_frozen } }
+                                AND = { is_planet_class = pc_gaia event_target:rootPlanet = { is_planet_class = pc_gaia } }
+                                AND = { is_planet_class = pc_gas_giant event_target:rootPlanet = { is_planet_class = pc_gas_giant } }
+                                AND = { is_planet_class = pc_gray_goo event_target:rootPlanet = { is_planet_class = pc_gray_goo } }
+                                AND = { is_planet_class = pc_hive event_target:rootPlanet = { is_planet_class = pc_hive } }
+                                AND = { is_planet_class = pc_machine event_target:rootPlanet = { is_planet_class = pc_machine } }
+                                AND = { is_planet_class = pc_machine_broken event_target:rootPlanet = { is_planet_class = pc_machine_broken } }
+                                AND = { is_planet_class = pc_molten event_target:rootPlanet = { is_planet_class = pc_molten } }
+                                AND = { is_planet_class = pc_nuked event_target:rootPlanet = { is_planet_class = pc_nuked } }
+                                AND = { is_planet_class = pc_ocean event_target:rootPlanet = { is_planet_class = pc_ocean } }
+                                AND = { is_planet_class = pc_relic event_target:rootPlanet = { is_planet_class = pc_relic } }
+                                AND = { is_planet_class = pc_savannah event_target:rootPlanet = { is_planet_class = pc_savannah } }
+                                AND = { is_planet_class = pc_shattered_2 event_target:rootPlanet = { is_planet_class = pc_shattered_2 } }
+                                AND = { is_planet_class = pc_shielded event_target:rootPlanet = { is_planet_class = pc_shielded } }
+                                AND = { is_planet_class = pc_shrouded event_target:rootPlanet = { is_planet_class = pc_shrouded } }
+                                AND = { is_planet_class = pc_toxic event_target:rootPlanet = { is_planet_class = pc_toxic } }
+                                AND = { is_planet_class = pc_tropical event_target:rootPlanet = { is_planet_class = pc_tropical } }
+                                AND = { is_planet_class = pc_tundra event_target:rootPlanet = { is_planet_class = pc_tundra } }
+                                AND = { is_planet_class = pc_warden_guardian event_target:rootPlanet = { is_planet_class = pc_warden_guardian } }
+                            }
+                        }
+                        event_target:rootPlanet = {
+                            # Root planet scope
+                            change_variable = {
+                                which = pcTypeCount
+                                value = 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        set_name = {
+            key = "MPP_NAME_add_number"
+            variable_string = "\\[This.GetName\\]"
+            variable_string = "\\[This.pcTypeCount\\]"
+        }
+        clear_variable = pcTypeCount
+    }
+}
+
+
+
+
+
+
+

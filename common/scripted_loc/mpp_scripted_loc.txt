@@ -1,0 +1,256 @@
+defined_text = {
+    name = MPPGetNamePcType
+
+    text = {
+        localization_key = MPP_NAME_pcType_asteroid
+        trigger = { mpp_is_planet_scope = yes is_planet_class = pc_asteroid }
+    }
+    text = {
+        localization_key = MPP_NAME_pcType_crystal_asteroid
+        trigger = { mpp_is_planet_scope = yes is_planet_class = pc_crystal_asteroid }
+    }
+    text = {
+        localization_key = MPP_NAME_pcType_ice_asteroid
+        trigger = { mpp_is_planet_scope = yes is_planet_class = pc_ice_asteroid }
+    }
+    text = {
+        localization_key = MPP_NAME_pcType_rare_crystal_asteroid
+        trigger = { mpp_is_planet_scope = yes is_planet_class = pc_rare_crystal_asteroid }
+    }
+    # TODO añadir el resto
+
+    default = MPP_NAME_pcType_default
+}
+
+defined_text = {
+    name = MPPGetNameRandomTerm
+    text = { localization_key =  MPP_NAME_random_term_1 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_2 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_3 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_4 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_5 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_6 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_7 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_8 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_9 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_10 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_11 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_12 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_13 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_14 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_15 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_16 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_17 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_18 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_19 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_20 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_21 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_22 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_23 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_24 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_25 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_26 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_27 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_28 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_29 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_30 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_31 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_32 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_33 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_34 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_35 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_36 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_37 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_38 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_39 trigger = {} }
+    text = { localization_key =  MPP_NAME_random_term_40 trigger = {} }
+    default =  MPP_NAME_random_term_default
+}
+
+defined_text = {
+    name = MPPGetNameRandomPrometheus
+    text = { localization_key = MPP_NAME_prometheus_1 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_2 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_3 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_4 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_5 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_6 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_7 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_8 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_9 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_10 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_11 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_12 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_13 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_14 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_15 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_16 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_17 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_18 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_19 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_20 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_21 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_22 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_23 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_24 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_25 trigger = {} }
+}
+
+defined_text = {
+    name = MPPGetNameRandomPrometheusGods
+    text = { localization_key = MPP_NAME_prometheus_god_1 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_2 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_3 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_4 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_5 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_6 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_7 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_8 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_9 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_10 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_11 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_12 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_13 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_14 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_15 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_16 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_17 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_18 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_19 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_20 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_21 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_22 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_23 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_24 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_25 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_26 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_27 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_28 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_29 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_30 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_31 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_32 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_33 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_34 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_35 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_36 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_37 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_38 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_39 trigger = {} }
+    text = { localization_key = MPP_NAME_prometheus_god_40 trigger = {} }
+}
+
+defined_text = {
+    name = MPPGetNameRandomDark
+    text = { localization_key = MPP_NAME_random_dark_1 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_2 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_3 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_4 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_5 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_6 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_7 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_9 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_10 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_11 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_12 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_13 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_14 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dark_15 trigger = {} }
+}
+
+defined_text = {
+    name = MPPGetNameRandomFire
+    text = { localization_key = MPP_NAME_random_fire_1 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_2 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_3 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_4 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_5 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_6 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_7 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_9 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_10 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_11 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_12 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_13 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_14 trigger = {} }
+    text = { localization_key = MPP_NAME_random_fire_15 trigger = {} }
+}
+
+defined_text = {
+    name = MPPGetNameRandomCold
+    text = { localization_key = MPP_NAME_random_cold_1 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_2 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_3 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_4 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_5 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_6 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_7 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_9 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_10 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_11 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_12 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_13 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_14 trigger = {} }
+    text = { localization_key = MPP_NAME_random_cold_15 trigger = {} }
+}
+
+defined_text = {
+    name = MPPGetNameRandomDead
+    text = { localization_key = MPP_NAME_random_dead_1 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_2 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_3 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_4 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_5 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_6 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_7 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_9 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_10 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_11 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_12 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_13 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_14 trigger = {} }
+    text = { localization_key = MPP_NAME_random_dead_15 trigger = {} }
+}
+
+defined_text = {
+    name = MPPGetNameRandomToxic
+    text = { localization_key = MPP_NAME_random_toxic_1 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_2 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_3 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_4 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_5 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_6 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_7 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_9 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_10 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_11 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_12 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_13 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_14 trigger = {} }
+    text = { localization_key = MPP_NAME_random_toxic_15 trigger = {} }
+}
+
+defined_text = {
+    name = MPPGetNameRandomNano
+    text = { localization_key = MPP_NAME_random_nano_1 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_2 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_3 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_4 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_5 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_6 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_7 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_9 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_10 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_11 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_12 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_13 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_14 trigger = {} }
+    text = { localization_key = MPP_NAME_random_nano_15 trigger = {} }
+}

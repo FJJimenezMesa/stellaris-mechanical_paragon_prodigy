@@ -1,0 +1,253 @@
+﻿#noinspection ParadoxLocalisationIncorrectFileName
+l_spanish:
+ MPP_NAME_system_dark_relic:0 "Dark Relic"
+
+ MPP_NAME_add_space:0 "[This.GetName] "
+ MPP_NAME_add_slash:0 "[This.GetName]-"
+ MPP_NAME_add_starName:0 "[This.GetName][Prev.GetName]"
+ MPP_NAME_add_pcType:0 "[This.GetName][This.MPPGetNamePcType]"
+ MPP_NAME_add_number:0 "[This.GetName][This.pcTypeCount]"
+ MPP_NAME_add_randomTerm:0 "[This.GetName][This.MPPGetNameRandomTerm]"
+
+ MPP_NAME_CLEAR:0 ""
+ MPP_NAME_STAR:0 "Estrella"
+ MPP_NAME_PLANET:0 "Planeta"
+ MPP_NAME_MOON:0 "Luna"
+ MPP_NAME_ASTEROID:0 "Asteroide"
+ MPP_NAME_HABITAT:0 "Hábitat"
+ MPP_NAME_RING:0 "Anillo"
+ MPP_NAME_GALACIC_OBJECT:0 "Objeto Galáctico"
+ MPP_NAME_randomTerm:0 "[This.MPPGetNameRandomTerm]"
+ MPP_NAME_randomPrometheus:0 "[This.MPPGetNameRandomPrometheus]"
+ MPP_NAME_randomPrometheusGods:0 "[This.MPPGetNameRandomPrometheusGods]"
+ MPP_NAME_randomDark:0 "[This.MPPGetNameRandomDark]"
+ MPP_NAME_randomFire:0 "[This.MPPGetNameRandomFire]"
+ MPP_NAME_randomCold:0 "[This.MPPGetNameRandomCold]"
+ MPP_NAME_randomDead:0 "[This.MPPGetNameRandomDead]"
+ MPP_NAME_randomToxic:0 "[This.MPPGetNameRandomToxic]"
+ MPP_NAME_randomNano:0 "[This.MPPGetNameRandomNano]"
+
+ MPP_NAME_pcType_default:0 "OXX"
+ MPP_NAME_pcType_asteroid:0 "AXX"
+ MPP_NAME_pcType_crystal_asteroid:0 "ACX"
+ MPP_NAME_pcType_ice_asteroid:0 "AIX"
+ MPP_NAME_pcType_rare_crystal_asteroid:0 "ACR"
+
+ # Nombres normalizados para planetas (formato letra + 3 dígitos)
+ MPP_NAME_random_term_default:0 "[This.MPP_NAME_pcType_default]0"
+ MPP_NAME_random_term_1:0 "A102"
+ MPP_NAME_random_term_2:0 "B047"
+ MPP_NAME_random_term_3:0 "C311"
+ MPP_NAME_random_term_4:0 "D028"
+ MPP_NAME_random_term_5:0 "E099"
+ MPP_NAME_random_term_6:0 "F203"
+ MPP_NAME_random_term_7:0 "G057"
+ MPP_NAME_random_term_8:0 "H184"
+ MPP_NAME_random_term_9:0 "J073"
+ MPP_NAME_random_term_10:0 "K221"
+ MPP_NAME_random_term_11:0 "L008"
+ MPP_NAME_random_term_12:0 "M190"
+ MPP_NAME_random_term_13:0 "N042"
+ MPP_NAME_random_term_14:0 "P310"
+ MPP_NAME_random_term_15:0 "Q014"
+ MPP_NAME_random_term_16:0 "R076"
+ MPP_NAME_random_term_17:0 "S108"
+ MPP_NAME_random_term_18:0 "T059"
+ MPP_NAME_random_term_19:0 "V221"
+ MPP_NAME_random_term_20:0 "X013"
+ MPP_NAME_random_term_21:0 "U123"
+ MPP_NAME_random_term_22:0 "W456"
+ MPP_NAME_random_term_23:0 "Y789"
+ MPP_NAME_random_term_24:0 "Z012"
+ MPP_NAME_random_term_25:0 "A345"
+ MPP_NAME_random_term_26:0 "B678"
+ MPP_NAME_random_term_27:0 "C901"
+ MPP_NAME_random_term_28:0 "D234"
+ MPP_NAME_random_term_29:0 "E567"
+ MPP_NAME_random_term_30:0 "F890"
+ MPP_NAME_random_term_31:0 "G123"
+ MPP_NAME_random_term_32:0 "H456"
+ MPP_NAME_random_term_33:0 "J789"
+ MPP_NAME_random_term_34:0 "K012"
+ MPP_NAME_random_term_35:0 "L345"
+ MPP_NAME_random_term_36:0 "M678"
+ MPP_NAME_random_term_37:0 "N901"
+ MPP_NAME_random_term_38:0 "P234"
+ MPP_NAME_random_term_39:0 "Q567"
+ MPP_NAME_random_term_40:0 "R890"
+
+ # Categoría: Prometeo (Prometheus)
+ # Dioses, titanes y figuras griegas relacionadas con el mito de Prometeo
+ MPP_NAME_prometheus_god_1:0 "Hephaestus" # Dios herrero que forjó las cadenas de Prometeo
+ MPP_NAME_prometheus_god_2:0 "Zeus" # Dios que ordenó el castigo de Prometeo
+ MPP_NAME_prometheus_god_3:0 "Athena" # Diosa de la sabiduría que ayudó a crear a la humanidad
+ MPP_NAME_prometheus_god_4:0 "Themis" # Titánide de la ley divina, madre de Prometeo
+ MPP_NAME_prometheus_god_5:0 "Iapetus" # Titán padre de Prometeo
+ MPP_NAME_prometheus_god_6:0 "Epimetheus" # Hermano de Prometeo que aceptó el regalo de Pandora
+ MPP_NAME_prometheus_god_7:0 "Pandora" # La primera mujer, creada como castigo por el robo del fuego
+ MPP_NAME_prometheus_god_8:0 "Kratos" # Personificación de la fuerza que ayudó a encadenar a Prometeo
+ MPP_NAME_prometheus_god_9:0 "Bia" # Personificación de la violencia que ayudó en el castigo
+ MPP_NAME_prometheus_god_10:0 "Helios" # Titán del sol cuyo carro fue usado por Prometeo
+ MPP_NAME_prometheus_god_11:0 "Heracles" # Héroe que finalmente liberó a Prometeo
+ MPP_NAME_prometheus_god_12:0 "Chaos" # El vacío primordial del cual surgieron los dioses
+ MPP_NAME_prometheus_god_13:0 "Nike" # Diosa de la victoria, relevante para la lucha de Prometeo
+ MPP_NAME_prometheus_god_14:0 "Metis" # Titánide de la sabiduría y el pensamiento estratégico
+ MPP_NAME_prometheus_god_15:0 "Techne" # Personificación del arte, la artesanía y la técnica
+ MPP_NAME_prometheus_god_16:0 "Aetos" # El águila que devoraba el hígado de Prometeo
+ MPP_NAME_prometheus_god_17:0 "Oceanus" # Titán del mar que intentó mediar en el conflicto
+ MPP_NAME_prometheus_god_18:0 "Clymene" # Oceánide, madre de Prometeo en algunas versiones
+ MPP_NAME_prometheus_god_19:0 "Ananke" # Personificación de la necesidad y el destino inevitable
+ MPP_NAME_prometheus_god_20:0 "Moirai" # Las tres Parcas que controlaban el destino
+ MPP_NAME_prometheus_god_21:0 "Eros" # Dios del deseo, fuerza primordial de creación
+ MPP_NAME_prometheus_god_22:0 "Gaia" # La Tierra primigenia, abuela de Prometeo
+ MPP_NAME_prometheus_god_23:0 "Uranus" # El Cielo, abuelo de Prometeo
+ MPP_NAME_prometheus_god_24:0 "Dike" # Diosa de la justicia, relevante para el castigo
+ MPP_NAME_prometheus_god_25:0 "Nemesis" # Diosa de la retribución divina
+ MPP_NAME_prometheus_god_26:0 "Aidos" # Personificación del pudor y la humildad
+ MPP_NAME_prometheus_god_27:0 "Elpis" # La Esperanza, lo único que quedó en la caja de Pandora
+ MPP_NAME_prometheus_god_28:0 "Physis" # Personificación de la naturaleza y el origen natural
+ MPP_NAME_prometheus_god_29:0 "Sophia" # Personificación de la sabiduría
+ MPP_NAME_prometheus_god_30:0 "Logos" # Concepto del conocimiento y la palabra divina
+ MPP_NAME_prometheus_god_31:0 "Proteus" # Dios marino capaz de cambiar de forma, como el conocimiento
+ MPP_NAME_prometheus_god_32:0 "Morpheus" # Dios de los sueños, relevante para las visiones proféticas
+ MPP_NAME_prometheus_god_33:0 "Prometheus" # El propio Titán, el que prevé el futuro
+ MPP_NAME_prometheus_god_34:0 "Atropos" # Una de las Moiras, la que corta el hilo de la vida
+ MPP_NAME_prometheus_god_35:0 "Clotho" # La Moira que hilaba el destino
+ MPP_NAME_prometheus_god_36:0 "Lachesis" # La Moira que medía el hilo del destino
+ MPP_NAME_prometheus_god_37:0 "Eris" # Diosa de la discordia, consecuencia del acto de Prometeo
+ MPP_NAME_prometheus_god_38:0 "Hybris" # Personificación del exceso de orgullo y arrogancia
+ MPP_NAME_prometheus_god_39:0 "Thanatos" # Personificación de la muerte, consecuencia de la caja de Pandora
+ MPP_NAME_prometheus_god_40:0 "Hypnos" # Dios del sueño, hermano de Thanatos
+ MPP_NAME_prometheus_god_41:0 "Phobos" # Miedo y pánico en la mitología griega, hijo de Ares
+ MPP_NAME_prometheus_god_42:0 "Deimos" # Terror en la mitología griega, hermano de Phobos
+ MPP_NAME_prometheus_god_43:0 "Eris" # Diosa de la discordia y el conflicto en la mitología griega
+ MPP_NAME_prometheus_god_44:0 "Typhon" # Monstruo gigante asociado con tormentas y fuerzas destructivas
+
+ # Nombres Directos del Mito:
+ MPP_NAME_prometheus_1:0 "Kaukasos" # La montaña donde fue encadenado Prometeo, versión griega antigua
+ MPP_NAME_prometheus_2:0 "Othrys" # Montaña donde los Titanes lucharon contra los dioses, alternativa mitológica a Caucasus.
+ MPP_NAME_prometheus_3:0 "Pyrephoros" # Portador del fuego
+ MPP_NAME_prometheus_4:0 "Numen" # Poder divino en latín
+ MPP_NAME_prometheus_5:0 "Aeternum" # Eterno
+ MPP_NAME_prometheus_6:0 "Ichor" # Sangre de los dioses en la mitología griega
+ MPP_NAME_prometheus_7:0 "Adamant" # Material indestructible en la mitología
+ MPP_NAME_prometheus_8:0 "Aetos" # Águila
+ MPP_NAME_prometheus_9:0 "Hephaestus" # Dios del fuego
+ MPP_NAME_prometheus_10:0 "Olympus" # Monte de los dioses
+ MPP_NAME_prometheus_11:0 "Agnosco" # Conocer en latín
+ MPP_NAME_prometheus_12:0 "Ardens" # Ardiente en latín
+ MPP_NAME_prometheus_13:0 "Sapientia" # Sabiduría en latín
+ MPP_NAME_prometheus_14:0 "Capido" # Deseo en latín,
+ MPP_NAME_prometheus_15:0 "Adrasteia" # Diosa de la retribución
+ MPP_NAME_prometheus_16:0 "Hubris" # Desmesura en griego
+ MPP_NAME_prometheus_17:0 "Splendor" # Resplandor en latín
+ MPP_NAME_prometheus_18:0 "Demiurgus" # Creador en griego
+ MPP_NAME_prometheus_19:0 "Infamia" # Infamia en latín
+ MPP_NAME_prometheus_20:0 "Dunamis" # Poder en griego
+ MPP_NAME_prometheus_21:0 "Prometheia" # Προμηθεία
+ MPP_NAME_prometheus_22:0 "Koryphe" # Cumbre en griego
+ MPP_NAME_prometheus_23:0 "Atë" # Diosa de la ruina y la folly en la mitología griega,
+ MPP_NAME_prometheus_24:0 "Sophia" # Σοφία (Sabiduría)
+ MPP_NAME_prometheus_25:0 "Episteme" # Conocimiento en griego
+
+ # Categoría: Oscuro (Dark)
+ MPP_NAME_random_dark_1:0 "Umbrax" # Fusión de umbra (sombra) con sonido ominoso
+ MPP_NAME_random_dark_2:0 "Tenebris" # Tinieblas en latín
+ MPP_NAME_random_dark_3:0 "Erebus" # Dios primordial de la oscuridad en la mitología griega
+ MPP_NAME_random_dark_4:0 "Nyx" # Diosa de la noche en la mitología griega
+ MPP_NAME_random_dark_5:0 "Moros" # Dios del destino funesto en la mitología griega
+ MPP_NAME_random_dark_6:0 "Vigil" # Guardián
+ MPP_NAME_random_dark_7:0 "Silentis" # Silencio en latín
+ MPP_NAME_random_dark_8:0 "Acheron" # Río de la oscuridad en la mitología griega
+ MPP_NAME_random_dark_9:0 "Obsidian" # Vidrio volcánico
+ MPP_NAME_random_dark_10:0 "Vacuus" # Vacío en latín
+ MPP_NAME_random_dark_11:0 "Eklexis" # Eclipse en griego
+ MPP_NAME_random_dark_12:0 "Skotos" # Oscuridad en griego
+ MPP_NAME_random_dark_13:0 "Umbra" # Sombra en latín
+ MPP_NAME_random_dark_14:0 "Nychta" # Noche en griego
+ MPP_NAME_random_dark_15:0 "Scotia" # Oscuridad en griego (σκοτία)
+
+ # Categoría: Fuego (Fire)
+ MPP_NAME_random_fire_1:0 "Gehenna" # Infierno en hebreo
+ MPP_NAME_random_fire_2:0 "Ember" # Ascua
+ MPP_NAME_random_fire_3:0 "Cinder" # Ceniza
+ MPP_NAME_random_fire_4:0 "Phlegethon" # Río de fuego en el inframundo griego
+ MPP_NAME_random_fire_5:0 "Asphodel" # Llanuras ardientes del Inframundo griego
+ MPP_NAME_random_fire_6:0 "Flamma" # Llama en latín
+ MPP_NAME_random_fire_7:0 "Smolder" # Arder lentamente
+ MPP_NAME_random_fire_8:0 "Pyre" # Pira funeraria
+ MPP_NAME_random_fire_9:0 "Ignis" # Fuego en latín
+ MPP_NAME_random_fire_10:0 "Scorch" # Quemar
+ MPP_NAME_random_fire_11:0 "Hephaistos" # Dios griego del fuego
+ MPP_NAME_random_fire_12:0 "Malebolge" # Término del Infierno de Dante para los fosos de malicia
+ MPP_NAME_random_fire_13:0 "Scoria" # Escoria de metal fundido
+ MPP_NAME_random_fire_14:0 "Fornax" # Horno en latín
+ MPP_NAME_random_fire_15:0 "Conflagratio" # Conflagración en latín
+
+ # Categoría: Frío (Cold)
+ MPP_NAME_random_cold_1:0 "Snær" # Nieve en nórdico antiguo
+ MPP_NAME_random_cold_2:0 "Hiemis" # Invierno en latín
+ MPP_NAME_random_cold_3:0 "Cocytus" # Río de lamentación en el inframundo griego, asociado con frío y dolor
+ MPP_NAME_random_cold_4:0 "Cryos" # Frío en griego, temperatura bajo cero absoluto
+ MPP_NAME_random_cold_5:0 "Ymir" # Gigante de hielo primigenio en la mitología nórdica
+ MPP_NAME_random_cold_6:0 "Niflheim" # Reino de hielo y niebla en la mitología nórdica
+ MPP_NAME_random_cold_7:0 "Boreas" # Dios griego del viento del norte
+ MPP_NAME_random_cold_8:0 "Vitrum" # Vidrio en latín
+ MPP_NAME_random_cold_9:0 "Pruina" # Escarcha en latín
+ MPP_NAME_random_cold_10:0 "Khione" # Diosa griega de la nieve y el invierno
+ MPP_NAME_random_cold_11:0 "Jökull" # Glaciar en islandés
+ MPP_NAME_random_cold_12:0 "Crystallum" # Cristal en latín
+ MPP_NAME_random_cold_13:0 "Glacies" # Hielo
+ MPP_NAME_random_cold_14:0 "Arctos" # Osa Mayor en griego
+ MPP_NAME_random_cold_15:0 "Fimbulvetr" # Invierno eterno en la mitología nórdica
+
+ # Categoría: Muerto o Destruido (Dead)
+ MPP_NAME_random_dead_1:0 "Hecate" # Diosa de la magia oscura y las encrucijadas en la mitología griega
+ MPP_NAME_random_dead_2:0 "Oblivio" # Olvido en latín
+ MPP_NAME_random_dead_3:0 "Tartarus" # Abismo del inframundo en la mitología griega
+ MPP_NAME_random_dead_4:0 "Husk" # Cáscara
+ MPP_NAME_random_dead_5:0 "Carrion" # Carroña
+ MPP_NAME_random_dead_6:0 "Silentium" # Silencio eterno
+ MPP_NAME_random_dead_7:0 "Golgotha" # Lugar de la calavera (bíblico)
+ MPP_NAME_random_dead_8:0 "Nekros" # Muerto en griego, sin vida alguna
+ MPP_NAME_random_dead_9:0 "Thanatos" # Muerte en griego
+ MPP_NAME_random_dead_10:0 "Lethe" # Río del olvido
+ MPP_NAME_random_dead_11:0 "Ossea" # Óseo
+ MPP_NAME_random_dead_12:0 "Lilith" # Figura de la mitología hebrea asociada con la oscuridad y lo demoníaco
+ MPP_NAME_random_dead_13:0 "Phlegethon" # Río de fuego
+ MPP_NAME_random_dead_14:0 "Kataklysmos" # Cataclismo en griego
+ MPP_NAME_random_dead_15:0 "Kere" # Espíritus de muerte violenta en la mitología griega
+
+ # Categoría: Tóxico (Toxic)
+ MPP_NAME_random_toxic_1:0 "Strychnos" # Estricnina, nombre griego de planta mortal
+ MPP_NAME_random_toxic_2:0 "Belladonna" # Belladona, 'mujer hermosa' en italiano, altamente tóxica
+ MPP_NAME_random_toxic_3:0 "Cicuta" # Cicuta, veneno que usaron para Sócrates
+ MPP_NAME_random_toxic_4:0 "Aconitum" # Planta venenosa en latín
+ MPP_NAME_random_toxic_5:0 "Lues" # Plaga en latín
+ MPP_NAME_random_toxic_6:0 "Helleborus" # Eléboro, planta venenosa de invierno
+ MPP_NAME_random_toxic_7:0 "Canceron" # Planeta cancerígeno
+ MPP_NAME_random_toxic_8:0 "Radix" # Radiación
+ MPP_NAME_random_toxic_9:0 "Chernobog" # Dios eslavo de la oscuridad y el mal
+ MPP_NAME_random_toxic_10:0 "Nerium" # Adelfa, planta hermosa pero mortal
+ MPP_NAME_random_toxic_11:0 "Daphne" # Laurel, asociado con la ninfa convertida en planta
+ MPP_NAME_random_toxic_12:0 "Morbus" # Enfermedad en latín
+ MPP_NAME_random_toxic_13:0 "Atropa" # Atropa, género que incluye la belladona
+ MPP_NAME_random_toxic_14:0 "Taxus" # Tejo, árbol de la muerte en muchas culturas
+ MPP_NAME_random_toxic_15:0 "Hyoscyamus" # Beleño, planta alucinógena venenosa
+
+ # Categoría: Nano-Robótica (Nano-Robotic)
+ MPP_NAME_random_nano_1:0 "Kybernetes" # Gobernante o piloto en griego (origen de cibernética)
+ MPP_NAME_random_nano_2:0 "Synapse" # Sinapsis en inglés
+ MPP_NAME_random_nano_3:0 "Anima" # Alma en latín
+ MPP_NAME_random_nano_4:0 "Technesis" # Origen tecnológico o génesis artificial
+ MPP_NAME_random_nano_5:0 "Arche" # Origen en griego
+ MPP_NAME_random_nano_6:0 "Graviton" # Partícula tecnológica gravitatoria
+ MPP_NAME_random_nano_7:0 "Orbis" # Círculo en latín
+ MPP_NAME_random_nano_8:0 "Regnum" # Reino en latín
+ MPP_NAME_random_nano_9:0 "Portitor" # Portador en latín
+ MPP_NAME_random_nano_10:0 "Cogwright" # Artífice de engranajes
+ MPP_NAME_random_nano_11:0 "Quantum" # Cuántico
+ MPP_NAME_random_nano_12:0 "Silex" # Pedernal en latín
+ MPP_NAME_random_nano_13:0 "Neuralis" # Neural en latín
+ MPP_NAME_random_nano_14:0 "Automaton" # Autómata
+ MPP_NAME_random_nano_15:0 "Axon" # Conexión neural artificial
