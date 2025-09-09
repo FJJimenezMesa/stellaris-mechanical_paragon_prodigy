@@ -2,6 +2,7 @@
 l_spanish:
  MPP_NAME_system_dark_relic:0 "Dark Relic"
 
+ MPP_NAME_starName:0 "[Prev.GetName]"
  MPP_NAME_add_space:0 "[This.GetName] "
  MPP_NAME_add_slash:0 "[This.GetName]-"
  MPP_NAME_add_starName:0 "[This.GetName][Prev.GetName]"

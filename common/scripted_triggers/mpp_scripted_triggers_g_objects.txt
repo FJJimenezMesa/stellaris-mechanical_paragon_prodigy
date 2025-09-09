@@ -12,96 +12,81 @@ mpp_is_galactic_object = {
 }
 
 mpp_is_planet_class_asteroid = {
-    AND = {
-        mpp_is_planet_scope = yes
-        OR = {
-            is_planet_class = pc_asteroid
-            is_planet_class = pc_ice_asteroid
-            is_planet_class = pc_crystal_asteroid
-            is_planet_class = pc_rare_crystal_asteroid
-        }
+    OR = {
+        is_planet_class = pc_asteroid
+        is_planet_class = pc_ice_asteroid
+        is_planet_class = pc_crystal_asteroid
+        is_planet_class = pc_rare_crystal_asteroid
     }
 }
 
 mpp_is_planet_class_star = {
-    AND = {
-        mpp_is_planet_scope = yes
-        OR = {
-            is_planet_class = pc_a_star
-            is_planet_class = pc_b_star
-            is_planet_class = pc_f_star
-            is_planet_class = pc_g_star
-            is_planet_class = pc_k_star
-            is_planet_class = pc_m_star
-            is_planet_class = pc_neutron_star
-            is_planet_class = pc_t_star
-            is_planet_class = pc_toxoid_star
-            is_planet_class = pc_m_giant_star
-            is_planet_class = pc_pulsar
-        }
+    OR = {
+        is_planet_class = pc_a_star
+        is_planet_class = pc_b_star
+        is_planet_class = pc_f_star
+        is_planet_class = pc_g_star
+        is_planet_class = pc_k_star
+        is_planet_class = pc_m_star
+        is_planet_class = pc_neutron_star
+        is_planet_class = pc_t_star
+        is_planet_class = pc_toxoid_star
+        is_planet_class = pc_m_giant_star
+        is_planet_class = pc_pulsar
     }
 }
 
 mpp_is_planet_class_habitat = {
-    AND = {
-        mpp_is_planet_scope = yes
-        OR = {
-            is_planet_class = pc_habitat
-            is_planet_class = pc_habitat_shielded
-            is_planet_class = pc_crystal_habitat
-        }
+    OR = {
+        is_planet_class = pc_habitat
+        is_planet_class = pc_habitat_shielded
+        is_planet_class = pc_crystal_habitat
     }
 }
 
 mpp_is_planet_class_ring = {
-    AND = {
-        mpp_is_planet_scope = yes
-        OR = {
-            is_planet_class = pc_cybrex
-            is_planet_class = pc_ringworld_habitable
-            is_planet_class = pc_ringworld_habitable_damaged
-            is_planet_class = pc_ringworld_seam
-            is_planet_class = pc_ringworld_seam_damaged
-            is_planet_class = pc_ringworld_shielded
-            is_planet_class = pc_ringworld_tech
-            is_planet_class = pc_ringworld_tech_damaged
-            is_planet_class = pc_shattered_ring_habitable
-        }
+    OR = {
+        is_planet_class = pc_cybrex
+        is_planet_class = pc_ringworld_habitable
+        is_planet_class = pc_ringworld_habitable_damaged
+        is_planet_class = pc_ringworld_seam
+        is_planet_class = pc_ringworld_seam_damaged
+        is_planet_class = pc_ringworld_shielded
+        is_planet_class = pc_ringworld_tech
+        is_planet_class = pc_ringworld_tech_damaged
+        is_planet_class = pc_shattered_ring_habitable
     }
 }
 
 mpp_is_planet_class_planet = {
-    AND = {
-        mpp_is_planet_scope = yes
-        OR = {
-            is_planet_class = pc_alpine
-            is_planet_class = pc_arctic
-            is_planet_class = pc_arid
-            is_planet_class = pc_barren_cold
-            is_planet_class = pc_broken
-            is_planet_class = pc_city
-            is_planet_class = pc_continental
-            is_planet_class = pc_desert
-            is_planet_class = pc_egg_cracked
-            is_planet_class = pc_frozen
-            is_planet_class = pc_gaia
-            is_planet_class = pc_gas_giant
-            is_planet_class = pc_gray_goo
-            is_planet_class = pc_hive
-            is_planet_class = pc_machine
-            is_planet_class = pc_machine_broken
-            is_planet_class = pc_molten
-            is_planet_class = pc_nuked
-            is_planet_class = pc_ocean
-            is_planet_class = pc_relic
-            is_planet_class = pc_savannah
-            is_planet_class = pc_shattered_2
-            is_planet_class = pc_shielded
-            is_planet_class = pc_shrouded
-            is_planet_class = pc_toxic
-            is_planet_class = pc_tropical
-            is_planet_class = pc_tundra
-            is_planet_class = pc_warden_guardian
-        }
+    OR = {
+        is_planet_class = pc_alpine
+        is_planet_class = pc_arctic
+        is_planet_class = pc_arid
+        is_planet_class = pc_barren_cold
+        is_planet_class = pc_broken
+        is_planet_class = pc_city
+        is_planet_class = pc_continental
+        is_planet_class = pc_desert
+        is_planet_class = pc_egg_cracked
+        is_planet_class = pc_frozen
+        is_planet_class = pc_gaia
+        is_planet_class = pc_gas_giant
+        is_planet_class = pc_gray_goo
+        is_planet_class = pc_hive
+        is_planet_class = pc_machine
+        is_planet_class = pc_machine_broken
+        is_planet_class = pc_molten
+        is_planet_class = pc_nuked
+        is_planet_class = pc_ocean
+        is_planet_class = pc_relic
+        is_planet_class = pc_savannah
+        is_planet_class = pc_shattered_2
+        is_planet_class = pc_shielded
+        is_planet_class = pc_shrouded
+        is_planet_class = pc_toxic
+        is_planet_class = pc_tropical
+        is_planet_class = pc_tundra
+        is_planet_class = pc_warden_guardian
     }
 }
