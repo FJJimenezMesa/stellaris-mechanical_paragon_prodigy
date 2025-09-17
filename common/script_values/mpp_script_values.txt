@@ -4,7 +4,8 @@
 
 mpp_purge_all_bad_traits_exp_change_total = {
     base = @mpp_remove_trait_base_exp             # Penalización base por purga
-    complex_trigger_modifier = {                  # Suma -300 por cada trait negativo (ignora tiers)
+    complex_trigger_modifier = {
+        # Suma -300 por cada trait negativo (ignora tiers)
         trigger = num_leader_traits
         parameters = {
             negative = yes
@@ -14,17 +15,68 @@ mpp_purge_all_bad_traits_exp_change_total = {
     }
 }
 
-mpp_random_value = {
-    base = 0
-    add  = mpp_rand   # lee la variable guardada en el mismo scope
-}
-
-mpp_get_min_orbit = {
+mpp_value_getMinOrbit = {
     base = $ORBIT|0$
     subtract = $ORBIT_OFFSET|0$
 }
 
-mpp_get_max_orbit = {
+mpp_value_getMaxOrbit = {
     base = $ORBIT|0$
-    add =  $ORBIT_OFFSET|0$
+    add = $ORBIT_OFFSET|0$
+}
+
+mpp_value_getRandom = {
+    base = 0  # valor por defecto
+
+    modifier = { has_global_flag = mpp_flag_value_0 add = 0 }
+    modifier = { has_global_flag = mpp_flag_value_1 add = 1 }
+    modifier = { has_global_flag = mpp_flag_value_2 add = 2 }
+    modifier = { has_global_flag = mpp_flag_value_3 add = 3 }
+    modifier = { has_global_flag = mpp_flag_value_4 add = 4 }
+    modifier = { has_global_flag = mpp_flag_value_5 add = 5 }
+    modifier = { has_global_flag = mpp_flag_value_6 add = 6 }
+    modifier = { has_global_flag = mpp_flag_value_7 add = 7 }
+    modifier = { has_global_flag = mpp_flag_value_8 add = 8 }
+    modifier = { has_global_flag = mpp_flag_value_9 add = 9 }
+    modifier = { has_global_flag = mpp_flag_value_10 add = 10 }
+    modifier = { has_global_flag = mpp_flag_value_11 add = 11 }
+    modifier = { has_global_flag = mpp_flag_value_12 add = 12 }
+    modifier = { has_global_flag = mpp_flag_value_13 add = 13 }
+    modifier = { has_global_flag = mpp_flag_value_14 add = 14 }
+    modifier = { has_global_flag = mpp_flag_value_15 add = 15 }
+    modifier = { has_global_flag = mpp_flag_value_16 add = 16 }
+    modifier = { has_global_flag = mpp_flag_value_17 add = 17 }
+    modifier = { has_global_flag = mpp_flag_value_18 add = 18 }
+    modifier = { has_global_flag = mpp_flag_value_19 add = 19 }
+    modifier = { has_global_flag = mpp_flag_value_20 add = 20 }
+    modifier = { has_global_flag = mpp_flag_value_21 add = 21 }
+    modifier = { has_global_flag = mpp_flag_value_22 add = 22 }
+    modifier = { has_global_flag = mpp_flag_value_23 add = 23 }
+    modifier = { has_global_flag = mpp_flag_value_24 add = 24 }
+    modifier = { has_global_flag = mpp_flag_value_25 add = 25 }
+    modifier = { has_global_flag = mpp_flag_value_26 add = 26 }
+    modifier = { has_global_flag = mpp_flag_value_27 add = 27 }
+    modifier = { has_global_flag = mpp_flag_value_28 add = 28 }
+    modifier = { has_global_flag = mpp_flag_value_29 add = 29 }
+    modifier = { has_global_flag = mpp_flag_value_30 add = 30 }
+    modifier = { has_global_flag = mpp_flag_value_31 add = 31 }
+    modifier = { has_global_flag = mpp_flag_value_32 add = 32 }
+    modifier = { has_global_flag = mpp_flag_value_33 add = 33 }
+    modifier = { has_global_flag = mpp_flag_value_34 add = 34 }
+    modifier = { has_global_flag = mpp_flag_value_35 add = 35 }
+    modifier = { has_global_flag = mpp_flag_value_36 add = 36 }
+    modifier = { has_global_flag = mpp_flag_value_37 add = 37 }
+    modifier = { has_global_flag = mpp_flag_value_38 add = 38 }
+    modifier = { has_global_flag = mpp_flag_value_39 add = 39 }
+    modifier = { has_global_flag = mpp_flag_value_40 add = 40 }
+    modifier = { has_global_flag = mpp_flag_value_41 add = 41 }
+    modifier = { has_global_flag = mpp_flag_value_42 add = 42 }
+    modifier = { has_global_flag = mpp_flag_value_43 add = 43 }
+    modifier = { has_global_flag = mpp_flag_value_44 add = 44 }
+    modifier = { has_global_flag = mpp_flag_value_45 add = 45 }
+    modifier = { has_global_flag = mpp_flag_value_46 add = 46 }
+    modifier = { has_global_flag = mpp_flag_value_47 add = 47 }
+    modifier = { has_global_flag = mpp_flag_value_48 add = 48 }
+    modifier = { has_global_flag = mpp_flag_value_49 add = 49 }
+    modifier = { has_global_flag = mpp_flag_value_50 add = 50 }
 }

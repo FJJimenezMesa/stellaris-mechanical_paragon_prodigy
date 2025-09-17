@@ -7,7 +7,9 @@ l_spanish:
  MPP_NAME_add_slash:0 "[This.GetName]-"
  MPP_NAME_add_starName:0 "[This.GetName][Prev.GetName]"
  MPP_NAME_add_pcType:0 "[This.GetName][This.MPPGetNamePcType]"
- MPP_NAME_add_number:0 "[This.GetName][This.pcTypeCount]"
+ MPP_NAME_add_0:0 "[This.GetName]0"
+ MPP_NAME_add_number:0 "[This.GetName][This.tNumber]"
+ MPP_NAME_add_pcTypeCount:0 "[This.GetName][This.pcTypeCount]"
  MPP_NAME_add_randomTerm:0 "[This.GetName][This.MPPGetNameRandomTerm]"
 
  MPP_NAME_CLEAR:0 ""
@@ -28,7 +30,7 @@ l_spanish:
  MPP_NAME_randomToxic:0 "[This.MPPGetNameRandomToxic]"
  MPP_NAME_randomNano:0 "[This.MPPGetNameRandomNano]"
 
- MPP_NAME_pcType_default:0 "OXX"
+ MPP_NAME_pcType_default:0 "XXX"
  MPP_NAME_pcType_asteroid:0 "AXX"
  MPP_NAME_pcType_crystal_asteroid:0 "ACX"
  MPP_NAME_pcType_ice_asteroid:0 "AIX"

@@ -1,3 +1,51 @@
+# ===============================================
+# Planetas, cinturones de asteroides y asteroides
+# ===============================================
+
+mpp_spawn_planet = {
+    set_variable = {
+        which = tOffsetMax
+        value = $ORBIT_OFFSET|0$
+    }
+    set_variable = {
+        which = tOffsetMin
+        value = tOffsetMax
+    }
+    if = {
+        limit = { NOT = { check_variable = { which = tOffsetMin value = 0 } } }
+        multiply_variable = {
+            which = tOffsetMin
+            value = -1
+        }
+    }
+    set_variable_to_random_value = {
+        which = tOrbitOffset
+        MIN = tOffsetMin
+        MAX = tOffsetMax
+        rounded = yes
+    }
+
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset"
+        TYPE = $TYPE|random$
+        ORBIT = $ORBIT|random$
+        SIZE = $SIZE|random$
+        MIN_ANGLE = $MIN_ANGLE|0$
+        MAX_ANGLE = $MAX_ANGLE|360$
+    }
+
+    if = {
+        limit = { exists = event_target:tPlanet }
+        event_target:tPlanet = {
+            [[EFFECT1] planet = { $EFFECT1$ = yes } ]
+            [[EFFECT2] planet = { $EFFECT2$ = yes } ]
+            [[EFFECT3] planet = { $EFFECT3$ = yes } ]
+            [[EFFECT4] planet = { $EFFECT4$ = yes } ]
+            [[EFFECT5] planet = { $EFFECT5$ = yes } ]
+        }
+    }
+}
+
 mpp_add_asteroid_belt = {
     # Si el parámetro TYPE está definido → usar ese tipo exacto de cinturón de asteroides
     [[TYPE]
@@ -9,21 +57,14 @@ mpp_add_asteroid_belt = {
 
     # Si no se ha definido TYPE → elegir aleatoriamente entre los tipos disponibles
     [[!TYPE]
-        mpp_add_random_asteroid_belt = {
-            RADIUS = $RADIUS$   # Pasa el radio a la función que decide el tipo aleatoriamente
+        random_list = {
+            1 = { add_asteroid_belt = { type = rocky_asteroid_belt radius = $RADIUS$ } }
+            1 = { add_asteroid_belt = { type = icy_asteroid_belt radius = $RADIUS$ } }
+            1 = { add_asteroid_belt = { type = crystal_asteroid_belt radius = $RADIUS$ } }
+            1 = { add_asteroid_belt = { type = debris_asteroid_belt radius = $RADIUS$ } }
+            1 = { add_asteroid_belt = { type = empty_asteroid_belt radius = $RADIUS$ } }
         }
     ]
-}
-
-mpp_add_random_asteroid_belt = {
-    # random_list asegura que se elija uno de los tipos con probabilidad igual (peso = 1)
-    random_list = {
-        1 = { add_asteroid_belt = { type = rocky_asteroid_belt radius = $RADIUS$ } }
-        1 = { add_asteroid_belt = { type = icy_asteroid_belt radius = $RADIUS$ } }
-        1 = { add_asteroid_belt = { type = crystal_asteroid_belt radius = $RADIUS$ } }
-        1 = { add_asteroid_belt = { type = debris_asteroid_belt radius = $RADIUS$ } }
-        1 = { add_asteroid_belt = { type = empty_asteroid_belt radius = $RADIUS$ } }
-    }
 }
 
 mpp_add_asteroids = {
@@ -51,22 +92,65 @@ mpp_add_asteroids = {
 
         # Caso 1: TYPE definido → añade planeta del tipo especificado
         [[TYPE]
-            spawn_planet = {
-                class = $TYPE$            # Ejemplo: pc_asteroid, pc_ice_asteroid, etc.
-                orbit_distance = $ORBIT|50$
-                size = $SIZE|2$
-
-                init_effect = {
-                    mpp_setName_randomPlanet = yes  # Asigna nombre aleatorio al planeta
-                }
+            mpp_spawn_planet = {
+                TYPE = $TYPE$
+                ORBIT = $ORBIT|50$
+                ORBIT_OFFSET = $ORBIT_OFFSET|0$
+                SIZE = $SIZE|2$
+                MIN_ANGLE = $MIN_ANGLE|0$
+                MAX_ANGLE = $MAX_ANGLE|360$
+                EFFECT1 = mpp_setName_randomPlanet
             }
         ]
+
         # Caso 2: TYPE no definido → genera un asteroide aleatorio
         [[!TYPE]
-            mpp_add_random_asteroid = {
-                SIZE = $SIZE|2$                 # tamaño del asteroide (por defecto 2)
-                ORBIT = $ORBIT|50$              # distancia orbital (por defecto 50)
-                ORBIT_OFFSET = $ORBIT_OFFSET|0$ # offset para variar posiciones
+            # random_list: escoge un tipo de asteroide con probabilidad igual (peso = 1)
+            random_list = {
+                1 = {
+                    mpp_spawn_planet = {
+                        TYPE = pc_asteroid
+                        ORBIT = $ORBIT|50$
+                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
+                        SIZE = $SIZE|2$
+                        MIN_ANGLE = $MIN_ANGLE|0$
+                        MAX_ANGLE = $MAX_ANGLE|360$
+                        EFFECT1 = mpp_setName_randomPlanet
+                    }
+                }
+                1 = {
+                    mpp_spawn_planet = {
+                        TYPE = pc_ice_asteroid
+                        ORBIT = $ORBIT|50$
+                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
+                        SIZE = $SIZE|2$
+                        MIN_ANGLE = $MIN_ANGLE|0$
+                        MAX_ANGLE = $MAX_ANGLE|360$
+                        EFFECT1 = mpp_setName_randomPlanet
+                    }
+                }
+                1 = {
+                    mpp_spawn_planet = {
+                        TYPE = pc_crystal_asteroid
+                        ORBIT = $ORBIT|50$
+                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
+                        SIZE = $SIZE|2$
+                        MIN_ANGLE = $MIN_ANGLE|0$
+                        MAX_ANGLE = $MAX_ANGLE|360$
+                        EFFECT1 = mpp_setName_randomPlanet
+                    }
+                }
+                1 = {
+                    mpp_spawn_planet = {
+                        TYPE = pc_rare_crystal_asteroid
+                        ORBIT = $ORBIT|50$
+                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
+                        SIZE = $SIZE|2$
+                        MIN_ANGLE = $MIN_ANGLE|0$
+                        MAX_ANGLE = $MAX_ANGLE|360$
+                        EFFECT1 = mpp_setName_randomPlanet
+                    }
+                }
             }
         ]
     }
@@ -75,12 +159,7 @@ mpp_add_asteroids = {
     clear_variable = tCount
 }
 
-mpp_add_random_asteroid = {
-    # random_list: escoge un tipo de asteroide con probabilidad igual (peso = 1)
-    random_list = {
-        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
-        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_ice_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
-        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_crystal_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
-        1 = { mpp_add_asteroids = { COUNT = 1 TYPE = pc_rare_crystal_asteroid SIZE = $SIZE|2$ ORBIT = $ORBIT|50$ ORBIT_OFFSET = $ORBIT_OFFSET|0$ } }
-    }
-}
+# ===============================================
+# Efectos
+# ===============================================
+

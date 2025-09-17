@@ -1,0 +1,20 @@
+limit = {
+    check_variable = { which = tOrbitOffset value = $O_OFFSET$ }
+}
+
+spawn_planet = {
+    class = $TYPE$
+    orbit_distance = $F_ORBIT$
+    size = $SIZE$
+    orbit_angle = {
+        min = $MIN_ANGLE$
+        max = $MAX_ANGLE$
+    }
+    init_effect = {
+        save_event_target_as = tPlanet
+    }
+}
+
+event_target:tPlanet = {
+    set_variable = { which = orbit value = $F_ORBIT$ }
+}

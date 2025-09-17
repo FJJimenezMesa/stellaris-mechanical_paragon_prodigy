@@ -1,0 +1,61 @@
+if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 0 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 0 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 1 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 1 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 2 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 2 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 3 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 3 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 4 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 4 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 5 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 5 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 6 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 6 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 7 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 7 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 8 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 8 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+else_if = {
+    inline_script = {
+        script = "galactic_objects/mpp_i_s_g_o_orbit_offset_spawn"
+        O_OFFSET = @[ $B_OFFSET$ + 9 ] TYPE = $TYPE$ F_ORBIT = @[ $ORBIT$ + $B_OFFSET$ + 9 ] SIZE = $SIZE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+    }
+}
+

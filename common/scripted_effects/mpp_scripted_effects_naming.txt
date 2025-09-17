@@ -134,6 +134,7 @@ mpp_setName = {
 }
 
 mpp_changeName_add = {
+
     [[SPACE]
         set_name = {
             key = "MPP_NAME_add_space"
@@ -191,8 +192,35 @@ mpp_changeName_add = {
     [[NUMBER]
         set_variable = {
             which = tNumber
-            value = $NUMBER$
+            value = $NUMBER|0$
         }
+
+        # NORMALIZE
+        set_variable = {
+            which = tNormalize
+            value = $NORMALIZE|0$
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = { which = tNormalize value >= 2 }
+                check_variable_arithmetic = { which = tNumber value < 10 }
+            }
+            set_name = {
+                key = "MPP_NAME_add_0"
+                variable_string = "\\[This.GetName\\]"
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = { which = tNormalize value >= 3 }
+                check_variable_arithmetic = { which = tNumber value < 100 }
+            }
+            set_name = {
+                key = "MPP_NAME_add_0"
+                variable_string = "\\[This.GetName\\]"
+            }
+        }
+
         set_name = {
             key = "MPP_NAME_add_number"
             variable_string = "\\[This.GetName\\]"
@@ -306,8 +334,35 @@ mpp_changeName_add = {
                     }
                 }
             }
+
+            # NORMALIZE
+            set_variable = {
+                which = tNormalize
+                value = $NORMALIZE|0$
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = { which = tNormalize value >= 2 }
+                    check_variable_arithmetic = { which = pcTypeCount value < 10 }
+                }
+                set_name = {
+                    key = "MPP_NAME_add_0"
+                    variable_string = "\\[This.GetName\\]"
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = { which = tNormalize value >= 3 }
+                    check_variable_arithmetic = { which = pcTypeCount value < 100 }
+                }
+                set_name = {
+                    key = "MPP_NAME_add_0"
+                    variable_string = "\\[This.GetName\\]"
+                }
+            }
+
             set_name = {
-                key = "MPP_NAME_add_number"
+                key = "MPP_NAME_add_pcTypeCount"
                 variable_string = "\\[This.GetName\\]"
                 variable_string = "\\[This.pcTypeCount\\]"
             }
@@ -323,8 +378,12 @@ mpp_setName_randomPlanet = {
         mpp_setName = { STAR_NAME = yes }
         mpp_changeName_add = { SLASH = yes }
         mpp_changeName_add = { PC_TYPE = yes }
-        mpp_changeName_add = { PC_TYPE_COUNT = yes }
+        if = {
+            limit = { is_variable_set = orbit }
+            mpp_changeName_add = { NUMBER = orbit NORMALIZE = 3 }
+        }
         mpp_changeName_add = { SLASH = yes }
+        mpp_changeName_add = { PC_TYPE_COUNT = yes NORMALIZE = 2 }
         mpp_changeName_add = { RAND_TERM = yes }
 
     } else_if = {

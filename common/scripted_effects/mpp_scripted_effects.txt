@@ -299,11 +299,144 @@ mpp_remove_leader_trait = {
     ]
 }
 
+mpp_add_flag_value = {
+    set_global_flag = mpp_flag_value_$NUMBER$
+}
+
+mpp_remove_flag_value = {
+    remove_global_flag = mpp_flag_value_$NUMBER$
+}
+
 mpp_seed_random = {
+    @minValue = 0
+    @maxValue = 50
+    # Parámetros: $MIN$ y $MAX$ (limita el rango del random)
+    # Limita mínimo a 0
+    set_variable = { which = tMin value = $MIN|0$ }
+    if = {
+        limit = { check_variable_arithmetic = { which = tMin value < 0 } }
+        set_variable = { which = tMin value = 0 }
+    }
+    # Limita máximo a 50
+    set_variable = { which = tMax value = $MAX|50$ }
+    if = {
+        limit = { check_variable_arithmetic = { which = tMax value > 50 } }
+        set_variable = { which = tMax value = 0 }
+    }
+
+    # Limpiar flags previas
+    remove_global_flag = mpp_flag_value_0
+    remove_global_flag = mpp_flag_value_1
+    remove_global_flag = mpp_flag_value_2
+    remove_global_flag = mpp_flag_value_3
+    remove_global_flag = mpp_flag_value_4
+    remove_global_flag = mpp_flag_value_5
+    remove_global_flag = mpp_flag_value_6
+    remove_global_flag = mpp_flag_value_7
+    remove_global_flag = mpp_flag_value_8
+    remove_global_flag = mpp_flag_value_9
+    remove_global_flag = mpp_flag_value_10
+    remove_global_flag = mpp_flag_value_11
+    remove_global_flag = mpp_flag_value_12
+    remove_global_flag = mpp_flag_value_13
+    remove_global_flag = mpp_flag_value_14
+    remove_global_flag = mpp_flag_value_15
+    remove_global_flag = mpp_flag_value_16
+    remove_global_flag = mpp_flag_value_17
+    remove_global_flag = mpp_flag_value_18
+    remove_global_flag = mpp_flag_value_19
+    remove_global_flag = mpp_flag_value_20
+    remove_global_flag = mpp_flag_value_21
+    remove_global_flag = mpp_flag_value_22
+    remove_global_flag = mpp_flag_value_23
+    remove_global_flag = mpp_flag_value_24
+    remove_global_flag = mpp_flag_value_25
+    remove_global_flag = mpp_flag_value_26
+    remove_global_flag = mpp_flag_value_27
+    remove_global_flag = mpp_flag_value_28
+    remove_global_flag = mpp_flag_value_29
+    remove_global_flag = mpp_flag_value_30
+    remove_global_flag = mpp_flag_value_31
+    remove_global_flag = mpp_flag_value_32
+    remove_global_flag = mpp_flag_value_33
+    remove_global_flag = mpp_flag_value_34
+    remove_global_flag = mpp_flag_value_35
+    remove_global_flag = mpp_flag_value_36
+    remove_global_flag = mpp_flag_value_37
+    remove_global_flag = mpp_flag_value_38
+    remove_global_flag = mpp_flag_value_39
+    remove_global_flag = mpp_flag_value_40
+    remove_global_flag = mpp_flag_value_41
+    remove_global_flag = mpp_flag_value_42
+    remove_global_flag = mpp_flag_value_43
+    remove_global_flag = mpp_flag_value_44
+    remove_global_flag = mpp_flag_value_45
+    remove_global_flag = mpp_flag_value_46
+    remove_global_flag = mpp_flag_value_47
+    remove_global_flag = mpp_flag_value_48
+    remove_global_flag = mpp_flag_value_49
+    remove_global_flag = mpp_flag_value_50
+
+    # Seleccionar un valor random dentro del rango
     set_variable_to_random_value = {
-        which   = mpp_rand
-        min     = $MIN|0$
-        max     = $MAX|1$
+        which = tRand
+        min = tMin
+        max = tMax
         rounded = yes
     }
+
+    # Activar la flag correspondiente al número elegido
+    # Ejemplo: si tRand=7 → activa mpp_flag_value_7
+    # Aquí usamos if secuencial para cada valor del 0 al 50
+    if = { limit = { check_variable = { which = tRand value = 0 } } set_global_flag = mpp_flag_value_0 }
+    if = { limit = { check_variable = { which = tRand value = 1 } } set_global_flag = mpp_flag_value_1 }
+    if = { limit = { check_variable = { which = tRand value = 2 } } set_global_flag = mpp_flag_value_2 }
+    if = { limit = { check_variable = { which = tRand value = 3 } } set_global_flag = mpp_flag_value_3 }
+    if = { limit = { check_variable = { which = tRand value = 4 } } set_global_flag = mpp_flag_value_4 }
+    if = { limit = { check_variable = { which = tRand value = 5 } } set_global_flag = mpp_flag_value_5 }
+    if = { limit = { check_variable = { which = tRand value = 6 } } set_global_flag = mpp_flag_value_6 }
+    if = { limit = { check_variable = { which = tRand value = 7 } } set_global_flag = mpp_flag_value_7 }
+    if = { limit = { check_variable = { which = tRand value = 8 } } set_global_flag = mpp_flag_value_8 }
+    if = { limit = { check_variable = { which = tRand value = 9 } } set_global_flag = mpp_flag_value_9 }
+    if = { limit = { check_variable = { which = tRand value = 10 } } set_global_flag = mpp_flag_value_10 }
+    if = { limit = { check_variable = { which = tRand value = 11 } } set_global_flag = mpp_flag_value_11 }
+    if = { limit = { check_variable = { which = tRand value = 12 } } set_global_flag = mpp_flag_value_12 }
+    if = { limit = { check_variable = { which = tRand value = 13 } } set_global_flag = mpp_flag_value_13 }
+    if = { limit = { check_variable = { which = tRand value = 14 } } set_global_flag = mpp_flag_value_14 }
+    if = { limit = { check_variable = { which = tRand value = 15 } } set_global_flag = mpp_flag_value_15 }
+    if = { limit = { check_variable = { which = tRand value = 16 } } set_global_flag = mpp_flag_value_16 }
+    if = { limit = { check_variable = { which = tRand value = 17 } } set_global_flag = mpp_flag_value_17 }
+    if = { limit = { check_variable = { which = tRand value = 18 } } set_global_flag = mpp_flag_value_18 }
+    if = { limit = { check_variable = { which = tRand value = 19 } } set_global_flag = mpp_flag_value_19 }
+    if = { limit = { check_variable = { which = tRand value = 20 } } set_global_flag = mpp_flag_value_20 }
+    if = { limit = { check_variable = { which = tRand value = 21 } } set_global_flag = mpp_flag_value_21 }
+    if = { limit = { check_variable = { which = tRand value = 22 } } set_global_flag = mpp_flag_value_22 }
+    if = { limit = { check_variable = { which = tRand value = 23 } } set_global_flag = mpp_flag_value_23 }
+    if = { limit = { check_variable = { which = tRand value = 24 } } set_global_flag = mpp_flag_value_24 }
+    if = { limit = { check_variable = { which = tRand value = 25 } } set_global_flag = mpp_flag_value_25 }
+    if = { limit = { check_variable = { which = tRand value = 26 } } set_global_flag = mpp_flag_value_26 }
+    if = { limit = { check_variable = { which = tRand value = 27 } } set_global_flag = mpp_flag_value_27 }
+    if = { limit = { check_variable = { which = tRand value = 28 } } set_global_flag = mpp_flag_value_28 }
+    if = { limit = { check_variable = { which = tRand value = 29 } } set_global_flag = mpp_flag_value_29 }
+    if = { limit = { check_variable = { which = tRand value = 30 } } set_global_flag = mpp_flag_value_30 }
+    if = { limit = { check_variable = { which = tRand value = 31 } } set_global_flag = mpp_flag_value_31 }
+    if = { limit = { check_variable = { which = tRand value = 32 } } set_global_flag = mpp_flag_value_32 }
+    if = { limit = { check_variable = { which = tRand value = 33 } } set_global_flag = mpp_flag_value_33 }
+    if = { limit = { check_variable = { which = tRand value = 34 } } set_global_flag = mpp_flag_value_34 }
+    if = { limit = { check_variable = { which = tRand value = 35 } } set_global_flag = mpp_flag_value_35 }
+    if = { limit = { check_variable = { which = tRand value = 36 } } set_global_flag = mpp_flag_value_36 }
+    if = { limit = { check_variable = { which = tRand value = 37 } } set_global_flag = mpp_flag_value_37 }
+    if = { limit = { check_variable = { which = tRand value = 38 } } set_global_flag = mpp_flag_value_38 }
+    if = { limit = { check_variable = { which = tRand value = 39 } } set_global_flag = mpp_flag_value_39 }
+    if = { limit = { check_variable = { which = tRand value = 40 } } set_global_flag = mpp_flag_value_40 }
+    if = { limit = { check_variable = { which = tRand value = 41 } } set_global_flag = mpp_flag_value_41 }
+    if = { limit = { check_variable = { which = tRand value = 42 } } set_global_flag = mpp_flag_value_42 }
+    if = { limit = { check_variable = { which = tRand value = 43 } } set_global_flag = mpp_flag_value_43 }
+    if = { limit = { check_variable = { which = tRand value = 44 } } set_global_flag = mpp_flag_value_44 }
+    if = { limit = { check_variable = { which = tRand value = 45 } } set_global_flag = mpp_flag_value_45 }
+    if = { limit = { check_variable = { which = tRand value = 46 } } set_global_flag = mpp_flag_value_46 }
+    if = { limit = { check_variable = { which = tRand value = 47 } } set_global_flag = mpp_flag_value_47 }
+    if = { limit = { check_variable = { which = tRand value = 48 } } set_global_flag = mpp_flag_value_48 }
+    if = { limit = { check_variable = { which = tRand value = 49 } } set_global_flag = mpp_flag_value_49 }
+    if = { limit = { check_variable = { which = tRand value = 50 } } set_global_flag = mpp_flag_value_50 }
 }

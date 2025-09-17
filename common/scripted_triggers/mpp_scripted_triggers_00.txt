@@ -342,3 +342,12 @@ mpp_has_paragon_leader_aproved = {
     has_country_flag = mpp_flag_paragon_leader_aproved
 }
 
+mpp_is_even = {
+    [[NUMBER]
+        check_variable_arithmetic = {
+            which = $NUMBER$
+            modulo = 2
+            value = 0
+        }
+    ]
+}
