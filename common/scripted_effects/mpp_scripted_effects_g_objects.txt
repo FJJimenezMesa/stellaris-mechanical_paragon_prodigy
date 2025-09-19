@@ -3,32 +3,11 @@
 # ===============================================
 
 mpp_spawn_planet = {
-    set_variable = {
-        which = tOffsetMax
-        value = $ORBIT_OFFSET|0$
-    }
-    set_variable = {
-        which = tOffsetMin
-        value = tOffsetMax
-    }
-    if = {
-        limit = { NOT = { check_variable = { which = tOffsetMin value = 0 } } }
-        multiply_variable = {
-            which = tOffsetMin
-            value = -1
-        }
-    }
-    set_variable_to_random_value = {
-        which = tOrbitOffset
-        MIN = tOffsetMin
-        MAX = tOffsetMax
-        rounded = yes
-    }
-
     inline_script = {
         script = "galactic_objects/mpp_i_s_g_o_orbit_offset"
         TYPE = $TYPE|random$
         ORBIT = $ORBIT|random$
+        ORBIT_OFFSET = $ORBIT_OFFSET|0$
         SIZE = $SIZE|random$
         MIN_ANGLE = $MIN_ANGLE|0$
         MAX_ANGLE = $MAX_ANGLE|360$
@@ -162,4 +141,279 @@ mpp_add_asteroids = {
 # ===============================================
 # Efectos
 # ===============================================
+
+mpp_add_ambient_object = {
+    [[IN_ORBIT]
+        set_variable = { which = inOrbit value = 1 }
+    ]
+
+    [[TARGET]
+        if = {
+            limit = { is_variable_set = inOrbit }
+            create_ambient_object = {
+                type = $TYPE|small_debris_object$
+                location = event_target:$TARGET$
+                entity_offset_height = @inOritOffset
+            }
+        }
+        else = {
+            create_ambient_object = {
+                type = $TYPE|small_debris_object$
+                location = event_target:$TARGET$
+            }
+        }
+
+    ]
+    [[!TARGET]
+        if = {
+            limit = { is_variable_set = inOrbit }
+            create_ambient_object = {
+                type = $TYPE|small_debris_object$
+                location = prev
+                entity_offset_height = @inOritOffset
+            }
+        }
+        else = {
+            create_ambient_object = {
+                type = $TYPE|small_debris_object$
+                location = prev
+            }
+        }
+    ]
+
+    [[DISTANCE]
+        last_created_ambient_object = {
+            set_location = {
+                target = prev # Lo movemos con respecto a su actual localización
+                distance = $DISTANCE$
+                angle = random
+            }
+        }
+    ]
+    [[!DISTANCE]
+        last_created_ambient_object = {
+            inline_script = {
+                script = "galactic_objects/mpp_i_s_g_o_set_location"
+                MIN_DISTANCE = $MIN_DISTANCE|0$
+                MAX_DISTANCE = $MAX_DISTANCE|5$
+            }
+        }
+    ]
+
+    clear_variable = inOrbit
+}
+
+mpp_add_debris = {
+    # Si se define COUNT → asignar esa cantidad a la variable temporal tCount
+    [[COUNT]
+        set_variable = {
+            which = tCount
+            value = $COUNT|1$    # $COUNT|1$ → si no se pasa COUNT, usa valor por defecto 1
+        }
+    ]
+
+    # Si NO se define COUNT → generar un número aleatorio entre MIN_COUNT y MAX_COUNT
+    [[!COUNT]
+        set_variable_to_random_value = {
+            which = tCount
+            min = $MIN_COUNT|1$  # valor mínimo por defecto = 1
+            max = $MAX_COUNT|1$  # valor máximo por defecto = 1 (revisar si debería ser >1)
+            rounded = yes        # asegura número entero
+        }
+    ]
+
+    # Bucle while: ejecuta el bloque interno tCount veces
+    while = {
+        count = tCount
+
+        # Caso 1: TYPE definido → añade debris del tipo especificado
+        [[TYPE]
+            mpp_add_ambient_object = {
+                TYPE = $TYPE$
+                MIN_DISTANCE = $MIN_DISTANCE$
+                MAX_DISTANCE = $MAX_DISTANCE$
+                IN_ORBIT = $IN_ORBIT|no$
+            }
+        ]
+
+        # Caso 2: TYPE no definido → genera un debris aleatorio
+        [[!TYPE]
+            # random_list: escoge un tipo de debris con probabilidad igual (peso = 1)
+            random_list = {
+                1 = {
+                    mpp_add_ambient_object = {
+                        TYPE = small_debris_object
+                        MIN_DISTANCE = $MIN_DISTANCE$
+                        MAX_DISTANCE = $MAX_DISTANCE$
+                        IN_ORBIT = $IN_ORBIT|no$
+                    }
+                }
+                1 = {
+                    mpp_add_ambient_object = {
+                        TYPE = medium_debris_01_object
+                        MIN_DISTANCE = $MIN_DISTANCE|10$
+                        MAX_DISTANCE = $MAX_DISTANCE|15$
+                        IN_ORBIT = $IN_ORBIT|no$
+                    }
+                }
+                1 = {
+                    mpp_add_ambient_object = {
+                        TYPE = medium_debris_02_object
+                        MIN_DISTANCE = $MIN_DISTANCE$
+                        MAX_DISTANCE = $MAX_DISTANCE$
+                        IN_ORBIT = $IN_ORBIT|no$
+                    }
+                }
+                1 = {
+                    mpp_add_ambient_object = {
+                        TYPE = large_debris_object
+                        MIN_DISTANCE = $MIN_DISTANCE$
+                        MAX_DISTANCE = $MAX_DISTANCE$
+                        IN_ORBIT = $IN_ORBIT|no$
+                    }
+                }
+            }
+        ]
+
+        # Limpia la variable temporal usada en el bucle
+        clear_variable = tCount
+    }
+}
+
+mpp_add_ship_debris = {
+    # Si se define COUNT → asignar esa cantidad a la variable temporal tCount
+    [[COUNT]
+        set_variable = {
+            which = tCount
+            value = $COUNT|1$    # $COUNT|1$ → si no se pasa COUNT, usa valor por defecto 1
+        }
+    ]
+
+    # Si NO se define COUNT → generar un número aleatorio entre MIN_COUNT y MAX_COUNT
+    [[!COUNT]
+        set_variable_to_random_value = {
+            which = tCount
+            min = $MIN_COUNT|1$  # valor mínimo por defecto = 1
+            max = $MAX_COUNT|1$  # valor máximo por defecto = 1 (revisar si debería ser >1)
+            rounded = yes        # asegura número entero
+        }
+    ]
+
+    # Bucle while: ejecuta el bloque interno tCount veces
+    while = {
+        count = tCount
+
+        # Caso 1: TYPE definido → añade debris del tipo especificado
+        [[TYPE]
+            mpp_add_ambient_object = {
+                TYPE = $TYPE$
+                MIN_DISTANCE = $MIN_DISTANCE$
+                MAX_DISTANCE = $MAX_DISTANCE$
+            }
+        ]
+
+        # Caso 2: TYPE no definido → genera un debris aleatorio
+        [[!TYPE]
+            # random_list: escoge un tipo de debris con probabilidad igual (peso = 1)
+            random_list = {
+                1 = {
+                    mpp_add_ambient_object = {
+                        TYPE = abandoned_ship_object
+                        MIN_DISTANCE = $MIN_DISTANCE$
+                        MAX_DISTANCE = $MAX_DISTANCE$
+                    }
+                }
+                1 = {
+                    mpp_add_ambient_object = {
+                        TYPE = abandoned_ship_2_object
+                        MIN_DISTANCE = $MIN_DISTANCE$
+                        MAX_DISTANCE = $MAX_DISTANCE$
+                    }
+                }
+            }
+        ]
+
+        # Limpia la variable temporal usada en el bucle
+        clear_variable = tCount
+    }
+}
+
+mpp_add_battlefield_debris = {
+    mpp_add_ambient_object = {
+        TYPE = ancient_battlefield_object
+        MIN_DISTANCE = $MIN_DISTANCE$
+        MAX_DISTANCE = $MAX_DISTANCE$
+    }
+
+    [[SHIP_DEBRIS]
+        last_created_ambient_object = {
+            save_event_target_as = tObject
+        }
+
+        event_target:tObject = {
+            mpp_add_ship_debris = {
+                COUNT = $SHIP_DEBRIS$
+                MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE$
+                MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE$
+            }
+        }
+    ]
+}
+
+# !Rev hay máximo de 1 por partida...
+mpp_add_broken_star_lifting_platform = {
+    solar_system = {
+        random_system_planet = {
+            limit = { is_star = yes }
+            mpp_add_ambient_object = {
+                TYPE = broken_star_lifting_platform
+                DISTANCE = $DISTANCE|20$
+            }
+            [[ADD_EVENT]
+                last_created_ambient_object = {
+                    save_global_event_target_as = broken_star_lifting_platform
+                }
+
+                prev = {
+                    set_star_flag = star_lifting_system
+                }
+
+                add_anomaly = {
+                    category = star_lifting_category
+                }
+            ]
+
+            [[ADD_BATTLEFIELD]
+                event_target:broken_star_lifting_platform = {
+                    mpp_add_battlefield_debris = {
+                        MIN_DISTANCE = 5
+                        MAX_DISTANCE = 10
+                    }
+                }
+            ]
+        }
+    }
+}
+
+
+# shrine_object
+# abandoned_weapon_station
+# droppod_02_object_desc
+# habitat_nanobot_object
+# ringworld_nanobot_object
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+
+# ===============================================
+# Eventos
+# ===============================================
+
 

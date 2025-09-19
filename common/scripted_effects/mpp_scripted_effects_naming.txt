@@ -379,8 +379,8 @@ mpp_setName_randomPlanet = {
         mpp_changeName_add = { SLASH = yes }
         mpp_changeName_add = { PC_TYPE = yes }
         if = {
-            limit = { is_variable_set = orbit }
-            mpp_changeName_add = { NUMBER = orbit NORMALIZE = 3 }
+            limit = { is_variable_set = pOrbit }
+            mpp_changeName_add = { NUMBER = pOrbit NORMALIZE = 3 }
         }
         mpp_changeName_add = { SLASH = yes }
         mpp_changeName_add = { PC_TYPE_COUNT = yes NORMALIZE = 2 }

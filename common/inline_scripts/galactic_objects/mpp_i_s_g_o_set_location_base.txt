@@ -1,0 +1,7 @@
+limit = { check_variable_arithmetic = { which = tDistance value = $F_DISTANCE$ } }
+
+set_location = {
+    target = prev               # Lo movemos con respecto a su actual localización
+    distance = $F_DISTANCE$     # Distancia random final
+    angle = random
+}

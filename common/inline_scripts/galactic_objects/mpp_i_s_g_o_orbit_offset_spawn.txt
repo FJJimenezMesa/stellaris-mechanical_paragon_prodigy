@@ -16,5 +16,5 @@ spawn_planet = {
 }
 
 event_target:tPlanet = {
-    set_variable = { which = orbit value = $F_ORBIT$ }
+    set_variable = { which = pOrbit value = $F_ORBIT$ }
 }

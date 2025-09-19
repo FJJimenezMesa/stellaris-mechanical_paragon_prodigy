@@ -1,3 +1,25 @@
+set_variable = {
+    which = tOffsetMax
+    value = $ORBIT_OFFSET$
+}
+set_variable = {
+    which = tOffsetMin
+    value = tOffsetMax
+}
+if = {
+    limit = { NOT = { check_variable = { which = tOffsetMin value = 0 } } }
+    multiply_variable = {
+        which = tOffsetMin
+        value = -1
+    }
+}
+set_variable_to_random_value = {
+    which = tOrbitOffset
+    MIN = tOffsetMin
+    MAX = tOffsetMax
+    rounded = yes
+}
+
 if = {
     limit = { check_variable_arithmetic = { which = tOrbitOffset value >= 0 } }
     if = {
@@ -123,3 +145,7 @@ else = {
         }
     }
 }
+
+clear_variable = tOrbitOffset
+clear_variable = tOffsetMin
+clear_variable = tOffsetMax

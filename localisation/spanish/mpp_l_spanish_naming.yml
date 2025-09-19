@@ -1,7 +1,22 @@
 ﻿#noinspection ParadoxLocalisationIncorrectFileName
 l_spanish:
- MPP_NAME_system_dark_relic:0 "Dark Relic"
+ # Base Naming
+ MPP_NAME_STAR:0 "Estrella"
+ MPP_NAME_PLANET:0 "Planeta"
+ MPP_NAME_MOON:0 "Luna"
+ MPP_NAME_ASTEROID:0 "Asteroide"
+ MPP_NAME_HABITAT:0 "Hábitat"
+ MPP_NAME_RING:0 "Anillo"
+ MPP_NAME_GALACTIC_OBJECT:0 "Objeto Galáctico"
 
+ # Naming
+ MPP_NAME_SYSTEM_DARK_RELIC:0 "Dark Relic"
+ MPP_NAME_GALACTIC_DOORSTEP_VECTOR:0 "The Forgegate"  # La puerta al ORIGEN - La Puerta de la Fragua, acceso al sistema donde se forjó el Vector
+ MPP_NAME_GALACTIC_DOORSTEP_NEMESIS:0 "Kaukasos Lock" # La puerta al PELIGRO - La Cerradura del Cáucaso, donde el Titán fue traicionado y encadenado
+ MPP_NAME_GALACTIC_DOORSTEP_PROGENITORS:0 "The Prime Gateway" # La puerta al CONOCIMIENTO - La Puerta Primigenia
+
+ # Scripted Naming
+ MPP_NAME_clear:0 ""
  MPP_NAME_starName:0 "[Prev.GetName]"
  MPP_NAME_add_space:0 "[This.GetName] "
  MPP_NAME_add_slash:0 "[This.GetName]-"
@@ -12,14 +27,7 @@ l_spanish:
  MPP_NAME_add_pcTypeCount:0 "[This.GetName][This.pcTypeCount]"
  MPP_NAME_add_randomTerm:0 "[This.GetName][This.MPPGetNameRandomTerm]"
 
- MPP_NAME_CLEAR:0 ""
- MPP_NAME_STAR:0 "Estrella"
- MPP_NAME_PLANET:0 "Planeta"
- MPP_NAME_MOON:0 "Luna"
- MPP_NAME_ASTEROID:0 "Asteroide"
- MPP_NAME_HABITAT:0 "Hábitat"
- MPP_NAME_RING:0 "Anillo"
- MPP_NAME_GALACIC_OBJECT:0 "Objeto Galáctico"
+ # Random Naming
  MPP_NAME_randomTerm:0 "[This.MPPGetNameRandomTerm]"
  MPP_NAME_randomPrometheus:0 "[This.MPPGetNameRandomPrometheus]"
  MPP_NAME_randomPrometheusGods:0 "[This.MPPGetNameRandomPrometheusGods]"
@@ -30,6 +38,7 @@ l_spanish:
  MPP_NAME_randomToxic:0 "[This.MPPGetNameRandomToxic]"
  MPP_NAME_randomNano:0 "[This.MPPGetNameRandomNano]"
 
+ # PCType Naming
  MPP_NAME_pcType_default:0 "XXX"
  MPP_NAME_pcType_asteroid:0 "AXX"
  MPP_NAME_pcType_crystal_asteroid:0 "ACX"
@@ -37,7 +46,6 @@ l_spanish:
  MPP_NAME_pcType_rare_crystal_asteroid:0 "ACR"
 
  # Nombres normalizados para planetas (formato letra + 3 dígitos)
- MPP_NAME_random_term_default:0 "[This.MPP_NAME_pcType_default]0"
  MPP_NAME_random_term_1:0 "A102"
  MPP_NAME_random_term_2:0 "B047"
  MPP_NAME_random_term_3:0 "C311"
@@ -123,10 +131,10 @@ l_spanish:
  MPP_NAME_prometheus_god_40:0 "Hypnos" # Dios del sueño, hermano de Thanatos
  MPP_NAME_prometheus_god_41:0 "Phobos" # Miedo y pánico en la mitología griega, hijo de Ares
  MPP_NAME_prometheus_god_42:0 "Deimos" # Terror en la mitología griega, hermano de Phobos
- MPP_NAME_prometheus_god_43:0 "Eris" # Diosa de la discordia y el conflicto en la mitología griega
+ MPP_NAME_prometheus_god_43:0 "Enyo" # Diosa griega de la guerra y destrucción, muy asociada con Eris
  MPP_NAME_prometheus_god_44:0 "Typhon" # Monstruo gigante asociado con tormentas y fuerzas destructivas
 
- # Nombres Directos del Mito:
+ # Nombres Directos del Mito
  MPP_NAME_prometheus_1:0 "Kaukasos" # La montaña donde fue encadenado Prometeo, versión griega antigua
  MPP_NAME_prometheus_2:0 "Othrys" # Montaña donde los Titanes lucharon contra los dioses, alternativa mitológica a Caucasus.
  MPP_NAME_prometheus_3:0 "Pyrephoros" # Portador del fuego
@@ -149,7 +157,7 @@ l_spanish:
  MPP_NAME_prometheus_20:0 "Dunamis" # Poder en griego
  MPP_NAME_prometheus_21:0 "Prometheia" # Προμηθεία
  MPP_NAME_prometheus_22:0 "Koryphe" # Cumbre en griego
- MPP_NAME_prometheus_23:0 "Atë" # Diosa de la ruina y la folly en la mitología griega,
+ MPP_NAME_prometheus_23:0 "Até" # Diosa de la ruina y la folly en la mitología griega,
  MPP_NAME_prometheus_24:0 "Sophia" # Σοφία (Sabiduría)
  MPP_NAME_prometheus_25:0 "Episteme" # Conocimiento en griego
 

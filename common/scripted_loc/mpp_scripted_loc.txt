@@ -64,7 +64,6 @@ defined_text = {
     text = { localization_key =  MPP_NAME_random_term_38 trigger = {} }
     text = { localization_key =  MPP_NAME_random_term_39 trigger = {} }
     text = { localization_key =  MPP_NAME_random_term_40 trigger = {} }
-    default =  MPP_NAME_random_term_default
 }
 
 defined_text = {
