@@ -1,0 +1,88 @@
+limit = { check_variable_arithmetic = { which = tDistance value = $F_DISTANCE$ } }
+
+# ---------- Caso 1: MODO CREACIÓN ----------
+if = {
+    limit = { check_variable = { which = scriptMode value = 0 } }
+
+    # IN ORBIT
+    if = {
+        limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+        create_ambient_object = {
+            type = $TYPE$
+            location = $TARGET$
+            entity_offset = $F_DISTANCE$
+            entity_offset_height = @inOrbitOffsetHeight
+            entity_offset_angle = { min = 0 max = 359 }
+        }
+    }
+    else = {
+        create_ambient_object = {
+            type = $TYPE$
+            location = $TARGET$
+            entity_offset = $F_DISTANCE$
+            entity_offset_angle = { min = 0 max = 359 }
+        }
+    }
+
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🛰️ - MPP - effect:mpp_ao_add $TYPE$ en $TARGET$ a $F_DISTANCE$ inOrbt \\[this.inOrbit]"
+    }
+}
+
+# ---------- Caso 2: MODO LOCATION ----------
+else = {
+    # IN ORBIT
+    if = {
+        limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+        set_location = {
+            target = $TARGET$
+            distance = $F_DISTANCE$
+            angle = random
+            direction = in_system
+        }
+    }
+    else = {
+        set_location = {
+            target = $TARGET$
+            distance = $F_DISTANCE$
+            angle = random
+            direction = out_system
+        }
+    }
+
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🛰️ - MPP - effect:mpp_ao_set_location: \\[this.tTarget] en $TARGET$ a $F_DISTANCE$"
+    }
+}
+
+
+## create_ambient_object
+# type = <ambient_object>
+# location = scope_group[spatial_object]
+# scale = float
+# use_3d_location = bool
+# entity_offset = float
+# entity_offset = { min = float max = float }
+# entity_offset_angle = int
+# entity_offset_angle = { min = int max = int }
+# entity_offset_height = float
+# entity_offset_height = { min = float max = float }
+# base_angle_towards = scope[country]
+# base_angle_towards = scope_group[spatial_object]
+# entity_face_object = scope_group[spatial_object]
+# entity_scale_to_size = bool
+# scripted_scale = value[variable]
+# play_animation_once = bool
+# duration = int
+# effect = single_alias_right[effect_clause]
+
+## set_location
+# target = scope_group[spatial_object]
+# distance = float #No variables here atm
+# distance = { min = float max = float }
+# angle = int[0..360]
+# angle = random
+# direction = in_system
+# direction = out_system
