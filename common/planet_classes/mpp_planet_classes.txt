@@ -1,0 +1,36 @@
+# ###########
+# Random Lists
+# ###########
+
+random_list = {
+    name = "rl_asteroids"
+
+    planets = {
+        "pc_asteroid"
+        "pc_ice_asteroid"
+        "pc_crystal_asteroid"
+        "pc_rare_crystal_asteroid"
+    }
+}
+
+random_list = {
+    name = "rl_rocky_asteroids"
+    planets = {
+        "pc_asteroid"
+    }
+}
+
+random_list = {
+    name = "rl_icy_asteroids"
+    planets = {
+        "pc_ice_asteroid"
+    }
+}
+
+random_list = {
+    name = "rl_crystal_asteroids"
+    planets = {
+        "pc_crystal_asteroid"
+        "pc_rare_crystal_asteroid"
+    }
+}

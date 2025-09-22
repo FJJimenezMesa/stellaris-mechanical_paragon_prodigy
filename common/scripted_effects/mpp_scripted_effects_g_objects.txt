@@ -2,9 +2,9 @@
 # Planetas, cinturones de asteroides y asteroides
 # ===============================================
 
-mpp_spawn_planet = {
+mpp_go_spawn_planet = {
     inline_script = {
-        script = "galactic_objects/mpp_i_s_g_o_orbit_offset"
+        script = galactic_objects/mpp_is_go_orbit_offset
         TYPE = $TYPE|random$
         ORBIT = $ORBIT|random$
         ORBIT_OFFSET = $ORBIT_OFFSET|0$
@@ -25,7 +25,7 @@ mpp_spawn_planet = {
     }
 }
 
-mpp_add_asteroid_belt = {
+mpp_go_add_asteroid_belt = {
     # Si el parámetro TYPE está definido → usar ese tipo exacto de cinturón de asteroides
     [[TYPE]
         add_asteroid_belt = {
@@ -46,7 +46,7 @@ mpp_add_asteroid_belt = {
     ]
 }
 
-mpp_add_asteroids = {
+mpp_go_add_asteroids = {
     # Si se define COUNT → asignar esa cantidad a la variable temporal tCount
     [[COUNT]
         set_variable = {
@@ -71,7 +71,7 @@ mpp_add_asteroids = {
 
         # Caso 1: TYPE definido → añade planeta del tipo especificado
         [[TYPE]
-            mpp_spawn_planet = {
+            mpp_go_spawn_planet = {
                 TYPE = $TYPE$
                 ORBIT = $ORBIT|50$
                 ORBIT_OFFSET = $ORBIT_OFFSET|0$
@@ -84,52 +84,14 @@ mpp_add_asteroids = {
 
         # Caso 2: TYPE no definido → genera un asteroide aleatorio
         [[!TYPE]
-            # random_list: escoge un tipo de asteroide con probabilidad igual (peso = 1)
-            random_list = {
-                1 = {
-                    mpp_spawn_planet = {
-                        TYPE = pc_asteroid
-                        ORBIT = $ORBIT|50$
-                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
-                        SIZE = $SIZE|2$
-                        MIN_ANGLE = $MIN_ANGLE|0$
-                        MAX_ANGLE = $MAX_ANGLE|360$
-                        EFFECT1 = mpp_setName_randomPlanet
-                    }
-                }
-                1 = {
-                    mpp_spawn_planet = {
-                        TYPE = pc_ice_asteroid
-                        ORBIT = $ORBIT|50$
-                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
-                        SIZE = $SIZE|2$
-                        MIN_ANGLE = $MIN_ANGLE|0$
-                        MAX_ANGLE = $MAX_ANGLE|360$
-                        EFFECT1 = mpp_setName_randomPlanet
-                    }
-                }
-                1 = {
-                    mpp_spawn_planet = {
-                        TYPE = pc_crystal_asteroid
-                        ORBIT = $ORBIT|50$
-                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
-                        SIZE = $SIZE|2$
-                        MIN_ANGLE = $MIN_ANGLE|0$
-                        MAX_ANGLE = $MAX_ANGLE|360$
-                        EFFECT1 = mpp_setName_randomPlanet
-                    }
-                }
-                1 = {
-                    mpp_spawn_planet = {
-                        TYPE = pc_rare_crystal_asteroid
-                        ORBIT = $ORBIT|50$
-                        ORBIT_OFFSET = $ORBIT_OFFSET|0$
-                        SIZE = $SIZE|2$
-                        MIN_ANGLE = $MIN_ANGLE|0$
-                        MAX_ANGLE = $MAX_ANGLE|360$
-                        EFFECT1 = mpp_setName_randomPlanet
-                    }
-                }
+            mpp_go_spawn_planet = {
+                TYPE = rl_asteroids
+                ORBIT = $ORBIT|50$
+                ORBIT_OFFSET = $ORBIT_OFFSET|0$
+                SIZE = $SIZE|2$
+                MIN_ANGLE = $MIN_ANGLE|0$
+                MAX_ANGLE = $MAX_ANGLE|360$
+                EFFECT1 = mpp_setName_randomPlanet
             }
         ]
     }
@@ -142,255 +104,721 @@ mpp_add_asteroids = {
 # Efectos
 # ===============================================
 
-mpp_add_ambient_object = {
-    [[IN_ORBIT]
-        set_variable = { which = inOrbit value = 1 }
-    ]
+mpp_ao_add = {
+    optimize_memory
 
-    [[TARGET]
+    # ---------- Flags ----------
+    [[TYPE] set_variable = { which = hasType value = @mpp_yes } ]
+    [[!TYPE] set_variable = { which = hasType value = @mpp_no } ]
+    [[TARGET] set_variable = { which = hasTarget value = @mpp_yes } ]
+    [[!TARGET] set_variable = { which = hasTarget value = @mpp_no } ]
+    set_variable = { which = inOrbit value = $IN_ORBIT|@mpp_no$ }
+    log_error = "InOrbit \\[this.inOrbit]"
+
+    # ---------- Caso 1: Tiene TYPE ----------
+    if = {
+        limit = { check_variable = { which = hasType value = @mpp_yes } }
+
+        # Tiene TARGET
         if = {
-            limit = { is_variable_set = inOrbit }
-            create_ambient_object = {
-                type = $TYPE|small_debris_object$
-                location = event_target:$TARGET$
-                entity_offset_height = @inOritOffset
+            limit = { check_variable = { which = hasTarget value = @mpp_yes } }
+            # IN_ORBIT activo
+            if = {
+                limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+                log_error = "Crea $TYPE$ con target inOrbit"
+                create_ambient_object = {
+                    type = $TYPE$
+                    location = event_target:$TARGET|prev$           # No usará el default
+                    use_3d_location = yes
+                    entity_offset_height = @inOrbitOffsetHeight
+                }
+            }
+            # Solo TARGET
+            else = {
+                log_error = "Crea $TYPE$ con target"
+                create_ambient_object = {
+                    type = $TYPE$
+                    location = event_target:$TARGET|prev$           # No usará el default
+                }
             }
         }
+        # No tiene TARGET
         else = {
-            create_ambient_object = {
-                type = $TYPE|small_debris_object$
-                location = event_target:$TARGET$
+            # Solo IN_ORBIT
+            if = {
+                limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+                log_error = "Crea $TYPE$ sin target inOrbit"
+                create_ambient_object = {
+                    type = $TYPE$
+                    location = prev
+                    use_3d_location = yes
+                    entity_offset_height = @inOrbitOffsetHeight
+                }
+            }
+            # Caso base
+            else = {
+                log_error = "Crea $TYPE$ sin target"
+                create_ambient_object = {
+                    type = $TYPE$
+                    location = prev
+                }
             }
         }
+    }
 
-    ]
-    [[!TARGET]
+    # ---------- Caso 2: No tiene TYPE → usar small_debris_object ----------
+    else = {
+        # Tiene TARGET
         if = {
-            limit = { is_variable_set = inOrbit }
-            create_ambient_object = {
-                type = $TYPE|small_debris_object$
-                location = prev
-                entity_offset_height = @inOritOffset
+            limit = { check_variable = { which = hasTarget value = @mpp_yes } }
+            # IN_ORBIT activo
+            if = {
+                limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+                log_error = "Crea small_debris_object con target inOrbit"
+                create_ambient_object = {
+                    type = small_debris_object
+                    location = event_target:$TARGET|prev$           # No usará el default
+                    use_3d_location = yes
+                    entity_offset_height = @inOrbitOffsetHeight
+                }
+            }
+            # Solo TARGET
+            else = {
+                log_error = "Crea small_debris_object con target"
+                create_ambient_object = {
+                    type = small_debris_object
+                    location = event_target:$TARGET|prev$           # No usará el default
+                }
             }
         }
+        # No TARGET
         else = {
-            create_ambient_object = {
-                type = $TYPE|small_debris_object$
-                location = prev
+            # Solo IN_ORBIT
+            if = {
+                limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+                log_error = "Crea small_debris_object sin target inOrbit"
+                create_ambient_object = {
+                    type = small_debris_object
+                    location = prev
+                    use_3d_location = yes
+                    entity_offset_height = @inOrbitOffsetHeight
+                }
+            }
+            # Caso base
+            else = {
+                log_error = "Crea small_debris_object sin target"
+                create_ambient_object = {
+                    type = small_debris_object
+                    location = prev
+                }
             }
         }
-    ]
+    }
 
-    [[DISTANCE]
-        last_created_ambient_object = {
-            set_location = {
-                target = prev # Lo movemos con respecto a su actual localización
-                distance = $DISTANCE$
-                angle = random
+    last_created_ambient_object = {
+        [[TARGET]
+            mpp_ao_set_location = {
+                TARGET = $TARGET$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@mpp_no$
+                MAX_DISTANCE = $MAX_DISTANCE|@mpp_no$
             }
-        }
-    ]
-    [[!DISTANCE]
-        last_created_ambient_object = {
-            inline_script = {
-                script = "galactic_objects/mpp_i_s_g_o_set_location"
-                MIN_DISTANCE = $MIN_DISTANCE|0$
-                MAX_DISTANCE = $MAX_DISTANCE|5$
-            }
-        }
-    ]
+        ]
 
+        [[!TARGET]
+            mpp_ao_set_location = {
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@mpp_no$
+                MAX_DISTANCE = $MAX_DISTANCE|@mpp_no$
+            }
+        ]
+    }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = hasType
+    clear_variable = hasTarget
     clear_variable = inOrbit
 }
 
-mpp_add_debris = {
-    # Si se define COUNT → asignar esa cantidad a la variable temporal tCount
-    [[COUNT]
-        set_variable = {
-            which = tCount
-            value = $COUNT|1$    # $COUNT|1$ → si no se pasa COUNT, usa valor por defecto 1
+mpp_ao_set_location = {
+    optimize_memory
+
+    # ---------- Flags ----------
+    set_variable = { which = tDistance value = $DISTANCE|@mpp_no$ }
+    set_variable = { which = tDistanceOffsetRange value = $DISTANCE_OFFSET_RANGE|@mpp_no$ }
+    set_variable = { which = tMinDistance value = $MIN_DISTANCE|@mpp_no$ }
+    set_variable = { which = tMaxDistance value = $MAX_DISTANCE|@mpp_no$ }
+
+    # ---------- Caso 1: DISTANCE presente ----------
+    if = {
+        limit = { NOT = { check_variable = { which = tDistance value = @mpp_no } } }
+
+        # Offset definido
+        if = {
+            limit = { NOT = { check_variable = { which = tDistanceOffsetRange value = @mpp_no } } }
+            set_variable = { which = tOffsetMax value = tDistanceOffsetRange }
+            if = {
+                limit = { check_variable = { which = tOffsetMax value < -50 } }
+                set_variable = { which = tOffsetMax value = -50 }
+            }
+            if = {
+                limit = { check_variable = { which = tOffsetMax value > 49 } }
+                set_variable = { which = tOffsetMax value = 49 }
+            }
         }
-    ]
+        else = {
+            set_variable = { which = tOffsetMax value = 0 }
+        }
+
+        set_variable = { which = tOffsetMin value = tOffsetMax }
+
+        # Convertir min a negativo si no es 0 menor que 0
+        if = {
+            limit = { NOT = { check_variable = { which = tOffsetMin value <= 0 } } }
+            multiply_variable = { which = tOffsetMin value = -1 }
+        }
+
+        # Valor random de offset
+        set_variable_to_random_value = { which = tOffset MIN = tOffsetMin MAX = tOffsetMax rounded = yes }
+
+        # Determinar ubicación con o sin target
+        [[TARGET]
+            log_error = "distance con target"
+            inline_script = {
+                script = galactic_objects/mpp_is_ao_set_location_offset
+                TARGET = event_target:$TARGET|prev$     # No usará el default
+                DISTANCE = $DISTANCE|0$                 # No usará el default
+            }
+        ]
+
+        [[!TARGET]
+            log_error = "distance no target y offset"
+            inline_script = {
+                script = galactic_objects/mpp_is_ao_set_location_offset
+                TARGET = prev
+                DISTANCE = $DISTANCE|0$                 # No usará el default
+            }
+        ]
+
+        # ---------- Limpieza de variables ----------
+        clear_variable = tOrbitOffset
+        clear_variable = tOffsetMin
+        clear_variable = tOffsetMax
+    }
+
+    # ---------- Caso 2: DISTANCE no presente → usar MIN/MAX ----------
+    else = {
+        # MIN_DISTANCE
+        if = {
+            limit = { NOT = { check_variable = { which = tMinDistance value = @mpp_no } } }
+            if = {
+                limit = { check_variable_arithmetic = { which = tMinDistance value < -50 } }
+                set_variable = { which = tMinDistance value = -50 }
+            }
+        }
+        else = {
+            set_variable = { which = tMinDistance value = 1 }
+        }
+
+        # MAX_DISTANCE
+        if = {
+            limit = { NOT = { check_variable = { which = tMaxDistance value = @mpp_no } } }
+            if = {
+                limit = { check_variable_arithmetic = { which = tMaxDistance value > 299 } }
+                set_variable = { which = tMaxDistance value = 299 }
+            }
+        }
+        else = {
+            set_variable = { which = tMaxDistance value = 1 }
+        }
+
+        # Valor random de distancia
+        set_variable_to_random_value = { which = tDistance min = tMinDistance max = tMaxDistance rounded = yes }
+
+        log_error = "MIN \\[this.tMinDistance]"
+        log_error = "MAX \\[this.tMaxDistance]"
+        log_error = "DISTANCE \\[this.tDistance]"
+
+        # Ubicación con target
+        if = {
+            limit = { check_variable = { which = hasTarget value = @mpp_yes } }
+            log_error = "location con target"
+            inline_script = {
+                script = galactic_objects/mpp_is_ao_set_location
+                TARGET = event_target:$TARGET$
+            }
+        }
+        # Ubicación sin target
+        else = {
+            log_error = "location sin target"
+            inline_script = {
+                script = galactic_objects/mpp_is_ao_set_location
+                TARGET = this
+            }
+        }
+    }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = tDistance
+    clear_variable = tDistanceOffsetRange
+    clear_variable = tMinDistance
+    clear_variable = tMaxDistance
+}
+
+mpp_ao_add_random = {
+    # ---------- Flags ----------
+    set_variable = { which = tCategory value = $CATEGORY|@AO_CATEGORY_DEBRIS$ }
+
+    # AO_CATEGORY_DEBRIS
+    if = {
+        limit = { check_variable = { which = tCategory value = @AO_CATEGORY_DEBRIS } }
+
+        [[TARGET]
+            mpp_ao_add_debris = {
+                TARGET = $TARGET$
+                IN_ORBIT = $IN_ORBIT|@mpp_no$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+            }
+        ]
+
+        [[!TARGET]
+            mpp_ao_add_debris = {
+                IN_ORBIT = $IN_ORBIT|@mpp_no$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+            }
+        ]
+    }
+
+    # AO_CATEGORY_BATTLEFIELD
+    else_if = {
+        limit = { check_variable = { which = tCategory value = @AO_CATEGORY_BATTLEFIELD } }
+
+        [[TARGET]
+            mpp_ao_add_battlefield_debris = {
+                TARGET = $TARGET$
+                IN_ORBIT = $IN_ORBIT|@mpp_no$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                SHIP_DEBRIS = $SHIP_DEBRIS|0$
+                SHIP_DEBRIS_MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
+                SHIP_DEBRIS_MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
+            }
+        ]
+
+        [[!TARGET]
+            mpp_ao_add_battlefield_debris = {
+                IN_ORBIT = $IN_ORBIT|@mpp_no$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                SHIP_DEBRIS = $SHIP_DEBRIS|0$
+                SHIP_DEBRIS_MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
+                SHIP_DEBRIS_MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
+            }
+        ]
+    }
+
+    # AO_CATEGORY_SHIP_DEBRIS
+    else_if = {
+        limit = { check_variable = { which = tCategory value = @AO_CATEGORY_SHIP_DEBRIS } }
+
+        [[TARGET]
+            mpp_ao_add_ship_debris = {
+                TARGET = $TARGET$
+                IN_ORBIT = $IN_ORBIT|@mpp_no$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
+                MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+            }
+        ]
+
+        [[!TARGET]
+            mpp_ao_add_ship_debris = {
+                IN_ORBIT = $IN_ORBIT|@mpp_no$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+            }
+        ]
+    }
+    else = {
+        log_error = "Categoría de Ambient Object no implementada"
+    }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = tCategory
+}
+
+mpp_ao_add_debris = {
+    optimize_memory
+
+    # Si se define COUNT → asignar esa cantidad a la variable temporal tCount
+    [[COUNT] set_variable = { which = tCount value = $COUNT|1$ } ]
 
     # Si NO se define COUNT → generar un número aleatorio entre MIN_COUNT y MAX_COUNT
-    [[!COUNT]
-        set_variable_to_random_value = {
-            which = tCount
-            min = $MIN_COUNT|1$  # valor mínimo por defecto = 1
-            max = $MAX_COUNT|1$  # valor máximo por defecto = 1 (revisar si debería ser >1)
-            rounded = yes        # asegura número entero
-        }
-    ]
+    [[!COUNT] set_variable_to_random_value = { which = tCount min = $MIN_COUNT|1$ max = $MAX_COUNT|1$ rounded = yes } ]
 
     # Bucle while: ejecuta el bloque interno tCount veces
     while = {
         count = tCount
 
-        # Caso 1: TYPE definido → añade debris del tipo especificado
-        [[TYPE]
-            mpp_add_ambient_object = {
-                TYPE = $TYPE$
-                MIN_DISTANCE = $MIN_DISTANCE$
-                MAX_DISTANCE = $MAX_DISTANCE$
-                IN_ORBIT = $IN_ORBIT|no$
-            }
-        ]
+        # ---------- Flags ----------
+        [[TYPE] set_variable = { which = hasType value = @mpp_yes } ]
+        [[!TYPE] set_variable = { which = hasType value = @mpp_no } ]
+        [[TARGET] set_variable = { which = hasTarget value = @mpp_yes } ]
+        [[!TARGET] set_variable = { which = hasTarget value = @mpp_no } ]
 
-        # Caso 2: TYPE no definido → genera un debris aleatorio
-        [[!TYPE]
-            # random_list: escoge un tipo de debris con probabilidad igual (peso = 1)
+        # ---------- Caso 1: Tiene TYPE ----------
+        if = {
+            limit = { check_variable = { which = hasType value = @mpp_yes } }
+
+            [[TARGET]
+                mpp_ao_add = {
+                    TYPE = $TYPE|small_debris_object$  # No usará default
+                    TARGET = $TARGET$
+                    IN_ORBIT = $IN_ORBIT|@mpp_no$
+                    DISTANCE = $DISTANCE|@mpp_no$
+                    DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                    MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                    MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                }
+            ]
+
+            [[!TARGET]
+                mpp_ao_add = {
+                    TYPE = $TYPE|small_debris_object$  # No usará default
+                    IN_ORBIT = $IN_ORBIT|@mpp_no$
+                    DISTANCE = $DISTANCE|@mpp_no$
+                    DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                    MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                    MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                }
+            ]
+        }
+
+        # ---------- Caso 2: No tiene TYPE → usar random
+        else = {
             random_list = {
                 1 = {
-                    mpp_add_ambient_object = {
-                        TYPE = small_debris_object
-                        MIN_DISTANCE = $MIN_DISTANCE$
-                        MAX_DISTANCE = $MAX_DISTANCE$
-                        IN_ORBIT = $IN_ORBIT|no$
-                    }
+                    [[TARGET]
+                        mpp_ao_add = {
+                            TYPE = small_debris_object
+                            TARGET = $TARGET$
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
+
+                    [[!TARGET]
+                        mpp_ao_add = {
+                            TYPE = small_debris_object
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
                 }
                 1 = {
-                    mpp_add_ambient_object = {
-                        TYPE = medium_debris_01_object
-                        MIN_DISTANCE = $MIN_DISTANCE|10$
-                        MAX_DISTANCE = $MAX_DISTANCE|15$
-                        IN_ORBIT = $IN_ORBIT|no$
-                    }
+                    [[TARGET]
+                        mpp_ao_add = {
+                            TYPE = medium_debris_01_object
+                            TARGET = $TARGET$
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
+
+                    [[!TARGET]
+                        mpp_ao_add = {
+                            TYPE = medium_debris_01_object
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
                 }
                 1 = {
-                    mpp_add_ambient_object = {
-                        TYPE = medium_debris_02_object
-                        MIN_DISTANCE = $MIN_DISTANCE$
-                        MAX_DISTANCE = $MAX_DISTANCE$
-                        IN_ORBIT = $IN_ORBIT|no$
-                    }
+                    [[TARGET]
+                        mpp_ao_add = {
+                            TYPE = medium_debris_02_object
+                            TARGET = $TARGET$
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
+
+                    [[!TARGET]
+                        mpp_ao_add = {
+                            TYPE = medium_debris_02_object
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
                 }
                 1 = {
-                    mpp_add_ambient_object = {
-                        TYPE = large_debris_object
-                        MIN_DISTANCE = $MIN_DISTANCE$
-                        MAX_DISTANCE = $MAX_DISTANCE$
-                        IN_ORBIT = $IN_ORBIT|no$
-                    }
+                    [[TARGET]
+                        mpp_ao_add = {
+                            TYPE = large_debris_object
+                            TARGET = $TARGET$
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
+
+                    [[!TARGET]
+                        mpp_ao_add = {
+                            TYPE = large_debris_object
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                        }
+                    ]
                 }
             }
-        ]
+        }
 
-        # Limpia la variable temporal usada en el bucle
+        # ---------- Limpieza de variables ----------
         clear_variable = tCount
+        clear_variable = hasType
+        clear_variable = hasTarget
     }
 }
 
-mpp_add_ship_debris = {
+mpp_ao_add_ship_debris = {
+    optimize_memory
+
     # Si se define COUNT → asignar esa cantidad a la variable temporal tCount
-    [[COUNT]
-        set_variable = {
-            which = tCount
-            value = $COUNT|1$    # $COUNT|1$ → si no se pasa COUNT, usa valor por defecto 1
-        }
-    ]
+    [[COUNT] set_variable = { which = tCount value = $COUNT|1$ } ]
 
     # Si NO se define COUNT → generar un número aleatorio entre MIN_COUNT y MAX_COUNT
-    [[!COUNT]
-        set_variable_to_random_value = {
-            which = tCount
-            min = $MIN_COUNT|1$  # valor mínimo por defecto = 1
-            max = $MAX_COUNT|1$  # valor máximo por defecto = 1 (revisar si debería ser >1)
-            rounded = yes        # asegura número entero
-        }
-    ]
+    [[!COUNT] set_variable_to_random_value = { which = tCount min = $MIN_COUNT|1$ max = $MAX_COUNT|1$ rounded = yes } ]
 
     # Bucle while: ejecuta el bloque interno tCount veces
     while = {
         count = tCount
 
-        # Caso 1: TYPE definido → añade debris del tipo especificado
-        [[TYPE]
-            mpp_add_ambient_object = {
-                TYPE = $TYPE$
-                MIN_DISTANCE = $MIN_DISTANCE$
-                MAX_DISTANCE = $MAX_DISTANCE$
-            }
-        ]
+        # ---------- Flags ----------
+        [[TYPE] set_variable = { which = hasType value = @mpp_yes } ]
+        [[!TYPE] set_variable = { which = hasType value = @mpp_no } ]
+        [[TARGET] set_variable = { which = hasTarget value = @mpp_yes } ]
+        [[!TARGET] set_variable = { which = hasTarget value = @mpp_no } ]
 
-        # Caso 2: TYPE no definido → genera un debris aleatorio
-        [[!TYPE]
-            # random_list: escoge un tipo de debris con probabilidad igual (peso = 1)
+        # ---------- Caso 1: Tiene TYPE ----------
+        if = {
+            limit = { check_variable = { which = hasType value = @mpp_yes } }
+
+            [[TARGET]
+                mpp_ao_add = {
+                    TYPE = $TYPE|abandoned_ship_object$  # No usará default
+                    TARGET = $TARGET$
+                    IN_ORBIT = $IN_ORBIT|@mpp_no$
+                    DISTANCE = $DISTANCE|@mpp_no$
+                    DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                    MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
+                    MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                }
+            ]
+
+            [[!TARGET]
+                mpp_ao_add = {
+                    TYPE = $TYPE|abandoned_ship_object$  # No usará default
+                    IN_ORBIT = $IN_ORBIT|@mpp_no$
+                    DISTANCE = $DISTANCE|@mpp_no$
+                    DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                    MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
+                    MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                }
+            ]
+        }
+
+        # ---------- Caso 2: No tiene TYPE → usar random
+        else = {
             random_list = {
                 1 = {
-                    mpp_add_ambient_object = {
-                        TYPE = abandoned_ship_object
-                        MIN_DISTANCE = $MIN_DISTANCE$
-                        MAX_DISTANCE = $MAX_DISTANCE$
-                    }
+                    [[TARGET]
+                        mpp_ao_add = {
+                            TYPE = abandoned_ship_object
+                            TARGET = $TARGET$
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                        }
+                    ]
+
+                    [[!TARGET]
+                        mpp_ao_add = {
+                            TYPE = abandoned_ship_object
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                        }
+                    ]
                 }
                 1 = {
-                    mpp_add_ambient_object = {
-                        TYPE = abandoned_ship_2_object
-                        MIN_DISTANCE = $MIN_DISTANCE$
-                        MAX_DISTANCE = $MAX_DISTANCE$
-                    }
+                    [[TARGET]
+                        mpp_ao_add = {
+                            TYPE = abandoned_ship_2_object
+                            TARGET = $TARGET$
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                        }
+                    ]
+
+                    [[!TARGET]
+                        mpp_ao_add = {
+                            TYPE = abandoned_ship_2_object
+                            IN_ORBIT = $IN_ORBIT|@mpp_no$
+                            DISTANCE = $DISTANCE|@mpp_no$
+                            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
+                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                        }
+                    ]
                 }
             }
-        ]
+        }
 
-        # Limpia la variable temporal usada en el bucle
+        # ---------- Limpieza de variables ----------
         clear_variable = tCount
+        clear_variable = hasType
+        clear_variable = hasTarget
     }
 }
 
-mpp_add_battlefield_debris = {
-    mpp_add_ambient_object = {
-        TYPE = ancient_battlefield_object
-        MIN_DISTANCE = $MIN_DISTANCE$
-        MAX_DISTANCE = $MAX_DISTANCE$
-    }
+mpp_ao_add_battlefield_debris = {
+    optimize_memory
+
+    [[TARGET]
+        mpp_ao_add = {
+            TYPE = ancient_battlefield_object
+            TARGET = $TARGET$
+            IN_ORBIT = $IN_ORBIT|@mpp_no$
+            DISTANCE = $DISTANCE|@mpp_no$
+            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+            MIN_DISTANCE = $MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
+            MAX_DISTANCE = $MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
+        }
+    ]
+
+    [[!TARGET]
+        mpp_ao_add = {
+            TYPE = ancient_battlefield_object
+            IN_ORBIT = $IN_ORBIT|@mpp_no$
+            DISTANCE = $DISTANCE|@mpp_no$
+            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+            MIN_DISTANCE = $MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
+            MAX_DISTANCE = $MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
+        }
+    ]
 
     [[SHIP_DEBRIS]
         last_created_ambient_object = {
             save_event_target_as = tObject
-        }
 
-        event_target:tObject = {
-            mpp_add_ship_debris = {
+            mpp_ao_add_ship_debris = {
+                TARGET = tObject
                 COUNT = $SHIP_DEBRIS$
-                MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE$
-                MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE$
+                MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|1$
+                MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|10$
             }
         }
     ]
 }
 
 # !Rev hay máximo de 1 por partida...
-mpp_add_broken_star_lifting_platform = {
+mpp_ao_add_broken_star_lifting_platform = {
     solar_system = {
         random_system_planet = {
             limit = { is_star = yes }
-            mpp_add_ambient_object = {
+            #noinspection ParadoxScriptUnusedDynamicValue
+            save_event_target_as = tStar
+
+            mpp_ao_add = {
                 TYPE = broken_star_lifting_platform
-                DISTANCE = $DISTANCE|20$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
+                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
             }
+
             [[ADD_EVENT]
-                last_created_ambient_object = {
-                    save_global_event_target_as = broken_star_lifting_platform
-                }
-
+                # System
                 prev = {
+                    #noinspection ParadoxScriptUnusedDynamicValue
                     set_star_flag = star_lifting_system
-                }
-
-                add_anomaly = {
-                    category = star_lifting_category
                 }
             ]
 
-            [[ADD_BATTLEFIELD]
-                event_target:broken_star_lifting_platform = {
-                    mpp_add_battlefield_debris = {
+            last_created_ambient_object = {
+                save_event_target_as = tObject
+
+                [[ADD_EVENT]
+                    event_target:tObject = {
+                        save_global_event_target_as = broken_star_lifting_platform
+                        add_anomaly = {
+                            category = star_lifting_category
+                        }
+                    }
+                ]
+
+                [[ADD_BATTLEFIELD]
+                    mpp_ao_add_battlefield_debris = {
+                        TARGET = tObject
                         MIN_DISTANCE = 5
                         MAX_DISTANCE = 10
                     }
-                }
-            ]
+                ]
+                [[SMALL_DEBRIS]
+                    mpp_ao_add_debris = {
+                        TYPE = small_debris_object
+                        TARGET = tObject
+                        COUNT = $SMALL_DEBRIS$
+                        MIN_DISTANCE = $DEBRIS_MIN_DISTANCE|0$
+                        MAX_DISTANCE = $DEBRIS_MAX_DISTANCE|5$
+                    }
+                ]
+            }
         }
     }
 }

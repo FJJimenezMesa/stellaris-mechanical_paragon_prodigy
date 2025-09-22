@@ -16,7 +16,7 @@ l_spanish:
  MPP_NAME_GALACTIC_DOORSTEP_PROGENITORS:0 "The Prime Gateway" # La puerta al CONOCIMIENTO - La Puerta Primigenia
 
  # Scripted Naming
- MPP_NAME_clear:0 ""
+ MPP_NAME_clear:0 "" # Intentionally empty string
  MPP_NAME_starName:0 "[Prev.GetName]"
  MPP_NAME_add_space:0 "[This.GetName] "
  MPP_NAME_add_slash:0 "[This.GetName]-"

@@ -3,6 +3,8 @@
 # ================================
 
 @mpp_debug = 1
+@mpp_yes = 9999999999999
+@mpp_no = -9999999999999
 
 # ================================
 # 🔬 Variables para tecnologías MPP
@@ -127,3 +129,19 @@ mpp_agenda_list = {
 
 # Variables modificadores de traits de líderes
 @mpp_modifier_leader_research_bonus = 5             # Multiplicador de bonificaciones de investigación de líder
+
+
+# ===============================================
+# 🛰️ Variables para lógica de Galactic Objects
+# ===============================================
+@AO_CATEGORY_DEBRIS = 0
+@AO_CATEGORY_SHIP_DEBRIS = 1
+@AO_CATEGORY_BATTLEFIELD = 2
+
+@defaultDebrisMinDistance = 1
+@defaultDebrisMaxDistance = 5
+@defaultShipDebrisMinDistance = 1
+@defaultShipDebrisMaxDistance = 10
+@defaultBattleFieldDebrisMinDistance = 1
+@defaultBattleFieldDebrisMaxDistance = 5
+@inOrbitOffsetHeight = -50

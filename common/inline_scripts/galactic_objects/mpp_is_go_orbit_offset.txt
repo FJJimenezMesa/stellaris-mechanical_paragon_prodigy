@@ -25,7 +25,7 @@ if = {
     if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value < 10 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = 0
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -37,7 +37,7 @@ if = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value < 20 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = 10
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -49,7 +49,7 @@ if = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value < 30 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = 20
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -61,7 +61,7 @@ if = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value < 40 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = 30
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -73,7 +73,7 @@ if = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value < 50 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = 40
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -87,7 +87,7 @@ else = {
     if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value >= -10 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = -10
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -99,7 +99,7 @@ else = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value >= -20 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = -20
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -111,7 +111,7 @@ else = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value >= -30 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = -30
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -123,7 +123,7 @@ else = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value >= -40 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = -40
             TYPE = $TYPE$
             ORBIT = $ORBIT$
@@ -135,7 +135,7 @@ else = {
     else_if = {
         limit = { check_variable_arithmetic = { which = tOrbitOffset value >= -50 } }
         inline_script = {
-            script = "galactic_objects/mpp_i_s_g_o_orbit_offset_0_10"
+            script = galactic_objects/mpp_is_go_orbit_offset_0_10
             B_OFFSET = -50
             TYPE = $TYPE$
             ORBIT = $ORBIT$

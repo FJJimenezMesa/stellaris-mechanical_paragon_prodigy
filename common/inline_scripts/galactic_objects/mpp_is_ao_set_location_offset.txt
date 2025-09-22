@@ -1,0 +1,65 @@
+if = {
+    limit = { check_variable_arithmetic = { which = tOffset value >= 0 } }
+    if = {
+        limit = { check_variable_arithmetic = { which = tOffset value < 10 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = 0
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value < 20 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = 10
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value < 30 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = 20
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value < 40 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = 30
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value < 50 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = 40
+        }
+    }
+}
+else = {
+    if = {
+        limit = { check_variable_arithmetic = { which = tOffset value >= -10 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = -10
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value >= -20 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = -20
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value >= -30 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = -30
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value >= -40 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = -40
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tOffset value >= -50 } }
+        inline_script = {
+            script = galactic_objects/mpp_is_ao_set_location_offset_0_10 TARGET = $TARGET$ DISTANCE = $DISTANCE$ B_OFFSET = -50
+        }
+    }
+}
