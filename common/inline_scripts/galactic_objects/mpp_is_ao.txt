@@ -11,7 +11,7 @@ if = {
             type = $TYPE$
             location = $TARGET$
             entity_offset = $F_DISTANCE$
-            entity_offset_height = @inOrbitOffsetHeight
+            entity_offset_height = -10
             entity_offset_angle = { min = 0 max = 359 }
         }
     }

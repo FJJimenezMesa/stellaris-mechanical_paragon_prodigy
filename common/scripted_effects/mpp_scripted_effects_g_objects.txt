@@ -113,7 +113,7 @@ mpp_ao_add = {
     # ---------- Flags ----------
     [[TYPE] set_variable = { which = hasType value = @mpp_yes } ]
     [[!TYPE] set_variable = { which = hasType value = @mpp_no } ]
-    [[IN_ORBIT] set_variable = { which = inOrbit value = @mpp_yes } ]
+    [[IN_ORBIT] set_variable = { which = inOrbit value = $IN_ORBIT$ } ]
     [[!IN_ORBIT] set_variable = { which = inOrbit value = @mpp_no } ]
 
     # ---------- Variables de posición ----------
@@ -221,7 +221,7 @@ mpp_ao_set_location = {
             set_variable = { which = tTarget value = $TARGET$ }
 
             # ---------- Flags ----------
-            [[IN_ORBIT] set_variable = { which = inOrbit value = @mpp_yes } ]
+            [[IN_ORBIT] set_variable = { which = inOrbit value = $IN_ORBIT$ } ]
             [[!IN_ORBIT] set_variable = { which = inOrbit value = @mpp_no } ]
 
             # ---------- Variables de posición ----------
@@ -267,16 +267,16 @@ mpp_ao_set_location = {
                     }
                 }
             ]
-        }
 
-        # ---------- Limpieza de variables ----------
-        clear_variable = scriptMode
-        clear_variable = tTarget
-        clear_variable = inOrbit
-        clear_variable = tDistance
-        clear_variable = tDistanceOffsetRange
-        clear_variable = tMinDistance
-        clear_variable = tMaxDistance
+            # ---------- Limpieza de variables ----------
+            clear_variable = scriptMode
+            clear_variable = tTarget
+            clear_variable = inOrbit
+            clear_variable = tDistance
+            clear_variable = tDistanceOffsetRange
+            clear_variable = tMinDistance
+            clear_variable = tMaxDistance
+        }
     }
     else_if = {
         limit = { mpp_is_debug_active = yes }
@@ -300,8 +300,8 @@ mpp_ao_add_random = {
                 IN_ORBIT = $IN_ORBIT|@mpp_no$
                 DISTANCE = $DISTANCE|@mpp_no$
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                MIN_DISTANCE = $MIN_DISTANCE|1$
+                MAX_DISTANCE = $MAX_DISTANCE|5$
             }
         ]
 
@@ -310,8 +310,8 @@ mpp_ao_add_random = {
                 IN_ORBIT = $IN_ORBIT|@mpp_no$
                 DISTANCE = $DISTANCE|@mpp_no$
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                MIN_DISTANCE = $MIN_DISTANCE|1$
+                MAX_DISTANCE = $MAX_DISTANCE|5$
             }
         ]
     }
@@ -326,11 +326,11 @@ mpp_ao_add_random = {
                 IN_ORBIT = $IN_ORBIT|@mpp_no$
                 DISTANCE = $DISTANCE|@mpp_no$
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                MIN_DISTANCE = $MIN_DISTANCE|1$
+                MAX_DISTANCE = $MAX_DISTANCE|5$
                 SHIP_DEBRIS = $SHIP_DEBRIS|0$
-                SHIP_DEBRIS_MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
-                SHIP_DEBRIS_MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
+                SHIP_DEBRIS_MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|1$
+                SHIP_DEBRIS_MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|5$
             }
         ]
 
@@ -339,11 +339,11 @@ mpp_ao_add_random = {
                 IN_ORBIT = $IN_ORBIT|@mpp_no$
                 DISTANCE = $DISTANCE|@mpp_no$
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                MIN_DISTANCE = $MIN_DISTANCE|1$
+                MAX_DISTANCE = $MAX_DISTANCE|5$
                 SHIP_DEBRIS = $SHIP_DEBRIS|0$
-                SHIP_DEBRIS_MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
-                SHIP_DEBRIS_MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
+                SHIP_DEBRIS_MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|1$
+                SHIP_DEBRIS_MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|5$
             }
         ]
     }
@@ -358,8 +358,8 @@ mpp_ao_add_random = {
                 IN_ORBIT = $IN_ORBIT|@mpp_no$
                 DISTANCE = $DISTANCE|@mpp_no$
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                MIN_DISTANCE = $MIN_DISTANCE|1$
+                MAX_DISTANCE = $MAX_DISTANCE|10$
             }
         ]
 
@@ -368,8 +368,8 @@ mpp_ao_add_random = {
                 IN_ORBIT = $IN_ORBIT|@mpp_no$
                 DISTANCE = $DISTANCE|@mpp_no$
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                MIN_DISTANCE = $MIN_DISTANCE|1$
+                MAX_DISTANCE = $MAX_DISTANCE|5$
             }
         ]
     }
@@ -410,8 +410,8 @@ mpp_ao_add_debris = {
                     IN_ORBIT = $IN_ORBIT|@mpp_no$
                     DISTANCE = $DISTANCE|@mpp_no$
                     DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                    MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                    MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                    MIN_DISTANCE = $MIN_DISTANCE|1$
+                    MAX_DISTANCE = $MAX_DISTANCE|5$
                 }
             ]
 
@@ -421,8 +421,8 @@ mpp_ao_add_debris = {
                     IN_ORBIT = $IN_ORBIT|@mpp_no$
                     DISTANCE = $DISTANCE|@mpp_no$
                     DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                    MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                    MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                    MIN_DISTANCE = $MIN_DISTANCE|1$
+                    MAX_DISTANCE = $MAX_DISTANCE|5$
                 }
             ]
         }
@@ -438,8 +438,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
 
@@ -449,8 +449,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
                 }
@@ -462,8 +462,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
 
@@ -473,8 +473,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
                 }
@@ -486,8 +486,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
 
@@ -497,8 +497,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
                 }
@@ -510,8 +510,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
 
@@ -521,8 +521,8 @@ mpp_ao_add_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|5$
                         }
                     ]
                 }
@@ -530,9 +530,11 @@ mpp_ao_add_debris = {
         }
 
         # ---------- Limpieza de variables ----------
-        clear_variable = tCount
         clear_variable = hasType
     }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = tCount
 }
 
 mpp_ao_add_ship_debris = {
@@ -563,8 +565,8 @@ mpp_ao_add_ship_debris = {
                     IN_ORBIT = $IN_ORBIT|@mpp_no$
                     DISTANCE = $DISTANCE|@mpp_no$
                     DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                    MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
-                    MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                    MIN_DISTANCE = $MIN_DISTANCE|1$
+                    MAX_DISTANCE = $MAX_DISTANCE|10$
                 }
             ]
 
@@ -574,8 +576,8 @@ mpp_ao_add_ship_debris = {
                     IN_ORBIT = $IN_ORBIT|@mpp_no$
                     DISTANCE = $DISTANCE|@mpp_no$
                     DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                    MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
-                    MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                    MIN_DISTANCE = $MIN_DISTANCE|1$
+                    MAX_DISTANCE = $MAX_DISTANCE|10$
                 }
             ]
         }
@@ -591,8 +593,8 @@ mpp_ao_add_ship_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|10$
                         }
                     ]
 
@@ -602,8 +604,8 @@ mpp_ao_add_ship_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|10$
                         }
                     ]
                 }
@@ -615,8 +617,8 @@ mpp_ao_add_ship_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|10$
                         }
                     ]
 
@@ -626,18 +628,36 @@ mpp_ao_add_ship_debris = {
                             IN_ORBIT = $IN_ORBIT|@mpp_no$
                             DISTANCE = $DISTANCE|@mpp_no$
                             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                            MIN_DISTANCE = $MIN_DISTANCE|@defaultShipDebrisMinDistance$
-                            MAX_DISTANCE = $MAX_DISTANCE|@defaultShipDebrisMaxDistance$
+                            MIN_DISTANCE = $MIN_DISTANCE|1$
+                            MAX_DISTANCE = $MAX_DISTANCE|10$
                         }
                     ]
                 }
             }
         }
 
+        last_created_ambient_object = {
+            #noinspection ParadoxScriptUnusedDynamicValue
+            save_event_target_as = tShip
+        }
+
+        [[SMALL_DEBRIS]
+            mpp_ao_add_debris = {
+                TYPE = small_debris_object
+                TARGET = tShip
+                COUNT = 1
+                DISTANCE = 0
+                DISTANCE_OFFSET_RANGE = 1
+                IN_ORBIT = $IN_ORBIT|@mpp_no$
+            }
+        ]
+
         # ---------- Limpieza de variables ----------
-        clear_variable = tCount
         clear_variable = hasType
     }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = tCount
 }
 
 mpp_ao_add_battlefield_debris = {
@@ -650,39 +670,35 @@ mpp_ao_add_battlefield_debris = {
             IN_ORBIT = $IN_ORBIT|@mpp_no$
             DISTANCE = $DISTANCE|@mpp_no$
             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-            MIN_DISTANCE = $MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
-            MAX_DISTANCE = $MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
+            MIN_DISTANCE = $MIN_DISTANCE|1$
+            MAX_DISTANCE = $MAX_DISTANCE|5$
         }
     ]
 
-        [[!TARGET]
-            mpp_ao_add = {
-                TYPE = ancient_battlefield_object
-                IN_ORBIT = $IN_ORBIT|@mpp_no$
-                DISTANCE = $DISTANCE|@mpp_no$
-                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultBattleFieldDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultBattleFieldDebrisMaxDistance$
-            }
-        ]
-
-        last_created_ambient_object = {
-            #noinspection ParadoxScriptUnusedDynamicValue
-            save_event_target_as = tBattlefield
+    [[!TARGET]
+        mpp_ao_add = {
+            TYPE = ancient_battlefield_object
+            IN_ORBIT = $IN_ORBIT|@mpp_no$
+            DISTANCE = $DISTANCE|@mpp_no$
+            DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
+            MIN_DISTANCE = $MIN_DISTANCE|1$
+            MAX_DISTANCE = $MAX_DISTANCE|5$
         }
+    ]
 
-        [[SHIP_DEBRIS]
-            mpp_ao_add_ship_debris = {
-                TARGET = tBattlefield
-                COUNT = $SHIP_DEBRIS$
-                MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|1$
-                MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|2$
-            }
-        ]
-
-        # ---------- Limpieza de variables ----------
-        clear_variable = tCount
+    last_created_ambient_object = {
+        #noinspection ParadoxScriptUnusedDynamicValue
+        save_event_target_as = tBattlefield
     }
+
+    [[SHIP_DEBRIS]
+        mpp_ao_add_ship_debris = {
+            TARGET = tBattlefield
+            COUNT = $SHIP_DEBRIS$
+            MIN_DISTANCE = $SHIP_DEBRIS_MIN_DISTANCE|1$
+            MAX_DISTANCE = $SHIP_DEBRIS_MAX_DISTANCE|2$
+        }
+    ]
 }
 
 # !Rev hay máximo de 1 por partida...
@@ -699,8 +715,8 @@ mpp_ao_add_broken_star_lifting_platform = {
                 TARGET = tStar
                 DISTANCE = $DISTANCE|@mpp_no$
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|0$
-                MIN_DISTANCE = $MIN_DISTANCE|@defaultDebrisMinDistance$
-                MAX_DISTANCE = $MAX_DISTANCE|@defaultDebrisMaxDistance$
+                MIN_DISTANCE = $MIN_DISTANCE|1$
+                MAX_DISTANCE = $MAX_DISTANCE|5$
             }
 
             last_created_ambient_object = {
@@ -715,7 +731,7 @@ mpp_ao_add_broken_star_lifting_platform = {
                     set_star_flag = star_lifting_system
                 }
 
-                event_target:broken_star_lifting_platform = {
+                event_target:tPlatform = {
                     #noinspection ParadoxScriptUnusedDynamicValue
                     save_global_event_target_as = mpp_broken_star_lifting_platform
                     save_global_event_target_as = broken_star_lifting_platform
@@ -723,24 +739,6 @@ mpp_ao_add_broken_star_lifting_platform = {
                     add_anomaly = {
                         category = star_lifting_category
                     }
-                }
-            ]
-
-            [[ADD_BATTLEFIELD]
-                mpp_ao_add_battlefield_debris = {
-                    TARGET = tPlatform
-                    MIN_DISTANCE = $BATTLEFIELD_MIN_DISTANCE|1$
-                    MAX_DISTANCE = $BATTLEFIELD_MAX_DISTANCE|5$
-                }
-            ]
-
-            [[SMALL_DEBRIS]
-                mpp_ao_add_debris = {
-                    TYPE = small_debris_object
-                    TARGET = tPlatform
-                    COUNT = $SMALL_DEBRIS$
-                    MIN_DISTANCE = $DEBRIS_MIN_DISTANCE|1$
-                    MAX_DISTANCE = $DEBRIS_MAX_DISTANCE|5$
                 }
             ]
         }
