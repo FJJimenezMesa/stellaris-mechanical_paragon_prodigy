@@ -1,0 +1,28 @@
+while = {
+    count = $SHIP_1$
+    create_ship = {
+        name = random
+        design = last_created_design
+    }
+}
+while = {
+    count = $SHIP_2$
+    create_ship = {
+        name = random
+        design = last_created_design
+    }
+}
+while = {
+    count = $SHIP_3$
+    create_ship = {
+        name = random
+        design = last_created_design
+    }
+}
+while = {
+    count = $SHIP_4$
+    create_ship = {
+        name = random
+        design = last_created_design
+    }
+}

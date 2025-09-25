@@ -351,3 +351,29 @@ mpp_is_even = {
         }
     ]
 }
+
+mpp_planet_has_flag = {
+    [[FLAG]
+        OR = {
+            mpp_has_planet_flag = { FLAG = $FLAG$ }
+            mpp_has_planet_mpp_flag = { FLAG = $FLAG$ }
+        }
+    ]
+    [[!FLAG]] always = no
+}
+
+mpp_has_planet_flag = {
+    [[FLAG]
+        NOT = { check_variable = { which = $FLAG$ value = @mpp_no } }
+        has_planet_flag = $FLAG$
+    ]
+    [[!FLAG]] always = no
+}
+
+mpp_has_planet_mpp_flag = {
+    [[FLAG]
+        NOT = { check_variable = { which = $FLAG$ value = @mpp_no } }
+        has_planet_flag = mpp_flag_$FLAG$
+    ]
+    [[!FLAG]] always = no
+}

@@ -1,0 +1,49 @@
+if = {
+    limit = {  check_variable = { which = tLocationTarget value = @mpp_prev }  }
+    set_location = {
+        target = prev
+        distance = $DISTANCE$
+    }
+}
+else_if = {
+    limit = { check_variable = { which = tLocationTarget value = @mpp_prev2 } }
+    set_location = {
+        target = prevprev
+        distance = $DISTANCE$
+    }
+}
+else_if = {
+    limit = { check_variable = { which = tLocationTarget value = @mpp_prev3 } }
+    set_location = {
+        target = prevprevprev
+        distance = $DISTANCE$
+    }
+}
+else_if = {
+    limit = { check_variable = { which = tLocationTarget value = @mpp_from } }
+    set_location = {
+        target = from
+        distance = $DISTANCE$
+    }
+}
+else_if = {
+    limit = { check_variable = { which = tLocationTarget value = @mpp_from2 } }
+    set_location = {
+        target = fromfrom
+        distance = $DISTANCE$
+    }
+}
+else_if = {
+    limit = { check_variable = { which = tLocationTarget value = @mpp_from3 } }
+    set_location = {
+        target = fromfromfrom
+        distance = $DISTANCE$
+    }
+}
+else_if = {
+    limit = { NOT = { check_variable = { which = tLocationTarget value = @mpp_no } } }
+    set_location = {
+        target = $TARGET$
+        distance = $DISTANCE$
+    }
+}

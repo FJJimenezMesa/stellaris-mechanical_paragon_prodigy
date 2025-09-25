@@ -6,6 +6,19 @@
 @mpp_yes = 9999999999999
 @mpp_no = -9999999999999
 
+@mpp_this = 0
+@mpp_prev = 1
+@mpp_prev2 = 2
+@mpp_prev3 = 3
+@mpp_prevFrom = 10
+@mpp_from = -1
+@mpp_from2 = -2
+@mpp_from3 = -3
+@mpp_fromPrev = -11
+
+
+
+
 # ================================
 # 🔬 Variables para tecnologías MPP
 # ================================
@@ -30,17 +43,17 @@
 # ----------------
 
 mpp_tech_list = {
-    mpp_tech_machine_patterns               = "mpp_tech_machine_patterns"
-    mpp_tech_machine_patterns_advanced      = "mpp_tech_machine_patterns_advanced"
-    mpp_tech_robotic_diversity              = "mpp_tech_robotic_diversity"
-    mpp_tech_biological_patterns            = "mpp_tech_biological_patterns"
-    mpp_tech_genetic_diversity              = "mpp_tech_genetic_diversity"
-    mpp_tech_leadership_expansion           = "mpp_tech_leadership_expansion"
-    mpp_tech_leadership_expansion_advanced  = "mpp_tech_leadership_expansion_advanced"
-    mpp_tech_diplomatic_expansion           = "mpp_tech_diplomatic_expansion"
-    mpp_tech_diplomatic_expansion_advanced  = "mpp_tech_diplomatic_expansion_advanced"
-    mpp_tech_starbase_expansion             = "mpp_tech_starbase_expansion"
-    mpp_tech_starbase_advanced_expansion    = "mpp_tech_starbase_advanced_expansion"
+    mpp_tech_machine_patterns = "mpp_tech_machine_patterns"
+    mpp_tech_machine_patterns_advanced = "mpp_tech_machine_patterns_advanced"
+    mpp_tech_robotic_diversity = "mpp_tech_robotic_diversity"
+    mpp_tech_biological_patterns = "mpp_tech_biological_patterns"
+    mpp_tech_genetic_diversity = "mpp_tech_genetic_diversity"
+    mpp_tech_leadership_expansion = "mpp_tech_leadership_expansion"
+    mpp_tech_leadership_expansion_advanced = "mpp_tech_leadership_expansion_advanced"
+    mpp_tech_diplomatic_expansion = "mpp_tech_diplomatic_expansion"
+    mpp_tech_diplomatic_expansion_advanced = "mpp_tech_diplomatic_expansion_advanced"
+    mpp_tech_starbase_expansion = "mpp_tech_starbase_expansion"
+    mpp_tech_starbase_advanced_expansion = "mpp_tech_starbase_advanced_expansion"
 }
 
 # ================================
@@ -56,8 +69,8 @@ mpp_tech_list = {
 # ----------------
 
 mpp_agenda_list = {
-    mpp_agenda_unlock_council_slot  = "mpp_agenda_unlock_council_slot"
-    mpp_agenda_purge_bad_traits     = "mpp_agenda_purge_bad_traits"
+    mpp_agenda_unlock_council_slot = "mpp_agenda_unlock_council_slot"
+    mpp_agenda_purge_bad_traits = "mpp_agenda_purge_bad_traits"
 }
 
 # ================================
@@ -95,7 +108,7 @@ mpp_agenda_list = {
 
 # Robot pops - Variables de asignación de traits (upgrade)
 @mpp_nano_vector_robot_operancy_upgraded_pop_chance = 50    # % de que reciba trait mpp_trait_nano_operancy bajo Vector con upgrade
-@mpp_nano_vector_robot_null_upgraded_pop_chance  = 50       # % de que reciba trait mpp_trait_nano_operancy_null bajo Vector con upgrade
+@mpp_nano_vector_robot_null_upgraded_pop_chance = 50       # % de que reciba trait mpp_trait_nano_operancy_null bajo Vector con upgrade
 @mpp_nano_symbiosis_robot_operancy_upgraded_pop_chance = 75 # % de que reciba trait mpp_trait_nano_operancy bajo Symbiosis con upgrade
 @mpp_nano_symbiosis_robot_null_upgraded_pop_chance = 25     # % de que reciba trait mpp_trait_nano_operancy_null bajo Symbiosis con upgrade
 
@@ -109,7 +122,7 @@ mpp_agenda_list = {
 # Machine pops - Variables de asignación de traits (upgrade)
 @mpp_nano_vector_machine_vector_upgraded_pop_chance = 65        # % de que reciba trait mpp_trait_nano_vector bajo Vector con upgrade
 @mpp_nano_vector_machine_null_upgraded_pop_chance = 35          # % de que reciba trait mpp_trait_nano_vector_null bajo Vector con upgrade
-@mpp_nano_symbiosis_machine_vector_upgraded_pop_chance  = 45    # % de que reciba trait mpp_trait_nano_vector bajo Symbiosis con upgrade
+@mpp_nano_symbiosis_machine_vector_upgraded_pop_chance = 45    # % de que reciba trait mpp_trait_nano_vector bajo Symbiosis con upgrade
 @mpp_nano_symbiosis_machine_symbiosis_upgraded_pop_chance = 45  # % de que reciba trait mpp_trait_nano_symbiosis bajo Symbiosis con upgrade
 @mpp_nano_symbiosis_machine_null_upgraded_pop_chance = 10       # % de que reciba trait mpp_trait_nano_vector_null bajo Symbiosis con upgrade
 

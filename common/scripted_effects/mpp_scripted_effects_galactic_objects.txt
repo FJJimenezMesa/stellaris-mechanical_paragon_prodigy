@@ -42,6 +42,8 @@ mpp_go_add_asteroid_belt = {
             1 = { add_asteroid_belt = { type = crystal_asteroid_belt radius = $RADIUS$ } }
             1 = { add_asteroid_belt = { type = debris_asteroid_belt radius = $RADIUS$ } }
             1 = { add_asteroid_belt = { type = empty_asteroid_belt radius = $RADIUS$ } }
+            1 = { add_asteroid_belt = { type = mpp_icy_debris_asteroid_belt radius = $RADIUS$ } }
+            1 = { add_asteroid_belt = { type = mpp_rocky_debris_small_asteroid_belt radius = $RADIUS$ } }
         }
     ]
 }
@@ -715,9 +717,9 @@ mpp_ao_add_broken_star_lifting_platform = {
 
     solar_system = {
         star = {
-            #noinspection ParadoxScriptUnusedDynamicValue
             save_event_target_as = tStar
 
+            # Añadimos plataforma
             mpp_ao_add = {
                 TYPE = broken_star_lifting_platform
                 TARGET = tStar
@@ -726,73 +728,31 @@ mpp_ao_add_broken_star_lifting_platform = {
                 MIN_DISTANCE = $MIN_DISTANCE|1$
                 MAX_DISTANCE = $MAX_DISTANCE|5$
             }
-
             last_created_ambient_object = {
-                #noinspection ParadoxScriptUnusedDynamicValue
                 save_event_target_as = tPlatform
             }
 
             [[ADD_EVENT]
-                # System
                 prev = {
+                    # System
                     #noinspection ParadoxScriptUnusedDynamicValue
                     set_star_flag = star_lifting_system
                 }
 
-                event_target:tPlatform = {
-                    #noinspection ParadoxScriptUnusedDynamicValue
-                    save_global_event_target_as = mpp_broken_star_lifting_platform
-                    save_global_event_target_as = broken_star_lifting_platform
+                #noinspection ParadoxScriptUnusedDynamicValue
+                set_planet_flag = star_lifting_star
+                clear_deposits = yes
+                add_anomaly = {
+                    category = star_lifting_category
+                    target = this # Star
+                }
 
-                    add_anomaly = {
-                        category = star_lifting_category
-                    }
+                event_target:tPlatform = {
+                    save_global_event_target_as = broken_star_lifting_platform
                 }
             ]
         }
     }
-}
-
-# ===============================================
-# Eventos
-# ===============================================
-
-mpp_add_drone_country_mining_station = {
-    [[TARGET]
-        if = {
-            limit = { exists = event_target:$TARGET$ }
-
-            # Nos cercioramos de que hay un country tipo drone
-            create_drone_country = yes
-            event_target:drone_country = {
-                save_event_target_as = mining_drones
-            }
-
-            event_target:$TARGET$ = {
-                # Si hay planeta lanzamos los eventos
-                if = {
-                    limit = {
-                        OR = {
-                            mpp_is_planet_class_planet = yes
-                            mpp_is_planet_class_asteroid = yes
-                        }
-                    }
-                    # Bloqueamos desarrollo dNAel planeta
-                    add_deposit = d_ship_debris_payback_blocker
-
-                    # Añadir depósito mínimo al planeta
-                    add_deposit = d_minerals_4
-
-                    # Creamos estación de minería en el planeta
-                    create_mining_station = {
-                        owner = event_target:mining_drones
-                    }
-
-                    set_planet_flag = mpp_drone_mining_station
-                }
-            }
-        }
-    ]
 }
 
 

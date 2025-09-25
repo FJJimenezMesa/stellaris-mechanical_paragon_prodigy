@@ -1,0 +1,7 @@
+inline_script = {
+    script = fleets/mpp_i_s_fleet_design_$DESIGN$
+    SHIP_1 = $SHIP_1$
+    SHIP_2 = $SHIP_2$
+    SHIP_3 = $SHIP_3$
+    SHIP_4 = $SHIP_4$
+}

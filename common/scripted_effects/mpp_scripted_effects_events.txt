@@ -1,0 +1,67 @@
+# ===============================================
+# Eventos
+# ===============================================
+
+mpp_event_add_drone_country_mining_station = {
+    [[TARGET]
+        if = {
+            limit = { exists = event_target:$TARGET$ }
+
+            # Nos cercioramos de que hay un country tipo drone
+            create_drone_country = yes
+            event_target:drone_country = {
+                save_event_target_as = mining_drones
+            }
+
+            event_target:$TARGET$ = {
+                # Si hay planeta lanzamos los eventos
+                if = {
+                    limit = {
+                        OR = {
+                            mpp_is_planet_class_planet = yes
+                            mpp_is_planet_class_asteroid = yes
+                        }
+                    }
+                    # Bloqueamos desarrollo dNAel planeta
+                    add_deposit = d_ship_debris_payback_blocker
+
+                    # Añadir depósito mínimo al planeta
+                    add_deposit = d_minerals_4
+
+                    # Creamos estación de minería en el planeta
+                    create_mining_station = {
+                        owner = event_target:mining_drones
+                    }
+
+                    set_planet_flag = mpp_drone_mining_station
+                }
+            }
+        }
+    ]
+}
+
+mpp_event_add_primitive_robot = {
+    [[TARGET]
+        if = {
+            limit = { exists = event_target:$TARGET$ }
+
+            event_target:$TARGET$ = {
+                # Si hay planeta lanzamos los eventos
+                if = {
+                    limit = { mpp_is_planet_class_planet = yes }
+
+                    add_anomaly = {
+                        category = DISTAR_ROBO_CAT
+                    }
+                    set_planet_flag = primitive_robot_planet
+                    prevent_anomaly = yes
+                    add_deposit = d_city_ruins
+                    add_deposit = d_city_ruins
+                    add_deposit = d_failing_infrastructure
+                    add_deposit = d_failing_infrastructure
+                    add_deposit = d_metal_boneyard
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+while = {
+    count = $SHIP_1$
+    create_ship = {
+        name = MPP_NAME_SHIP_Mining_Drone_C_Class
+        design = NAME_Ancient_Mining_Drone
+    }
+}
+while = {
+    count = $SHIP_2$
+    create_ship = {
+        name = MPP_NAME_SHIP_Mining_Drone_B_Class
+        design = NAME_Ancient_Mining_Drone
+    }
+}
+while = {
+    count = $SHIP_3$
+    create_ship = {
+        name = MPP_NAME_SHIP_Combat_Drone_C_Class
+        design = NAME_Ancient_Combat_Drone
+    }
+}
+while = {
+    count = $SHIP_4$
+    create_ship = {
+        name = MPP_NAME_SHIP_Combat_Drone_B_Class
+        design = NAME_Ancient_Destroyer
+    }
+}
