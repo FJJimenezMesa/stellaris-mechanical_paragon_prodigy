@@ -2,7 +2,6 @@
 # 🔬 Variables de configuración MPP
 # ================================
 
-@mpp_debug = 1
 @mpp_yes = 9999999999999
 @mpp_no = -9999999999999
 

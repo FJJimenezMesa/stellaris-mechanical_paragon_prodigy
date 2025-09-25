@@ -1,3 +1,15 @@
+on_game_start = {
+    events = {
+        mpp_events_master.0
+    }
+}
+
+on_single_player_save_game_load = {
+    events = {
+        mpp_events_master.0
+    }
+}
+
 # -----------------------
 # ACCIONES AUTOMÁTICAS RELACIONADAS CON TRAITS DE LÍDERES
 # -----------------------

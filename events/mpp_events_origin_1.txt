@@ -17,7 +17,8 @@ country_event = {
         mpp_set_flags_mpp_origin = yes  # TODO flags: iniciales de configuración
 
         # Check inicial de configuración del juego
-        country_event = { id = mpp_events_master.0 }
+        # country_event = { id = mpp_events_master.0 }
+        # TODO
 
         # Techs básicas robóticas
         mpp_add_techs_basic_robot = yes

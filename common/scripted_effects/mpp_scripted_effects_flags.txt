@@ -2,6 +2,28 @@
 # Scripted Effects - MPP FLAGS
 # ================================================
 
+mpp_debug = {
+    mpp_enble_debug = yes
+}
+
+mpp_enble_debug = {
+    if = {
+        limit = { mpp_is_debug_active = no }
+        log_error = "🐞 - MPP - DEBUG ACTIVO"
+    }
+
+    set_global_flag = mpp_flag_debug
+}
+
+mpp_disable_debug = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🐞 - MPP - DEBUG INACTIVO"
+    }
+
+    remove_global_flag = mpp_flag_debug
+}
+
 # ----------------------------
 # Flag: Origen MPP
 # ----------------------------

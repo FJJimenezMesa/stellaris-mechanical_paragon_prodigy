@@ -14,7 +14,9 @@ event = {
     hide_window = yes
 
     immediate = {
-        # Init de galaxia hay Systema MPP
+        mpp_debug = yes
+
+        # Una sóla vez
         if = {
             limit = {
                 # TODO buscar todos los planetas / sistemas y ver si alguna tiene flag MPP

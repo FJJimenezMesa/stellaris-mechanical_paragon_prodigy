@@ -3,10 +3,7 @@
 # ================================================
 
 mpp_is_debug_active = {
-    check_variable = {
-        which = @mpp_debug
-        value = 1
-    }
+    has_global_flag = mpp_flag_debug
 }
 
 # ----------------------------
@@ -47,6 +44,14 @@ mpp_country_has_system_mpp = {
         has_star_flag = mpp_flag_mpp_system_origin
         is_owned_by = root
     }
+}
+
+mpp_is_mpp_system = {
+    has_star_flag = mpp_flag_mpp_system
+}
+
+mpp_is_mpp_system_origin = {
+    has_star_flag = mpp_flag_mpp_system_origin
 }
 
 # ----------------------------
