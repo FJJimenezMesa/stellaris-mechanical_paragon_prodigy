@@ -4,7 +4,7 @@
 
 mpp_go_spawn_planet = {
     inline_script = {
-        script = galactic_objects/mpp_is_go_orbit_offset
+        script = galactic_objects/mpp_i_s_go_orbit_offset
         TYPE = $TYPE|random$
         ORBIT = $ORBIT|random$
         ORBIT_OFFSET = $ORBIT_OFFSET|0$
@@ -128,7 +128,7 @@ mpp_ao_add = {
 
     # ---------- Lógica de posicionamiento ----------
     inline_script = {
-        script = galactic_objects/mpp_is_ao_conf
+        script = galactic_objects/mpp_i_s_ao_conf
     }
 
     # ---------- Caso 1: Tiene TYPE ----------
@@ -138,7 +138,7 @@ mpp_ao_add = {
         # Tiene TARGET
         [[TARGET]
             inline_script = {
-                script = galactic_objects/mpp_is_ao_distance
+                script = galactic_objects/mpp_i_s_ao_distance
                 TYPE = $TYPE$
                 TARGET = event_target:$TARGET$
             }
@@ -149,7 +149,7 @@ mpp_ao_add = {
             if = {
                 limit = { exists = prev }
                 inline_script = {
-                    script = galactic_objects/mpp_is_ao_distance
+                    script = galactic_objects/mpp_i_s_ao_distance
                     TYPE = $TYPE$
                     TARGET = prev
                 }
@@ -157,7 +157,7 @@ mpp_ao_add = {
             else_if = {
                 limit = { exists = from }
                 inline_script = {
-                    script = galactic_objects/mpp_is_ao_distance
+                    script = galactic_objects/mpp_i_s_ao_distance
                     TYPE = $TYPE$
                     TARGET = from
                 }
@@ -171,7 +171,7 @@ mpp_ao_add = {
         # Tiene TARGET
         [[TARGET]
             inline_script = {
-                script = galactic_objects/mpp_is_ao_distance
+                script = galactic_objects/mpp_i_s_ao_distance
                 TYPE = small_debris_object
                 TARGET = event_target:$TARGET$
             }
@@ -182,7 +182,7 @@ mpp_ao_add = {
             if = {
                 limit = { exists = prev }
                 inline_script = {
-                    script = galactic_objects/mpp_is_ao_distance
+                    script = galactic_objects/mpp_i_s_ao_distance
                     TYPE = small_debris_object
                     TARGET = prev
                 }
@@ -190,7 +190,7 @@ mpp_ao_add = {
             else_if = {
                 limit = { exists = from }
                 inline_script = {
-                    script = galactic_objects/mpp_is_ao_distance
+                    script = galactic_objects/mpp_i_s_ao_distance
                     TYPE = small_debris_object
                     TARGET = from
                 }
@@ -218,7 +218,7 @@ mpp_ao_set_location = {
 
             # ---------- Modo location ----------
             set_variable = { which = scriptMode value = 1 }
-            set_variable = { which = tTarget value = $TARGET$ }
+            set_variable = { which = tTarget value = $TARGET|@mpp_no$ }
 
             # ---------- Flags ----------
             [[IN_ORBIT] set_variable = { which = inOrbit value = $IN_ORBIT$ } ]
@@ -236,13 +236,13 @@ mpp_ao_set_location = {
 
             # ---------- Lógica de posicionamiento ----------
             inline_script = {
-                script = galactic_objects/mpp_is_ao_conf
+                script = galactic_objects/mpp_i_s_ao_conf
             }
 
             # Tiene TARGET_LOCATION
             [[TARGET_LOCATION]
                 inline_script = {
-                    script = galactic_objects/mpp_is_ao_distance
+                    script = galactic_objects/mpp_i_s_ao_distance
                     TYPE = small_debris_object # No lo usará
                     TARGET = event_target:$TARGET_LOCATION$
                 }
@@ -251,9 +251,17 @@ mpp_ao_set_location = {
             # No tiene TARGET_LOCATION
             [[!TARGET_LOCATION]
                 if = {
+                    limit = { NOT = { check_variable = { which = tTarget value = @mpp_no } } }
+                    inline_script = {
+                        script = galactic_objects/mpp_i_s_ao_distance
+                        TYPE = small_debris_object # No lo usará
+                        TARGET = $TARGET$
+                    }
+                }
+                else_if = {
                     limit = { exists = prev }
                     inline_script = {
-                        script = galactic_objects/mpp_is_ao_distance
+                        script = galactic_objects/mpp_i_s_ao_distance
                         TYPE = small_debris_object # No lo usará
                         TARGET = prev
                     }
@@ -261,7 +269,7 @@ mpp_ao_set_location = {
                 else_if = {
                     limit = { exists = from }
                     inline_script = {
-                        script = galactic_objects/mpp_is_ao_distance
+                        script = galactic_objects/mpp_i_s_ao_distance
                         TYPE = small_debris_object # No lo usará
                         TARGET = from
                     }
@@ -743,6 +751,48 @@ mpp_ao_add_broken_star_lifting_platform = {
             ]
         }
     }
+}
+
+# ===============================================
+# Eventos
+# ===============================================
+
+mpp_add_drone_country_mining_station = {
+    [[TARGET]
+        if = {
+            limit = { exists = event_target:$TARGET$ }
+
+            # Nos cercioramos de que hay un country tipo drone
+            create_drone_country = yes
+            event_target:drone_country = {
+                save_event_target_as = mining_drones
+            }
+
+            event_target:$TARGET$ = {
+                # Si hay planeta lanzamos los eventos
+                if = {
+                    limit = {
+                        OR = {
+                            mpp_is_planet_class_planet = yes
+                            mpp_is_planet_class_asteroid = yes
+                        }
+                    }
+                    # Bloqueamos desarrollo dNAel planeta
+                    add_deposit = d_ship_debris_payback_blocker
+
+                    # Añadir depósito mínimo al planeta
+                    add_deposit = d_minerals_4
+
+                    # Creamos estación de minería en el planeta
+                    create_mining_station = {
+                        owner = event_target:mining_drones
+                    }
+
+                    set_planet_flag = mpp_drone_mining_station
+                }
+            }
+        }
+    ]
 }
 
 
