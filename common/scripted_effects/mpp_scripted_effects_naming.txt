@@ -10,6 +10,7 @@ mpp_setName = {
             1 = { mpp_setName = { RANDOM_DEAD = yes } }
             1 = { mpp_setName = { RANDOM_TOXIC = yes } }
             1 = { mpp_setName = { RANDOM_NANO = yes } }
+            1 = { mpp_setName = { RANDOM_GIANT = yes } }
         }
     ]
 
@@ -70,6 +71,13 @@ mpp_setName = {
         }
     ]
 
+    [[RANDOM_GIANT]
+        set_name = {
+            key = "MPP_NAME_randomGiant"
+            variable_string = "\\[This.MPPGetNameRandomGiant\\]"
+        }
+    ]
+
     [[RANDOM_TERM]
         set_name = {
             key = "MPP_NAME_randomTerm"
@@ -108,7 +116,7 @@ mpp_setName = {
                 }
             }
             else = {
-                set_name = MPP_NAME_GALACIC_OBJECT
+                set_name = MPP_NAME_GALACTIC_OBJECT
             }
         }
     ]

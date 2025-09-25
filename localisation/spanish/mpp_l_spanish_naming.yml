@@ -37,6 +37,7 @@ l_spanish:
  MPP_NAME_randomDead:0 "[This.MPPGetNameRandomDead]"
  MPP_NAME_randomToxic:0 "[This.MPPGetNameRandomToxic]"
  MPP_NAME_randomNano:0 "[This.MPPGetNameRandomNano]"
+ MPP_NAME_randomGiant:0 "[This.MPPGetNameRandomGiant]"
 
  # PCType Naming
  MPP_NAME_pcType_default:0 "XXX"
@@ -87,52 +88,111 @@ l_spanish:
  MPP_NAME_random_term_39:0 "Q567"
  MPP_NAME_random_term_40:0 "R890"
 
+ # Definiciones individuales de deidades
+ MPP_NAME_GOD_Hephaestus:0 "Hephaestus" # Dios herrero que forjó las cadenas de Prometeo
+ MPP_NAME_GOD_Zeus:0 "Zeus" # Dios que ordenó el castigo de Prometeo
+ MPP_NAME_GOD_Athena:0 "Athena" # Diosa de la sabiduría que ayudó a crear a la humanidad
+ MPP_NAME_GOD_Themis:0 "Themis" # Titánide de la ley divina, madre de Prometeo
+ MPP_NAME_GOD_Iapetus:0 "Iapetus" # Titán padre de Prometeo
+ MPP_NAME_GOD_Epimetheus:0 "Epimetheus" # Hermano de Prometeo que aceptó el regalo de Pandora
+ MPP_NAME_GOD_Pandora:0 "Pandora" # La primera mujer, creada como castigo por el robo del fuego
+ MPP_NAME_GOD_Kratos:0 "Kratos" # Personificación de la fuerza que ayudó a encadenar a Prometeo
+ MPP_NAME_GOD_Bia:0 "Bia" # Personificación de la violencia que ayudó en el castigo
+ MPP_NAME_GOD_Helios:0 "Helios" # Titán del sol cuyo carro fue usado por Prometeo
+ MPP_NAME_GOD_Heracles:0 "Heracles" # Héroe que finalmente liberó a Prometeo
+ MPP_NAME_GOD_Chaos:0 "Chaos" # El vacío primordial del cual surgieron los dioses
+ MPP_NAME_GOD_Nike:0 "Nike" # Diosa de la victoria, relevante para la lucha de Prometeo
+ MPP_NAME_GOD_Metis:0 "Metis" # Titánide de la sabiduría y el pensamiento estratégico
+ MPP_NAME_GOD_Techne:0 "Techne" # Personificación del arte, la artesanía y la técnica
+ MPP_NAME_GOD_Aetos:0 "Aetos" # El águila que devoraba el hígado de Prometeo
+ MPP_NAME_GOD_Oceanus:0 "Oceanus" # Titán del mar que intentó mediar en el conflicto
+ MPP_NAME_GOD_Clymene:0 "Clymene" # Oceánide, madre de Prometeo en algunas versiones
+ MPP_NAME_GOD_Ananke:0 "Ananke" # Personificación de la necesidad y el destino inevitable
+ MPP_NAME_GOD_Moirai:0 "Moirai" # Las tres Parcas que controlaban el destino
+ MPP_NAME_GOD_Eros:0 "Eros" # Dios del deseo, fuerza primordial de creación
+ MPP_NAME_GOD_Gaia:0 "Gaia" # La Tierra primigenia, abuela de Prometeo
+ MPP_NAME_GOD_Uranus:0 "Uranus" # El Cielo, abuelo de Prometeo
+ MPP_NAME_GOD_Dike:0 "Dike" # Diosa de la justicia, relevante para el castigo
+ MPP_NAME_GOD_Nemesis:0 "Nemesis" # Diosa de la retribución divina
+ MPP_NAME_GOD_Aidos:0 "Aidos" # Personificación del pudor y la humildad
+ MPP_NAME_GOD_Elpis:0 "Elpis" # La Esperanza, lo único que quedó en la caja de Pandora
+ MPP_NAME_GOD_Physis:0 "Physis" # Personificación de la naturaleza y el origen natural
+ MPP_NAME_GOD_Sophia:0 "Sophia" # Personificación de la sabiduría
+ MPP_NAME_GOD_Logos:0 "Logos" # Concepto del conocimiento y la palabra divina
+ MPP_NAME_GOD_Proteus:0 "Proteus" # Dios marino capaz de cambiar de forma, como el conocimiento
+ MPP_NAME_GOD_Morpheus:0 "Morpheus" # Dios de los sueños, relevante para las visiones proféticas
+ MPP_NAME_GOD_Prometheus:0 "Prometheus" # El propio Titán, el que prevé el futuro
+ MPP_NAME_GOD_Atropos:0 "Atropos" # Una de las Moiras, la que corta el hilo de la vida
+ MPP_NAME_GOD_Clotho:0 "Clotho" # La Moira que hilaba el destino
+ MPP_NAME_GOD_Lachesis:0 "Lachesis" # La Moira que medía el hilo del destino
+ MPP_NAME_GOD_Eris:0 "Eris" # Diosa de la discordia, consecuencia del acto de Prometeo
+ MPP_NAME_GOD_Hybris:0 "Hybris" # Personificación del exceso de orgullo y arrogancia
+ MPP_NAME_GOD_Thanatos:0 "Thanatos" # Personificación de la muerte, consecuencia de la caja de Pandora
+ MPP_NAME_GOD_Hypnos:0 "Hypnos" # Dios del sueño, hermano de Thanatos
+ MPP_NAME_GOD_Phobos:0 "Phobos" # Miedo y pánico en la mitología griega, hijo de Ares
+ MPP_NAME_GOD_Deimos:0 "Deimos" # Terror en la mitología griega, hermano de Phobos
+ MPP_NAME_GOD_Enyo:0 "Enyo" # Diosa griega de la guerra y destrucción, muy asociada con Eris
+ MPP_NAME_GOD_Typhon:0 "Typhon" # Monstruo gigante asociado con tormentas y fuerzas destructivas
+ MPP_NAME_GOD_Nyx:0 "Nyx" # Diosa de la noche en la mitología griega
+ MPP_NAME_GOD_Erebus:0 "Erebus" # Dios primordial de la oscuridad en la mitología griega
+ MPP_NAME_GOD_Moros:0 "Moros" # Dios del destino funesto en la mitología griega
+ MPP_NAME_GOD_Hephaistos:0 "Hephaistos" # Dios griego del fuego
+ MPP_NAME_GOD_Hecate:0 "Hecate" # Diosa de la magia oscura y las encrucijadas en la mitología griega
+
+ MPP_NAME_Fleet_Ancient_Mining_Drones:0 "Antiguos drones mineros"
+ MPP_NAME_Fleet_Ancient_Mining_Combat_Drones:0 "Antiguos drones mineros de combate"
+
+ MPP_NAME_SHIP_Mining_Drone_C_Class:0 "Drones mineros Clase C"
+ MPP_NAME_SHIP_Mining_Drone_B_Class:0 "Drones mineros Clase B"
+ MPP_NAME_SHIP_Combat_Drone_C_Class:0 "Drones de combate Clase C"
+ MPP_NAME_SHIP_Combat_Drone_B_Class:0 "Drones mineros de Clase B"
+
  # Categoría: Prometeo (Prometheus)
  # Dioses, titanes y figuras griegas relacionadas con el mito de Prometeo
- MPP_NAME_prometheus_god_1:0 "Hephaestus" # Dios herrero que forjó las cadenas de Prometeo
- MPP_NAME_prometheus_god_2:0 "Zeus" # Dios que ordenó el castigo de Prometeo
- MPP_NAME_prometheus_god_3:0 "Athena" # Diosa de la sabiduría que ayudó a crear a la humanidad
- MPP_NAME_prometheus_god_4:0 "Themis" # Titánide de la ley divina, madre de Prometeo
- MPP_NAME_prometheus_god_5:0 "Iapetus" # Titán padre de Prometeo
- MPP_NAME_prometheus_god_6:0 "Epimetheus" # Hermano de Prometeo que aceptó el regalo de Pandora
- MPP_NAME_prometheus_god_7:0 "Pandora" # La primera mujer, creada como castigo por el robo del fuego
- MPP_NAME_prometheus_god_8:0 "Kratos" # Personificación de la fuerza que ayudó a encadenar a Prometeo
- MPP_NAME_prometheus_god_9:0 "Bia" # Personificación de la violencia que ayudó en el castigo
- MPP_NAME_prometheus_god_10:0 "Helios" # Titán del sol cuyo carro fue usado por Prometeo
- MPP_NAME_prometheus_god_11:0 "Heracles" # Héroe que finalmente liberó a Prometeo
- MPP_NAME_prometheus_god_12:0 "Chaos" # El vacío primordial del cual surgieron los dioses
- MPP_NAME_prometheus_god_13:0 "Nike" # Diosa de la victoria, relevante para la lucha de Prometeo
- MPP_NAME_prometheus_god_14:0 "Metis" # Titánide de la sabiduría y el pensamiento estratégico
- MPP_NAME_prometheus_god_15:0 "Techne" # Personificación del arte, la artesanía y la técnica
- MPP_NAME_prometheus_god_16:0 "Aetos" # El águila que devoraba el hígado de Prometeo
- MPP_NAME_prometheus_god_17:0 "Oceanus" # Titán del mar que intentó mediar en el conflicto
- MPP_NAME_prometheus_god_18:0 "Clymene" # Oceánide, madre de Prometeo en algunas versiones
- MPP_NAME_prometheus_god_19:0 "Ananke" # Personificación de la necesidad y el destino inevitable
- MPP_NAME_prometheus_god_20:0 "Moirai" # Las tres Parcas que controlaban el destino
- MPP_NAME_prometheus_god_21:0 "Eros" # Dios del deseo, fuerza primordial de creación
- MPP_NAME_prometheus_god_22:0 "Gaia" # La Tierra primigenia, abuela de Prometeo
- MPP_NAME_prometheus_god_23:0 "Uranus" # El Cielo, abuelo de Prometeo
- MPP_NAME_prometheus_god_24:0 "Dike" # Diosa de la justicia, relevante para el castigo
- MPP_NAME_prometheus_god_25:0 "Nemesis" # Diosa de la retribución divina
- MPP_NAME_prometheus_god_26:0 "Aidos" # Personificación del pudor y la humildad
- MPP_NAME_prometheus_god_27:0 "Elpis" # La Esperanza, lo único que quedó en la caja de Pandora
- MPP_NAME_prometheus_god_28:0 "Physis" # Personificación de la naturaleza y el origen natural
- MPP_NAME_prometheus_god_29:0 "Sophia" # Personificación de la sabiduría
- MPP_NAME_prometheus_god_30:0 "Logos" # Concepto del conocimiento y la palabra divina
- MPP_NAME_prometheus_god_31:0 "Proteus" # Dios marino capaz de cambiar de forma, como el conocimiento
- MPP_NAME_prometheus_god_32:0 "Morpheus" # Dios de los sueños, relevante para las visiones proféticas
- MPP_NAME_prometheus_god_33:0 "Prometheus" # El propio Titán, el que prevé el futuro
- MPP_NAME_prometheus_god_34:0 "Atropos" # Una de las Moiras, la que corta el hilo de la vida
- MPP_NAME_prometheus_god_35:0 "Clotho" # La Moira que hilaba el destino
- MPP_NAME_prometheus_god_36:0 "Lachesis" # La Moira que medía el hilo del destino
- MPP_NAME_prometheus_god_37:0 "Eris" # Diosa de la discordia, consecuencia del acto de Prometeo
- MPP_NAME_prometheus_god_38:0 "Hybris" # Personificación del exceso de orgullo y arrogancia
- MPP_NAME_prometheus_god_39:0 "Thanatos" # Personificación de la muerte, consecuencia de la caja de Pandora
- MPP_NAME_prometheus_god_40:0 "Hypnos" # Dios del sueño, hermano de Thanatos
- MPP_NAME_prometheus_god_41:0 "Phobos" # Miedo y pánico en la mitología griega, hijo de Ares
- MPP_NAME_prometheus_god_42:0 "Deimos" # Terror en la mitología griega, hermano de Phobos
- MPP_NAME_prometheus_god_43:0 "Enyo" # Diosa griega de la guerra y destrucción, muy asociada con Eris
- MPP_NAME_prometheus_god_44:0 "Typhon" # Monstruo gigante asociado con tormentas y fuerzas destructivas
+ MPP_NAME_prometheus_god_1:0 "$MPP_NAME_GOD_Hephaestus$"
+ MPP_NAME_prometheus_god_2:0 "$MPP_NAME_GOD_Zeus$"
+ MPP_NAME_prometheus_god_3:0 "$MPP_NAME_GOD_Athena$"
+ MPP_NAME_prometheus_god_4:0 "$MPP_NAME_GOD_Themis$"
+ MPP_NAME_prometheus_god_5:0 "$MPP_NAME_GOD_Iapetus$"
+ MPP_NAME_prometheus_god_6:0 "$MPP_NAME_GOD_Epimetheus$"
+ MPP_NAME_prometheus_god_7:0 "$MPP_NAME_GOD_Pandora$"
+ MPP_NAME_prometheus_god_8:0 "$MPP_NAME_GOD_Kratos$"
+ MPP_NAME_prometheus_god_9:0 "$MPP_NAME_GOD_Bia$"
+ MPP_NAME_prometheus_god_10:0 "$MPP_NAME_GOD_Helios$"
+ MPP_NAME_prometheus_god_11:0 "$MPP_NAME_GOD_Heracles$"
+ MPP_NAME_prometheus_god_12:0 "$MPP_NAME_GOD_Chaos$"
+ MPP_NAME_prometheus_god_13:0 "$MPP_NAME_GOD_Nike$"
+ MPP_NAME_prometheus_god_14:0 "$MPP_NAME_GOD_Metis$"
+ MPP_NAME_prometheus_god_15:0 "$MPP_NAME_GOD_Techne$"
+ MPP_NAME_prometheus_god_16:0 "$MPP_NAME_GOD_Aetos$"
+ MPP_NAME_prometheus_god_17:0 "$MPP_NAME_GOD_Oceanus$"
+ MPP_NAME_prometheus_god_18:0 "$MPP_NAME_GOD_Clymene$"
+ MPP_NAME_prometheus_god_19:0 "$MPP_NAME_GOD_Ananke$"
+ MPP_NAME_prometheus_god_20:0 "$MPP_NAME_GOD_Moirai$"
+ MPP_NAME_prometheus_god_21:0 "$MPP_NAME_GOD_Eros$"
+ MPP_NAME_prometheus_god_22:0 "$MPP_NAME_GOD_Gaia$"
+ MPP_NAME_prometheus_god_23:0 "$MPP_NAME_GOD_Uranus$"
+ MPP_NAME_prometheus_god_24:0 "$MPP_NAME_GOD_Dike$"
+ MPP_NAME_prometheus_god_25:0 "$MPP_NAME_GOD_Nemesis$"
+ MPP_NAME_prometheus_god_26:0 "$MPP_NAME_GOD_Aidos$"
+ MPP_NAME_prometheus_god_27:0 "$MPP_NAME_GOD_Elpis$"
+ MPP_NAME_prometheus_god_28:0 "$MPP_NAME_GOD_Physis$"
+ MPP_NAME_prometheus_god_29:0 "$MPP_NAME_GOD_Sophia$"
+ MPP_NAME_prometheus_god_30:0 "$MPP_NAME_GOD_Logos$"
+ MPP_NAME_prometheus_god_31:0 "$MPP_NAME_GOD_Proteus$"
+ MPP_NAME_prometheus_god_32:0 "$MPP_NAME_GOD_Morpheus$"
+ MPP_NAME_prometheus_god_33:0 "$MPP_NAME_GOD_Prometheus$"
+ MPP_NAME_prometheus_god_34:0 "$MPP_NAME_GOD_Atropos$"
+ MPP_NAME_prometheus_god_35:0 "$MPP_NAME_GOD_Clotho$"
+ MPP_NAME_prometheus_god_36:0 "$MPP_NAME_GOD_Lachesis$"
+ MPP_NAME_prometheus_god_37:0 "$MPP_NAME_GOD_Eris$"
+ MPP_NAME_prometheus_god_38:0 "$MPP_NAME_GOD_Hybris$"
+ MPP_NAME_prometheus_god_39:0 "$MPP_NAME_GOD_Thanatos$"
+ MPP_NAME_prometheus_god_40:0 "$MPP_NAME_GOD_Hypnos$"
+ MPP_NAME_prometheus_god_41:0 "$MPP_NAME_GOD_Phobos$"
+ MPP_NAME_prometheus_god_42:0 "$MPP_NAME_GOD_Deimos$"
+ MPP_NAME_prometheus_god_43:0 "$MPP_NAME_GOD_Enyo$"
+ MPP_NAME_prometheus_god_44:0 "$MPP_NAME_GOD_Typhon$"
 
  # Nombres Directos del Mito
  MPP_NAME_prometheus_1:0 "Kaukasos" # La montaña donde fue encadenado Prometeo, versión griega antigua
@@ -143,7 +203,7 @@ l_spanish:
  MPP_NAME_prometheus_6:0 "Ichor" # Sangre de los dioses en la mitología griega
  MPP_NAME_prometheus_7:0 "Adamant" # Material indestructible en la mitología
  MPP_NAME_prometheus_8:0 "Aetos" # Águila
- MPP_NAME_prometheus_9:0 "Hephaestus" # Dios del fuego
+ MPP_NAME_prometheus_9:0 "$MPP_NAME_GOD_Hephaestus$"
  MPP_NAME_prometheus_10:0 "Olympus" # Monte de los dioses
  MPP_NAME_prometheus_11:0 "Agnosco" # Conocer en latín
  MPP_NAME_prometheus_12:0 "Ardens" # Ardiente en latín
@@ -158,15 +218,15 @@ l_spanish:
  MPP_NAME_prometheus_21:0 "Prometheia" # Προμηθεία
  MPP_NAME_prometheus_22:0 "Koryphe" # Cumbre en griego
  MPP_NAME_prometheus_23:0 "Até" # Diosa de la ruina y la folly en la mitología griega,
- MPP_NAME_prometheus_24:0 "Sophia" # Σοφία (Sabiduría)
+ MPP_NAME_prometheus_24:0 "$MPP_NAME_GOD_Sophia$" # Σοφία (Sabiduría)
  MPP_NAME_prometheus_25:0 "Episteme" # Conocimiento en griego
 
  # Categoría: Oscuro (Dark)
  MPP_NAME_random_dark_1:0 "Umbrax" # Fusión de umbra (sombra) con sonido ominoso
  MPP_NAME_random_dark_2:0 "Tenebris" # Tinieblas en latín
- MPP_NAME_random_dark_3:0 "Erebus" # Dios primordial de la oscuridad en la mitología griega
- MPP_NAME_random_dark_4:0 "Nyx" # Diosa de la noche en la mitología griega
- MPP_NAME_random_dark_5:0 "Moros" # Dios del destino funesto en la mitología griega
+ MPP_NAME_random_dark_3:0 "$MPP_NAME_GOD_Erebus$"
+ MPP_NAME_random_dark_4:0 "$MPP_NAME_GOD_Nyx$"
+ MPP_NAME_random_dark_5:0 "$MPP_NAME_GOD_Moros$"
  MPP_NAME_random_dark_6:0 "Vigil" # Guardián
  MPP_NAME_random_dark_7:0 "Silentis" # Silencio en latín
  MPP_NAME_random_dark_8:0 "Acheron" # Río de la oscuridad en la mitología griega
@@ -189,7 +249,7 @@ l_spanish:
  MPP_NAME_random_fire_8:0 "Pyre" # Pira funeraria
  MPP_NAME_random_fire_9:0 "Ignis" # Fuego en latín
  MPP_NAME_random_fire_10:0 "Scorch" # Quemar
- MPP_NAME_random_fire_11:0 "Hephaistos" # Dios griego del fuego
+ MPP_NAME_random_fire_11:0 "$MPP_NAME_GOD_Hephaistos$"
  MPP_NAME_random_fire_12:0 "Malebolge" # Término del Infierno de Dante para los fosos de malicia
  MPP_NAME_random_fire_13:0 "Scoria" # Escoria de metal fundido
  MPP_NAME_random_fire_14:0 "Fornax" # Horno en latín
@@ -213,7 +273,7 @@ l_spanish:
  MPP_NAME_random_cold_15:0 "Fimbulvetr" # Invierno eterno en la mitología nórdica
 
  # Categoría: Muerto o Destruido (Dead)
- MPP_NAME_random_dead_1:0 "Hecate" # Diosa de la magia oscura y las encrucijadas en la mitología griega
+ MPP_NAME_random_dead_1:0 "$MPP_NAME_GOD_Hecate$"
  MPP_NAME_random_dead_2:0 "Oblivio" # Olvido en latín
  MPP_NAME_random_dead_3:0 "Tartarus" # Abismo del inframundo en la mitología griega
  MPP_NAME_random_dead_4:0 "Husk" # Cáscara
@@ -262,3 +322,20 @@ l_spanish:
  MPP_NAME_random_nano_13:0 "Neuralis" # Neural en latín
  MPP_NAME_random_nano_14:0 "Automaton" # Autómata
  MPP_NAME_random_nano_15:0 "Axon" # Conexión neural artificial
+
+ # Categoría: Gigantes (Giants) - Relacionados con Prometeo
+ MPP_NAME_random_giant_1:0 "Titanomachos" # Participante en la Titanomaquia, contexto de Prometeo
+ MPP_NAME_random_giant_2:0 "Pyrphoros" # Portador de fuego, como Prometeo
+ MPP_NAME_random_giant_3:0 "Kaukasios" # Del Cáucaso, donde fue encadenado Prometeo
+ MPP_NAME_random_giant_4:0 "Aetnaeos" # Relacionado con el volcán Etna, fuego como Prometeo
+ MPP_NAME_random_giant_5:0 "Hephaistogigas" # Gigante relacionado con Hefesto, dios del fuego
+ MPP_NAME_random_giant_6:0 "Anankos" # Necesidad/destino, tema recurrente en el mito
+ MPP_NAME_random_giant_7:0 "Klymenos" # El famoso/renombrado, como Prometeo
+ MPP_NAME_random_giant_8:0 "Aitherios" # Del éter celestial, como el fuego robado
+ MPP_NAME_random_giant_9:0 "Olympos" # Monte Olimpo, contra quien se rebeló Prometeo
+ MPP_NAME_random_giant_10:0 "Aktis" # Rayo de luz/fuego
+ MPP_NAME_random_giant_11:0 "Phosphoros" # Portador de luz, análogo a Prometeo
+ MPP_NAME_random_giant_12:0 "Kratos" # Poder/fuerza, como el que tenía Prometeo
+ MPP_NAME_random_giant_13:0 "Biaios" # Violento/forzoso, como el castigo de Prometeo
+ MPP_NAME_random_giant_14:0 "Metallikos" # De metal, como las cadenas de Prometeo
+ MPP_NAME_random_giant_15:0 "Anthropogonos" # Creador de humanos, como Prometeo

@@ -1,0 +1,43 @@
+﻿#noinspection ParadoxLocalisationIncorrectFileName
+l_spanish:
+ # Origin
+ mpp_events_origin.1.desc:0 ""
+ mpp_events_origin.1.a:0 ""
+ mpp_events_origin.2.desc:0 ""
+ mpp_events_origin.2.a:0 ""
+ mpp_events_origin.3.desc:0 ""
+ mpp_events_origin.3.a:0 ""
+ mpp_events_origin.4.desc:0 ""
+ mpp_events_origin.4.a:0 ""
+ mpp_events_origin.5.desc:0 ""
+ mpp_events_origin.5.a:0 ""
+ mpp_events_origin.6.desc:0 ""
+ mpp_events_origin.6.a:0 ""
+ mpp_events_origin.7.desc:0 ""
+ mpp_events_origin.7.a:0 ""
+ mpp_events_origin.8.desc:0 ""
+ mpp_events_origin.8.a:0 ""
+
+ # Origin AH
+ mpp_events_origin_ah.0.desc:0 ""
+ mpp_events_origin_ah.1.desc:0 ""
+ mpp_events_origin_ah.1.a:0 ""
+ mpp_events_origin_ah.2.desc:0 ""
+ mpp_events_origin_ah.2.a:0 ""
+ mpp_events_origin_ah.3.desc:0 ""
+ mpp_events_origin_ah.3.a:0 ""
+
+ # Origin HC
+ mpp_events_origin_hc.0.desc:0 ""
+ mpp_events_origin_hc.1.desc:0 ""
+ mpp_events_origin_hc.1.a:0 ""
+ mpp_events_origin_hc.2.desc:0 ""
+ mpp_events_origin_hc.2.a:0 ""
+ mpp_events_origin_hc.3.desc:0 ""
+ mpp_events_origin_hc.3.a:0 ""
+
+# Origin LRS
+ mpp_events_origin_lrs.0.desc:0 ""
+
+# Origin OP
+ mpp_events_origin_op.0.desc:0 ""

@@ -253,3 +253,22 @@ defined_text = {
     text = { localization_key = MPP_NAME_random_nano_14 trigger = {} }
     text = { localization_key = MPP_NAME_random_nano_15 trigger = {} }
 }
+
+defined_text = {
+    name = MPPGetNameRandomGiant
+    text = { localization_key = MPP_NAME_random_giant_1 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_2 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_3 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_4 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_5 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_6 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_7 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_8 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_9 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_10 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_11 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_12 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_13 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_14 trigger = {} }
+    text = { localization_key = MPP_NAME_random_giant_15 trigger = {} }
+}
