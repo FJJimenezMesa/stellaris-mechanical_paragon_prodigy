@@ -215,11 +215,8 @@ mpp_add_species_trait = {
         }
     ]
     [[!TRAIT]
-        # No se pasó un trait, log de error
-        if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "❌ MPP: No trait specified in mpp_add_species_trait!"
-        }
+        # ---------- Debug ----------
+        mpp_log_error = { TEXT = "No trait specified in mpp_add_species_trait" }
     ]
 }
 
@@ -241,11 +238,8 @@ mpp_remove_species_trait = {
         }
     ]
     [[!TRAIT]
-        # No se pasó un trait, log de error
-        if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "❌ MPP: No trait specified in mpp_remove_species_trait!"
-        }
+        # ---------- Debug ----------
+        mpp_log_error = { TEXT = "No trait specified in mpp_remove_species_trait" }
     ]
 }
 
@@ -267,11 +261,8 @@ mpp_add_leader_trait = {
         }
     ]
     [[!TRAIT]
-        # No se pasó un trait, log de error
-        if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "❌ MPP: No trait specified in mpp_add_leader_trait!"
-        }
+        # ---------- Debug ----------
+        mpp_log_error = { TEXT = "No trait specified in mpp_add_leader_trait" }
     ]
 }
 
@@ -291,11 +282,8 @@ mpp_remove_leader_trait = {
         }
     ]
     [[!TRAIT]
-        # No se pasó un trait, log de error
-        if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "❌ MPP: No trait specified in mpp_remove_leader_trait!"
-        }
+        # ---------- Debug ----------
+        mpp_log_error = { TEXT = "No trait specified in mpp_remove_leader_trait" }
     ]
 }
 

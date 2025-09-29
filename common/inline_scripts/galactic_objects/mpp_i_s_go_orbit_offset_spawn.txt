@@ -18,3 +18,6 @@ spawn_planet = {
 event_target:tPlanet = {
     set_variable = { which = pOrbit value = $F_ORBIT$ }
 }
+
+# ---------- Debug ----------
+mpp_log_info_go = { EFFECT = $EFFECT$ TEXT = "spawn_planet tipo $TYPE$ a $F_ORBIT$ tamaño $SIZE$ órbita $F_ORBIT$ ángulo ($MIN_ANGLE$-$MAX_ANGLE$)" }

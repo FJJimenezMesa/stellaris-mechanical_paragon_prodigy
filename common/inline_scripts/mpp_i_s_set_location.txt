@@ -1,8 +1,15 @@
+set_variable = { which = tLocationTarget value = tFleetLocation }
+
 if = {
-    limit = {  check_variable = { which = tLocationTarget value = @mpp_prev }  }
+    limit = { check_variable = { which = tLocationTarget value = @mpp_prev } }
     set_location = {
         target = prev
         distance = $DISTANCE$
+    }
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+        TEXT = "set_location en prev a $DISTANCE$"
     }
 }
 else_if = {
@@ -11,12 +18,22 @@ else_if = {
         target = prevprev
         distance = $DISTANCE$
     }
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+        TEXT = "set_location en prevprev a $DISTANCE$"
+    }
 }
 else_if = {
     limit = { check_variable = { which = tLocationTarget value = @mpp_prev3 } }
     set_location = {
         target = prevprevprev
         distance = $DISTANCE$
+    }
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+        TEXT = "set_location en prevprevprev a $DISTANCE$"
     }
 }
 else_if = {
@@ -25,12 +42,22 @@ else_if = {
         target = from
         distance = $DISTANCE$
     }
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+        TEXT = "set_location en from a $DISTANCE$"
+    }
 }
 else_if = {
     limit = { check_variable = { which = tLocationTarget value = @mpp_from2 } }
     set_location = {
         target = fromfrom
         distance = $DISTANCE$
+    }
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+        TEXT = "set_location en fromfrom a $DISTANCE$"
     }
 }
 else_if = {
@@ -39,6 +66,11 @@ else_if = {
         target = fromfromfrom
         distance = $DISTANCE$
     }
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+        TEXT = "set_location en fromfromfrom a $DISTANCE$"
+    }
 }
 else_if = {
     limit = { NOT = { check_variable = { which = tLocationTarget value = @mpp_no } } }
@@ -46,4 +78,12 @@ else_if = {
         target = $TARGET$
         distance = $DISTANCE$
     }
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+        TEXT = "set_location en $TARGET$ a $DISTANCE$"
+    }
 }
+
+# ---------- Limpieza de variables ----------
+clear_variable = tLocationTarget

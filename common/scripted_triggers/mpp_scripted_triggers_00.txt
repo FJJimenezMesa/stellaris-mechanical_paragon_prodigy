@@ -6,6 +6,30 @@ mpp_is_debug_active = {
     has_global_flag = mpp_flag_debug
 }
 
+mpp_is_debug_error_active = {
+    has_global_flag = mpp_flag_debug
+    OR = {
+        has_global_flag = mpp_flag_debug_all
+        has_global_flag = mpp_flag_debug_error
+    }
+}
+
+mpp_is_debug_info_active = {
+    has_global_flag = mpp_flag_debug
+    OR = {
+        has_global_flag = mpp_flag_debug_all
+        has_global_flag = mpp_flag_debug_info
+    }
+}
+
+mpp_is_debug_configs_active = {
+    has_global_flag = mpp_flag_debug
+    OR = {
+        has_global_flag = mpp_flag_debug_all
+        has_global_flag = mpp_flag_debug_configs
+    }
+}
+
 # ----------------------------
 # Trigger: Cualquier Origen MPP
 # ----------------------------

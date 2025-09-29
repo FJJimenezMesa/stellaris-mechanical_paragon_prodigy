@@ -12,17 +12,18 @@ mpp_config_fleet = {
     if = {
         limit = { NOT = { check_variable = { which = tFleetLocation value = @mpp_no } } }
         set_location = {
-            target = $LOCATION_TARGET|@mpp_no$
+            target = $LOCATION_TARGET$
             distance = $DISTANCE|0$
         }
     }
     else = {
-        set_variable = { which = tFleetLocation value = $TARGET|@mpp_no$ }
+        set_variable = { which = tFleetLocation value = $LOCATION|@mpp_no$ }
         if = {
             limit = { NOT = { check_variable = { which = tFleetLocation value = @mpp_no } } }
             inline_script = {
                 script = mpp_i_s_set_location
-                TARGET = $LOCATION|@mpp_no$
+                EFFECT = mpp_config_fleet
+                TARGET = $LOCATION$
                 DISTANCE = $DISTANCE|0$
             }
         }
@@ -30,20 +31,32 @@ mpp_config_fleet = {
     # ---------- Configuración de Owner ----------
     [[FLEET_OWNER] set_owner = $FLEET_OWNER$ ]
 
-    # ---------- Configuración de flota ----------
-    set_aggro_range = $AGGRO_RANGE$
-    [[FLEET_STANCE] set_fleet_stance = $FLEET_STANCE$ ]
-    [[!FLEET_STANCE] set_fleet_stance = passive ]
-    [[RETURN_POINT] set_aggro_range_measure_from = return_point ]
-    [[!RETURN_POINT] set_aggro_range_measure_from = self ]
+    # ---------- Configuración de aggro ----------
+    set_aggro_range = $AGGRO_RANGE|150$
+    set_variable = { which = tStance value = $FLEET_STANCE|@mpp_fleet_stance_passive$ }
+    if = {
+        limit = { check_variable = { which = tStance value = @mpp_fleet_stance_aggressive } }
+        set_fleet_stance = aggressive
+    }
+    else_if = {
+        limit = { check_variable = { which = tStance value = @mpp_fleet_stance_evasive } }
+        set_fleet_stance = passive
+    }
+    else_if = {
+        limit = { check_variable = { which = tStance value = @mpp_fleet_stance_passive } }
+        set_fleet_stance = evasive
+    }
+    [[AGGRO_FROM_RETURN_POINT] set_aggro_range_measure_from = return_point ]
+    [[!AGGRO_FROM_RETURN_POINT] set_aggro_range_measure_from = self ]
 
     # ---------- Create Ships ----------
-    set_variable = { which = tFleetType value = $FLEET_TYPE|no_mpp$ }
+    set_variable = { which = tFleetType value = $FLEET_TYPE|@mpp_no$ }
     if = {
         limit = { NOT = { check_variable = { which = tFleetType value = @mpp_no } } }
 
         inline_script = {
             script = fleets/mpp_i_s_fleet_design
+            #noinspection ParadoxScriptUnsetDynamicValue
             DESIGN = $FLEET_TYPE|base$
             SHIP_1 = $SHIP_1|0$
             SHIP_2 = $SHIP_2|0$
@@ -93,11 +106,12 @@ mpp_config_fleet = {
         limit = { mpp_is_debug_active = yes }
         if = {
             limit = { owner = { is_scope_valid = yes } }
-            log_error = "🚀 - MPP - effect:mpp_config_fleet - \\[This.GetName] en \\[This.tFleetLocation] para \\[Owner.GetName]"
+            #mpp_log_config
+            log_error = "   ⚙️ - MPP - conf:<mpp_config_fleet> - \\[This.GetName] en \\[This.tFleetLocation] para \\[Owner.GetName]"
         }
         else = {
-
-            log_error = "🚀 - MPP - effect:mpp_config_fleet - \\[This.GetName] en \\[This.tFleetLocation] sin owner"
+            #mpp_log_config
+            log_error = "   ⚙️ - MPP - conf:<mpp_config_fleet> - \\[This.GetName] en \\[This.tFleetLocation] sin owner"
         }
     }
 
@@ -133,8 +147,9 @@ mpp_fleet_queue_actions = {
 
         # ---------- Debug ----------
         if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "🔜 - MPP - effect:add_fleet_action_move_to - \\[This.GetName] - \\[This.tActionMoveTo]"
+            limit = { mpp_is_debug_configs_active = yes }
+            #mpp_log_config_fleet_action
+            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_move_to - \\[This.GetName] - \\[This.tActionMoveTo]"
         }
     }
     else_if = {
@@ -193,8 +208,9 @@ mpp_fleet_queue_actions = {
 
         # ---------- Debug ----------
         if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "🔜 - MPP - effect:add_fleet_action_patrol - \\[This.GetName] - \\[This.tPatrolToFlag1] - \\[This.tPatrolToFlag2] - \\[This.tPatrolToFlag3] - \\[This.tPatrolToFlag4]"
+            limit = { mpp_is_debug_configs_active = yes }
+            #mpp_log_config_fleet_action
+            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_patrol - \\[This.GetName] - \\[This.tPatrolToFlag1] - \\[This.tPatrolToFlag2] - \\[This.tPatrolToFlag3] - \\[This.tPatrolToFlag4]"
         }
     }
     else_if = {
@@ -218,8 +234,9 @@ mpp_fleet_queue_actions = {
 
         # ---------- Debug ----------
         if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "🔜 - MPP - effect:add_fleet_action_move_to_planet_flag - \\[This.GetName] - \\[This.tActionMoveToFlag]"
+            limit = { mpp_is_debug_configs_active = yes }
+            #mpp_log_config_fleet_action
+            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_move_to_planet_flag - \\[This.GetName] - \\[This.tActionMoveToFlag]"
         }
     }
     else = {
@@ -227,8 +244,9 @@ mpp_fleet_queue_actions = {
 
         # ---------- Debug ----------
         if = {
-            limit = { mpp_is_debug_active = yes }
-            log_error = "🔜 - MPP - effect:add_fleet_action_wait - \\[This.GetName]"
+            limit = { mpp_is_debug_configs_active = yes }
+            #mpp_log_config_fleet_action
+            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_wait - \\[This.GetName]"
         }
     }
 

@@ -5,3 +5,9 @@ inline_script = {
     SHIP_3 = $SHIP_3$
     SHIP_4 = $SHIP_4$
 }
+
+# ---------- Debug ----------
+mpp_log_script_config = {
+    EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
+    TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_$DESIGN$"
+}

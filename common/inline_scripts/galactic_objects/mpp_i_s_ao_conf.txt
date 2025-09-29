@@ -70,11 +70,6 @@ else_if = {
 
 if = {
     limit = { mpp_is_debug_active = yes }
-    if = {
-        limit = { check_variable = { which = scriptMode value = 0 } }
-        log_error = "⚙️ - MPP - effect:mpp_ao_add: tDistance \\[this.tDistance] tOffset \\[this.tOffset] tMinDistance \\[this.tMinDistance] tMaxDistance \\[this.tMaxDistance] InOrbit \\[this.inOrbit]"
-    }
-    else = {
-        log_error = "⚙️ - MPP - effect:mpp_ao_set_location: tDistance \\[this.tDistance] tOffset \\[this.tOffset] tMinDistance \\[this.tMinDistance] tMaxDistance \\[this.tMaxDistance] InOrbit \\[this.inOrbit]"
-    }
+    #mpp_log_config
+    log_error = "   ⚙️ - MPP - conf:<$EFFECT$> - tDistance \\[this.tDistance] tOffset \\[this.tOffset] tMinDistance \\[this.tMinDistance] tMaxDistance \\[this.tMaxDistance] InOrbit \\[this.inOrbit]"
 }

@@ -5,6 +5,7 @@
 mpp_go_spawn_planet = {
     inline_script = {
         script = galactic_objects/mpp_i_s_go_orbit_offset
+        EFFECT = "mpp_go_spawn_planet"
         TYPE = $TYPE|random$
         ORBIT = $ORBIT|random$
         ORBIT_OFFSET = $ORBIT_OFFSET|0$
@@ -131,6 +132,7 @@ mpp_ao_add = {
     # ---------- Lógica de posicionamiento ----------
     inline_script = {
         script = galactic_objects/mpp_i_s_ao_conf
+        EFFECT = "mpp_ao_add"
     }
 
     # ---------- Caso 1: Tiene TYPE ----------
@@ -141,6 +143,7 @@ mpp_ao_add = {
         [[TARGET]
             inline_script = {
                 script = galactic_objects/mpp_i_s_ao_distance
+                EFFECT = "mpp_ao_add"
                 TYPE = $TYPE$
                 TARGET = event_target:$TARGET$
             }
@@ -152,6 +155,7 @@ mpp_ao_add = {
                 limit = { exists = prev }
                 inline_script = {
                     script = galactic_objects/mpp_i_s_ao_distance
+                    EFFECT = "mpp_ao_add"
                     TYPE = $TYPE$
                     TARGET = prev
                 }
@@ -160,6 +164,7 @@ mpp_ao_add = {
                 limit = { exists = from }
                 inline_script = {
                     script = galactic_objects/mpp_i_s_ao_distance
+                    EFFECT = "mpp_ao_add"
                     TYPE = $TYPE$
                     TARGET = from
                 }
@@ -174,6 +179,7 @@ mpp_ao_add = {
         [[TARGET]
             inline_script = {
                 script = galactic_objects/mpp_i_s_ao_distance
+                EFFECT = "mpp_ao_add"
                 TYPE = small_debris_object
                 TARGET = event_target:$TARGET$
             }
@@ -185,6 +191,7 @@ mpp_ao_add = {
                 limit = { exists = prev }
                 inline_script = {
                     script = galactic_objects/mpp_i_s_ao_distance
+                    EFFECT = "mpp_ao_add"
                     TYPE = small_debris_object
                     TARGET = prev
                 }
@@ -193,6 +200,7 @@ mpp_ao_add = {
                 limit = { exists = from }
                 inline_script = {
                     script = galactic_objects/mpp_i_s_ao_distance
+                    EFFECT = "mpp_ao_add"
                     TYPE = small_debris_object
                     TARGET = from
                 }
@@ -213,85 +221,114 @@ mpp_ao_add = {
 mpp_ao_set_location = {
     optimize_memory
 
-    if = {
-        limit = { exists = event_target:$TARGET|no$ }
+    # ---------- Modo location ----------
+    set_variable = { which = scriptMode value = 1 }
 
-        event_target:$TARGET$ = {
+    # ---------- Flags ----------
+    [[IN_ORBIT] set_variable = { which = inOrbit value = $IN_ORBIT$ } ]
+    [[!IN_ORBIT] set_variable = { which = inOrbit value = @mpp_no } ]
 
-            # ---------- Modo location ----------
-            set_variable = { which = scriptMode value = 1 }
-            set_variable = { which = tTarget value = $TARGET|@mpp_no$ }
+    # ---------- Variables de posición ----------
+    [[DISTANCE] set_variable = { which = tDistance value = $DISTANCE$ } ]
+    [[!DISTANCE] set_variable = { which = tDistance value = @mpp_no } ]
+    [[DISTANCE_OFFSET_RANGE] set_variable = { which = tDistanceOffsetRange value = $DISTANCE_OFFSET_RANGE$ } ]
+    [[!DISTANCE_OFFSET_RANGE] set_variable = { which = tDistanceOffsetRange value = @mpp_no } ]
+    [[MIN_DISTANCE] set_variable = { which = tMinDistance value = $MIN_DISTANCE$ } ]
+    [[!MIN_DISTANCE] set_variable = { which = tMinDistance value = @mpp_no } ]
+    [[MAX_DISTANCE] set_variable = { which = tMaxDistance value = $MAX_DISTANCE$ } ]
+    [[!MAX_DISTANCE] set_variable = { which = tMaxDistance value = @mpp_no } ]
 
-            # ---------- Flags ----------
-            [[IN_ORBIT] set_variable = { which = inOrbit value = $IN_ORBIT$ } ]
-            [[!IN_ORBIT] set_variable = { which = inOrbit value = @mpp_no } ]
+    # ---------- Lógica de posicionamiento ----------
+    inline_script = {
+        script = galactic_objects/mpp_i_s_ao_conf
+        EFFECT = "mpp_ao_set_location"
+    }
 
-            # ---------- Variables de posición ----------
-            [[DISTANCE] set_variable = { which = tDistance value = $DISTANCE$ } ]
-            [[!DISTANCE] set_variable = { which = tDistance value = @mpp_no } ]
-            [[DISTANCE_OFFSET_RANGE] set_variable = { which = tDistanceOffsetRange value = $DISTANCE_OFFSET_RANGE$ } ]
-            [[!DISTANCE_OFFSET_RANGE] set_variable = { which = tDistanceOffsetRange value = @mpp_no } ]
-            [[MIN_DISTANCE] set_variable = { which = tMinDistance value = $MIN_DISTANCE$ } ]
-            [[!MIN_DISTANCE] set_variable = { which = tMinDistance value = @mpp_no } ]
-            [[MAX_DISTANCE] set_variable = { which = tMaxDistance value = $MAX_DISTANCE$ } ]
-            [[!MAX_DISTANCE] set_variable = { which = tMaxDistance value = @mpp_no } ]
-
-            # ---------- Lógica de posicionamiento ----------
-            inline_script = {
-                script = galactic_objects/mpp_i_s_ao_conf
+    # Tiene TARGET_LOCATION MANDA!
+    [[TARGET_LOCATION]
+        if = {
+            limit = { exists = event_target:$TARGET_LOCATION$ }
+            if = {
+                limit = { is_variable_set = $TARGET$ }
+                if = {
+                    limit = { exists = event_target:$TARGET$ }
+                    event_target:$TARGET$ = {
+                        inline_script = {
+                            script = galactic_objects/mpp_i_s_ao_distance
+                            EFFECT = "mpp_ao_set_location"
+                            TYPE = small_debris_object # No lo usará
+                            TARGET = event_target:$TARGET_LOCATION$
+                        }
+                    }
+                }
+                else = {
+                    mpp_log_error = { TEXT = "mpp_ao_set_location TARGET $TARGET$ no válido" }
+                }
             }
-
-            # Tiene TARGET_LOCATION
-            [[TARGET_LOCATION]
+            else = {
                 inline_script = {
                     script = galactic_objects/mpp_i_s_ao_distance
+                    EFFECT = "mpp_ao_set_location"
                     TYPE = small_debris_object # No lo usará
                     TARGET = event_target:$TARGET_LOCATION$
                 }
-            ]
-
-            # No tiene TARGET_LOCATION
-            [[!TARGET_LOCATION]
-                if = {
-                    limit = { NOT = { check_variable = { which = tTarget value = @mpp_no } } }
-                    inline_script = {
-                        script = galactic_objects/mpp_i_s_ao_distance
-                        TYPE = small_debris_object # No lo usará
-                        TARGET = $TARGET$
-                    }
-                }
-                else_if = {
-                    limit = { exists = prev }
-                    inline_script = {
-                        script = galactic_objects/mpp_i_s_ao_distance
-                        TYPE = small_debris_object # No lo usará
-                        TARGET = prev
-                    }
-                }
-                else_if = {
-                    limit = { exists = from }
-                    inline_script = {
-                        script = galactic_objects/mpp_i_s_ao_distance
-                        TYPE = small_debris_object # No lo usará
-                        TARGET = from
-                    }
-                }
-            ]
-
-            # ---------- Limpieza de variables ----------
-            clear_variable = scriptMode
-            clear_variable = tTarget
-            clear_variable = inOrbit
-            clear_variable = tDistance
-            clear_variable = tDistanceOffsetRange
-            clear_variable = tMinDistance
-            clear_variable = tMaxDistance
+            }
         }
-    }
-    else_if = {
-        limit = { mpp_is_debug_active = yes }
-        log_error = "❌ - MPP - event_target:$TARGET$ no válido"
-    }
+        else = {
+            mpp_log_error = { TEXT = "mpp_ao_set_location TARGET_LOCATION $TARGET_LOCATION$ no válido" }
+        }
+    ]
+
+    # No tiene TARGET_LOCATION
+    [[!TARGET_LOCATION]
+        if = {
+            limit = { is_variable_set = $LOCATION$ }
+            set_variable = { which = tTarget value = $LOCATION$ }
+            if = {
+                limit = { NOT = { check_variable = { which = tTarget value = @mpp_no } } }
+                inline_script = {
+                    script = galactic_objects/mpp_i_s_ao_distance
+                    EFFECT = "mpp_ao_set_location"
+                    TYPE = small_debris_object # No lo usará
+                    TARGET = $TARGET$
+                }
+            }
+            else = {
+                inline_script = {
+                    script = galactic_objects/mpp_i_s_ao_distance
+                    EFFECT = "mpp_ao_set_location"
+                    TYPE = small_debris_object # No lo usará
+                    TARGET = @mpp_this
+                }
+            }
+        }
+        else_if = {
+            limit = { exists = prev }
+            inline_script = {
+                script = galactic_objects/mpp_i_s_ao_distance
+                EFFECT = "mpp_ao_set_location"
+                TYPE = small_debris_object # No lo usará
+                TARGET = prev
+            }
+        }
+        else_if = {
+            limit = { exists = from }
+            inline_script = {
+                script = galactic_objects/mpp_i_s_ao_distance
+                EFFECT = "mpp_ao_set_location"
+                TYPE = small_debris_object # No lo usará
+                TARGET = from
+            }
+        }
+    ]
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = scriptMode
+    clear_variable = inOrbit
+    clear_variable = tDistance
+    clear_variable = tDistanceOffsetRange
+    clear_variable = tMinDistance
+    clear_variable = tMaxDistance
 }
 
 mpp_ao_add_random = {

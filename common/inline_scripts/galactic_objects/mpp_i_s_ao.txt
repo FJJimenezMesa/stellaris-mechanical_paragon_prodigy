@@ -14,6 +14,10 @@ if = {
             entity_offset_height = -10
             entity_offset_angle = { min = 0 max = 359 }
         }
+        # ---------- Debug ----------
+        mpp_log_info_go = {
+            EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en $TARGET$ a $F_DISTANCE$ inOrbt"
+        }
     }
     else = {
         create_ambient_object = {
@@ -22,11 +26,10 @@ if = {
             entity_offset = $F_DISTANCE$
             entity_offset_angle = { min = 0 max = 359 }
         }
-    }
-
-    if = {
-        limit = { mpp_is_debug_active = yes }
-        log_error = "🛰️ - MPP - effect:mpp_ao_add $TYPE$ en $TARGET$ a $F_DISTANCE$ inOrbt \\[this.inOrbit]"
+        # ---------- Debug ----------
+        mpp_log_info_go = {
+            EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en $TARGET$ a $F_DISTANCE$"
+        }
     }
 }
 
@@ -41,6 +44,10 @@ else = {
             angle = random
             direction = in_system
         }
+        # ---------- Debug ----------
+        mpp_log_info_go = {
+            EFFECT = $EFFECT$ TEXT = "set_location en $TARGET$ a $F_DISTANCE$"
+        }
     }
     else = {
         set_location = {
@@ -49,11 +56,10 @@ else = {
             angle = random
             direction = out_system
         }
-    }
-
-    if = {
-        limit = { mpp_is_debug_active = yes }
-        log_error = "🛰️ - MPP - effect:mpp_ao_set_location: \\[this.tTarget] en $TARGET$ a $F_DISTANCE$"
+        # ---------- Debug ----------
+        mpp_log_info_go = {
+            EFFECT = $EFFECT$ TEXT = "set_location en $TARGET$ a $F_DISTANCE$"
+        }
     }
 }
 

@@ -5,6 +5,8 @@
 @mpp_yes = 9999999999999
 @mpp_no = -9999999999999
 
+@mpp_random = 999
+
 @mpp_this = 0
 @mpp_prev = 1
 @mpp_prev2 = 2
@@ -15,7 +17,9 @@
 @mpp_from3 = -3
 @mpp_fromPrev = -11
 
-
+@mpp_fleet_stance_evasive = -1
+@mpp_fleet_stance_passive = 0
+@mpp_fleet_stance_aggressive = 1
 
 
 # ================================

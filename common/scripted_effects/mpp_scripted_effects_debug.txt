@@ -1,10 +1,312 @@
+#noinspection ParadoxScriptUnsupportedParameterUsage
+
 # ================================================
 # Scripted Effects - MPP Debug
 # ================================================
 
-mpp_debug_log_error_invalid_scope = {
+@debug_all = 0
+@debug_error = 1
+@debug_info = 2
+@debug_configs = 3
+
+mpp_debug = {
+    [[LEVEL]
+        set_variable = { which = debugLevel value = $LEVEL$ }
+        if = {
+            limit = { check_variable_arithmetic = { which = debugLevel value = 1 } }
+            mpp_enble_debug_error = yes
+        }
+        else_if = {
+            limit = { check_variable_arithmetic = { which = debugLevel value <= 2 } }
+            mpp_enble_debug_error = yes
+            mpp_enble_debug_info = yes
+        }
+        else = {
+            mpp_enble_debug_all = yes
+        }
+    ]
+    [[!LEVEL]
+        mpp_enble_debug_all = yes
+    ]
+}
+
+# ================================================
+# DEBUG FLAGS
+# ================================================
+
+mpp_enble_debug = {
+    if = {
+        limit = { mpp_is_debug_active = no }
+        log_error = "🐞 - MPP - DEBUG ACTIVO"
+    }
+    set_global_flag = mpp_flag_debug
+}
+
+mpp_enble_debug_all = {
+    if = {
+        limit = { mpp_is_debug_active = no }
+        log_error = "🐞 - MPP - DEBUG TYPE_ALL"
+        set_global_flag = mpp_flag_debug
+        set_global_flag = mpp_flag_debug_all
+    }
+    else_if = {
+        limit = { NOT = { has_global_flag = mpp_flag_debug_all } }
+        log_error = "🐞 - MPP - DEBUG TYPE_ALL"
+        set_global_flag = mpp_flag_debug_all
+    }
+}
+
+mpp_enble_debug_error = {
+    if = {
+        limit = { mpp_is_debug_active = no }
+        log_error = "🐞 - MPP - DEBUG TYPE_ERROR"
+        set_global_flag = mpp_flag_debug
+        set_global_flag = mpp_flag_debug_error
+    }
+    else_if = {
+        limit = { NOT = { has_global_flag = mpp_flag_debug_error } }
+        log_error = "🐞 - MPP - DEBUG TYPE_ERROR"
+        set_global_flag = mpp_flag_debug_error
+    }
+}
+
+mpp_enble_debug_info = {
+    if = {
+        limit = { mpp_is_debug_active = no }
+        log_error = "🐞 - MPP - DEBUG TYPE_INFO"
+        set_global_flag = mpp_flag_debug
+        set_global_flag = mpp_flag_debug_info
+    }
+    else_if = {
+        limit = { NOT = { has_global_flag = mpp_flag_debug_info } }
+        log_error = "🐞 - MPP - DEBUG TYPE_INFO"
+        set_global_flag = mpp_flag_debug_info
+    }
+}
+
+mpp_enble_debug_configs = {
+    if = {
+        limit = { mpp_is_debug_active = no }
+        log_error = "🐞 - MPP - DEBUG TYPE_CONFIGS"
+        set_global_flag = mpp_flag_debug
+        set_global_flag = mpp_flag_debug_configs
+    }
+    else_if = {
+        limit = { NOT = { has_global_flag = mpp_flag_debug_configs } }
+        log_error = "🐞 - MPP - DEBUG TYPE_CONFIGS"
+        set_global_flag = mpp_flag_debug_configs
+    }
+}
+
+mpp_disable_debug = {
     if = {
         limit = { mpp_is_debug_active = yes }
+        log_error = "🐞 - MPP - DEBUG INACTIVO"
+    }
+
+    remove_global_flag = mpp_flag_debug
+}
+
+# ================================================
+# DEBUG BASE FUNCTIONS
+# ================================================
+
+_mpp_log = {
+    log_error = " $TEXT$"
+}
+
+mpp_log = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        _mpp_log = { TEXT = "$ICON|*$ - MPP -  $TEXT$" }
+    }
+}
+
+mpp_log_error = {
+    if = {
+        limit = { mpp_is_debug_error_active = yes }
+        log_error = "❌ - MPP -  $TEXT$"
+    }
+}
+
+mpp_log_info = {
+    if = {
+        limit = { mpp_is_debug_info_active = yes }
+        log_error = "🔹 - MPP -  $TEXT$"
+    }
+}
+
+mpp_log_config = {
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        log_error = "   ⚙️ - MPP -  $TEXT$"
+    }
+}
+
+# ================================================
+# DEBUG SCOPES
+# ================================================
+
+# Debug scope printing
+mpp_debug_print_scope_effect = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "
+------------------------------
+ℹ️ MPP - Printing the current scopes (effect) -
+    🔹 - MPP - This:                             \\[This.GetName]
+    🔹 - MPP - Root:                             \\[Root.GetName]
+    🔹 - MPP - Prev:                             \\[Prev.GetName]
+    🔹 - MPP - PrevPrev:                         \\[PrevPrev.GetName]
+    🔹 - MPP - PrevPrevPrev:                     \\[PrevPrevPrev.GetName]
+    🔹 - MPP - PrevPrevPrevPrev:                 \\[PrevPrevPrevPrev.GetName]
+    🔹 - MPP - From:                             \\[From.GetName]
+    🔹 - MPP - FromFrom:                         \\[FromFrom.GetName]
+    🔹 - MPP - FromFromFrom:                     \\[FromFromFrom.GetName]
+    🔹 - MPP - FromFromFromFrom:                 \\[FromFromFromFrom.GetName]
+    🔹 - MPP - This's Solar System:              \\[This.GetStarName]
+    🔹 - MPP - This's Planet:                    \\[This.Planet.GetName]
+    🔹 - MPP - This's Sector:                    \\[This.Sector.GetName]
+    🔹 - MPP - Root's Solar System:              \\[Root.GetStarName]
+    🔹 - MPP - Root's Owner's Name:              \\[Root.Owner.GetName]
+    🔹 - MPP - Root's Owner's Capital's Name:    \\[Root.Owner.Capital.GetName]
+    🔹 - MPP - Owner:                            \\[Owner.GetName]
+------------------------------"
+    }
+}
+
+# ================================================
+# INFO ALIASES
+# ================================================
+
+mpp_log_info_block_begin = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "
+==============================
+ℹ️ - MPP -  $TEXT$
+==============================      "
+    }
+}
+
+mpp_log_info_block_end = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "
+FIN - MPP -  $TEXT$
+==============================      "
+    }
+}
+
+mpp_log_info_system_initializer_init = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🌌 - MPP - solar_system_initializer:<\$:$NAME$> - Iniciando configuraciones"
+    }
+}
+
+mpp_log_info_system_initializer_end = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🌌 - MPP - solar_system_initializer:<\$:$NAME$> - Iniciando configuraciones"
+    }
+}
+
+mpp_log_info_go = {
+    if = {
+        limit = { mpp_is_debug_info_active = yes }
+        log_error = "🪐 - MPP - effect:<\$:$EFFECT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_ao = {
+    if = {
+        limit = { mpp_is_debug_info_active = yes }
+        log_error = "✨ - MPP - effect:<\$:$EFFECT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_fleet = {
+    if = {
+        limit = { mpp_is_debug_info_active = yes }
+        log_error = "🚀 - MPP - effect:<\$:$EFFECT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_on_action = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🎯 - MPP - on_action:<\$:$ON_ACTION$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_event = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "⚠️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_master_event = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🕹️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_history_event = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "📖 - MPP - event:<\$:$EVENT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_chained_event = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "⛓️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_nemesis_event = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "☠️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_notification_event = {
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        log_error = "🔔 - MPP - event:<\$:$EVENT$> -  $TEXT$"
+    }
+}
+
+# ================================================
+# CONFIG ALIASES
+# ================================================
+
+mpp_log_config_fleet_action = {
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        log_error = "   🔜 - MPP - conf:effect:<\$:$EFFECT$> -  $ACTION$ -  $TEXT$"
+    }
+}
+
+mpp_log_script_config = {
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        log_error = "   ⚙️ - MPP - conf:<\$:$EFFECT$::$SCRIPT$> -  $TEXT$"
+    }
+}
+
+# ================================================
+# DEBUG FUNCTIONS  (ERROR)
+# ================================================
+
+mpp_log_error_invalid_scope = {
+    if = {
+        limit = { mpp_is_debug_error_active = yes }
         if = { limit = { is_scope_valid = no } log_error = "❌ - MPP - No valid scope" }
         else_if = { limit = { is_scope_type = none } log_error = "❌ - MPP - Current scope: none" }
         else_if = { limit = { is_scope_type = country } log_error = "❌ - MPP - Current scope: country" }
@@ -33,103 +335,14 @@ mpp_debug_log_error_invalid_scope = {
 mpp_debug_check_scope_pop_or_leader = {
     if = {
         limit = { OR = { is_scope_valid = no NOR = { is_scope_type = leader is_scope_type = pop } } }
-        mpp_debug_log_error_invalid_scope = yes
+        mpp_log_error_invalid_scope = yes
     }
 }
 
 mpp_debug_check_scope_leader = {
     if = {
         limit = { OR = { is_scope_valid = no NOT = { is_scope_type = leader } } }
-        mpp_debug_log_error_invalid_scope = yes
+        mpp_log_error_invalid_scope = yes
     }
 }
 
-# Debug scope printing
-mpp_debug_print_scope_effect = {
-    log_error = "
-------------------------------
-ℹ️ MPP - Printing the current scopes (effect) -
-    🔹 - MPP - This:                             \\[This.GetName]
-    🔹 - MPP - Root:                             \\[Root.GetName]
-    🔹 - MPP - Prev:                             \\[Prev.GetName]
-    🔹 - MPP - PrevPrev:                         \\[PrevPrev.GetName]
-    🔹 - MPP - PrevPrevPrev:                     \\[PrevPrevPrev.GetName]
-    🔹 - MPP - PrevPrevPrevPrev:                 \\[PrevPrevPrevPrev.GetName]
-    🔹 - MPP - From:                             \\[From.GetName]
-    🔹 - MPP - FromFrom:                         \\[FromFrom.GetName]
-    🔹 - MPP - FromFromFrom:                     \\[FromFromFrom.GetName]
-    🔹 - MPP - FromFromFromFrom:                 \\[FromFromFromFrom.GetName]
-    🔹 - MPP - This's Solar System:              \\[This.GetStarName]
-    🔹 - MPP - This's Planet:                    \\[This.Planet.GetName]
-    🔹 - MPP - This's Sector:                    \\[This.Sector.GetName]
-    🔹 - MPP - Root's Solar System:              \\[Root.GetStarName]
-    🔹 - MPP - Root's Owner's Name:              \\[Root.Owner.GetName]
-    🔹 - MPP - Root's Owner's Capital's Name:    \\[Root.Owner.Capital.GetName]
-    🔹 - MPP - Owner:                            \\[Owner.GetName]
-------------------------------"
-}
-
-mpp_log = {
-    log_error = "$ICON|🔹$ - MPP - $TEXT|0$"
-}
-
-mpp_log_error = {
-    log_error = "§R❌ - MPP -§! $TEXT$"
-}
-
-mpp_log_info = {
-    log_error = "🔹 - MPP - $TEXT$"
-}
-
-mpp_log_config = {
-    log_error = "   ⚙️ - MPP - conf:$TEXT$"
-}
-
-mpp_log_ao = {
-    log_error = "🛰️ - MPP - effect:$TEXT$"
-}
-
-mpp_log_fleeet = {
-    log_error = "🚀 - MPP - effect:$TEXT$"
-}
-
-mpp_log_fleeet_action = {
-    log_error = "   🔜 - MPP - effect:$TEXT$"
-}
-
-mpp_log_on_action = {
-    log_error = "🎯 - MPP - on_action:$TEXT$"
-}
-
-mpp_log_master_event = {
-    log_error = "🕹️ - MPP - event::$TEXT$"
-}
-
-mpp_log_history_event = {
-    log_error = "📖 - MPP - event:$TEXT$"
-}
-
-mpp_log_chained_event = {
-    log_error = "⛓️ - MPP - event:$TEXT$"
-}
-
-mpp_log_nemesis_event = {
-    log_error = "☠️ - MPP - event:$TEXT$"
-}
-
-mpp_log_notification_event = {
-    log_error = "🔔 - MPP - notification_event:$TEXT$"
-}
-
-mpp_log_info_block_begin = {
-    log_error = "
-==============================
-ℹ️ §B- MPP -§! $TEXT$
-==============================      "
-}
-
-mpp_log_info_block_end = {
-    log_error = "
-FIN - MPP - $TEXT$
-==============================      "
-}
