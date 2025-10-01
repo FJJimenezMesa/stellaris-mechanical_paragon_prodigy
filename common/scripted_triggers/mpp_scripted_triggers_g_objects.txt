@@ -90,3 +90,29 @@ mpp_is_planet_class_planet = {
         is_planet_class = pc_warden_guardian
     }
 }
+
+mpp_target_is_planet = {
+    [[TARGET]
+        if = {
+            limit = { exists = event_target:$TARGET$ }
+
+            event_target:$TARGET$ = {
+                if = {
+                    limit = {
+                        OR = {
+                            mpp_is_planet_class_planet = yes
+                            mpp_is_planet_class_asteroid = yes
+                        }
+                    }
+                    always = yes
+                }
+                else = { always = no }
+            }
+        }
+        else = { always = no }
+    ]
+
+    [[TARGET]
+        always = no
+    ]
+}

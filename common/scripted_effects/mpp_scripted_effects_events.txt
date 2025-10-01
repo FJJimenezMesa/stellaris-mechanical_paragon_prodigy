@@ -35,6 +35,9 @@ mpp_event_add_drone_country_mining_station = {
 
                     set_planet_flag = mpp_drone_mining_station
                 }
+
+                # ---------- Debug ----------
+                mpp_log_info_event = { EVENT = mpp_event_add_drone_country_mining_station TEXT = "Se añade estación minera de drones en $TARGET$" }
             }
         }
     ]
@@ -60,6 +63,9 @@ mpp_event_add_primitive_robot = {
                     add_deposit = d_failing_infrastructure
                     add_deposit = d_failing_infrastructure
                     add_deposit = d_metal_boneyard
+
+                    # ---------- Debug ----------
+                    mpp_log_info_event = { EVENT = mpp_event_add_primitive_robot TEXT = "Se añade primitive_robot a $TARGET$" }
                 }
             }
         }

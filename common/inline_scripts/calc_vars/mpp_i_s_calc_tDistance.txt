@@ -1,0 +1,107 @@
+# ---------- Variables de posición (distance) ----------
+@script_min_distance = -50
+@script_max_distance = 299
+set_variable = { which = tDistance value = $DISTANCE$ }
+set_variable = { which = tDistanceOffsetRange value = $DISTANCE_OFFSET_RANGE$ }
+set_variable = { which = tMinDistance value = $MIN_DISTANCE$ }
+set_variable = { which = tMaxDistance value = $MAX_DISTANCE$ }
+
+# ---------- Caso 1: DISTANCE presente ----------
+if = {
+    limit = { NOT = { check_variable = { which = tDistance value = @mpp_no } } }
+
+    # Offset definido
+    if = {
+        limit = { NOT = { check_variable = { which = tDistanceOffsetRange value = @mpp_no } } }
+        set_variable = { which = tOffsetMax value = tDistanceOffsetRange }
+    }
+    else = {
+        set_variable = { which = tOffsetMax value = 0 }
+    }
+
+    set_variable = { which = tOffsetMin value = tOffsetMax }
+
+    # Convertir min a negativo si no es 0 menor que 0
+    if = {
+        limit = { NOT = { check_variable = { which = tOffsetMin value <= 0 } } }
+        multiply_variable = { which = tOffsetMin value = -1 }
+    }
+
+    # Valor random de offset
+    set_variable_to_random_value = { which = tDistanceOffset MIN = tOffsetMin MAX = tOffsetMax rounded = yes }
+
+    # ---------- Cálculo de DISTANCE ----------
+    change_variable = { which = tDistance value = tDistanceOffset }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        #mpp_log_config
+        log_error = "   📐 - MPP - calc:<$EFFECT$> - Distance $DISTANCE$ tDistance \\[this.tDistance] tOffset \\[this.tDistanceOffset]"
+    }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = tDistanceOffset
+    clear_variable = tOffsetMin
+    clear_variable = tOffsetMax
+}
+
+# ---------- Caso 2: DISTANCE no presente → usar MIN/MAX ----------
+else_if = {
+    limit = {
+        OR = {
+            NOT = { check_variable = { which = tMinDistance value = @mpp_no } }
+            NOT = { check_variable = { which = tMaxDistance value = @mpp_no } }
+        }
+    }
+
+    # MIN_DISTANCE
+    if = {
+        limit = { check_variable = { which = tMinDistance value = @mpp_no } }
+        set_variable = { which = tMinDistance value = tMaxDistance }
+    }
+
+    # MAX_DISTANCE
+    if = {
+        limit = { check_variable = { which = tMaxDistance value = @mpp_no } }
+        set_variable = { which = tMaxDistance value = tMinDistance }
+    }
+
+    # ---------- Cálculo de DISTANCE ----------
+    set_variable_to_random_value = { which = tDistance min = tMinDistance max = tMaxDistance rounded = yes }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        #mpp_log_config
+        log_error = "   📐 - MPP - calc:<$EFFECT$> - Distance $DISTANCE$ tDistance \\[this.tDistance] tMinDistance \\[this.tMinDistance] tMaxDistance \\[this.tMaxDistance]"
+    }
+}
+
+# ---------- Fix de rangos de scripts ----------
+if = {
+    limit = { check_variable_arithmetic = { which = tDistance value < @script_min_distance } }
+    set_variable = { which = tDistance value = @script_min_distance }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        #mpp_log_config
+        log_error = "   📐 - MPP - calc:<$EFFECT$> - Fix distancia mínima tDistance \\[this.tDistance]"
+    }
+}
+else_if = {
+    limit = { check_variable_arithmetic = { which = tDistance value > @script_max_distance } }
+    set_variable = { which = tDistance value = @script_max_distance}
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        #mpp_log_config
+        log_error = "   📐 - MPP - calc:<$EFFECT$> -Fix distancia máxima tDistance\\[this.tDistance]"
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tDistanceOffsetRange
+clear_variable = tMinDistance
+clear_variable = tMaxDistance

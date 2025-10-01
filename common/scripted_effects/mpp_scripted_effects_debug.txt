@@ -226,17 +226,17 @@ mpp_log_info_ao = {
     }
 }
 
-mpp_log_info_fleet = {
-    if = {
-        limit = { mpp_is_debug_info_active = yes }
-        log_error = "🚀 - MPP - effect:<\$:$EFFECT$> -  $TEXT$"
-    }
-}
-
 mpp_log_info_on_action = {
     if = {
         limit = { mpp_is_debug_active = yes }
         log_error = "🎯 - MPP - on_action:<\$:$ON_ACTION$> -  $TEXT$"
+    }
+}
+
+mpp_log_info_fleet = {
+    if = {
+        limit = { mpp_is_debug_info_active = yes }
+        log_error = "🚀 - MPP - event:<\$:$EFFECT$> -  $TEXT$"
     }
 }
 
@@ -296,7 +296,39 @@ mpp_log_config_fleet_action = {
 mpp_log_script_config = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
-        log_error = "   ⚙️ - MPP - conf:<\$:$EFFECT$::$SCRIPT$> -  $TEXT$"
+        log_error = "   ⚙️ - MPP - conf:effect:<\$:$EFFECT$::$SCRIPT$> -  $TEXT$"
+    }
+}
+
+mpp_log_effect = {
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        log_error = "   🛠️ - MPP - conf:effect:<\$:$EFFECT$> -  $TEXT$"
+    }
+}
+
+mpp_log_script_effect = {
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        log_error = "   🛠️ - MPP - effect:<\$:$EFFECT$::$SCRIPT$> - \\[This.GetName] -  $TEXT$"
+    }
+}
+
+# ================================================
+# ERROR ALIASES
+# ================================================
+
+mpp_log_effect_error = {
+    if = {
+        limit = { mpp_is_debug_error_active = yes }
+        log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$"
+    }
+}
+
+mpp_log_script_error = {
+    if = {
+        limit = { mpp_is_debug_error_active = yes }
+        log_error = "❌ - MPP - conf:<\$:$EFFECT$::$SCRIPT$> -  $TEXT$"
     }
 }
 

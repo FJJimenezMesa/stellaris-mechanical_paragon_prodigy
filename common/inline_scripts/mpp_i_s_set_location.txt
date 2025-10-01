@@ -1,89 +1,47 @@
-set_variable = { which = tLocationTarget value = tFleetLocation }
-
 if = {
-    limit = { check_variable = { which = tLocationTarget value = @mpp_prev } }
-    set_location = {
-        target = prev
-        distance = $DISTANCE$
+    limit = {
+        is_scope_valid = yes
+        OR = {
+            is_scope_type = fleet
+            is_scope_type = ambient_object
+        }
     }
-    # ---------- Debug ----------
-    mpp_log_script_config = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
-        TEXT = "set_location en prev a $DISTANCE$"
-    }
-}
-else_if = {
-    limit = { check_variable = { which = tLocationTarget value = @mpp_prev2 } }
-    set_location = {
-        target = prevprev
-        distance = $DISTANCE$
-    }
-    # ---------- Debug ----------
-    mpp_log_script_config = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
-        TEXT = "set_location en prevprev a $DISTANCE$"
-    }
-}
-else_if = {
-    limit = { check_variable = { which = tLocationTarget value = @mpp_prev3 } }
-    set_location = {
-        target = prevprevprev
-        distance = $DISTANCE$
-    }
-    # ---------- Debug ----------
-    mpp_log_script_config = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
-        TEXT = "set_location en prevprevprev a $DISTANCE$"
-    }
-}
-else_if = {
-    limit = { check_variable = { which = tLocationTarget value = @mpp_from } }
-    set_location = {
-        target = from
-        distance = $DISTANCE$
-    }
-    # ---------- Debug ----------
-    mpp_log_script_config = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
-        TEXT = "set_location en from a $DISTANCE$"
-    }
-}
-else_if = {
-    limit = { check_variable = { which = tLocationTarget value = @mpp_from2 } }
-    set_location = {
-        target = fromfrom
-        distance = $DISTANCE$
-    }
-    # ---------- Debug ----------
-    mpp_log_script_config = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
-        TEXT = "set_location en fromfrom a $DISTANCE$"
-    }
-}
-else_if = {
-    limit = { check_variable = { which = tLocationTarget value = @mpp_from3 } }
-    set_location = {
-        target = fromfromfrom
-        distance = $DISTANCE$
-    }
-    # ---------- Debug ----------
-    mpp_log_script_config = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
-        TEXT = "set_location en fromfromfrom a $DISTANCE$"
-    }
-}
-else_if = {
-    limit = { NOT = { check_variable = { which = tLocationTarget value = @mpp_no } } }
-    set_location = {
-        target = $TARGET$
-        distance = $DISTANCE$
-    }
-    # ---------- Debug ----------
-    mpp_log_script_config = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
-        TEXT = "set_location en $TARGET$ a $DISTANCE$"
-    }
-}
 
-# ---------- Limpieza de variables ----------
-clear_variable = tLocationTarget
+    # ---------- Lógica de distancia ----------
+    inline_script = {
+        script = calc_vars/mpp_i_s_calc_tDistance
+        EFFECT = mpp_set_location
+        DISTANCE = $DISTANCE$
+        DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
+        MIN_DISTANCE = $MIN_DISTANCE$
+        MAX_DISTANCE = $MAX_DISTANCE$
+    }
+
+    # ---------- Lógica de ángulo ----------
+    #inline_script = {
+    #    script = calc_vars/mpp_i_s_calc_angle
+    #    EFFECT = "mpp_set_location"
+    #    ANGLE = $ANGLE|@mpp_no$
+    #    ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE|@mpp_no$
+    #    MIN_ANGLE = $MIN_ANGLE|@mpp_no$
+    #    MAX_ANGLE =  $MAX_ANGLE|@mpp_no$
+    #}
+
+    inline_script = {
+        script = call_local_vars/mpp_i_s_local_tDistance
+        EFFECT = mpp_set_location
+        BASE_SCRIPT = mpp_i_s_set_location_logic
+        LOCATION = $LOCATION$
+        LOCATION_TARGET = $LOCATION_TARGET$
+        IN_ORBIT = $IN_ORBIT$
+    }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = tDistance
+}
+else = {
+    mpp_log_effect_error = {
+        EFFECT = mpp_set_location TEXT = "Scope no válido"
+    }
+    mpp_log_error_invalid_scope = yes
+}

@@ -422,7 +422,7 @@ mpp_ao_add_random = {
     }
     else_if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "❌ - MPP - Categoría \\[this.tCategory] de Ambient Objects no implementada"
+        mpp_log_error = { TEXT = "mpp_add_random Categoría $CATEGORY|@AO_CATEGORY_DEBRIS$ de Ambient Objects no implementada" }
     }
 
     # ---------- Limpieza de variables ----------

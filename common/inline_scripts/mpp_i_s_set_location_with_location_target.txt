@@ -1,0 +1,73 @@
+set_variable = { which = inOrbit value = $IN_ORBIT$ }
+
+if = {
+    limit = { exists = event_target:$LOCATION_TARGET$ }
+    # IN ORBIT
+    if = {
+        limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+        set_location = {
+            target = event_target:$LOCATION_TARGET$
+            distance = $LOCATION_DISTANCE$
+            angle = random  # TODO añadir cálculo de angle
+            direction = in_system
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            TEXT = "set_location en event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ in_system"
+        }
+    }
+    else = {
+        set_location = {
+            target = event_target:$LOCATION_TARGET$
+            distance = $LOCATION_DISTANCE$
+            angle = random  # TODO añadir cálculo de angle
+            direction = out_system
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            TEXT = "set_location en event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ out_system"
+        }
+    }
+}
+else_if = {
+    limit = { exists = prev.event_target:$LOCATION_TARGET$ }
+    # IN ORBIT
+    if = {
+        limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+        set_location = {
+            target = prev.event_target:$LOCATION_TARGET$
+            distance = $LOCATION_DISTANCE$
+            angle = random  # TODO añadir cálculo de angle
+            direction = in_system
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            TEXT = "set_location en prev.event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ in_system"
+        }
+    }
+    else = {
+        set_location = {
+            target = prev.event_target:$LOCATION_TARGET$
+            distance = $LOCATION_DISTANCE$
+            angle = random  # TODO añadir cálculo de angle
+            direction = out_system
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            TEXT = "set_location en prev.event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ out_system"
+        }
+    }
+}
+else = {
+    mpp_log_script_error = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+        TEXT = "LOCATION_TARGET $LOCATION_TARGET$ y prev.$LOCATION_TARGET$ no válidos"
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = inOrbit

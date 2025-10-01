@@ -1,0 +1,10 @@
+limit = { check_variable_arithmetic = { which = tDistance value = $F_DISTANCE$ } }
+
+inline_script = {
+    script = $BASE_SCRIPT$
+    EFFECT = $EFFECT$
+    LOCATION = $LOCATION$
+    LOCATION_TARGET = $LOCATION_TARGET$
+    LOCATION_DISTANCE = $F_DISTANCE$
+    IN_ORBIT = $IN_ORBIT$
+}

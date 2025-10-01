@@ -1,0 +1,286 @@
+# set_location random -50 a 299
+if = {
+    limit = { check_variable_arithmetic = { which = tDistance value >= 0 } }
+    if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 10 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 0
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 20 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 10
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 30 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 20
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 40 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 30
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 50 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 40
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 60 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 50
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 70 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 60
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 80 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 70
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 90 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 80
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 100 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 90
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 110 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 100
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 120 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 110
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 130 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 120
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 140 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 130
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 150 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 140
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 160 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 150
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 170 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 160
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 180 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 170
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 190 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 180
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 200 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 190
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 210 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 200
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 220 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 210
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 230 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 220
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 240 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 230
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 250 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 240
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 260 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 250
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 270 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 260
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 280 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 270
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 290 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 280
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value < 300 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = 290
+        }
+    }
+}
+else = {
+    if = {
+        limit = { check_variable_arithmetic = { which = tDistance value >= -10 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = -10
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value >= -20 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = -20
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value >= -30 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = -30
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value >= -40 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = -40
+        }
+    }
+    else_if = {
+        limit = { check_variable_arithmetic = { which = tDistance value >= -50 } }
+        inline_script = {
+            script = call_local_vars/mpp_i_s_local_tDistance_0_10
+            BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$  LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$  IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+            B_DISTANCE = -50
+        }
+    }
+}
