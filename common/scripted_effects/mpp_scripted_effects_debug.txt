@@ -364,6 +364,34 @@ mpp_log_error_invalid_scope = {
     }
 }
 
+mpp_log_error_effect_invalid_scope = {
+    if = {
+        limit = { mpp_is_debug_error_active = yes }
+        if = { limit = { is_scope_valid = no } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - No valid scope" }
+        else_if = { limit = { is_scope_type = none } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: none" }
+        else_if = { limit = { is_scope_type = country } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: country" }
+        else_if = { limit = { is_scope_type = sector } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: sector" }
+        else_if = { limit = { is_scope_type = galactic_object } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: galactic_object" }
+        else_if = { limit = { is_scope_type = megastructure } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: megastructure" }
+        else_if = { limit = { is_scope_type = ambient_object } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: ambient_object" }
+        else_if = { limit = { is_scope_type = planet } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: planet" }
+        else_if = { limit = { is_scope_type = deposit } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: deposit" }
+        else_if = { limit = { is_scope_type = archaeological_site } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - archaeological_site" }
+        else_if = { limit = { is_scope_type = army } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: army" }
+        else_if = { limit = { is_scope_type = pop } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: pop" }
+        else_if = { limit = { is_scope_type = pop_faction } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: pop_faction" }
+        else_if = { limit = { is_scope_type = species } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: species" }
+        else_if = { limit = { is_scope_type = leader } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: leader" }
+        else_if = { limit = { is_scope_type = ship } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: ship" }
+        else_if = { limit = { is_scope_type = fleet } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: fleet" }
+        else_if = { limit = { is_scope_type = federation } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: federation" }
+        else_if = { limit = { is_scope_type = war } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: war" }
+        else_if = { limit = { is_scope_type = first_contact } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: first_contact" }
+        else_if = { limit = { is_scope_type = espionage_operation } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: espionage_operation" }
+        else = { log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: UNKNOWN (not matched)" }
+    }
+}
+
 mpp_debug_check_scope_pop_or_leader = {
     if = {
         limit = { OR = { is_scope_valid = no NOR = { is_scope_type = leader is_scope_type = pop } } }
@@ -378,3 +406,17 @@ mpp_debug_check_scope_leader = {
     }
 }
 
+mpp_log_effect_error_no_planet_scope = {
+    mpp_log_error_effect_invalid_scope = {
+        EFFECT = $EFFECT$
+        TEXT = "Scope no válido, se espera scope_type planet"
+    }
+    mpp_debug_print_scope_effect = yes
+}
+
+mpp_log_effect_error_planet_no_valid = {
+    mpp_log_error_effect_invalid_scope = {
+        EFFECT = $EFFECT$
+        TEXT = "Tipo de planeta no válido"
+    }
+}

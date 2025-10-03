@@ -112,7 +112,7 @@ mpp_target_is_planet = {
         else = { always = no }
     ]
 
-    [[TARGET]
+    [[!TARGET]
         always = no
     ]
 }

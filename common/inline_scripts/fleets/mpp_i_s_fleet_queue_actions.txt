@@ -1,0 +1,130 @@
+# TODO añadir más complejos? suma?
+set_variable = { which = tActionMoveToTarget value = $MOVE_TO_TARGET$ }
+set_variable = { which = tActionMoveToFlag value = $MOVE_TO_PLANET_FLAG$ }
+set_variable = { which = tPatrolToFlag1 value = $PATROL_PLANET_FLAG_1$ }
+set_variable = { which = tPatrolToFlag2 value = $PATROL_PLANET_FLAG_2$ }
+set_variable = { which = tPatrolToFlag3 value = $PATROL_PLANET_FLAG_3$ }
+set_variable = { which = tPatrolToFlag4 value = $PATROL_PLANET_FLAG_4$ }
+
+if = {
+    limit = { NOT = { check_variable = { which = tActionMoveToTarget value = @mpp_no } } }
+    queue_actions = {
+        wait = {
+            duration = 20
+            random = 10
+        }
+        move_to = event_target:$MOVE_TO_TARGET$
+    }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        #mpp_log_config_fleet_action
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_move_to - \\[This.GetName] - \\[This.tActionMoveTo]"
+    }
+}
+else_if = {
+    limit = {
+        NOT = { check_variable = { which = tPatrolToFlag1 value = @mpp_no } }
+        NOT = { check_variable = { which = tPatrolToFlag2 value = @mpp_no } }
+    }
+    queue_actions = {
+        repeat = {
+            find_closest_planet = {
+                trigger = {
+                    id = mpp_patrol.patrol.1
+                    check_variable = { which = tPatrolToFlag1 value = @mpp_no }
+                    has_planet_flag = $PATROL_PLANET_FLAG_1$
+                }
+                found_planet = {
+                    move_to = this
+                    orbit_planet = this
+                }
+            }
+            find_closest_planet = {
+                trigger = {
+                    id = mpp_patrol.patrol.2
+                    check_variable = { which = tPatrolToFlag2 value = @mpp_no }
+                    has_planet_flag = $PATROL_PLANET_FLAG_2$
+                }
+                found_planet = {
+                    move_to = this
+                    orbit_planet = this
+                }
+            }
+            find_closest_planet = {
+                trigger = {
+                    id = mpp_patrol.patrol.3
+                    check_variable = { which = tPatrolToFlag3 value = @mpp_no }
+                    has_planet_flag = $PATROL_PLANET_FLAG_3$
+                }
+                found_planet = {
+                    move_to = this
+                    orbit_planet = this
+                }
+            }
+            find_closest_planet = {
+                trigger = {
+                    id = mpp_patrol.patrol.4
+                    check_variable = { which = tPatrolToFlag4 value = @mpp_no }
+                    has_planet_flag = $PATROL_PLANET_FLAG_4$
+                }
+                found_planet = {
+                    move_to = this
+                    orbit_planet = this
+                }
+            }
+        }
+    }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        #mpp_log_config_fleet_action
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_patrol - \\[This.GetName] - \\[This.tPatrolToFlag1] - \\[This.tPatrolToFlag2] - \\[This.tPatrolToFlag3] - \\[This.tPatrolToFlag4]"
+    }
+}
+else_if = {
+    limit = { NOT = { check_variable = { which = tActionMoveToFlag value = @mpp_no } } }
+    queue_actions = {
+        wait = {
+            duration = 20
+            random = 10
+        }
+        find_closest_planet = {
+            trigger = {
+                id = mpp_move.to_planet_flag.1
+                mpp_planet_has_flag = { FLAG = $MOVE_TO_PLANET_FLAG$ }
+            }
+            found_planet = {
+                move_to = this
+                orbit_planet = this
+            }
+        }
+    }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        #mpp_log_config_fleet_action
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_move_to_planet_flag - \\[This.GetName] - \\[This.tActionMoveToFlag]"
+    }
+}
+else = {
+    queue_actions = { repeat = { wait = { duration = 999 random = 10 } } }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        #mpp_log_config_fleet_action
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_wait - \\[This.GetName]"
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tActionMoveToTarget
+clear_variable = tActionMoveToFlag
+clear_variable = tPatrolToFlag1
+clear_variable = tPatrolToFlag2
+clear_variable = tPatrolToFlag3
+clear_variable = tPatrolToFlag4

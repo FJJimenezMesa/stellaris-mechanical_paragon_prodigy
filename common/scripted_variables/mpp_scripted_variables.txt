@@ -16,7 +16,11 @@
 @mpp_from2 = -2
 @mpp_from3 = -3
 @mpp_fromPrev = -11
+@mpp_root = 100
+@mpp_rootOwner = 1000
 
+@mpp_fleet_design_base = 0
+@mpp_fleet_design_drone_00 = 10
 @mpp_fleet_stance_evasive = -1
 @mpp_fleet_stance_passive = 0
 @mpp_fleet_stance_aggressive = 1

@@ -1,13 +1,73 @@
-inline_script = {
-    script = fleets/mpp_i_s_fleet_design_$DESIGN$
-    SHIP_1 = $SHIP_1$
-    SHIP_2 = $SHIP_2$
-    SHIP_3 = $SHIP_3$
-    SHIP_4 = $SHIP_4$
+set_variable = { which = tDesign value = $DESIGN$ }
+set_variable = { which = tDesignType value = $DESIGN_TYPE$ }
+
+if = {
+    limit = {
+        OR = {
+            check_variable = { which = tDesignType value = @mpp_fleet_design_base }
+            AND  = {
+                check_variable = { which = tDesign value = @mpp_no }
+                check_variable = { which = tDesignType value = @mpp_no }
+            }
+        }
+    }
+    inline_script = {
+        script = fleets/mpp_i_s_fleet_design_base
+        SHIP_1 = $SHIP_1$
+        SHIP_2 = $SHIP_2$
+        SHIP_3 = $SHIP_3$
+        SHIP_4 = $SHIP_4$
+    }
+
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
+        TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_base"
+    }
+}
+else_if = {
+    limit = { NOT = { check_variable = { which = tDesignType value = @mpp_no } } }
+    if = {
+        limit = {
+            check_variable = { which = tDesignType value = @mpp_fleet_design_drone_00 }
+        }
+        inline_script = {
+            script = fleets/mpp_i_s_fleet_design_drone_00
+            SHIP_1 = $SHIP_1$
+            SHIP_2 = $SHIP_2$
+            SHIP_3 = $SHIP_3$
+            SHIP_4 = $SHIP_4$
+        }
+
+        # ---------- Debug ----------
+        mpp_log_script_config = {
+            EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
+            TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_drone_00"
+        }
+    }
+    else = {
+        mpp_log_script_error = {
+            EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
+            TEXT = "FleetDesing $DESIGN_TYPE$ no implementado"
+        }
+    }
+}
+else = {
+    inline_script = {
+        script = fleets/mpp_i_s_fleet_design_$DESIGN$
+        SHIP_1 = $SHIP_1$
+        SHIP_2 = $SHIP_2$
+        SHIP_3 = $SHIP_3$
+        SHIP_4 = $SHIP_4$
+    }
+
+    # ---------- Debug ----------
+    mpp_log_script_config = {
+        EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
+        TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_$DESIGN$"
+    }
 }
 
-# ---------- Debug ----------
-mpp_log_script_config = {
-    EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
-    TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_$DESIGN$"
-}
+# ---------- Limpieza de variables ----------
+clear_variable = tDesign
+clear_variable = tDesignType

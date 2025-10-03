@@ -2,259 +2,146 @@
 # Fleet
 # ===============================================
 
-mpp_config_fleet = {
+# !rev no se pueden crear flotas dinámicamente falla owner en events/paragon_events_3
+mpp_add_fleet = {
     optimize_memory
 
-    [[NAME] set_name = $FLEET_NAME|random$ ]
+    create_fleet = {
+        [[FLEET_NAME] name = $FLEET_NAME$ ]
 
-    # ---------- Configuración de location ----------
-    set_variable = { which = tFleetLocation value = $LOCATION_TARGET|@mpp_no$ }
-    if = {
-        limit = { NOT = { check_variable = { which = tFleetLocation value = @mpp_no } } }
-        set_location = {
-            target = $LOCATION_TARGET$
-            distance = $DISTANCE|0$
-        }
-    }
-    else = {
-        set_variable = { which = tFleetLocation value = $LOCATION|@mpp_no$ }
-        if = {
-            limit = { NOT = { check_variable = { which = tFleetLocation value = @mpp_no } } }
+        effect = {
             inline_script = {
-                script = mpp_i_s_set_location
-                EFFECT = mpp_config_fleet
-                TARGET = $LOCATION$
-                DISTANCE = $DISTANCE|0$
+                script = fleets/mpp_i_s_fleet_config
+                EFFECT = mpp_add_fleet
+                FLEET_NAME = @mpp_no # !Rev Ya puesto. No admite variables de texto, da error de scope
+                FLEET_OWNER = $FLEET_OWNER|@mpp_no$
+                FLEET_OWNER_TARGET = @mpp_no # !Rev No admite variables de texto, da error de scope
+                # -- Location config -- #
+                LOCATION = $LOCATION|@mpp_no$
+                LOCATION_TARGET = @mpp_no # !Rev No admite variables de texto, da error de scope
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|@mpp_no$
+                MIN_DISTANCE = $MIN_DISTANCE|0$
+                MAX_DISTANCE = $MAX_DISTANCE|0$
+                # -- Aggro config -- #
+                FLEET_STANCE = $FLEET_STANCE|@mpp_fleet_stance_passive$
+                AGGRO_RANGE = $AGGRO_RANGE|150$
+                AGGRO_FROM_RETURN_POINT = @mpp_no
+                # -- Fleet Ships config -- #
+                FLEET_DESIGN = @mpp_no # !Rev No admite variables de texto, da error de scope
+                FLEET_DESIGN_TYPE = $FLEET_DESIGN_TYPE|@mpp_fleet_design_base$
+                SHIP_1 = $SHIP_1|0$
+                SHIP_1_NAME = @mpp_random # !Rev No admite variables de texto, da error de scope
+                SHIP_1_DESIGN = @mpp_random # !Rev No admite variables de texto, da error de scope
+                SHIP_2 = $SHIP_2|0$
+                SHIP_2_NAME = @mpp_random # !Rev No admite variables de texto, da error de scope
+                SHIP_2_DESIGN =@mpp_random # !Rev No admite variables de texto, da error de scope
+                SHIP_3 = $SHIP_3|0$
+                SHIP_3_NAME = @mpp_random # !Rev No admite variables de texto, da error de scope
+                SHIP_4_DESIGN =@mpp_random # !Rev No admite variables de texto, da error de scope
+                SHIP_4 = $SHIP_4|0$
+                SHIP_4_NAME = @mpp_random # !Rev No admite variables de texto, da error de scope
+                SHIP_4_DESIGN = @mpp_random # !Rev No admite variables de texto, da error de scope
+                # -- Fleet Actions -- #
+                MOVE_TO_TARGET = @mpp_no # !Rev No admite variables de texto, da error de scope
+                MOVE_TO_PLANET_FLAG = @mpp_no # !Rev No admite variables de texto, da error de scope
+                PATROL_PLANET_FLAG_1 = @mpp_no # !Rev No admite variables de texto, da error de scope
+                PATROL_PLANET_FLAG_2 = @mpp_no # !Rev No admite variables de texto, da error de scope
+                PATROL_PLANET_FLAG_3 =@mpp_no # !Rev No admite variables de texto, da error de scope
+                PATROL_PLANET_FLAG_4 = @mpp_no # !Rev No admite variables de texto, da error de scope
+                PATROL_PLANET_FLAG_4 = @mpp_no # !Rev No admite variables de texto, da error de scope
             }
         }
     }
-    # ---------- Configuración de Owner ----------
-    [[FLEET_OWNER] set_owner = $FLEET_OWNER$ ]
-
-    # ---------- Configuración de aggro ----------
-    set_aggro_range = $AGGRO_RANGE|150$
-    set_variable = { which = tStance value = $FLEET_STANCE|@mpp_fleet_stance_passive$ }
-    if = {
-        limit = { check_variable = { which = tStance value = @mpp_fleet_stance_aggressive } }
-        set_fleet_stance = aggressive
-    }
-    else_if = {
-        limit = { check_variable = { which = tStance value = @mpp_fleet_stance_evasive } }
-        set_fleet_stance = passive
-    }
-    else_if = {
-        limit = { check_variable = { which = tStance value = @mpp_fleet_stance_passive } }
-        set_fleet_stance = evasive
-    }
-    [[AGGRO_FROM_RETURN_POINT] set_aggro_range_measure_from = return_point ]
-    [[!AGGRO_FROM_RETURN_POINT] set_aggro_range_measure_from = self ]
-
-    # ---------- Create Ships ----------
-    set_variable = { which = tFleetType value = $FLEET_TYPE|@mpp_no$ }
-    if = {
-        limit = { NOT = { check_variable = { which = tFleetType value = @mpp_no } } }
-
-        inline_script = {
-            script = fleets/mpp_i_s_fleet_design
-            #noinspection ParadoxScriptUnsetDynamicValue
-            DESIGN = $FLEET_TYPE|base$
-            SHIP_1 = $SHIP_1|0$
-            SHIP_2 = $SHIP_2|0$
-            SHIP_3 = $SHIP_3|0$
-            SHIP_4 = $SHIP_4|0$
-        }
-    }
-    else = {
-        while = {
-            count = $SHIP_1|0$
-            create_ship = {
-                name = $SHIP_1_NAME|random$
-                design = $SHIP_1_DESIGN|last_created_design$
-            }
-        }
-        while = {
-            count = $SHIP_2|0$
-            create_ship = {
-                name = $SHIP_2_NAME|random$
-                design = $SHIP_2_DESIGN|last_created_design$
-            }
-        }
-        while = {
-            count = $SHIP_3|0$
-            create_ship = {
-                name = $SHIP_3_NAME|random$
-                design = $SHIP_3_DESIGN|last_created_design$
-            }
-        }
-        while = {
-            count = $SHIP_4|0$
-            create_ship = {
-                name = $SHIP_4_NAME|random$
-                design = $SHIP_4_DESIGN|last_created_design$
-            }
-        }
-    }
-
-    # ---------- Cola de acciones ----------
-    mpp_fleet_queue_actions = {
-        MOVE_TO = $MOVE_TO|@mpp_no$
-        MOVE_TO_PLANET_FLAG = $MOVE_TO_PLANET_FLAG|@mpp_no$
-    }
-
-    # ---------- Debug ----------
-    if = {
-        limit = { mpp_is_debug_active = yes }
-        if = {
-            limit = { owner = { is_scope_valid = yes } }
-            #mpp_log_config
-            log_error = "   ⚙️ - MPP - conf:<mpp_config_fleet> - \\[This.GetName] en \\[This.tFleetLocation] para \\[Owner.GetName]"
-        }
-        else = {
-            #mpp_log_config
-            log_error = "   ⚙️ - MPP - conf:<mpp_config_fleet> - \\[This.GetName] en \\[This.tFleetLocation] sin owner"
-        }
-    }
-
-    # ---------- Limpieza de variables ----------
-    clear_variable = tFleetLocation
-    clear_variable = tFleetType
-    clear_variable = tActionMoveTo
-    clear_variable = tActionMoveToFlag
 }
 
-# ===============================================
-# Queue Actions
-# ===============================================
+# !rev Para evitar problemas de scope hay que inicializar variables de text antes de llamada
+mpp_fleet_config = {
+    optimize_memory
 
+    if = {
+        limit = { is_scope_type = fleet }
+
+        hidden_effect = {
+            set_variable = { which = base value = @mpp_yes } # !rev Para evitar problemas de scope
+
+            inline_script = {
+                script = fleets/mpp_i_s_fleet_config
+                EFFECT = mpp_add_fleet
+                FLEET_NAME = $FLEET_NAME|@mpp_no$
+                FLEET_OWNER = $FLEET_OWNER|@mpp_no$
+                FLEET_OWNER_TARGET = $FLEET_OWNER_TARGET|@mpp_no$
+                # -- Location config -- #
+                LOCATION = $LOCATION|@mpp_no$
+                LOCATION_TARGET = $LOCATION_TARGET|@mpp_no$
+                DISTANCE = $DISTANCE|@mpp_no$
+                DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|@mpp_no$
+                MIN_DISTANCE = $MIN_DISTANCE|0$
+                MAX_DISTANCE = $MAX_DISTANCE|0$
+                # -- Aggro config -- #
+                FLEET_STANCE = $FLEET_STANCE|@mpp_fleet_stance_passive$
+                AGGRO_RANGE = $AGGRO_RANGE|150$
+                AGGRO_FROM_RETURN_POINT = @mpp_no
+                # -- Fleet Ships config -- #
+                FLEET_DESIGN = $FLEET_DESIGN|base$
+                FLEET_DESIGN_TYPE = $FLEET_DESIGN_TYPE|@mpp_fleet_design_base$
+                SHIP_1 = $SHIP_1|0$
+                SHIP_1_NAME = $SHIP_1_NAME|@mpp_random$
+                SHIP_1_DESIGN = $SHIP_1_DESIGN|@mpp_random$
+                SHIP_2 = $SHIP_2|0$
+                SHIP_2_NAME = $SHIP_2_NAME|@mpp_random$
+                SHIP_2_DESIGN = $SHIP_2_DESIGN|@mpp_random$
+                SHIP_3 = $SHIP_3|0$
+                SHIP_3_NAME = $SHIP_3_NAME|@mpp_random$
+                SHIP_4_DESIGN = $SHIP_4_DESIGN|@mpp_random$
+                SHIP_4 = $SHIP_4|0$
+                SHIP_4_NAME = $SHIP_4_NAME|@mpp_random$
+                SHIP_4_DESIGN = $SHIP_4_DESIGN|@mpp_random$
+                # -- Fleet Actions -- #
+                MOVE_TO_TARGET = $MOVE_TO_TARGET|@mpp_no$
+                MOVE_TO_PLANET_FLAG = $MOVE_TO_PLANET_FLAG|@mpp_no$
+                PATROL_PLANET_FLAG_1 = $PATROL_PLANET_FLAG_1|@mpp_no$
+                PATROL_PLANET_FLAG_2 = $PATROL_PLANET_FLAG_2|@mpp_no$
+                PATROL_PLANET_FLAG_3 = $PATROL_PLANET_FLAG_3|@mpp_no$
+                PATROL_PLANET_FLAG_4 = $PATROL_PLANET_FLAG_4|@mpp_no$
+            }
+
+            # ---------- Limpieza de variables ----------
+            clear_variable = base
+        }
+    }
+
+    else = {
+        mpp_log_effect_error = { EFFECT = mpp_config_fleet TEXT = "Scope no válido, se espera scope_type fleet" }
+        mpp_log_error_invalid_scope = yes
+    }
+}
+
+# !rev Para evitar problemas de scope hay que inicializar variables de text antes de llamada
 mpp_fleet_queue_actions = {
     optimize_memory
 
-    set_variable = { which = tActionMoveTo value = $MOVE_TO|@mpp_no$ }
-    set_variable = { which = tActionMoveToFlag value = $MOVE_TO_PLANET_FLAG|@mpp_no$ }
-    set_variable = { which = tPatrolToFlag1 value = $PATROL_PLANET_FLAG_1|@mpp_no$ }
-    set_variable = { which = tPatrolToFlag2 value = $PATROL_PLANET_FLAG_2|@mpp_no$ }
-    set_variable = { which = tPatrolToFlag3 value = $PATROL_PLANET_FLAG_3|@mpp_no$ }
-    set_variable = { which = tPatrolToFlag4 value = $PATROL_PLANET_FLAG_4|@mpp_no$ }
     if = {
-        limit = { NOT = { check_variable = { which = tActionMoveTo value = @mpp_no } } }
-        queue_actions = {
-            wait = {
-                duration = 20
-                random = 10
-            }
-            move_to = event_target:$MOVE_TO$
-        }
-
-        # ---------- Debug ----------
-        if = {
-            limit = { mpp_is_debug_configs_active = yes }
-            #mpp_log_config_fleet_action
-            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_move_to - \\[This.GetName] - \\[This.tActionMoveTo]"
-        }
-    }
-    else_if = {
-        limit = {
-            NOT = { check_variable = { which = tPatrolToFlag1 value = @mpp_no } }
-            NOT = { check_variable = { which = tPatrolToFlag2 value = @mpp_no } }
-        }
-        queue_actions = {
-            repeat = {
-                find_closest_planet = {
-                    trigger = {
-                        id = mpp_patrol.patrol.1
-                        check_variable = { which = tPatrolToFlag1 value = @mpp_no }
-                        has_planet_flag = $PATROL_PLANET_FLAG_1|@mpp_no$
-                    }
-                    found_planet = {
-                        move_to = this
-                        orbit_planet = this
-                    }
-                }
-                find_closest_planet = {
-                    trigger = {
-                        id = mpp_patrol.patrol.2
-                        check_variable = { which = tPatrolToFlag2 value = @mpp_no }
-                        has_planet_flag = $PATROL_PLANET_FLAG_2|@mpp_no$
-                    }
-                    found_planet = {
-                        move_to = this
-                        orbit_planet = this
-                    }
-                }
-                find_closest_planet = {
-                    trigger = {
-                        id = mpp_patrol.patrol.3
-                        check_variable = { which = tPatrolToFlag3 value = @mpp_no }
-                        has_planet_flag = $PATROL_PLANET_FLAG_3|@mpp_no$
-                    }
-                    found_planet = {
-                        move_to = this
-                        orbit_planet = this
-                    }
-                }
-                find_closest_planet = {
-                    trigger = {
-                        id = mpp_patrol.patrol.4
-                        check_variable = { which = tPatrolToFlag4 value = @mpp_no }
-                        has_planet_flag = $PATROL_PLANET_FLAG_4|@mpp_no$
-                    }
-                    found_planet = {
-                        move_to = this
-                        orbit_planet = this
-                    }
+        limit = { is_scope_type = fleet }
+        hidden_effect = {
+            hidden_effect = {
+                inline_script = {
+                    script = fleets/mpp_i_s_fleet_queue_actions
+                    EFFECT = mpp_fleet_queue_actions
+                    # -- Fleet Actions -- #
+                    MOVE_TO_TARGET = $MOVE_TO_TARGET|@mpp_no$
+                    MOVE_TO_PLANET_FLAG = $MOVE_TO_PLANET_FLAG|@mpp_no$
+                    PATROL_PLANET_FLAG_1 = $PATROL_PLANET_FLAG_1|@mpp_no$
+                    PATROL_PLANET_FLAG_2 = $PATROL_PLANET_FLAG_2|@mpp_no$
+                    PATROL_PLANET_FLAG_3 = $PATROL_PLANET_FLAG_3|@mpp_no$
+                    PATROL_PLANET_FLAG_4 = $PATROL_PLANET_FLAG_4|@mpp_no$
+                    PATROL_PLANET_FLAG_4 = $PATROL_PLANET_FLAG_4|@mpp_no$
                 }
             }
-        }
-
-        # ---------- Debug ----------
-        if = {
-            limit = { mpp_is_debug_configs_active = yes }
-            #mpp_log_config_fleet_action
-            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_patrol - \\[This.GetName] - \\[This.tPatrolToFlag1] - \\[This.tPatrolToFlag2] - \\[This.tPatrolToFlag3] - \\[This.tPatrolToFlag4]"
-        }
-    }
-    else_if = {
-        limit = { NOT = { check_variable = { which = tActionMoveToFlag value = @mpp_no } } }
-        queue_actions = {
-            wait = {
-                duration = 20
-                random = 10
-            }
-            find_closest_planet = {
-                trigger = {
-                    id = mpp_move.to_planet_flag.1
-                    mpp_planet_has_flag = { FLAG = $MOVE_TO_PLANET_FLAG|@mpp_no$ }
-                }
-                found_planet = {
-                    move_to = this
-                    orbit_planet = this
-                }
-            }
-        }
-
-        # ---------- Debug ----------
-        if = {
-            limit = { mpp_is_debug_configs_active = yes }
-            #mpp_log_config_fleet_action
-            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_move_to_planet_flag - \\[This.GetName] - \\[This.tActionMoveToFlag]"
         }
     }
     else = {
-        queue_actions = { repeat = { wait = { duration = 999 random = 10 } } }
-
-        # ---------- Debug ----------
-        if = {
-            limit = { mpp_is_debug_configs_active = yes }
-            #mpp_log_config_fleet_action
-            log_error = "   🔜 - MPP - effect:<mpp_fleet_queue_actions> - action_wait - \\[This.GetName]"
-        }
+        mpp_log_effect_error = { EFFECT = mpp_config_fleet TEXT = "Scope no válido, se espera scope_type fleet" }
+        mpp_log_error_invalid_scope = yes
     }
-
-    # ---------- Limpieza de variables ----------
-    clear_variable = tActionMoveTo
-    clear_variable = tActionMoveToFlag
-    clear_variable = tPatrolToFlag1
-    clear_variable = tPatrolToFlag2
-    clear_variable = tPatrolToFlag3
-    clear_variable = tPatrolToFlag4
 }

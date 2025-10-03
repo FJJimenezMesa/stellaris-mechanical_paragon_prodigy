@@ -2,10 +2,16 @@
 # Eventos
 # ===============================================
 
-mpp_event_add_drone_country_mining_station = {
-    [[TARGET]
+mpp_event_add_drone_mining_station_to_planet = {
+    if = {
+        limit = { mpp_is_planet_scope = yes }
         if = {
-            limit = { exists = event_target:$TARGET$ }
+            limit = {
+                OR = {
+                    mpp_is_planet_class_planet = yes
+                    mpp_is_planet_class_asteroid = yes
+                }
+            }
 
             # Nos cercioramos de que hay un country tipo drone
             create_drone_country = yes
@@ -13,61 +19,145 @@ mpp_event_add_drone_country_mining_station = {
                 save_event_target_as = mining_drones
             }
 
-            event_target:$TARGET$ = {
-                # Si hay planeta lanzamos los eventos
-                if = {
-                    limit = {
-                        OR = {
-                            mpp_is_planet_class_planet = yes
-                            mpp_is_planet_class_asteroid = yes
-                        }
-                    }
-                    # Bloqueamos desarrollo dNAel planeta
-                    add_deposit = d_ship_debris_payback_blocker
+            # Bloqueamos desarrollo del planeta
+            add_deposit = d_ship_debris_payback_blocker
 
-                    # Añadir depósito mínimo al planeta
-                    add_deposit = d_minerals_4
+            # Añadir depósito mínimo al planeta
+            add_deposit = d_minerals_4
 
-                    # Creamos estación de minería en el planeta
-                    create_mining_station = {
-                        owner = event_target:mining_drones
-                    }
+            # Creamos estación de minería en el planeta
+            create_mining_station = {
+                owner = event_target:mining_drones
+            }
 
-                    set_planet_flag = mpp_drone_mining_station
-                }
+            set_planet_flag = mpp_flag_drone_mining_station
 
-                # ---------- Debug ----------
-                mpp_log_info_event = { EVENT = mpp_event_add_drone_country_mining_station TEXT = "Se añade estación minera de drones en $TARGET$" }
+            # ---------- Debug ----------
+            # mpp_log_info_fleet
+            if = {
+                limit = { mpp_is_debug_info_active = yes }
+                log_error = "⚠️ - MPP - event:<mpp_event_add_drone_mining_station_to_planet> - Se añade estación minera de drones en \\[This.GetName]"
             }
         }
-    ]
+        else = {
+            mpp_log_effect_error_planet_no_valid = {
+                EFFECT = mpp_event_add_drone_mining_station_to_planet
+            }
+        }
+    }
+    else = {
+        mpp_log_error_effect_invalid_scope = {
+            EFFECT = mpp_event_add_drone_mining_station_to_planet
+            TEXT = "Scope no válido, se espera scope_type planet"
+        }
+    }
 }
 
-mpp_event_add_primitive_robot = {
-    [[TARGET]
+mpp_event_add_drone_fleet_to_planet = {
+    if = {
+        limit = { mpp_is_planet_scope = yes }
         if = {
-            limit = { exists = event_target:$TARGET$ }
-
-            event_target:$TARGET$ = {
-                # Si hay planeta lanzamos los eventos
-                if = {
-                    limit = { mpp_is_planet_class_planet = yes }
-
-                    add_anomaly = {
-                        category = DISTAR_ROBO_CAT
-                    }
-                    set_planet_flag = primitive_robot_planet
-                    prevent_anomaly = yes
-                    add_deposit = d_city_ruins
-                    add_deposit = d_city_ruins
-                    add_deposit = d_failing_infrastructure
-                    add_deposit = d_failing_infrastructure
-                    add_deposit = d_metal_boneyard
-
-                    # ---------- Debug ----------
-                    mpp_log_info_event = { EVENT = mpp_event_add_primitive_robot TEXT = "Se añade primitive_robot a $TARGET$" }
+            limit = {
+                OR = {
+                    mpp_is_planet_class_planet = yes
+                    mpp_is_planet_class_asteroid = yes
                 }
             }
+            save_event_target_as = tPlanet
+            #noinspection ParadoxScriptUnusedDynamicValue
+            set_planet_flag = mpp_flag_drone_activity
+
+            # Nos cercioramos de que hay un country tipo drone
+            create_drone_country = yes
+            event_target:drone_country = {
+                save_event_target_as = mining_drones
+            }
+
+            create_fleet = {
+                name = MPP_NAME_Fleet_Ancient_Mining_Drones
+
+                effect = {
+                    set_owner = event_target:drone_country
+
+                    # !rev Evitar problemas de scope?
+                    # ---------- Inicialización de variables de texto ----------
+                    #noinspection ParadoxScriptUnusedDynamicValue
+                    set_variable = { which = tPlanet value = @mpp_yes }
+                    #noinspection ParadoxScriptUnusedDynamicValue
+                    set_variable = { which = mpp_flag_drone_activity value = @mpp_yes }
+
+                    mpp_fleet_config = {
+                        LOCATION_TARGET = tPlanet
+                        DISTANCE = 20
+                        FLEET_DESIGN_TYPE = @mpp_fleet_design_drone_00
+                        SHIP_1 = 2
+                        SHIP_2 = 1
+                        SHIP_3 = 0
+                        SHIP_4 = 0
+                        AGGRO_RANGE = 15
+                        FLEET_STANCE = @mpp_fleet_stance_passive
+                        MOVE_TO_PLANET_FLAG = mpp_flag_drone_activity
+                    }
+                }
+            }
+
+            # ---------- Debug ----------
+            # mpp_log_info_fleet
+            if = {
+                limit = { mpp_is_debug_info_active = yes }
+                log_error = "🚀 - MPP - event:<mpp_event_add_drone_fleet_to_planet> - Se añade flota minera de drones en \\[This.GetName]"
+            }
         }
-    ]
+        else = {
+            mpp_log_effect_error_planet_no_valid = {
+                EFFECT = mpp_event_add_drone_fleet_to_planet
+            }
+        }
+    }
+    else = {
+        mpp_log_error_effect_invalid_scope = {
+            EFFECT = mpp_event_add_drone_fleet_to_planet
+            TEXT = "Scope no válido, se espera scope_type planet"
+        }
+    }
+}
+
+mpp_event_add_primitive_robot_to_planet = {
+
+    if = {
+        limit = { mpp_is_planet_scope = yes }
+        if = {
+            limit = { mpp_is_planet_class_planet = yes }
+            add_anomaly = {
+                category = DISTAR_ROBO_CAT
+            }
+            set_planet_flag = primitive_robot_planet
+            set_planet_flag = mpp_flag_primitive_robot_planet
+
+            prevent_anomaly = yes
+            add_deposit = d_city_ruins
+            add_deposit = d_city_ruins
+            add_deposit = d_failing_infrastructure
+            add_deposit = d_failing_infrastructure
+            add_deposit = d_metal_boneyard
+
+            # ---------- Debug ----------
+            # mpp_log_info_event
+            if = {
+                limit = { mpp_is_debug_info_active = yes }
+                log_error = "⚠️ - MPP - event:<mpp_event_add_primitive_robot> - Se añade primitive_robot a \\[This.GetName]"
+            }
+        }
+        else = {
+            mpp_log_effect_error_planet_no_valid = {
+                EFFECT = mpp_event_add_primitive_robot_to_planet
+            }
+        }
+    }
+    else = {
+        mpp_log_error_effect_invalid_scope = {
+            EFFECT = mpp_event_add_primitive_robot_to_planet
+            TEXT = "Scope no válido, se espera scope_type planet"
+        }
+    }
 }

@@ -104,6 +104,44 @@ mpp_go_add_asteroids = {
 }
 
 # ===============================================
+# Modificadores
+# ===============================================
+
+mpp_go_add_deposites_a = {
+    [[TARGET]
+        if = {
+            limit = { exists = event_target:$TARGET$ }
+            event_target:$TARGET$ = {
+                clear_deposits = yes
+                clear_blockers = yes
+                add_deposit = d_metal_boneyard
+                add_deposit = d_irradiated_valley
+                add_deposit = d_impact_crater
+                add_deposit = d_ore_rich_caverns
+                add_deposit = d_underwater_vent
+                add_deposit = d_radioactive_wasteland
+                add_deposit = d_city_ruins
+            }
+        }
+    ]
+}
+
+mpp_go_add_deposites_b = {
+    [[TARGET]
+        if = {
+            limit = { exists = event_target:$TARGET$ }
+            event_target:$TARGET$ = {
+                add_deposit = d_city_ruins
+                add_deposit = d_city_ruins
+                add_deposit = d_failing_infrastructure
+                add_deposit = d_failing_infrastructure
+                add_deposit = d_metal_boneyard
+            }
+        }
+    ]
+}
+
+# ===============================================
 # Efectos
 # ===============================================
 

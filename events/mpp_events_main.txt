@@ -7,7 +7,7 @@ namespace = mpp_events_master
 # MPP LOGIC
 # ===================================================
 
-# Init flags globales
+# Init flags globales y configuración de sistemas por flags
 event = {
     id = mpp_events_master.0
     is_triggered_only = yes
@@ -19,17 +19,42 @@ event = {
         # Una sóla vez
         if = {
             limit = {
-                # TODO buscar todos los planetas / sistemas y ver si alguna tiene flag MPP
-                # TODO una vez encontrado el lider coger el country y llamar a mpp_set_flags_mpp_system_exists
+                NOT = { has_global_flag = mpp_flag_init_done }
             }
+
+            mpp_log_info_master_event = { EVENT = mpp_events_master.0 TEXT = "Iniciando configuraciones" }
+
+            # Init de galaxia hay Systema MPP
+            every_system = {
+                limit = { mpp_is_mpp_system = yes }
+
+                every_system_planet = {
+                    limit = { is_homeworld = yes }
+
+                    mpp_set_flags_mpp_capital_origin = yes
+                }
+
+                every_system_planet = {
+                    planet_event = { id = mpp_events_master.101 } # drone_mining_station
+                    planet_event = { id = mpp_events_master.102 } # drone_activity}
+                    planet_event = { id = mpp_events_master.103 } # primitive_robot
+                }
+            }
+
+            #if = {
+                #limit = { exists = event_target:mpp_doorstep_gateway_vector }
+                # TODO añadir eventos a portal
+            #}
+
+            # TODO buscar todos los líderes y ver si alguno tiene el trait parangon
+            # TODO una vez encontrado el lider coger el country y llamar a mpp_set_flags_mpp_leader_exists
+
+            set_global_flag = mpp_flag_init_done
         }
 
-        # Init de estado de líder parangón
         if = {
-            limit = {
-                # TODO buscar todos los líderes y ver si alguno tiene el trait parangon
-                # TODO una vez encontrado el lider coger el country y llamar a mpp_set_flags_mpp_leader_exists
-            }
+            limit = { mpp_is_debug_active = yes }
+            mpp_log_info_master_event = { EVENT = mpp_events_master.0 TEXT = "Fin" }
         }
     }
 }
@@ -880,5 +905,47 @@ country_event = {
                 }
             }
         }
+    }
+}
+
+planet_event = {
+    id = mpp_events_master.101
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        has_planet_flag = mpp_flag_drone_mining_station
+    }
+
+    immediate = {
+        mpp_event_add_drone_mining_station_to_planet = yes
+    }
+}
+
+planet_event = {
+    id = mpp_events_master.102
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        has_planet_flag = mpp_flag_drone_activity
+    }
+
+    immediate = {
+        mpp_event_add_drone_fleet_to_planet = yes
+    }
+}
+
+planet_event = {
+    id = mpp_events_master.103
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        has_planet_flag = mpp_flag_primitive_robot_planet
+    }
+
+    immediate = {
+        mpp_event_add_primitive_robot_to_planet = yes
     }
 }

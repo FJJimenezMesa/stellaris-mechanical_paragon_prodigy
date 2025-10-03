@@ -1,0 +1,171 @@
+# ---------- Configuración de Name ----------
+set_variable = { which = tFleetName value = $FLEET_NAME$ }
+if = {
+    limit = { NOT = { check_variable = { which = tFleetName value = @mpp_no } } }
+    set_name = $FLEET_NAME$
+}
+
+# ---------- Configuración de Owner ----------
+set_variable = { which = tFleetOwnerTarget value = $FLEET_OWNER_TARGET$ }
+set_variable = { which = tFleetOwner value = $FLEET_OWNER$ }
+# FLEET_OWNER_TARGET definido y correcto, MANDA!
+if = {
+    limit = {
+        NOT = { check_variable = { which = tFleetOwnerTarget value = @mpp_no } }
+        exists = event_target:$FLEET_OWNER_TARGET$
+    }
+    set_owner = event_target:$FLEET_OWNER_TARGET$
+}
+else_if = {
+    limit = { NOT = { check_variable = { which = tFleetOwner value = @mpp_no } } }
+    # FLEET_OWNER definido
+    if = {
+        limit = { check_variable = { which = tFleetOwner value = @mpp_prev } }
+        set_owner = prev
+    }
+    else_if = {
+        limit = { check_variable = { which = tFleetOwner value = @mpp_from } }
+        set_owner = from
+    }
+    else_if = {
+        limit = { check_variable = { which = tFleetOwner value = @mpp_root } }
+        set_owner = root
+    }
+    else_if = {
+        limit = { check_variable = { which = tFleetOwner value = @mpp_rootOwner } }
+        set_owner = root.owner
+    }
+}
+# !Rev NO owner?
+
+# ---------- Configuración de location ----------
+set_variable = { which = tFleetLocation value = $LOCATION_TARGET$ }
+if = {
+    limit = { check_variable_arithmetic = { which = tFleetLocation value = @mpp_no } }
+    set_variable = { which = tFleetLocation value = $LOCATION$ }
+}
+inline_script = {
+    script = mpp_i_s_set_location
+    LOCATION = $LOCATION$
+    LOCATION_TARGET = $LOCATION_TARGET$
+    DISTANCE = $DISTANCE$
+    DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
+    MIN_DISTANCE = $MIN_DISTANCE$
+    MAX_DISTANCE = $MAX_DISTANCE$
+    IN_ORBIT = @mpp_no
+}
+
+# ---------- Configuración de aggro ----------
+set_variable = { which = tStance value = $FLEET_STANCE$ }
+set_variable = { which = tAggroFrom value = $AGGRO_FROM_RETURN_POINT$ }
+if = {
+    limit = { check_variable = { which = tStance value = @mpp_fleet_stance_aggressive } }
+    set_fleet_stance = aggressive
+}
+else_if = {
+    limit = { check_variable = { which = tStance value = @mpp_fleet_stance_evasive } }
+    set_fleet_stance = evasive
+}
+else_if = {
+    limit = { check_variable = { which = tStance value = @mpp_fleet_stance_passive } }
+    set_fleet_stance = passive
+}
+set_aggro_range = $AGGRO_RANGE$
+if = {
+    limit = { check_variable = { which = tAggroFrom value = @mpp_yes } }
+    set_aggro_range_measure_from = return_point
+}
+else = {
+    set_aggro_range_measure_from = self
+}
+
+# ---------- Create Ships ----------
+set_variable = { which = tFleetDesign value = $FLEET_DESIGN$ }
+set_variable = { which = tFleetDesignType value = $FLEET_DESIGN_TYPE$ }
+if = {
+    limit = {
+        OR = {
+            NOT = { check_variable = { which = tFleetDesign value = @mpp_no } }
+            NOT = { check_variable = { which = tFleetDesignType value = @mpp_no } }
+        }
+    }
+
+    inline_script = {
+        script = fleets/mpp_i_s_fleet_design
+        #noinspection ParadoxScriptUnsetDynamicValue
+        EFFECT = $EFFECT$
+        DESIGN = $FLEET_DESIGN$
+        DESIGN_TYPE = $FLEET_DESIGN_TYPE$
+        SHIP_1 = $SHIP_1$
+        SHIP_2 = $SHIP_2$
+        SHIP_3 = $SHIP_3$
+        SHIP_4 = $SHIP_4$
+    }
+}
+else = {
+    inline_script = {
+        script = fleets/mpp_i_s_add_ships
+        SHIP_COUNT = $SHIP_1$
+        SHIP_NAME = $SHIP_1_NAME$
+        SHIP_DESIGN = $SHIP_1_DESIGN$
+    }
+
+    inline_script = {
+        script = fleets/mpp_i_s_add_ships
+        SHIP_COUNT = $SHIP_2$
+        SHIP_NAME = $SHIP_2_NAME$
+        SHIP_DESIGN = $SHIP_2_DESIGN$
+    }
+
+    inline_script = {
+        script = fleets/mpp_i_s_add_ships
+        SHIP_COUNT = $SHIP_3$
+        SHIP_NAME = $SHIP_3_NAME$
+        SHIP_DESIGN = $SHIP_3_DESIGN$
+    }
+
+    inline_script = {
+        script = fleets/mpp_i_s_add_ships
+        SHIP_COUNT = $SHIP_4$
+        SHIP_NAME = $SHIP_4_NAME$
+        SHIP_DESIGN = $SHIP_4_DESIGN$
+    }
+}
+
+# ---------- Cola de acciones ----------
+inline_script = {
+    script = fleets/mpp_i_s_fleet_queue_actions
+    EFFECT = $EFFECT$
+    # -- Fleet Actions -- #
+    MOVE_TO_TARGET = $MOVE_TO_TARGET$
+    MOVE_TO_PLANET_FLAG = $MOVE_TO_PLANET_FLAG$
+    PATROL_PLANET_FLAG_1 = $PATROL_PLANET_FLAG_1$
+    PATROL_PLANET_FLAG_2 = $PATROL_PLANET_FLAG_2$
+    PATROL_PLANET_FLAG_3 = $PATROL_PLANET_FLAG_3$
+    PATROL_PLANET_FLAG_4 = $PATROL_PLANET_FLAG_4$
+    PATROL_PLANET_FLAG_4 = $PATROL_PLANET_FLAG_4$
+}
+
+# ---------- Debug ----------
+if = {
+    limit = { mpp_is_debug_active = yes }
+    if = {
+        limit = { owner = { is_scope_valid = yes } }
+        #mpp_log_effect
+        log_error = "   🛠️ - MPP - conf:effect:<$EFFECT$> - \\[This.GetName] configurado en \\[This.tFleetLocation] para \\[Owner.GetName]"
+    }
+    else = {
+        #mpp_log_effect
+        log_error = "   🛠️ - MPP - conf:effect:<$EFFECT$> - \\[This.GetName] configurado en \\[This.tFleetLocation] sin owner"
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tFleetOwner
+clear_variable = tFleetOwnerTarget
+clear_variable = tFleetName
+clear_variable = tFleetLocation
+clear_variable = tStance
+clear_variable = tAggroFrom
+clear_variable = tFleetDesign
+clear_variable = tFleetDesignType

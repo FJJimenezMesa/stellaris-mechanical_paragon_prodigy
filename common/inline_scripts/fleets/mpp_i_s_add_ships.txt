@@ -1,0 +1,52 @@
+set_variable = { which = tShipName value = $SHIP_NAME$ }
+set_variable = { which = tShipDesign value = $SHIP_DESIGN$ }
+if = {
+    limit = {
+        NOT = { check_variable = { which = tShipName value = @mpp_random } }
+        NOT = { check_variable = { which = tShipDesign value = @mpp_random } }
+    }
+    while = {
+        count = $SHIP_COUNT$
+        create_ship = {
+            name = $SHIP_NAME$
+            design = $SHIP_DESIGN$
+        }
+    }
+}
+else_if = {
+    limit = {
+        NOT = { check_variable = { which = tShipName value = @mpp_random } }
+    }
+    while = {
+        count = $SHIP_COUNT$
+        create_ship = {
+            name = $SHIP_NAME$
+            design = last_created_design
+        }
+    }
+}
+else_if = {
+    limit = {
+        NOT = { check_variable = { which = tShipDesign value = @mpp_random } }
+    }
+    while = {
+        count = $SHIP_COUNT$
+        create_ship = {
+            name = random
+            design = $SHIP_DESIGN$
+        }
+    }
+}
+else = {
+    while = {
+        count = $SHIP_COUNT$
+        create_ship = {
+            name = random
+            design = last_created_design
+        }
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tShipName
+clear_variable = tShipDesign

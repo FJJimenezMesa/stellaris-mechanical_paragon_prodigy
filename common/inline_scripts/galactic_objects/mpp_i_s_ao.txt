@@ -15,7 +15,7 @@ if = {
             entity_offset_angle = { min = 0 max = 359 }
         }
         # ---------- Debug ----------
-        mpp_log_info_go = {
+        mpp_log_info_ao = {
             EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en $TARGET$ a $F_DISTANCE$ inOrbt"
         }
     }
@@ -27,7 +27,7 @@ if = {
             entity_offset_angle = { min = 0 max = 359 }
         }
         # ---------- Debug ----------
-        mpp_log_info_go = {
+        mpp_log_info_ao = {
             EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en $TARGET$ a $F_DISTANCE$"
         }
     }
@@ -45,8 +45,8 @@ else = {
             direction = in_system
         }
         # ---------- Debug ----------
-        mpp_log_info_go = {
-            EFFECT = $EFFECT$ TEXT = "set_location en $TARGET$ a $F_DISTANCE$"
+        mpp_log_script_config = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_o TEXT = "set_location en $TARGET$ a $F_DISTANCE$"
         }
     }
     else = {
@@ -57,8 +57,8 @@ else = {
             direction = out_system
         }
         # ---------- Debug ----------
-        mpp_log_info_go = {
-            EFFECT = $EFFECT$ TEXT = "set_location en $TARGET$ a $F_DISTANCE$"
+        mpp_log_script_config = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_o TEXT = "set_location en $TARGET$ a $F_DISTANCE$"
         }
     }
 }
