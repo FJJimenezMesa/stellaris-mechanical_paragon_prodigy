@@ -62,33 +62,3 @@ else = {
         }
     }
 }
-
-
-## create_ambient_object
-# type = <ambient_object>
-# location = scope_group[spatial_object]
-# scale = float
-# use_3d_location = bool
-# entity_offset = float
-# entity_offset = { min = float max = float }
-# entity_offset_angle = int
-# entity_offset_angle = { min = int max = int }
-# entity_offset_height = float
-# entity_offset_height = { min = float max = float }
-# base_angle_towards = scope[country]
-# base_angle_towards = scope_group[spatial_object]
-# entity_face_object = scope_group[spatial_object]
-# entity_scale_to_size = bool
-# scripted_scale = value[variable]
-# play_animation_once = bool
-# duration = int
-# effect = single_alias_right[effect_clause]
-
-## set_location
-# target = scope_group[spatial_object]
-# distance = float #No variables here atm
-# distance = { min = float max = float }
-# angle = int[0..360]
-# angle = random
-# direction = in_system
-# direction = out_system

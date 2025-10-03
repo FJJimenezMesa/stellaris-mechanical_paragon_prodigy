@@ -1,0 +1,32 @@
+# ---------- Lógica de distancia ----------
+inline_script = {
+    script = calc_vars/mpp_i_s_calc_tDistance
+    EFFECT = $EFFECT$
+    DISTANCE = $DISTANCE$
+    DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
+    MIN_DISTANCE = $MIN_DISTANCE$
+    MAX_DISTANCE = $MAX_DISTANCE$
+}
+
+# ---------- Lógica de ángulo ----------
+#inline_script = {
+#    script = calc_vars/mpp_i_s_calc_angle
+#    EFFECT = "mpp_set_location"
+#    ANGLE = $ANGLE|@mpp_no$
+#    ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE|@mpp_no$
+#    MIN_ANGLE = $MIN_ANGLE|@mpp_no$
+#    MAX_ANGLE =  $MAX_ANGLE|@mpp_no$
+#}
+
+inline_script = {
+    script = call_local_vars/mpp_i_s_local_tDistance
+    BASE_SCRIPT = galactic_objects/mpp_i_s_ao_add_logic
+    EFFECT = $EFFECT$
+    TYPE = $TYPE$
+    LOCATION = $LOCATION$
+    LOCATION_TARGET = $LOCATION_TARGET$
+    IN_ORBIT = $IN_ORBIT$
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tDistance

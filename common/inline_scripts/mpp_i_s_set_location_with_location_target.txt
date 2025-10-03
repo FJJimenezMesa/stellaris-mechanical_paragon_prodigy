@@ -13,7 +13,7 @@ if = {
         }
         # ---------- Debug ----------
         mpp_log_script_effect = {
-            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_with_location_target
             TEXT = "set_location en event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ in_system"
         }
     }
@@ -26,7 +26,7 @@ if = {
         }
         # ---------- Debug ----------
         mpp_log_script_effect = {
-            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_with_location_target
             TEXT = "set_location en event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ out_system"
         }
     }
@@ -44,7 +44,7 @@ else_if = {
         }
         # ---------- Debug ----------
         mpp_log_script_effect = {
-            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_with_location_target
             TEXT = "set_location en prev.event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ in_system"
         }
     }
@@ -57,17 +57,26 @@ else_if = {
         }
         # ---------- Debug ----------
         mpp_log_script_effect = {
-            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_with_location_target
             TEXT = "set_location en prev.event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ out_system"
         }
     }
 }
 else = {
     mpp_log_script_error = {
-        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_target
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location_with_location_target
         TEXT = "LOCATION_TARGET $LOCATION_TARGET$ y prev.$LOCATION_TARGET$ no válidos"
     }
 }
 
 # ---------- Limpieza de variables ----------
 clear_variable = inOrbit
+
+## set_location
+# target = scope_group[spatial_object]
+# distance = float #No variables here atm
+# distance = { min = float max = float }
+# angle = int[0..360]
+# angle = random
+# direction = in_system
+# direction = out_system

@@ -224,3 +224,12 @@ else = {
 # ---------- Limpieza de variables ----------
 clear_variable = tLocation
 clear_variable = inOrbit
+
+## set_location
+# target = scope_group[spatial_object]
+# distance = float #No variables here atm
+# distance = { min = float max = float }
+# angle = int[0..360]
+# angle = random
+# direction = in_system
+# direction = out_system

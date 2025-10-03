@@ -1,0 +1,100 @@
+set_variable = { which = inOrbit value = $IN_ORBIT$ }
+
+if = {
+    limit = { exists = event_target:$LOCATION_TARGET$ }
+    # IN ORBIT
+    if = {
+        limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+        create_ambient_object = {
+            type = $TYPE$
+            location = event_target:$LOCATION_TARGET$
+            entity_offset = $LOCATION_DISTANCE$
+            entity_offset_height = -10
+
+            # TODO añadir cálculo de angle
+            entity_offset_angle = { min = 0 max = 359 }
+        }
+        # ---------- Debug ----------
+        mpp_log_info_ao = {
+            EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ inOrbt"
+        }
+    }
+    else = {
+        create_ambient_object = {
+            type = $TYPE$
+            location = event_target:$LOCATION_TARGET$
+            entity_offset = $LOCATION_DISTANCE$
+
+            # TODO añadir cálculo de angle
+            entity_offset_angle = { min = 0 max = 359 }
+        }
+        # ---------- Debug ----------
+        mpp_log_info_ao = {
+            EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$"
+        }
+    }
+}
+else_if = {
+    limit = { exists = prev.event_target:$LOCATION_TARGET$ }
+
+    # IN ORBIT
+    if = {
+        limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+        create_ambient_object = {
+            type = $TYPE$
+            location = prev.event_target:$LOCATION_TARGET$
+            entity_offset = $LOCATION_DISTANCE$
+            entity_offset_height = -10
+
+            # TODO añadir cálculo de angle
+            entity_offset_angle = { min = 0 max = 359 }
+        }
+        # ---------- Debug ----------
+        mpp_log_info_ao = {
+            EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en prev.event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$ inOrbt"
+        }
+    }
+    else = {
+        create_ambient_object = {
+            type = $TYPE$
+            location = prev.event_target:$LOCATION_TARGET$
+            entity_offset = $LOCATION_DISTANCE$
+
+            # TODO añadir cálculo de angle
+            entity_offset_angle = { min = 0 max = 359 }
+        }
+        # ---------- Debug ----------
+        mpp_log_info_ao = {
+            EFFECT = $EFFECT$ TEXT = "create_ambient_object $TYPE$ en prev.event_target:$LOCATION_TARGET$ a $LOCATION_DISTANCE$"
+        }
+    }
+}
+else = {
+    mpp_log_script_error = {
+        EFFECT = $EFFECT$ SCRIPT = mpp_i_s_ao_add_with_location_target
+        TEXT = "LOCATION_TARGET $LOCATION_TARGET$ y prev.$LOCATION_TARGET$ no válidos"
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = inOrbit
+
+## create_ambient_object
+# type = <ambient_object>
+# location = scope_group[spatial_object]
+# scale = float
+# use_3d_location = bool
+# entity_offset = float
+# entity_offset = { min = float max = float }
+# entity_offset_angle = int
+# entity_offset_angle = { min = int max = int }
+# entity_offset_height = float
+# entity_offset_height = { min = float max = float }
+# base_angle_towards = scope[country]
+# base_angle_towards = scope_group[spatial_object]
+# entity_face_object = scope_group[spatial_object]
+# entity_scale_to_size = bool
+# scripted_scale = value[variable]
+# play_animation_once = bool
+# duration = int
+# effect = single_alias_right[effect_clause]

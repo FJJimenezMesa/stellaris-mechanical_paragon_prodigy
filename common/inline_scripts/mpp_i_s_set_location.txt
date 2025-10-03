@@ -10,7 +10,7 @@ if = {
     # ---------- Lógica de distancia ----------
     inline_script = {
         script = calc_vars/mpp_i_s_calc_tDistance
-        EFFECT = mpp_set_location
+        EFFECT = $EFFECT$
         DISTANCE = $DISTANCE$
         DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
         MIN_DISTANCE = $MIN_DISTANCE$
@@ -29,7 +29,7 @@ if = {
 
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance
-        EFFECT = mpp_set_location
+        EFFECT = $EFFECT$
         BASE_SCRIPT = mpp_i_s_set_location_logic
         LOCATION = $LOCATION$
         LOCATION_TARGET = $LOCATION_TARGET$
@@ -40,8 +40,7 @@ if = {
     clear_variable = tDistance
 }
 else = {
-    mpp_log_effect_error = {
-        EFFECT = mpp_set_location TEXT = "Scope no válido"
+    mpp_log_error_effect_invalid_scope = {
+        EFFECT = $EFFECT$ TEXT = "Scope no válido, se espera scope_type fleet o ambient_object"
     }
-    mpp_log_error_invalid_scope = yes
 }

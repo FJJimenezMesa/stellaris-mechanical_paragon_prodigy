@@ -11,6 +11,7 @@ mpp_set_location = {
             event_target:$TARGET$ = {
                 inline_script = {
                     script = mpp_i_s_set_location
+                    EFFECT = mpp_set_location
                     LOCATION = $LOCATION|@mpp_no$
                     LOCATION_TARGET = $LOCATION_TARGET|@mpp_no$
                     DISTANCE = $DISTANCE|@mpp_no$
@@ -31,6 +32,7 @@ mpp_set_location = {
     [[!TARGET]
         inline_script = {
             script = mpp_i_s_set_location
+            EFFECT = mpp_set_location
             LOCATION = $LOCATION|@mpp_no$
             LOCATION_TARGET = $LOCATION_TARGET|@mpp_no$
             DISTANCE = $DISTANCE|@mpp_no$

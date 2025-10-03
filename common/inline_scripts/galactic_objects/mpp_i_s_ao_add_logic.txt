@@ -1,0 +1,30 @@
+set_variable = { which = tLocationTarget value = $LOCATION_TARGET$ }
+
+# LOCATION_TARGET MANDA!
+if = {
+    limit = { NOT = { check_variable = { which = tLocationTarget value = @mpp_no } } }
+
+    # LOCATION_TARGET definido
+    inline_script = {
+        script = galactic_objects/mpp_i_s_ao_add_with_location_target
+        EFFECT = $EFFECT$
+        TYPE = $TYPE$
+        LOCATION_TARGET = $LOCATION_TARGET$
+        LOCATION_DISTANCE = $LOCATION_DISTANCE$
+        IN_ORBIT = $IN_ORBIT$
+    }
+}
+# LOCATION_TARGET NO definido
+else = {
+    inline_script = {
+        script = galactic_objects/mpp_i_s_ao_add_with_location
+        EFFECT = $EFFECT$
+        TYPE = $TYPE$
+        LOCATION = $LOCATION$
+        LOCATION_DISTANCE = $LOCATION_DISTANCE$
+        IN_ORBIT = $IN_ORBIT$
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tLocationTarget
