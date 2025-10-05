@@ -104,28 +104,28 @@ if = {
 }
 else = {
     inline_script = {
-        script = fleets/mpp_i_s_add_ships
+        script = fleets/mpp_i_s_fleet_add_ships
         SHIP_COUNT = $SHIP_1$
         SHIP_NAME = $SHIP_1_NAME$
         SHIP_DESIGN = $SHIP_1_DESIGN$
     }
 
     inline_script = {
-        script = fleets/mpp_i_s_add_ships
+        script = fleets/mpp_i_s_fleet_add_ships
         SHIP_COUNT = $SHIP_2$
         SHIP_NAME = $SHIP_2_NAME$
         SHIP_DESIGN = $SHIP_2_DESIGN$
     }
 
     inline_script = {
-        script = fleets/mpp_i_s_add_ships
+        script = fleets/mpp_i_s_fleet_add_ships
         SHIP_COUNT = $SHIP_3$
         SHIP_NAME = $SHIP_3_NAME$
         SHIP_DESIGN = $SHIP_3_DESIGN$
     }
 
     inline_script = {
-        script = fleets/mpp_i_s_add_ships
+        script = fleets/mpp_i_s_fleet_add_ships
         SHIP_COUNT = $SHIP_4$
         SHIP_NAME = $SHIP_4_NAME$
         SHIP_DESIGN = $SHIP_4_DESIGN$

@@ -201,84 +201,84 @@ FIN - MPP -  $TEXT$
 mpp_log_info_system_initializer_init = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "🌌 - MPP - solar_system_initializer:<\$:$NAME$> - Iniciando configuraciones"
+        log_error = "🌌 - MPP - solar_system_initializer:<:$NAME$> - Iniciando configuraciones"
     }
 }
 
 mpp_log_info_system_initializer_end = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "🌌 - MPP - solar_system_initializer:<\$:$NAME$> - Iniciando configuraciones"
+        log_error = "🌌 - MPP - solar_system_initializer:<:$NAME$> - Iniciando configuraciones"
     }
 }
 
 mpp_log_info_go = {
     if = {
         limit = { mpp_is_debug_info_active = yes }
-        log_error = "🪐 - MPP - effect:<\$:$EFFECT$> -  $TEXT$"
+        log_error = "🪐 - MPP - effect:<:$EFFECT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_ao = {
     if = {
         limit = { mpp_is_debug_info_active = yes }
-        log_error = "✨ - MPP - effect:<\$:$EFFECT$> -  $TEXT$"
+        log_error = "✨ - MPP - effect:<:$EFFECT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_on_action = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "🎯 - MPP - on_action:<\$:$ON_ACTION$> -  $TEXT$"
+        log_error = "🎯 - MPP - on_action:<:$ON_ACTION$> -  $TEXT$"
     }
 }
 
 mpp_log_info_fleet = {
     if = {
         limit = { mpp_is_debug_info_active = yes }
-        log_error = "🚀 - MPP - event:<\$:$EFFECT$> -  $TEXT$"
+        log_error = "🚀 - MPP - event:<:$EFFECT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_event = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "⚠️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+        log_error = "⚠️ - MPP - event:<:$EVENT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_master_event = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "🕹️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+        log_error = "🕹️ - MPP - event:<:$EVENT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_history_event = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "📖 - MPP - event:<\$:$EVENT$> -  $TEXT$"
+        log_error = "📖 - MPP - event:<:$EVENT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_chained_event = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "⛓️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+        log_error = "⛓️ - MPP - event:<:$EVENT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_nemesis_event = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "☠️ - MPP - event:<\$:$EVENT$> -  $TEXT$"
+        log_error = "☠️ - MPP - event:<:$EVENT$> -  $TEXT$"
     }
 }
 
 mpp_log_info_notification_event = {
     if = {
         limit = { mpp_is_debug_active = yes }
-        log_error = "🔔 - MPP - event:<\$:$EVENT$> -  $TEXT$"
+        log_error = "🔔 - MPP - event:<:$EVENT$> -  $TEXT$"
     }
 }
 
@@ -289,28 +289,28 @@ mpp_log_info_notification_event = {
 mpp_log_config_fleet_action = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
-        log_error = "   🔜 - MPP - conf:effect:<\$:$EFFECT$> -  $ACTION$ -  $TEXT$"
+        log_error = "   🔜 - MPP - conf:effect:<:$EFFECT$> -  $ACTION$ -  $TEXT$"
     }
 }
 
 mpp_log_script_config = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
-        log_error = "   ⚙️ - MPP - conf:effect:<\$:$EFFECT$::$SCRIPT$> -  $TEXT$"
+        log_error = "   ⚙️ - MPP - conf:effect:<:$EFFECT$::$SCRIPT$> -  $TEXT$"
     }
 }
 
 mpp_log_effect = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
-        log_error = "   🛠️ - MPP - conf:effect:<\$:$EFFECT$> -  $TEXT$"
+        log_error = "   🛠️ - MPP - conf:effect:<:$EFFECT$> -  $TEXT$"
     }
 }
 
 mpp_log_script_effect = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
-        log_error = "   🛠️ - MPP - effect:<\$:$EFFECT$::$SCRIPT$> - \\[This.GetName] -  $TEXT$"
+        log_error = "   🛠️ - MPP - effect:<:$EFFECT$::$SCRIPT$> - \\[This.GetName] -  $TEXT$"
     }
 }
 
@@ -321,14 +321,14 @@ mpp_log_script_effect = {
 mpp_log_effect_error = {
     if = {
         limit = { mpp_is_debug_error_active = yes }
-        log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$"
+        log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$"
     }
 }
 
 mpp_log_script_error = {
     if = {
         limit = { mpp_is_debug_error_active = yes }
-        log_error = "❌ - MPP - conf:<\$:$EFFECT$::$SCRIPT$> -  $TEXT$"
+        log_error = "❌ - MPP - conf:<:$EFFECT$::$SCRIPT$> -  $TEXT$"
     }
 }
 
@@ -367,28 +367,28 @@ mpp_log_error_invalid_scope = {
 mpp_log_error_effect_invalid_scope = {
     if = {
         limit = { mpp_is_debug_error_active = yes }
-        if = { limit = { is_scope_valid = no } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - No valid scope" }
-        else_if = { limit = { is_scope_type = none } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: none" }
-        else_if = { limit = { is_scope_type = country } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: country" }
-        else_if = { limit = { is_scope_type = sector } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: sector" }
-        else_if = { limit = { is_scope_type = galactic_object } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: galactic_object" }
-        else_if = { limit = { is_scope_type = megastructure } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: megastructure" }
-        else_if = { limit = { is_scope_type = ambient_object } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: ambient_object" }
-        else_if = { limit = { is_scope_type = planet } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: planet" }
-        else_if = { limit = { is_scope_type = deposit } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: deposit" }
-        else_if = { limit = { is_scope_type = archaeological_site } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - archaeological_site" }
-        else_if = { limit = { is_scope_type = army } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: army" }
-        else_if = { limit = { is_scope_type = pop } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: pop" }
-        else_if = { limit = { is_scope_type = pop_faction } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: pop_faction" }
-        else_if = { limit = { is_scope_type = species } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: species" }
-        else_if = { limit = { is_scope_type = leader } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: leader" }
-        else_if = { limit = { is_scope_type = ship } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: ship" }
-        else_if = { limit = { is_scope_type = fleet } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: fleet" }
-        else_if = { limit = { is_scope_type = federation } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: federation" }
-        else_if = { limit = { is_scope_type = war } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: war" }
-        else_if = { limit = { is_scope_type = first_contact } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: first_contact" }
-        else_if = { limit = { is_scope_type = espionage_operation } log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: espionage_operation" }
-        else = { log_error = "❌ - MPP - conf:<\$:$EFFECT$> -  $TEXT$ - Current scope: UNKNOWN (not matched)" }
+        if = { limit = { is_scope_valid = no } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - No valid scope" }
+        else_if = { limit = { is_scope_type = none } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: none" }
+        else_if = { limit = { is_scope_type = country } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: country" }
+        else_if = { limit = { is_scope_type = sector } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: sector" }
+        else_if = { limit = { is_scope_type = galactic_object } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: galactic_object" }
+        else_if = { limit = { is_scope_type = megastructure } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: megastructure" }
+        else_if = { limit = { is_scope_type = ambient_object } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: ambient_object" }
+        else_if = { limit = { is_scope_type = planet } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: planet" }
+        else_if = { limit = { is_scope_type = deposit } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: deposit" }
+        else_if = { limit = { is_scope_type = archaeological_site } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - archaeological_site" }
+        else_if = { limit = { is_scope_type = army } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: army" }
+        else_if = { limit = { is_scope_type = pop } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: pop" }
+        else_if = { limit = { is_scope_type = pop_faction } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: pop_faction" }
+        else_if = { limit = { is_scope_type = species } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: species" }
+        else_if = { limit = { is_scope_type = leader } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: leader" }
+        else_if = { limit = { is_scope_type = ship } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: ship" }
+        else_if = { limit = { is_scope_type = fleet } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: fleet" }
+        else_if = { limit = { is_scope_type = federation } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: federation" }
+        else_if = { limit = { is_scope_type = war } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: war" }
+        else_if = { limit = { is_scope_type = first_contact } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: first_contact" }
+        else_if = { limit = { is_scope_type = espionage_operation } log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: espionage_operation" }
+        else = { log_error = "❌ - MPP - conf:<:$EFFECT$> -  $TEXT$ - Current scope: UNKNOWN (not matched)" }
     }
 }
 
