@@ -1,46 +1,108 @@
+# Guardamos valores recibidos en variables locales
+set_variable = { which = inOrbit value = $IN_ORBIT$ }
+set_variable = { which = tAngle value = $LOCATION_ANGLE$ }
+
+# ============================================================
+# CASO 1: El objeto debe colocarse "en órbita" (in_system)
+# ============================================================
 if = {
-    limit = {
-        is_scope_valid = yes
-        OR = {
-            is_scope_type = fleet
-            is_scope_type = ambient_object
+    limit = { check_variable = { which = inOrbit value = @mpp_yes } }
+
+    # ------------------------------------------------------------
+    # Subcaso 1A: Ángulo definido explícitamente
+    # ------------------------------------------------------------
+    if = {
+        limit = {
+            NOT = {
+                check_variable = { which = tAngle value = @mpp_no }
+                check_variable = { which = tAngle value = @mpp_random }
+            }
+        }
+        set_location = {
+            $T_TARGET$                          # Target del set_location
+            distance = $LOCATION_DISTANCE$      # Distancia orbital
+            angle = $LOCATION_ANGLE$            # Ángulo definido
+            direction = in_system               # Dirección orbital
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+            TEXT = "set_location en $LOCATION$ a distancia $LOCATION_DISTANCE$ con ángulo $LOCATION_ANGLE$ (in_system)"
         }
     }
 
-    # ---------- Lógica de distancia ----------
-    inline_script = {
-        script = calc_vars/mpp_i_s_calc_tDistance
-        EFFECT = $EFFECT$
-        DISTANCE = $DISTANCE$
-        DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
-        MIN_DISTANCE = $MIN_DISTANCE$
-        MAX_DISTANCE = $MAX_DISTANCE$
+    # ------------------------------------------------------------
+    # Subcaso 1B: Ángulo aleatorio
+    # ------------------------------------------------------------
+    else = {
+        set_location = {
+            $T_TARGET$
+            distance = $LOCATION_DISTANCE$
+            angle = random
+            direction = in_system
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+            TEXT = "set_location en $LOCATION$ a distancia $LOCATION_DISTANCE$ con ángulo random (in_system)"
+        }
     }
-
-    # ---------- Lógica de ángulo ----------
-    #inline_script = {
-    #    script = calc_vars/mpp_i_s_calc_angle
-    #    EFFECT = "mpp_set_location"
-    #    ANGLE = $ANGLE|@mpp_no$
-    #    ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE|@mpp_no$
-    #    MIN_ANGLE = $MIN_ANGLE|@mpp_no$
-    #    MAX_ANGLE =  $MAX_ANGLE|@mpp_no$
-    #}
-
-    inline_script = {
-        script = call_local_vars/mpp_i_s_local_tDistance
-        EFFECT = $EFFECT$
-        BASE_SCRIPT = mpp_i_s_set_location_logic
-        LOCATION = $LOCATION$
-        LOCATION_TARGET = $LOCATION_TARGET$
-        IN_ORBIT = $IN_ORBIT$
-    }
-
-    # ---------- Limpieza de variables ----------
-    clear_variable = tDistance
 }
+
+# ============================================================
+# CASO 2: El objeto NO está en órbita (posición libre, out_system)
+# ============================================================
 else = {
-    mpp_log_error_effect_invalid_scope = {
-        EFFECT = $EFFECT$ TEXT = "Scope no válido, se espera scope_type fleet o ambient_object"
+    # ------------------------------------------------------------
+    # Subcaso 2A: Ángulo definido explícitamente
+    # ------------------------------------------------------------
+    if = {
+        limit = {
+            NOT = {
+                check_variable = { which = tAngle value = @mpp_no }
+                check_variable = { which = tAngle value = @mpp_random }
+            }
+        }
+        set_location = {
+            $T_TARGET$
+            distance = $LOCATION_DISTANCE$
+            angle = $LOCATION_ANGLE$
+            direction = out_system
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+            TEXT = "set_location en $T_TARGET$ a distancia $LOCATION_DISTANCE$ con ángulo $LOCATION_ANGLE$ (out_system)"
+        }
+    }
+
+    # ------------------------------------------------------------
+    # Subcaso 2B: Ángulo aleatorio
+    # ------------------------------------------------------------
+    else = {
+        set_location = {
+            $T_TARGET$
+            distance = $LOCATION_DISTANCE$
+            angle = random
+            direction = out_system
+        }
+        # ---------- Debug ----------
+        mpp_log_script_effect = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_set_location
+            TEXT = "set_location en $T_TARGET$ a distancia $LOCATION_DISTANCE$ con ángulo random (out_system)"
+        }
     }
 }
+
+# ---------- Limpieza de variables ----------
+clear_variable = inOrbit
+clear_variable = tAngle
+
+## set_location
+# target = scope_group[spatial_object]
+# distance = float #No variables here atm
+# distance = { min = float max = float }
+# angle = int[0..360]
+# angle = random
+# direction = in_system
+# direction = out_system

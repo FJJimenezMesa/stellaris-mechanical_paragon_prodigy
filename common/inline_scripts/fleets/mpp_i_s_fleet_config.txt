@@ -45,13 +45,15 @@ if = {
     set_variable = { which = tFleetLocation value = $LOCATION$ }
 }
 inline_script = {
-    script = mpp_i_s_set_location
+    script = middlewares/mpp_i_s_middleware_set_location
+    EFFECT = $EFFECT$
     LOCATION = $LOCATION$
     LOCATION_TARGET = $LOCATION_TARGET$
     DISTANCE = $DISTANCE$
     DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
     MIN_DISTANCE = $MIN_DISTANCE$
     MAX_DISTANCE = $MAX_DISTANCE$
+    ANGLE = $ANGLE$
     IN_ORBIT = @mpp_no
 }
 

@@ -1,14 +1,17 @@
 # ---------- Variables de posición (distance) ----------
-@script_min_distance = -50
-@script_max_distance = 299
 set_variable = { which = tDistance value = $DISTANCE$ }
 set_variable = { which = tDistanceOffsetRange value = $DISTANCE_OFFSET_RANGE$ }
 set_variable = { which = tMinDistance value = $MIN_DISTANCE$ }
 set_variable = { which = tMaxDistance value = $MAX_DISTANCE$ }
 
-# ---------- Caso 1: DISTANCE presente ----------
+# ---------- Caso 1: DISTANCE presente no random ----------
 if = {
-    limit = { NOT = { check_variable = { which = tDistance value = @mpp_no } } }
+    limit = {
+        NOT = {
+            check_variable = { which = tDistance value = @mpp_no }
+            check_variable = { which = tDistance value = @mpp_random }
+        }
+    }
 
     # Offset definido
     if = {
@@ -49,6 +52,7 @@ if = {
 # ---------- Caso 2: DISTANCE no presente → usar MIN/MAX ----------
 else_if = {
     limit = {
+        NOT = { check_variable = { which = tDistance value = @mpp_random } }
         OR = {
             NOT = { check_variable = { which = tMinDistance value = @mpp_no } }
             NOT = { check_variable = { which = tMaxDistance value = @mpp_no } }
@@ -78,26 +82,16 @@ else_if = {
     }
 }
 
-# ---------- Fix de rangos de scripts ----------
-if = {
-    limit = { check_variable_arithmetic = { which = tDistance value < @script_min_distance } }
-    set_variable = { which = tDistance value = @script_min_distance }
+# ---------- Caso 3: DISTANCE random ----------
+else = {
+    # ---------- Cálculo de ANGLE ----------
+    set_variable_to_random_value = { which = tDistance min = 0 max = 200 rounded = yes }
 
     # ---------- Debug ----------
     if = {
         limit = { mpp_is_debug_active = yes }
         #mpp_log_config
-        log_error = "   📐 - MPP - calc:<$EFFECT$> - Fix distancia mínima tDistance \\[this.tDistance]"
-    }
-}
-else_if = {
-    limit = { check_variable_arithmetic = { which = tDistance value > @script_max_distance } }
-    set_variable = { which = tDistance value = @script_max_distance}
-    # ---------- Debug ----------
-    if = {
-        limit = { mpp_is_debug_active = yes }
-        #mpp_log_config
-        log_error = "   📐 - MPP - calc:<$EFFECT$> -Fix distancia máxima tDistance\\[this.tDistance]"
+        log_error = "   📐 - MPP - calc:<$EFFECT$> - tDistance random - tDistance \\[this.tDistance]"
     }
 }
 

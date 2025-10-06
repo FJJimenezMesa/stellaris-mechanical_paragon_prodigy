@@ -23,6 +23,7 @@ mpp_add_fleet = {
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|@mpp_no$
                 MIN_DISTANCE = $MIN_DISTANCE|0$
                 MAX_DISTANCE = $MAX_DISTANCE|0$
+                ANGLE = $ANGLE|@mpp_random$
                 # -- Aggro config -- #
                 FLEET_STANCE = $FLEET_STANCE|@mpp_fleet_stance_passive$
                 AGGRO_RANGE = $AGGRO_RANGE|150$
@@ -78,6 +79,7 @@ mpp_fleet_config = {
                 DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|@mpp_no$
                 MIN_DISTANCE = $MIN_DISTANCE|0$
                 MAX_DISTANCE = $MAX_DISTANCE|0$
+                ANGLE = $ANGLE|@mpp_random$
                 # -- Aggro config -- #
                 FLEET_STANCE = $FLEET_STANCE|@mpp_fleet_stance_passive$
                 AGGRO_RANGE = $AGGRO_RANGE|150$

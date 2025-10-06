@@ -1,11 +1,15 @@
 limit = { check_variable_arithmetic = { which = tDistance value = $F_DISTANCE$ } }
 
 inline_script = {
-    script = $BASE_SCRIPT$
+    script = middlewares/mpp_i_s_middleware_location_target
+    BASE_SCRIPT = $BASE_SCRIPT$
     EFFECT = $EFFECT$
     TYPE = $TYPE$
     LOCATION = $LOCATION$
     LOCATION_TARGET = $LOCATION_TARGET$
     LOCATION_DISTANCE = $F_DISTANCE$
+    LOCATION_ANGLE = $ANGLE$
+    LOCATION_MIN_ANGLE = $MIN_ANGLE$
+    LOCATION_MAX_ANGLE = $MAX_ANGLE$
     IN_ORBIT = $IN_ORBIT$
 }

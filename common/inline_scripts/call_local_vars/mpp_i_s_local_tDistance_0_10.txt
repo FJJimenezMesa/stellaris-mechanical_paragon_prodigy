@@ -1,77 +1,99 @@
 if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 0 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 1 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 2 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 3 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 4 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 5 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 6 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 7 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 8 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 9 ]
     }
 }
 else_if = {
     inline_script = {
         script = call_local_vars/mpp_i_s_local_tDistance_base
-        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$ TYPE = $TYPE$
+        BASE_SCRIPT = $BASE_SCRIPT$ EFFECT = $EFFECT$
+        TYPE = $TYPE$ LOCATION_TARGET = $LOCATION_TARGET$ LOCATION = $LOCATION$ IN_ORBIT = $IN_ORBIT$
+        ANGLE = $ANGLE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
         F_DISTANCE = @[ $B_DISTANCE$ + 10 ]
     }
 }

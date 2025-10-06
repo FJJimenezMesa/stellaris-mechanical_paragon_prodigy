@@ -1,0 +1,209 @@
+# Guardamos valores recibidos en variables locales
+set_variable = { which = tLocation value = $LOCATION$ }
+set_variable = { which = tLocationTarget value = $LOCATION_TARGET$ }
+
+# ============================================================
+# CASO 1: LOCATION_TARGET tiene prioridad sobre LOCATION
+# ============================================================
+if = {
+    limit = { NOT = { check_variable = { which = tLocationTarget value = @mpp_no } } }
+
+    # ------------------------------------------------------------
+    # Subcaso 1A: Existe el event_target:$LOCATION_TARGET$
+    # ------------------------------------------------------------
+    if = {
+        limit = { exists = event_target:$LOCATION_TARGET$ }
+        inline_script = {
+            script = $BASE_SCRIPT$
+            EFFECT = $EFFECT$
+            TYPE = $TYPE$
+            LOCATION = $LOCATION$
+            LOCATION_TARGET = $LOCATION_TARGET$
+            T_TARGET = "target = event_target:$LOCATION_TARGET$"
+            T_LOCATION = "location = event_target:$LOCATION_TARGET$"
+            LOCATION_DISTANCE = $LOCATION_DISTANCE$
+            LOCATION_ANGLE = $LOCATION_ANGLE$
+            LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+            LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$
+        }
+    }
+
+    # ------------------------------------------------------------
+    # Subcaso 1B: Existe prev.event_target:$LOCATION_TARGET$
+    # (se intenta rescatar el contexto desde un scope anterior)
+    # ------------------------------------------------------------
+    else_if = {
+        limit = { exists = prev.event_target:$LOCATION_TARGET$ }
+        inline_script = {
+            script = $BASE_SCRIPT$
+            EFFECT = $EFFECT$
+            TYPE = $TYPE$
+            LOCATION = $LOCATION$
+            LOCATION_TARGET = $LOCATION_TARGET$
+            T_TARGET = "target = prev.event_target:$LOCATION_TARGET$"
+            T_LOCATION = "location = prev.event_target:$LOCATION_TARGET$"
+            LOCATION_DISTANCE = $LOCATION_DISTANCE$
+            LOCATION_ANGLE = $LOCATION_ANGLE$
+            LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+            LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$
+        }
+    }
+
+    # ------------------------------------------------------------
+    # Subcaso 1C: Error -> No existen ni LOCATION_TARGET ni prev.LOCATION_TARGET
+    # ------------------------------------------------------------
+    else = {
+        mpp_log_script_error = {
+            EFFECT = $EFFECT$ SCRIPT = mpp_i_s_middleware_location
+            TEXT = "LOCATION_TARGET $LOCATION_TARGET$ y prev.$LOCATION_TARGET$ no válidos"
+        }
+    }
+}
+
+# ============================================================
+# CASO 2: LOCATION definido explícitamente (cuando no se usa LOCATION_TARGET)
+# ============================================================
+else_if = {
+    limit = { NOT = { check_variable = { which = tLocation value = @mpp_no } } }
+
+    # ------------------------------------------------------------
+    # Subcaso 2A: LOCATION = @mpp_prev
+    # ------------------------------------------------------------
+    if = {
+        limit = { check_variable = { which = tLocation value = @mpp_prev } }
+        inline_script = {
+            script = $BASE_SCRIPT$
+            EFFECT = $EFFECT$
+            TYPE = $TYPE$
+            LOCATION = $LOCATION$
+            LOCATION_TARGET = $LOCATION_TARGET$
+            T_TARGET = "target = prev"
+            T_LOCATION = "location = prev"
+            LOCATION_DISTANCE = $LOCATION_DISTANCE$
+            LOCATION_ANGLE = $LOCATION_ANGLE$
+            LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+            LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$
+        }
+    }
+
+    # ------------------------------------------------------------
+    # Subcaso 2B: LOCATION = @mpp_from
+    # ------------------------------------------------------------
+    else_if = {
+        limit = { check_variable = { which = tLocation value = @mpp_from } }
+        inline_script = {
+            script = $BASE_SCRIPT$
+            EFFECT = $EFFECT$
+            TYPE = $TYPE$
+            LOCATION = $LOCATION$
+            LOCATION_TARGET = $LOCATION_TARGET$
+            T_TARGET = "target = from"
+            T_LOCATION = "location = from"
+            LOCATION_DISTANCE = $LOCATION_DISTANCE$
+            LOCATION_ANGLE = $LOCATION_ANGLE$
+            LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+            LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$
+        }
+    }
+
+    # ------------------------------------------------------------
+    # Subcaso 2C: LOCATION = @mpp_prev2
+    # ------------------------------------------------------------
+    else_if = {
+        limit = { check_variable = { which = tLocation value = @mpp_prev2 } }
+        inline_script = {
+            script = $BASE_SCRIPT$
+            EFFECT = $EFFECT$
+            TYPE = $TYPE$
+            LOCATION = $LOCATION$
+            LOCATION_TARGET = $LOCATION_TARGET$
+            T_TARGET = "target = prevprev"
+            T_LOCATION = "location = prevprev"
+            LOCATION_DISTANCE = $LOCATION_DISTANCE$
+            LOCATION_ANGLE = $LOCATION_ANGLE$
+            LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+            LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$
+        }
+    }
+
+    # ------------------------------------------------------------
+    # Subcaso 2D: Error -> LOCATION no admitido
+    # ------------------------------------------------------------
+    else = {
+        # ---------- Debug ----------
+        mpp_log_effect_error = {
+            EFFECT = $EFFECT$ TEXT = "LOCATION $LOCATION$ no admitido para $BASE_SCRIPT$"
+        }
+    }
+}
+
+# ============================================================
+# CASO 3: No hay LOCATION ni LOCATION_TARGET, intentamos usar prev
+# ============================================================
+else_if = {
+    limit = { exists = prev }
+    inline_script = {
+        script = $BASE_SCRIPT$
+        EFFECT = $EFFECT$
+        TYPE = $TYPE$
+        LOCATION = $LOCATION$
+        LOCATION_TARGET = $LOCATION_TARGET$
+        T_TARGET = "target = prev"
+        T_LOCATION = "location = prev"
+        LOCATION_DISTANCE = $LOCATION_DISTANCE$
+        LOCATION_ANGLE = $LOCATION_ANGLE$
+        LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+        LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+        IN_ORBIT = $IN_ORBIT$
+    }
+}
+
+# ============================================================
+# CASO 4: Fallback a "from"
+# ============================================================
+else_if = {
+    limit = { exists = from }
+    inline_script = {
+        script = $BASE_SCRIPT$
+        EFFECT = $EFFECT$
+        TYPE = $TYPE$
+        LOCATION = $LOCATION$
+        LOCATION_TARGET = $LOCATION_TARGET$
+        T_TARGET = "target = from"
+        T_LOCATION = "location = from"
+        LOCATION_DISTANCE = $LOCATION_DISTANCE$
+        LOCATION_ANGLE = $LOCATION_ANGLE$
+        LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+        LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+        IN_ORBIT = $IN_ORBIT$
+    }
+}
+
+# ============================================================
+# CASO 5: Fallback final -> "this"
+# ============================================================
+else = {
+    inline_script = {
+        script = $BASE_SCRIPT$
+        EFFECT = $EFFECT$
+        TYPE = $TYPE$
+        LOCATION = $LOCATION$
+        LOCATION_TARGET = $LOCATION_TARGET$
+        T_TARGET = "target = this"
+        T_LOCATION = "location = this"
+        LOCATION_DISTANCE = $LOCATION_DISTANCE$
+        LOCATION_ANGLE = $LOCATION_ANGLE$
+        LOCATION_MIN_ANGLE = $LOCATION_MIN_ANGLE$
+        LOCATION_MAX_ANGLE = $LOCATION_MAX_ANGLE$
+        IN_ORBIT = $IN_ORBIT$
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tLocation
+clear_variable = tLocationTarget

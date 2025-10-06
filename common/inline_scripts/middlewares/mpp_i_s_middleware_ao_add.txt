@@ -1,0 +1,16 @@
+inline_script = {
+    script = call_local_vars/mpp_i_s_local_tDistance
+    BASE_SCRIPT = galactic_objects/mpp_i_s_ao_add
+    EFFECT = $EFFECT$
+    TYPE = $TYPE$
+    LOCATION = $LOCATION$
+    LOCATION_TARGET = $LOCATION_TARGET$
+    DISTANCE = $DISTANCE$
+    DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
+    MIN_DISTANCE = $MIN_DISTANCE$
+    MAX_DISTANCE = $MAX_DISTANCE$
+    ANGLE = $ANGLE$
+    MIN_ANGLE = $MIN_ANGLE$
+    MAX_ANGLE = $MAX_ANGLE$
+    IN_ORBIT = $IN_ORBIT$
+}

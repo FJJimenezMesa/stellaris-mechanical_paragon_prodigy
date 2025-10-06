@@ -1,0 +1,31 @@
+if = {
+    limit = {
+        is_scope_valid = yes
+        OR = {
+            is_scope_type = fleet
+            is_scope_type = ambient_object
+        }
+    }
+
+    inline_script = {
+        script = call_local_vars/mpp_i_s_local_tDistance
+        BASE_SCRIPT = mpp_i_s_set_location
+        TYPE = @mpp_no
+        EFFECT = $EFFECT$
+        LOCATION = $LOCATION$
+        LOCATION_TARGET = $LOCATION_TARGET$
+        DISTANCE = $DISTANCE$
+        DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$
+        MIN_DISTANCE = $MIN_DISTANCE$
+        MAX_DISTANCE = $MAX_DISTANCE$
+        ANGLE = $ANGLE$
+        MIN_ANGLE = 0
+        MAX_ANGLE = 360
+        IN_ORBIT = $IN_ORBIT$
+    }
+}
+else = {
+    mpp_log_error_effect_invalid_scope = {
+        EFFECT = $EFFECT$ TEXT = "Scope no válido, se espera scope_type fleet o ambient_object"
+    }
+}

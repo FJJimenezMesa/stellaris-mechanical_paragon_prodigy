@@ -149,7 +149,7 @@ mpp_ao_add = {
     optimize_memory
 
     inline_script = {
-        script = galactic_objects/mpp_i_s_ao_add
+        script = middlewares/mpp_i_s_middleware_ao_add
         EFFECT = mpp_ao_add
         TYPE = $TYPE|small_debris_object$
         LOCATION = $LOCATION|@mpp_this$
@@ -158,6 +158,9 @@ mpp_ao_add = {
         DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|@mpp_no$
         MIN_DISTANCE = $MIN_DISTANCE|0$
         MAX_DISTANCE = $MAX_DISTANCE|0$
+        ANGLE = $ANGLE|@mpp_no$
+        MIN_ANGLE = $MIN_ANGLE|0$
+        MAX_ANGLE = $MAX_ANGLE|360$
         IN_ORBIT = $IN_ORBIT|@mpp_no$
     }
 }
@@ -447,6 +450,7 @@ mpp_ao_add_broken_star_lifting_platform = {
 
     solar_system = {
         star = {
+            #noinspection ParadoxScriptUnusedDynamicValue
             save_event_target_as = tStar
 
             set_variable = { which = tStar value = @mpp_yes } # !rev Para evitar problemas de scope

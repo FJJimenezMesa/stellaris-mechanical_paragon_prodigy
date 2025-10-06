@@ -1,5 +1,6 @@
-@script_min_distance = -50
-@script_max_distance = 299
+# ================================================
+# Scripted Effects MPP
+# ================================================
 
 mpp_set_location = {
     optimize_memory
@@ -10,7 +11,7 @@ mpp_set_location = {
             # Cambiamos el scope donde hacer set_location
             event_target:$TARGET$ = {
                 inline_script = {
-                    script = mpp_i_s_set_location
+                    script = middlewares/mpp_i_s_middleware_set_location
                     EFFECT = mpp_set_location
                     LOCATION = $LOCATION|@mpp_no$
                     LOCATION_TARGET = $LOCATION_TARGET|@mpp_no$
@@ -18,6 +19,7 @@ mpp_set_location = {
                     DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|@mpp_no$
                     MIN_DISTANCE = $MIN_DISTANCE|0$
                     MAX_DISTANCE = $MAX_DISTANCE|0$
+                    ANGLE = $ANGLE|@mpp_random$
                     IN_ORBIT = $IN_ORBIT|@mpp_no$
                 }
             }
@@ -31,7 +33,7 @@ mpp_set_location = {
 
     [[!TARGET]
         inline_script = {
-            script = mpp_i_s_set_location
+            script = middlewares/mpp_i_s_middleware_set_location
             EFFECT = mpp_set_location
             LOCATION = $LOCATION|@mpp_no$
             LOCATION_TARGET = $LOCATION_TARGET|@mpp_no$
@@ -39,6 +41,7 @@ mpp_set_location = {
             DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE|@mpp_no$
             MIN_DISTANCE = $MIN_DISTANCE|0$
             MAX_DISTANCE = $MAX_DISTANCE|0$
+            ANGLE = $ANGLE|@mpp_random$
             IN_ORBIT = $IN_ORBIT|@mpp_no$
         }
     ]
