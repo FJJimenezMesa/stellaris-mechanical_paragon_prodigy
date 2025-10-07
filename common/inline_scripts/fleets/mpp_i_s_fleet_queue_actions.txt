@@ -20,7 +20,7 @@ if = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
         #mpp_log_config_fleet_action
-        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_move_to - \\[This.GetName] - \\[This.tActionMoveTo]"
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_actions> - action_move_to - \\[This.GetName] - \\[This.tActionMoveTo]"
     }
 }
 else_if = {
@@ -81,7 +81,7 @@ else_if = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
         #mpp_log_config_fleet_action
-        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_patrol - \\[This.GetName] - \\[This.tPatrolToFlag1] - \\[This.tPatrolToFlag2] - \\[This.tPatrolToFlag3] - \\[This.tPatrolToFlag4]"
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_actions> - action_patrol - \\[This.GetName] - \\[This.tPatrolToFlag1] - \\[This.tPatrolToFlag2] - \\[This.tPatrolToFlag3] - \\[This.tPatrolToFlag4]"
     }
 }
 else_if = {
@@ -107,7 +107,7 @@ else_if = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
         #mpp_log_config_fleet_action
-        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_move_to_planet_flag - \\[This.GetName] - \\[This.tActionMoveToFlag]"
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_actions> - action_move_to_planet_flag - \\[This.GetName] - \\[This.tActionMoveToFlag]"
     }
 }
 else = {
@@ -117,7 +117,7 @@ else = {
     if = {
         limit = { mpp_is_debug_configs_active = yes }
         #mpp_log_config_fleet_action
-        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_ations> - action_wait - \\[This.GetName]"
+        log_error = "   🔜 - MPP - effect:<$EFFECT$:script:mpp_i_s_fleet_queue_actions> - action_wait - \\[This.GetName]"
     }
 }
 

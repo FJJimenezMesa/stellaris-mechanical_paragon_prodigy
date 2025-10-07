@@ -1,0 +1,96 @@
+# ---------- Variables de posición (angle) ----------
+set_variable = { which = tAngle value = $ANGLE$ }
+set_variable = { which = tAngleOffsetRange value = $ANGLE_OFFSET_RANGE$ }
+set_variable = { which = tMinAngle value = $MIN_ANGLE$ }
+set_variable = { which = tMaxAngle value = $MAX_ANGLE$ }
+
+# ---------- Caso 2: Angle presente no random ----------
+if = {
+    limit = {
+        NOT = {
+            check_variable = { which = tAngle value = @mpp_no }
+            check_variable = { which = tAngle value = @mpp_random }
+        }
+    }
+
+    # Offset definido
+    if = {
+        limit = { NOT = { check_variable = { which = tAngleOffsetRange value = @mpp_no } } }
+        set_variable = { which = tOffsetMax value = tAngleOffsetRange }
+    }
+    else = {
+        set_variable = { which = tOffsetMax value = 0 }
+    }
+
+    set_variable = { which = tOffsetMin value = tOffsetMax }
+
+    # Convertir min a negativo si no es 0 menor que 0
+    if = {
+        limit = { NOT = { check_variable = { which = tOffsetMin value <= 0 } } }
+        multiply_variable = { which = tOffsetMin value = -1 }
+    }
+
+    # Valor random de offset
+    set_variable_to_random_value = { which = tAngleOffset MIN = tOffsetMin MAX = tOffsetMax rounded = yes }
+
+    # ---------- Cálculo de ANGLE ----------
+    change_variable = { which = tAngle value = tAngleOffset }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        #mpp_log_config
+        log_error = "   📐 - MPP - conf:<$EFFECT$> - tAngle \\[this.tAngle] tOffsetAngle \\[this.tOffsetAngle] tMinAngle \\[this.tMinAngle] tMaxAngle \\[this.tMaxAngle]"
+    }
+
+    # ---------- Limpieza de variables ----------
+    clear_variable = tAngleOffset
+    clear_variable = tOffsetMin
+    clear_variable = tOffsetMax
+}
+
+# ---------- Caso 2: ANGLE no presente → usar MIN/MAX ----------
+else_if = {
+    limit = {
+        NOT = { check_variable = { which = tAngle value = @mpp_random } }
+        OR = {
+            NOT = { check_variable = { which = tMinAngle value = @mpp_no } }
+            NOT = { check_variable = { which = tMaxAngle value = @mpp_no } }
+        }
+    }
+
+    # MIN_ANGLE
+    if = {
+        limit = { check_variable = { which = tMinAngle value = @mpp_no } }
+        set_variable = { which = tMinAngle value = 0 }
+    }
+
+    # MAX_ANGLE
+    if = {
+        limit = { check_variable = { which = tMaxAngle value = @mpp_no } }
+        set_variable = { which = tMaxAngle value = 360 }
+    }
+
+    # ---------- Cálculo de ANGLE ----------
+    set_variable_to_random_value = { which = tAngle min = tMinAngle max = tMaxAngle rounded = yes }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_configs_active = yes }
+        #mpp_log_config
+        log_error = "   📐 - MPP - calc:<$EFFECT$> - tAngle \\[this.tAngle] tMinAngle \\[this.tMinAngle] tMaxAngle \\[this.tMaxAngle]"
+    }
+}
+
+# ---------- Caso 3: ANGLE random ----------
+else = {
+    # ---------- Cálculo de ANGLE ----------
+    set_variable_to_random_value = { which = tAngle min = 0 max = 360 rounded = yes }
+
+    # ---------- Debug ----------
+    if = {
+        limit = { mpp_is_debug_active = yes }
+        #mpp_log_config
+        log_error = "   📐 - MPP - calc:<$EFFECT$> - tAngle random - tAngle \\[this.tAngle]"
+    }
+}

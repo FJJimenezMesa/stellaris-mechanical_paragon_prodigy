@@ -17,6 +17,7 @@ if = {
             script = $BASE_SCRIPT$
             EFFECT = $EFFECT$
             TYPE = $TYPE$
+            SIZE = $SIZE$
             LOCATION = $LOCATION$
             LOCATION_TARGET = $LOCATION_TARGET$
             T_TARGET = "target = event_target:$LOCATION_TARGET$"
@@ -39,6 +40,7 @@ if = {
             script = $BASE_SCRIPT$
             EFFECT = $EFFECT$
             TYPE = $TYPE$
+            SIZE = $SIZE$
             LOCATION = $LOCATION$
             LOCATION_TARGET = $LOCATION_TARGET$
             T_TARGET = "target = prev.event_target:$LOCATION_TARGET$"
@@ -77,6 +79,7 @@ else_if = {
             script = $BASE_SCRIPT$
             EFFECT = $EFFECT$
             TYPE = $TYPE$
+            SIZE = $SIZE$
             LOCATION = $LOCATION$
             LOCATION_TARGET = $LOCATION_TARGET$
             T_TARGET = "target = prev"
@@ -98,6 +101,7 @@ else_if = {
             script = $BASE_SCRIPT$
             EFFECT = $EFFECT$
             TYPE = $TYPE$
+            SIZE = $SIZE$
             LOCATION = $LOCATION$
             LOCATION_TARGET = $LOCATION_TARGET$
             T_TARGET = "target = from"
@@ -119,6 +123,7 @@ else_if = {
             script = $BASE_SCRIPT$
             EFFECT = $EFFECT$
             TYPE = $TYPE$
+            SIZE = $SIZE$
             LOCATION = $LOCATION$
             LOCATION_TARGET = $LOCATION_TARGET$
             T_TARGET = "target = prevprev"
@@ -151,6 +156,7 @@ else_if = {
         script = $BASE_SCRIPT$
         EFFECT = $EFFECT$
         TYPE = $TYPE$
+        SIZE = $SIZE$
         LOCATION = $LOCATION$
         LOCATION_TARGET = $LOCATION_TARGET$
         T_TARGET = "target = prev"
@@ -172,6 +178,7 @@ else_if = {
         script = $BASE_SCRIPT$
         EFFECT = $EFFECT$
         TYPE = $TYPE$
+        SIZE = $SIZE$
         LOCATION = $LOCATION$
         LOCATION_TARGET = $LOCATION_TARGET$
         T_TARGET = "target = from"
@@ -192,6 +199,7 @@ else = {
         script = $BASE_SCRIPT$
         EFFECT = $EFFECT$
         TYPE = $TYPE$
+        SIZE = $SIZE$
         LOCATION = $LOCATION$
         LOCATION_TARGET = $LOCATION_TARGET$
         T_TARGET = "target = this"

@@ -11,6 +11,7 @@ if = {
         script = call_local_vars/mpp_i_s_local_tDistance
         BASE_SCRIPT = mpp_i_s_set_location
         TYPE = @mpp_no
+        SIZE = @mpp_no
         EFFECT = $EFFECT$
         LOCATION = $LOCATION$
         LOCATION_TARGET = $LOCATION_TARGET$

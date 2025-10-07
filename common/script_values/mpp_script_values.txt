@@ -80,3 +80,140 @@ mpp_value_getRandom = {
     modifier = { has_global_flag = mpp_flag_value_49 add = 49 }
     modifier = { has_global_flag = mpp_flag_value_50 add = 50 }
 }
+
+mpp_get_local_var_value = {
+    base = 0
+
+    modifier = {
+        is_variable_set = $VAR_NAME$
+        add = $VAR_NAME$
+    }
+
+    modifier = {
+        is_variable_set = $VAR_NAME$
+        add = $ADD|0$
+    }
+
+    modifier = {
+        is_variable_set = $VAR_NAME$
+        subtract = $SUBTRACT|0$
+    }
+
+    modifier = {
+        is_variable_set = $VAR_NAME$
+        multiply = $MULTIPLY|1$
+    }
+
+    modifier = {
+        is_variable_set = $VAR_NAME$
+        divide = $DIVIDE|1$
+    }
+
+    [[MIN]
+        modifier = {
+            min = $MIN$
+        }
+    ]
+
+    [[MAX]
+        modifier = {
+            max = $MAX$
+        }
+    ]
+}
+
+mpp_get_prev_local_var_value = {
+    base = 0
+
+    modifier = {
+        prev = { is_variable_set = $VAR_NAME$ }
+        add = prev.$VAR_NAME$
+    }
+
+    modifier = {
+        prev = { is_variable_set = $VAR_NAME$ }
+        add = $ADD|0$
+    }
+
+    modifier = {
+        prev = { is_variable_set = $VAR_NAME$ }
+        subtract = $SUBTRACT|0$
+    }
+
+    modifier = {
+        prev = { is_variable_set = $VAR_NAME$ }
+        multiply = $MULTIPLY|1$
+    }
+
+    modifier = {
+        prev = { is_variable_set = $VAR_NAME$ }
+        divide = $DIVIDE|1$
+    }
+
+    [[MIN]
+        modifier = {
+            min = $MIN$
+        }
+    ]
+
+    [[MAX]
+        modifier = {
+            max = $MAX$
+        }
+    ]
+}
+
+mpp_get_angle_range_by_tCount = {
+    base = 0
+
+    modifier = {
+        is_variable_set = tCount
+        add = 360
+    }
+
+    modifier = {
+        is_variable_set = tCount
+        divide = value:mpp_get_local_var_value|VAR_NAME|tCount|
+    }
+}
+
+mpp_get_min_angle_by_iterator = {
+    #@[ (360 / $ITERATIONS$) * (tIterator - 1) ]
+    base = 0
+
+    modifier = {
+        is_variable_set = tCount
+        add = value:mpp_get_angle_range_by_tCount
+    }
+
+    modifier = {
+        is_variable_set = tIterator
+        multiply = value:mpp_get_local_var_value|VAR_NAME|tIterator|SUBTRACT|1|
+    }
+
+    modifier = {
+        min = 0
+    }
+
+    round = yes
+}
+
+mpp_get_max_angle_by_iterator = {
+    #@[ (360 / $ITERATIONS$) * (tIterator - 1) ]
+    base = 0
+
+    modifier = {
+        add = value:mpp_get_angle_range_by_tCount
+    }
+
+    modifier = {
+        is_variable_set = tIterator
+        multiply = value:mpp_get_local_var_value|VAR_NAME|tIterator|
+    }
+
+    modifier = {
+        max = 360
+    }
+
+    round = yes
+}

@@ -14,19 +14,19 @@ mpp_debug = {
         set_variable = { which = debugLevel value = $LEVEL$ }
         if = {
             limit = { check_variable_arithmetic = { which = debugLevel value = 1 } }
-            mpp_enble_debug_error = yes
+            mpp_enable_debug_error = yes
         }
         else_if = {
             limit = { check_variable_arithmetic = { which = debugLevel value <= 2 } }
-            mpp_enble_debug_error = yes
-            mpp_enble_debug_info = yes
+            mpp_enable_debug_error = yes
+            mpp_enable_debug_info = yes
         }
         else = {
-            mpp_enble_debug_all = yes
+            mpp_enable_debug_all = yes
         }
     ]
     [[!LEVEL]
-        mpp_enble_debug_all = yes
+        mpp_enable_debug_all = yes
     ]
 }
 
@@ -34,7 +34,7 @@ mpp_debug = {
 # DEBUG FLAGS
 # ================================================
 
-mpp_enble_debug = {
+mpp_enable_debug = {
     if = {
         limit = { mpp_is_debug_active = no }
         log_error = "🐞 - MPP - DEBUG ACTIVO"
@@ -42,7 +42,7 @@ mpp_enble_debug = {
     set_global_flag = mpp_flag_debug
 }
 
-mpp_enble_debug_all = {
+mpp_enable_debug_all = {
     if = {
         limit = { mpp_is_debug_active = no }
         log_error = "🐞 - MPP - DEBUG TYPE_ALL"
@@ -56,7 +56,7 @@ mpp_enble_debug_all = {
     }
 }
 
-mpp_enble_debug_error = {
+mpp_enable_debug_error = {
     if = {
         limit = { mpp_is_debug_active = no }
         log_error = "🐞 - MPP - DEBUG TYPE_ERROR"
@@ -70,7 +70,7 @@ mpp_enble_debug_error = {
     }
 }
 
-mpp_enble_debug_info = {
+mpp_enable_debug_info = {
     if = {
         limit = { mpp_is_debug_active = no }
         log_error = "🐞 - MPP - DEBUG TYPE_INFO"
@@ -84,7 +84,7 @@ mpp_enble_debug_info = {
     }
 }
 
-mpp_enble_debug_configs = {
+mpp_enable_debug_configs = {
     if = {
         limit = { mpp_is_debug_active = no }
         log_error = "🐞 - MPP - DEBUG TYPE_CONFIGS"

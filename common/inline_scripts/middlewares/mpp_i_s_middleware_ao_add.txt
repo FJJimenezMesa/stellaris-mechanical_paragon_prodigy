@@ -3,6 +3,7 @@ inline_script = {
     BASE_SCRIPT = galactic_objects/mpp_i_s_ao_add
     EFFECT = $EFFECT$
     TYPE = $TYPE$
+    SIZE = @mpp_no
     LOCATION = $LOCATION$
     LOCATION_TARGET = $LOCATION_TARGET$
     DISTANCE = $DISTANCE$

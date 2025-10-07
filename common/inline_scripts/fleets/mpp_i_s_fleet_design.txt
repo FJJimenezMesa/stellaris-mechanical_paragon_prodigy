@@ -5,14 +5,14 @@ if = {
     limit = {
         OR = {
             check_variable = { which = tDesignType value = @mpp_fleet_design_base }
-            AND  = {
+            AND = {
                 check_variable = { which = tDesign value = @mpp_no }
                 check_variable = { which = tDesignType value = @mpp_no }
             }
         }
     }
     inline_script = {
-        script = fleets/mpp_i_s_fleet_design_base
+        script = fleets/designs/mpp_i_s_fleet_design_base
         SHIP_1 = $SHIP_1$
         SHIP_2 = $SHIP_2$
         SHIP_3 = $SHIP_3$
@@ -22,7 +22,7 @@ if = {
     # ---------- Debug ----------
     mpp_log_script_config = {
         EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
-        TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_base"
+        TEXT = "Usando fleetDesign mpp_i_s_fleet_design_base"
     }
 }
 else_if = {
@@ -32,7 +32,7 @@ else_if = {
             check_variable = { which = tDesignType value = @mpp_fleet_design_drone_00 }
         }
         inline_script = {
-            script = fleets/mpp_i_s_fleet_design_drone_00
+            script = fleets/designs/mpp_i_s_fleet_design_drone_00
             SHIP_1 = $SHIP_1$
             SHIP_2 = $SHIP_2$
             SHIP_3 = $SHIP_3$
@@ -42,19 +42,19 @@ else_if = {
         # ---------- Debug ----------
         mpp_log_script_config = {
             EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
-            TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_drone_00"
+            TEXT = "Usando fleetDesign mpp_i_s_fleet_design_drone_00"
         }
     }
     else = {
         mpp_log_script_error = {
             EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
-            TEXT = "FleetDesing $DESIGN_TYPE$ no implementado"
+            TEXT = "fleetDesign $DESIGN_TYPE$ no implementado"
         }
     }
 }
 else = {
     inline_script = {
-        script = fleets/mpp_i_s_fleet_design_$DESIGN$
+        script = fleets/designs/mpp_i_s_fleet_design_$DESIGN$
         SHIP_1 = $SHIP_1$
         SHIP_2 = $SHIP_2$
         SHIP_3 = $SHIP_3$
@@ -64,7 +64,7 @@ else = {
     # ---------- Debug ----------
     mpp_log_script_config = {
         EFFECT = $EFFECT$ SCRIPT = "mpp_i_s_fleet_design"
-        TEXT = "Usando fleetDesing  fleets/mpp_i_s_fleet_design_$DESIGN$"
+        TEXT = "Usando fleetDesign mpp_i_s_fleet_design_$DESIGN$"
     }
 }
 
