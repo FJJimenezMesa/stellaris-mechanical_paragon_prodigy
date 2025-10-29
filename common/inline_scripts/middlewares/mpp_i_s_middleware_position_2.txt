@@ -1,0 +1,146 @@
+# ---------- Variables de posición (angle) ----------
+set_variable = { which = tAngle value = $ANGLE$ }
+set_variable = { which = tAngleOffsetRange value = $ANGLE_OFFSET_RANGE$ }
+set_variable = { which = tMinAngle value = $MIN_ANGLE$ }
+set_variable = { which = tMaxAngle value = $MAX_ANGLE$ }
+
+# ---------- Caso 2: Angle presente no random ----------
+if = {
+    limit = {
+        NOT = {
+            check_variable = { which = tAngle value = @mpp_no }
+            check_variable = { which = tAngle value = @mpp_random }
+        }
+    }
+
+    # Offset definido
+    if = {
+        limit = { NOT = { check_variable = { which = tAngleOffsetRange value = @mpp_no } } }
+        $MIDDLEWARE$ = {
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = $C_MIN_DISTANCE$
+            C_MAX_DISTANCE = $C_MAX_DISTANCE$
+            C_MIN_ANGLE = @[ $ANGLE$ - $ANGLE_OFFSET_RANGE$ ]
+            C_MAX_ANGLE = @[ $ANGLE$ + $ANGLE_OFFSET_RANGE$ ]
+        }
+    }
+    else = {
+        $MIDDLEWARE$ = {
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = $C_MIN_DISTANCE$
+            C_MAX_DISTANCE = $C_MAX_DISTANCE$
+            C_MIN_ANGLE = @[ $ANGLE$ ]
+            C_MAX_ANGLE = @[ $ANGLE$ ]
+        }
+    }
+}
+
+# ---------- Caso 2: ANGLE no presente → usar MIN/MAX ----------
+else_if = {
+    limit = {
+        NOT = { check_variable = { which = tAngle value = @mpp_random } }
+    }
+
+    # ---------- Caso 2a: MIN o MAX definido ----------
+    if = {
+        limit = {
+            OR = {
+                NOT = { check_variable = { which = tMinAngle value = @mpp_no } }
+                NOT = { check_variable = { which = tMaxAngle value = @mpp_no } }
+            }
+        }
+
+        # NO MIN_ANGLE
+        if = {
+            limit = {
+                check_variable = { which = tMinAngle value = @mpp_no }
+            }
+            $MIDDLEWARE$ = {
+                EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+                TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+                DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+                ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+                IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+                C_MIN_DISTANCE = $C_MIN_DISTANCE$
+                C_MAX_DISTANCE = $C_MAX_DISTANCE$
+                C_MIN_ANGLE = @[ $MAX_ANGLE$ ]
+                C_MAX_ANGLE = @[ $MAX_ANGLE$ ]
+            }
+        }
+        # NO MAX_ANGLE
+        else_if = {
+            limit = {
+                check_variable = { which = tMaxAngle value = @mpp_no }
+            }
+            $MIDDLEWARE$ = {
+                EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+                TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+                DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+                ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+                IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+                C_MIN_DISTANCE = $C_MIN_DISTANCE$
+                C_MAX_DISTANCE = $C_MAX_DISTANCE$
+                C_MIN_ANGLE = @[ $MIN_ANGLE$ ]
+                C_MAX_ANGLE = @[ $MIN_ANGLE$ ]
+            }
+        }
+        # MIN/MAX presente
+        else = {
+            $MIDDLEWARE$ = {
+                EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+                TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+                DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+                ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+                IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+                C_MIN_DISTANCE = $C_MIN_DISTANCE$
+                C_MAX_DISTANCE = $C_MAX_DISTANCE$
+                C_MIN_ANGLE = @[ $MIN_ANGLE$ ]
+                C_MAX_ANGLE = @[ $MAX_ANGLE$ ]
+            }
+        }
+    }
+
+    # ---------- Caso 2b: MIN y MAX definido a través de loop iterations ----------
+    else = {
+        $MIDDLEWARE$ = {
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = $C_MIN_DISTANCE$
+            C_MAX_DISTANCE = $C_MAX_DISTANCE$
+            C_MIN_ANGLE = @[ ((360 / $MAX_ITERATIONS$) * ($ITERATION$ - 1)) ]
+            C_MAX_ANGLE = @[ ((360 / $MAX_ITERATIONS$) * $ITERATION$) ]
+        }
+    }
+}
+
+# ---------- Caso 3: ANGLE random ----------
+else = {
+    $MIDDLEWARE$ = {
+        EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+        TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+        DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+        ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+        IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+        C_MIN_DISTANCE = $C_MIN_DISTANCE$
+        C_MAX_DISTANCE = $C_MAX_DISTANCE$
+        C_MIN_ANGLE = @mpp_random
+        C_MAX_ANGLE = @mpp_no
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tAngle
+clear_variable = tAngleOffsetRange
+clear_variable = tMinAngle
+clear_variable = tMaxAngle

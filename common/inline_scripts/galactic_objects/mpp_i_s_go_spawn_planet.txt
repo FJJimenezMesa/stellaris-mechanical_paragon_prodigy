@@ -1,0 +1,227 @@
+# ---------- Variables globales para distancia aleatoria ----------
+@min_random_distance = 5
+@max_random_distance = 20
+
+# ---------- Guardamos valores recibidos ----------
+set_variable = { which = tSize value = $SIZE$ }
+set_variable = { which = tMinDistance value = $C_MIN_DISTANCE$ }
+set_variable = { which = tMaxDistance value = $C_MAX_DISTANCE$ }
+set_variable = { which = tMinAngle value = $C_MIN_ANGLE$ }
+set_variable = { which = tMaxAngle value = $C_MAX_ANGLE$ }
+
+# Si los ángulos vienen sin definir (0–360), lo tratamos como "aleatorio"
+if = {
+    limit = {
+        check_variable = { which = tMinAngle value = 0 }
+        check_variable = { which = tMaxAngle value = 360 }
+    }
+
+    set_variable = { which = tMinAngle value = @mpp_random }
+}
+
+# ------------------------------------------------------------
+# CASO 1: DISTANCE y ANGLE definidos (no aleatorios)
+# ------------------------------------------------------------
+if = {
+    limit = {
+        NOT = {
+            check_variable = { which = tMinDistance value = @mpp_random }
+            check_variable = { which = tMinAngle value = @mpp_random }
+        }
+    }
+
+    # ----- Subcaso 1A: Tamaño definido -----
+    if = {
+        limit = {
+            NOT = {
+                check_variable = { which = tSize value = @mpp_no }
+                check_variable = { which = tSize value = @mpp_random }
+            }
+        }
+        spawn_planet = {
+            class = $TYPE$
+            size = $SIZE$
+            orbit_distance = {
+                min = $C_MIN_DISTANCE$
+                max = $C_MAX_DISTANCE$
+            }
+            orbit_angle = {
+                min = $C_MIN_ANGLE$
+                max = $C_MAX_ANGLE$
+            }
+            init_effect = { save_event_target_as = tPlanet }
+        }
+    }
+    # ----- Subcaso 1B: Tamaño aleatorio -----
+    else = {
+        spawn_planet = {
+            class = $TYPE$
+            size = random
+            orbit_distance = {
+                min = $C_MIN_DISTANCE$
+                max = $C_MAX_DISTANCE$
+            }
+            orbit_angle = {
+                min = $C_MIN_ANGLE$
+                max = $C_MAX_ANGLE$
+            }
+            init_effect = { save_event_target_as = tPlanet }
+        }
+    }
+}
+
+# ------------------------------------------------------------
+# CASO 2: DISTANCE aleatorio
+# ------------------------------------------------------------
+else_if = {
+    limit = { check_variable = { which = tMinDistance value = @mpp_random } }
+
+    set_variable = { which = tMinDistance value = @min_random_distance }
+    set_variable = { which = tMaxDistance value = @max_random_distance }
+
+    # ----- Subcaso 2A: Tamaño definido -----
+    if = {
+        limit = {
+            NOT = {
+                check_variable = { which = tSize value = @mpp_no }
+                check_variable = { which = tSize value = @mpp_random }
+            }
+        }
+        spawn_planet = {
+            class = $TYPE$
+            size = $SIZE$
+            orbit_distance = {
+                min = @min_random_distance
+                max = @max_random_distance
+            }
+            orbit_angle = {
+                min = $C_MIN_ANGLE$
+                max = $C_MAX_ANGLE$
+            }
+            init_effect = { save_event_target_as = tPlanet }
+        }
+    }
+    # ----- Subcaso 2B: Tamaño aleatorio -----
+    else = {
+        spawn_planet = {
+            class = $TYPE$
+            size = random
+            orbit_distance = {
+                min = @min_random_distance
+                max = @max_random_distance
+            }
+            orbit_angle = {
+                min = $C_MIN_ANGLE$
+                max = $C_MAX_ANGLE$
+            }
+            init_effect = { save_event_target_as = tPlanet }
+        }
+    }
+}
+
+# ------------------------------------------------------------
+# CASO 3: ANGLE aleatorio
+# ------------------------------------------------------------
+else = {
+    # if = { limit = { check_variable = { which = tMinAngle value = @mpp_random } } }
+    set_variable = { which = tMinAngle value = 0 }
+
+    # ----- Subcaso 3A: Tamaño definido -----
+    if = {
+        limit = {
+            NOT = {
+                check_variable = { which = tSize value = @mpp_no }
+                check_variable = { which = tSize value = @mpp_random }
+            }
+        }
+        spawn_planet = {
+            class = $TYPE$
+            size = $SIZE$
+            orbit_distance = {
+                min = $C_MIN_DISTANCE$
+                max = $C_MAX_DISTANCE$
+            }
+            orbit_angle = random
+            init_effect = { save_event_target_as = tPlanet }
+        }
+    }
+    # ----- Subcaso 3B: Tamaño aleatorio -----
+    else = {
+        spawn_planet = {
+            class = $TYPE$
+            size = random
+            orbit_distance = {
+                min = $C_MIN_DISTANCE$
+                max = $C_MAX_DISTANCE$
+            }
+            orbit_angle = random
+            init_effect = { save_event_target_as = tPlanet }
+        }
+    }
+}
+
+# ============================================================
+# Guardado de órbita
+# ============================================================
+if = {
+    limit = { exists = event_target:tPlanet }
+
+    event_target:tPlanet = {
+        # Guardamos esta distancia en una variable del planeta
+        set_variable = { which = pOrbit value = value:mpp_get_distance|SOURCE|this.star| }
+        round_variable = pOrbit
+
+        # ---------- Debug ----------
+        # mpp_log_info_go
+        if = {
+            limit = { mpp_is_debug_info_active = yes }
+            if = {
+                limit = {
+                    NOT = {
+                        check_variable = { which = tSize value = @mpp_no }
+                        check_variable = { which = tSize value = @mpp_random }
+                    }
+                }
+                log_error = "🪐 - MPP - effect:<$EFFECT$> - spawn_planet de tipo $TYPE$ y tamaño random con órbita de \\[this.pOrbit] (\\[prev.tMinDistance]-\\[prev.tMaxDistance]) y ángulo entre \\[prev.tMinAngle] y \\[prev.tMaxAngle]"
+
+            }
+            else = {
+                log_error = "🪐 - MPP - effect:<$EFFECT$> - spawn_planet de tipo $TYPE$ y tamaño $SIZE$ con órbita con órbita de \\[this.pOrbit] (\\[prev.tMinDistance]-\\[prev.tMaxDistance]) y ángulo entre \\[prev.tMinAngle] y \\[prev.tMaxAngle]"
+            }
+        }
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tSize
+clear_variable = tMinDistance
+clear_variable = tMaxDistance
+clear_variable = tMinAngle
+clear_variable = tMaxAngle
+
+## spawn_planet
+# class = <planet_class>
+# class = <planet_class_random_list>
+# class = random
+# class = random_colonizable
+# generate_random_name = bool
+# name = localisation
+# location = scope_group[celestial_coordinate]
+# orbit_location = bool
+# orbit_distance = value_field
+# orbit_distance = { min = value_field max = value_field }
+# orbit_distance_offset = value_field
+# plane_offset = float
+# deposit_blockers = none
+# modifiers = none
+# modifier = <planet_modifier>
+# flags = { value_set[planet_flag] }
+# size = int
+# size = random
+# has_ring = bool
+# spawn_beyond_gravity_well = bool
+# orbit_angle = random
+# orbit_angle = int[-360..360]
+# orbit_angle = { min = int[-360..360] max = int[-360..360] }
+# orbit_angle_offset = float
+# init_effect = single_alias_right[effect_clause]

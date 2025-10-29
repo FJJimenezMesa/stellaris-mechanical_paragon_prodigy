@@ -163,32 +163,32 @@ mpp_get_prev_local_var_value = {
     ]
 }
 
-mpp_get_angle_range_by_tCount = {
+mpp_get_angle_range_in_loop = {
     base = 0
 
     modifier = {
-        is_variable_set = tCount
+        is_variable_set = tLoopCount
         add = 360
     }
 
     modifier = {
-        is_variable_set = tCount
-        divide = value:mpp_get_local_var_value|VAR_NAME|tCount|
+        is_variable_set = tLoopCount
+        divide = value:mpp_get_local_var_value|VAR_NAME|tLoopCount|
     }
 }
 
-mpp_get_min_angle_by_iterator = {
+mpp_get_min_angle_in_loop = {
     #@[ (360 / $ITERATIONS$) * (tIterator - 1) ]
     base = 0
 
     modifier = {
-        is_variable_set = tCount
-        add = value:mpp_get_angle_range_by_tCount
+        is_variable_set = tLoopCount
+        add = value:mpp_get_angle_range_in_loop
     }
 
     modifier = {
-        is_variable_set = tIterator
-        multiply = value:mpp_get_local_var_value|VAR_NAME|tIterator|SUBTRACT|1|
+        is_variable_set = tLoopIterator
+        multiply = value:mpp_get_local_var_value|VAR_NAME|tLoopIterator|SUBTRACT|1|
     }
 
     modifier = {
@@ -198,17 +198,18 @@ mpp_get_min_angle_by_iterator = {
     round = yes
 }
 
-mpp_get_max_angle_by_iterator = {
+mpp_get_max_angle_in_loop = {
     #@[ (360 / $ITERATIONS$) * (tIterator - 1) ]
     base = 0
 
     modifier = {
-        add = value:mpp_get_angle_range_by_tCount
+        is_variable_set = tLoopCount
+        add = value:mpp_get_angle_range_in_loop
     }
 
     modifier = {
-        is_variable_set = tIterator
-        multiply = value:mpp_get_local_var_value|VAR_NAME|tIterator|
+        is_variable_set = tLoopIterator
+        multiply = value:mpp_get_local_var_value|VAR_NAME|tLoopIterator|
     }
 
     modifier = {
@@ -216,4 +217,16 @@ mpp_get_max_angle_by_iterator = {
     }
 
     round = yes
+}
+
+mpp_get_distance = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = distance
+        mode = add
+        parameters = {
+            source = $SOURCE$
+            same_solar_system = yes
+        }
+    }
 }

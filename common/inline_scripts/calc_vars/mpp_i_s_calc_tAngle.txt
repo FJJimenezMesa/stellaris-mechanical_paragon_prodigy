@@ -53,32 +53,61 @@ if = {
 else_if = {
     limit = {
         NOT = { check_variable = { which = tAngle value = @mpp_random } }
-        OR = {
-            NOT = { check_variable = { which = tMinAngle value = @mpp_no } }
-            NOT = { check_variable = { which = tMaxAngle value = @mpp_no } }
+    }
+
+    # ---------- Caso 2a: MIN o MAX definido ----------
+    if = {
+        limit = {
+            OR = {
+                NOT = { check_variable = { which = tMinAngle value = @mpp_no } }
+                NOT = { check_variable = { which = tMaxAngle value = @mpp_no } }
+            }
+        }
+
+        # MIN_ANGLE
+        if = {
+            limit = { check_variable = { which = tMinAngle value = @mpp_no } }
+            set_variable = { which = tMinAngle value = 0 }
+        }
+
+        # MAX_ANGLE
+        if = {
+            limit = { check_variable = { which = tMaxAngle value = @mpp_no } }
+            set_variable = { which = tMaxAngle value = 360 }
+        }
+
+        # ---------- Cálculo de ANGLE ----------
+        set_variable_to_random_value = { which = tAngle min = tMinAngle max = tMaxAngle rounded = yes }
+
+        # ---------- Debug ----------
+        if = {
+            limit = { mpp_is_debug_configs_active = yes }
+            #mpp_log_config
+            log_error = "   📐 - MPP - calc:<$EFFECT$> - tAngle \\[this.tAngle] tMinAngle \\[this.tMinAngle] tMaxAngle \\[this.tMaxAngle]"
         }
     }
 
-    # MIN_ANGLE
-    if = {
-        limit = { check_variable = { which = tMinAngle value = @mpp_no } }
-        set_variable = { which = tMinAngle value = 0 }
-    }
+    # ---------- Caso 2b: MIN y MAX definido a través de loop iterations ----------
+    else = {
+        set_variable = { which = tLoopCount value = $MAX_ITERATIONS$ }
+        set_variable = { which = tLoopIterator value = $ITERATION$ }
 
-    # MAX_ANGLE
-    if = {
-        limit = { check_variable = { which = tMaxAngle value = @mpp_no } }
-        set_variable = { which = tMaxAngle value = 360 }
-    }
+        set_variable = { which = tMinAngle value = value:mpp_get_min_angle_in_loop  }
+        set_variable = { which = tMaxAngle value = value:mpp_get_max_angle_in_loop }
 
-    # ---------- Cálculo de ANGLE ----------
-    set_variable_to_random_value = { which = tAngle min = tMinAngle max = tMaxAngle rounded = yes }
+        # ---------- Cálculo de ANGLE ----------
+        set_variable_to_random_value = { which = tAngle min = tMinAngle max = tMaxAngle rounded = yes }
 
-    # ---------- Debug ----------
-    if = {
-        limit = { mpp_is_debug_configs_active = yes }
-        #mpp_log_config
-        log_error = "   📐 - MPP - calc:<$EFFECT$> - tAngle \\[this.tAngle] tMinAngle \\[this.tMinAngle] tMaxAngle \\[this.tMaxAngle]"
+        # ---------- Debug ----------
+        if = {
+            limit = { mpp_is_debug_configs_active = yes }
+            #mpp_log_config
+            log_error = "   📐 - MPP - calc:<$EFFECT$> - tAngle \\[this.tAngle] tMinAngle \\[this.tMinAngle] tMaxAngle \\[this.tMaxAngle] tLoopCount \\[this.tLoopCount] tLoopCount \\[this.tLoopIterator]"
+        }
+
+        # ---------- Limpieza de variables ----------
+        clear_variable = tLoopCount
+        clear_variable = tLoopIterator
     }
 }
 
@@ -94,3 +123,8 @@ else = {
         log_error = "   📐 - MPP - calc:<$EFFECT$> - tAngle random - tAngle \\[this.tAngle]"
     }
 }
+
+# ---------- Limpieza de variables ----------
+clear_variable = tAngleOffsetRange
+clear_variable = tMinAngle
+clear_variable = tMaxAngle

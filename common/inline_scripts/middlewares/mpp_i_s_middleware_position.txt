@@ -1,0 +1,127 @@
+# ---------- Variables de posición (distance) ----------
+set_variable = { which = tDistance value = $DISTANCE$ }
+set_variable = { which = tDistanceOffsetRange value = $DISTANCE_OFFSET_RANGE$ }
+set_variable = { which = tMinDistance value = $MIN_DISTANCE$ }
+set_variable = { which = tMaxDistance value = $MAX_DISTANCE$ }
+
+# ---------- Caso 1: DISTANCE presente no random ----------
+if = {
+    limit = {
+        NOT = {
+            check_variable = { which = tDistance value = @mpp_no }
+            check_variable = { which = tDistance value = @mpp_random }
+        }
+    }
+
+    # Offset definido
+    if = {
+        limit = { NOT = { check_variable = { which = tDistanceOffsetRange value = @mpp_no } } }
+
+        inline_script = {
+            script = middlewares/mpp_i_s_middleware_position_2
+            MIDDLEWARE = $MIDDLEWARE$
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = @[ $DISTANCE$ - $DISTANCE_OFFSET_RANGE$ ]
+            C_MAX_DISTANCE = @[ $DISTANCE$ + $DISTANCE_OFFSET_RANGE$ ]
+        }
+    }
+    # Offset NO definido
+    else = {
+        inline_script = {
+            script = middlewares/mpp_i_s_middleware_position_2
+            MIDDLEWARE = $MIDDLEWARE$
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = @[ $DISTANCE$ ]
+            C_MAX_DISTANCE = @[ $DISTANCE$ ]
+        }
+    }
+}
+
+# ---------- Caso 2: DISTANCE no presente → usar MIN/MAX ----------
+else_if = {
+    limit = {
+        NOT = { check_variable = { which = tDistance value = @mpp_random } }
+        OR = {
+            NOT = { check_variable = { which = tMinDistance value = @mpp_no } }
+            NOT = { check_variable = { which = tMaxDistance value = @mpp_no } }
+        }
+    }
+
+    # NO MIN_DISTANCE
+    if = {
+        limit = {
+            check_variable = { which = tMinDistance value = @mpp_no }
+        }
+        inline_script = {
+            script = middlewares/mpp_i_s_middleware_position_2
+            MIDDLEWARE = $MIDDLEWARE$
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = @[ $MAX_DISTANCE$ ]
+            C_MAX_DISTANCE = @[ $MAX_DISTANCE$ ]
+        }
+    }
+    # NO MAX_DISTANCE
+    else_if = {
+        limit = {
+            check_variable = { which = tMaxDistance value = @mpp_no }
+        }
+        inline_script = {
+            script = middlewares/mpp_i_s_middleware_position_2
+            MIDDLEWARE = $MIDDLEWARE$
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = @[ $MIN_DISTANCE$ ]
+            C_MAX_DISTANCE = @[ $MIN_DISTANCE$ ]
+        }
+    }
+    # MIN/MAX presente
+    else = {
+        inline_script = {
+            script = middlewares/mpp_i_s_middleware_position_2
+            MIDDLEWARE = $MIDDLEWARE$
+            EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+            TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+            DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+            ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+            IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+            C_MIN_DISTANCE = @[ $MIN_DISTANCE$ ]
+            C_MAX_DISTANCE = @[ $MAX_DISTANCE$ ]
+        }
+    }
+}
+
+# ---------- Caso 3: DISTANCE random ----------
+else = {
+    inline_script = {
+        script = middlewares/mpp_i_s_middleware_position_2
+        MIDDLEWARE = $MIDDLEWARE$
+        EFFECT = $EFFECT$ BASE_SCRIPT = $BASE_SCRIPT$
+        TYPE = $TYPE$ SIZE = $SIZE$ LOCATION = $LOCATION$ LOCATION_TARGET = $LOCATION_TARGET$
+        DISTANCE = $DISTANCE$ DISTANCE_OFFSET_RANGE = $DISTANCE_OFFSET_RANGE$ MIN_DISTANCE = $MIN_DISTANCE$ MAX_DISTANCE = $MAX_DISTANCE$
+        ANGLE = $ANGLE$ ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE$ MIN_ANGLE = $MIN_ANGLE$ MAX_ANGLE = $MAX_ANGLE$
+        IN_ORBIT = $IN_ORBIT$ ITERATION = $ITERATION$ MAX_ITERATIONS = $MAX_ITERATIONS$
+        C_MIN_DISTANCE = @mpp_random
+        C_MAX_DISTANCE = @mpp_no
+    }
+}
+
+# ---------- Limpieza de variables ----------
+clear_variable = tDistance
+clear_variable = tDistanceOffsetRange
+clear_variable = tMinDistance
+clear_variable = tMaxDistance

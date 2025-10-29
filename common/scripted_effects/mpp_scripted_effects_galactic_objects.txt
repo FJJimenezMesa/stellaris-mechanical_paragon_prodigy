@@ -3,25 +3,43 @@
 # ===============================================
 
 mpp_go_spawn_planet = {
-    inline_script = {
-        script = galactic_objects/mpp_i_s_go_orbit_offset
-        EFFECT = "mpp_go_spawn_planet"
-        TYPE = $TYPE|random$
-        ORBIT = $ORBIT|random$
-        ORBIT_OFFSET = $ORBIT_OFFSET|0$
-        SIZE = $SIZE|random$
-        MIN_ANGLE = $MIN_ANGLE|0$
-        MAX_ANGLE = $MAX_ANGLE|360$
+    optimize_memory
+
+    mpp_middleware_position = {
+        EFFECT = mpp_go_spawn_planet
+        BASE_SCRIPT = galactic_objects/mpp_i_s_go_spawn_planet
+        # ---------- Lógica de tipología ----------
+        TYPE = $TYPE|random$ # !rev
+        SIZE = $SIZE|@mpp_random$ # !rev
+        # ---------- Lógica de distancia ----------
+        DISTANCE = $ORBIT|@mpp_no$
+        DISTANCE_OFFSET_RANGE = $ORBIT_OFFSET|@mpp_no$
+        MIN_DISTANCE = $MIN_ORBIT_DISTANCE|@mpp_no$
+        MAX_DISTANCE = $MAX_ORBIT_DISTANCE|@mpp_no$
+        # ---------- Lógica de ángulo ----------
+        ANGLE = $ANGLE|@mpp_no$
+        ANGLE_OFFSET_RANGE = $ANGLE_OFFSET_RANGE|@mpp_no$
+        MIN_ANGLE = $MIN_ANGLE|@mpp_no$   #value:mpp_get_min_angle_by_iterator
+        MAX_ANGLE = $MAX_ANGLE|@mpp_no$ #value:mpp_get_max_angle_by_iterator
+        # ---------- Lógica de loop (uso en ángulo) ----------
+        ITERATION = $ITERATION|1$
+        MAX_ITERATIONS = $MAX_ITERATIONS|1$
     }
 
+    # ---------- Efectos ----------
     if = {
         limit = { exists = event_target:tPlanet }
         event_target:tPlanet = {
-            [[EFFECT1] planet = { $EFFECT1$ = yes } ]
-            [[EFFECT2] planet = { $EFFECT2$ = yes } ]
-            [[EFFECT3] planet = { $EFFECT3$ = yes } ]
-            [[EFFECT4] planet = { $EFFECT4$ = yes } ]
-            [[EFFECT5] planet = { $EFFECT5$ = yes } ]
+            [[EFFECT1] $EFFECT1$ = yes ]
+            [[EFFECT2] $EFFECT2$ = yes ]
+            [[EFFECT3] $EFFECT3$ = yes ]
+            [[EFFECT4] $EFFECT4$ = yes ]
+            [[EFFECT5] $EFFECT5$ = yes ]
+            [[COMPLEX_EFFECT1] $COMPLEX_EFFECT1$ ]
+            [[COMPLEX_EFFECT2] $COMPLEX_EFFECT2$ ]
+            [[COMPLEX_EFFECT3] $COMPLEX_EFFECT3$ ]
+            [[COMPLEX_EFFECT4] $COMPLEX_EFFECT4$ ]
+            [[COMPLEX_EFFECT5] $COMPLEX_EFFECT5$ ]
         }
     }
 }
